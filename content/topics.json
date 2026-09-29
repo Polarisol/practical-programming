@@ -1,0 +1,79 @@
+{
+  "site": {
+    "title": "Practical Programming",
+    "author": "Dr. Tal Alon",
+    "subtitle": "Pick a topic to find videos, notes and practice bots.",
+    "footer": "Practical Programming · Dr. Tal Alon"
+  },
+  "topics": [
+    {
+      "id": "installation",
+      "title": "Installation",
+      "icon": "⬇",
+      "blurb": "What and how to install what you need",
+      "material": "topics/install.md"
+    },
+    {
+      "id": "photosynthesis",
+      "title": "Photosynthesis",
+      "icon": "☀",
+      "blurb": "How plants turn light, water and carbon dioxide into food.",
+      "videos": [
+        {
+          "title": "Photosynthesis: Crash Course Biology #8",
+          "youtube": "https://www.youtube.com/watch?v=sQK3Yr4Sc_k"
+        }
+      ],
+      "material": "topics/photosynthesis.md",
+      "bots": [
+        {
+          "label": "Photosynthesis quiz bot",
+          "description": "Hi! I'm your photosynthesis quiz bot. Think you can beat me?",
+          "url": "https://example.com/replace-with-your-bot"
+        }
+      ],
+      "links": [
+        {
+          "label": "Wikipedia: Photosynthesis",
+          "url": "https://en.wikipedia.org/wiki/Photosynthesis"
+        }
+      ]
+    },
+    {
+      "id": "python-basics",
+      "title": "Python Basics",
+      "icon": "{ }",
+      "blurb": "Variables, loops and functions: your first steps in programming.",
+      "videos": [
+        {
+          "title": "Python for Beginners (1 hour)",
+          "youtube": "kqtD5dpn9C8"
+        },
+        {
+          "title": "Learn Python: full course",
+          "youtube": "https://youtu.be/rfscVS0vtbw",
+          "start": 0
+        }
+      ],
+      "material": "topics/python-basics.md",
+      "bots": [
+        {
+          "label": "Python practice bot",
+          "description": "Hey there! Stuck on a loop or a function? Let's work through it together.",
+          "url": "https://example.com/replace-with-your-bot"
+        },
+        {
+          "label": "Python test bot",
+          "description": "Ready for a challenge? I'll test you on Python basics.",
+          "url": "https://example.com/replace-with-your-test-bot"
+        }
+      ],
+      "links": [
+        {
+          "label": "The official Python tutorial",
+          "url": "https://docs.python.org/3/tutorial/"
+        }
+      ]
+    }
+  ]
+}

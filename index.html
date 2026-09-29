@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Practical Programming by Dr. Tal Alon</title>
+  <meta name="description" content="Practical Programming by Dr. Tal Alon: topics, videos, notes and practice bots.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <script>try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; if (localStorage.getItem('view') === 'list') document.documentElement.dataset.view = 'list'; } catch (e) {}</script>
+</head>
+<body data-page="home">
+  <canvas id="ascii-bg" aria-hidden="true"></canvas>
+
+  <header class="topbar">
+    <a class="brand" href="./" data-route="" data-site-name>Practical Programming by Dr. Tal Alon</a>
+    <div class="topbar-actions">
+      <button class="view-toggle" type="button" aria-label="Switch to list view"></button>
+      <button class="theme-toggle" type="button" aria-label="Toggle theme">☾</button>
+    </div>
+  </header>
+
+  <!-- Main page and every topic are shown here; the list of topics is always visible. -->
+  <div class="wrap app-layout">
+    <div id="topic-nav-slot"></div>
+    <main id="app"></main>
+  </div>
+
+  <footer class="footer" data-site-footer></footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"
+          integrity="sha384-/TQbtLCAerC3jgaim+N78RZSDYV7ryeoBCVqTuzRrFec2akfBkHS7ACQ3PQhvMVi"
+          crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"
+          integrity="sha384-+VfUPEb0PdtChMwmBcBmykRMDd+v6D/oFmB3rZM/puCMDYcIvF968OimRh4KQY9a"
+          crossorigin="anonymous"></script>
+  <script src="js/ascii-bg.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
