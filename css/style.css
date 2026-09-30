@@ -1,14 +1,14 @@
 /* ---------- Theme tokens ---------- */
 :root {
   color-scheme: light;
-  --bg: #f5f3ee;
-  --surface: rgba(255, 255, 255, 0.82);
-  --surface-2: #ecebe5;
-  --text: #1b1d20;
-  --muted: #5b6068;
-  --border: #d9d6cd;
-  --accent: #0d7a5b;
-  --accent-contrast: #ffffff;
+  --bg: #dedad1;
+  --surface: rgba(236, 233, 226, 0.85);
+  --surface-2: #d3cec3;
+  --text: #23262b;
+  --muted: #4f545b;
+  --border: #c4beb1;
+  --accent: #0b6a4f;
+  --accent-contrast: #f2f0ea;
   --glyph: 13, 122, 91;       /* ASCII background colour (r, g, b) */
   --glyph-hot: 181, 80, 28;   /* colour near the pointer */
   --type-bot: 13, 122, 91;    /* line-view tags: Bot / Text / Video / Link */
