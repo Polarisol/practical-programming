@@ -1,6 +1,6 @@
 # Basics
 
-## Output and Input
+#### Output and Input
 
 The `print` function is used to output text to the screen.
 
@@ -16,7 +16,7 @@ age = int(input("Enter your age: "))  # Converts the input to an integer
 height = float(input("Enter your height in meters: "))  # Converts the input to a float
 ```
 
-## Strings
+#### Strings
 
 Strings are sequences of characters, and various methods can be used to manipulate them.
 
@@ -37,7 +37,7 @@ greeting = f"Hello, {name}!"
 print(greeting)  # 'Hello, Alice!'
 ```
 
-## Loops
+#### Loops
 
 A `for` loop is used to iterate over items in a collection. `break` exits the loop, and `continue` skips to the next iteration.
 
@@ -50,7 +50,7 @@ for i in range(10):
     print(i)
 ```
 
-## Lists
+#### Lists
 
 Lists are mutable collections of items.
 
@@ -65,7 +65,7 @@ removed = numbers.pop()  # Removes and returns the last item
 index = numbers.index(4) # Finds the index of the value 4
 ```
 
-## Sets
+#### Sets
 
 Sets are unordered collections of unique items. They do not allow duplicates.
 
@@ -81,7 +81,7 @@ print(fruits)
 # set_from_list = set(list_items) 
 ```
 
-### Eliminating Duplicates Using a Set
+##### Eliminating Duplicates Using a Set
 
 Because sets enforce uniqueness, they are a highly efficient way to remove duplicate elements from a list. You can simply convert the list to a set, and then optionally convert it back to a list if needed.
 
@@ -94,7 +94,7 @@ unique_list = list(set(duplicates_list))
 print(unique_list)  # Output: [1, 2, 3, 4, 5]
 ```
 
-## Dictionaries
+#### Dictionaries
 
 Dictionaries are collections of key-value pairs.
 
@@ -106,7 +106,7 @@ person["city"] = "New York" # Adding a new key-value pair
 del person["city"]          # Deleting a pair
 ```
 
-## Functions
+#### Functions
 
 Functions can be created to perform repetitive tasks.
 

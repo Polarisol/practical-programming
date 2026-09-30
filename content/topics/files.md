@@ -1,7 +1,7 @@
 # Reading and Writing Text Files
 
 
-### Writing lines to a new file in a loop
+#### Writing lines to a new file in a loop
 
 ```python
 with open('data.txt', 'w') as f:
@@ -9,7 +9,7 @@ with open('data.txt', 'w') as f:
         f.write(f"{i},{i**2}\n")
 ```
 
-### Appending lines to an existing file
+#### Appending lines to an existing file
 
 ```python
 with open('data.txt', 'a') as f:
@@ -17,7 +17,7 @@ with open('data.txt', 'a') as f:
         f.write(f"{i},{i**2}\n")
 ```
 
-### If formatted correctly, the extension can be changed to .csv, which Excel reads easily
+#### If formatted correctly, the extension can be changed to .csv, which Excel reads easily
 
 ```python
 with open('data.csv', 'w') as f:
@@ -25,21 +25,21 @@ with open('data.csv', 'w') as f:
         f.write(f"{i},{i**2}\n")
 ```
 
-### To open a document (not just text documents... also SolidWorks, PDF, etc.) with the default program on the computer
+#### To open a document (not just text documents... also SolidWorks, PDF, etc.) with the default program on the computer
 
 ```python
 import os
 os.startfile('data.csv')
 ```
 
-### Reading the entire file content into a single string
+#### Reading the entire file content into a single string
 
 ```python
 with open('alice.txt', 'r') as f:
     content = f.read()
 ```
 
-### Reading while organizing the data into arrays
+#### Reading while organizing the data into arrays
 
 ```python
 x_values = []
