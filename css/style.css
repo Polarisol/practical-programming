@@ -177,7 +177,7 @@ a { color: var(--accent); }
 .home-intro { animation: rise 0.5s ease both; animation-delay: 0.3s; }
 
 /* ---------- Topic page ---------- */
-/* Topic list: a sidebar on wide screens, a sticky strip on phones */
+/* Topic list: a sidebar on wide screens; on phones, a sticky bar that opens the list */
 #app { min-width: 0; }
 
 .topic-nav {
@@ -191,9 +191,30 @@ a { color: var(--accent); }
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
 }
-.topic-nav .nav-list { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
-.topic-nav .nav-list::-webkit-scrollbar { display: none; }
-.topic-nav .nav-item { padding: 7px 12px; white-space: nowrap; }
+.nav-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+.nav-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.nav-toggle .nav-title { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.nav-toggle-label { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 400; color: var(--muted); }
+.nav-chevron { color: var(--accent); transition: rotate 0.2s; }
+.topic-nav.open .nav-chevron { rotate: 180deg; }
+
+.topic-nav .nav-list { display: none; max-height: calc(100vh - 140px); margin-top: 8px; overflow-y: auto; }
+.topic-nav.open .nav-list { display: block; animation: rise 0.2s ease both; }
+.topic-nav .nav-list li + li { margin-top: 2px; }
 
 @media (min-width: 820px) {
   .topbar { max-width: 1320px; }
@@ -215,9 +236,8 @@ a { color: var(--accent); }
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
-  .topic-nav .nav-list { display: block; overflow: visible; }
-  .topic-nav .nav-item { padding: 10px 12px; white-space: normal; }
-  .topic-nav .nav-list li + li { margin-top: 2px; }
+  .nav-toggle { display: none; }
+  .topic-nav .nav-list { display: block; max-height: none; margin-top: 0; overflow: visible; animation: none; }
   #app .topic-head { padding-top: 16px; }
   #app .hero { padding-top: 16px; }
 }

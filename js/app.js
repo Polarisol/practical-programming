@@ -531,10 +531,11 @@
   // "Main" plus every topic; a glowing marker glides to the selected one.
   const MAIN = '';
 
+  // Sidebar on wide screens; on phones, a bar showing the current topic that opens the list.
   function topicNav(topics) {
     const indicator = el('span', { class: 'nav-indicator', 'aria-hidden': 'true' });
     const items = new Map();
-    const list = el('ul', { class: 'nav-list' }, indicator);
+    const list = el('ul', { class: 'nav-list', id: 'nav-list' }, indicator);
     const entries = [{ id: MAIN, title: 'Main', icon: '~' }, ...topics];
     for (const t of entries) {
       const text = t.title || t.id;
@@ -545,9 +546,21 @@
         el('span', { class: 'nav-icon', 'aria-hidden': 'true', text: t.icon || '>_' }),
         title,
       );
-      items.set(t.id, { link, title, text });
+      items.set(t.id, { link, title, text, icon: t.icon || '>_' });
       list.append(el('li', {}, link));
     }
+
+    const toggleIcon = el('span', { class: 'nav-icon', 'aria-hidden': 'true' });
+    const toggleTitle = el('span', { class: 'nav-title' });
+    const toggle = el(
+      'button',
+      { class: 'nav-toggle', type: 'button', 'aria-expanded': 'false', 'aria-controls': 'nav-list' },
+      toggleIcon,
+      toggleTitle,
+      el('span', { class: 'nav-toggle-label', text: 'Topics' }),
+      el('span', { class: 'nav-chevron', 'aria-hidden': 'true', text: '▾' }),
+    );
+    const node = el('nav', { class: 'topic-nav', 'aria-label': 'Topics' }, toggle, list);
 
     let activeId = null;
     const place = (animate) => {
@@ -559,21 +572,33 @@
       indicator.style.transform = `translate(${li.offsetLeft}px, ${li.offsetTop}px)`;
       indicator.style.width = `${li.offsetWidth}px`;
       indicator.style.height = `${li.offsetHeight}px`;
-      // In the phone strip, scroll the selected topic into view.
-      if (list.scrollWidth > list.clientWidth) {
-        list.scrollTo({ left: li.offsetLeft - 16, behavior: animate && !reducedMotion ? 'smooth' : 'auto' });
-      }
     };
+
+    const setOpen = (open) => {
+      node.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      if (open) place(false);
+    };
+    toggle.addEventListener('click', () => setOpen(!node.classList.contains('open')));
+    document.addEventListener('click', (e) => {
+      if (node.classList.contains('open') && !node.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && node.classList.contains('open')) { setOpen(false); toggle.focus(); }
+    });
 
     window.addEventListener('resize', () => place(false));
     return {
-      node: el('nav', { class: 'topic-nav', 'aria-label': 'Topics' }, list),
+      node,
       select(id) {
+        setOpen(false);
         if (id === activeId) return;
         const first = activeId === null;
         if (items.has(activeId)) items.get(activeId).link.removeAttribute('aria-current');
         activeId = id;
         const item = items.get(id);
+        toggleIcon.textContent = item ? item.icon : '?';
+        toggleTitle.textContent = item ? item.text : 'Topics';
         if (!item) { place(false); return; }
         item.link.setAttribute('aria-current', 'page');
         scramble(item.title, item.text);
