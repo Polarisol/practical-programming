@@ -46,14 +46,9 @@
       "material": ["topics/python-basics.md", "topics/global-variables.md", "topics/files.md"],
       "bots": [
         {
-          "label": "Python practice bot",
-          "description": "Hey there! Stuck on a loop or a function? Let's work through it together.",
-          "url": "https://example.com/replace-with-your-bot"
-        },
-        {
-          "label": "Python test bot",
-          "description": "Ready for a challenge? I'll test you on Python basics.",
-          "url": "https://example.com/replace-with-your-test-bot"
+          "label": "Study Bot",
+          "description": "I can help you study, teach you and quiz you on Python basics.",
+          "url": "https://share.gemini.google/vz2vEA6m5001"
         }
       ],
       "links": [
