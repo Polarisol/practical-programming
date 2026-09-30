@@ -1,4 +1,4 @@
-# Global Variables in Python
+# Global Variables
 
 It is perfectly fine to read the value of a global variable from within a function:
 

@@ -43,7 +43,7 @@
           "start": 0
         }
       ],
-      "material": ["topics/python-basics.md", "topics/global-variables.md"],
+      "material": ["topics/python-basics.md", "topics/global-variables.md", "topics/files.md"],
       "bots": [
         {
           "label": "Python practice bot",

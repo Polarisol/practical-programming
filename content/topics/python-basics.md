@@ -1,4 +1,4 @@
-# Python Basics
+# Basics
 
 ## Output and Input
 
