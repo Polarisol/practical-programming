@@ -69,6 +69,13 @@
       "icon": "⎇",
       "blurb": "Save snapshots of your project, undo mistakes and go back in time with git in VS Code.",
       "material": "topics/using-git.md"
+    },
+    {
+      "id": "matplotlib",
+      "title": "Plotting Graphs",
+      "icon": "📊",
+      "blurb": "Learn how to create visual representations of your data using matplotlib.",
+      "material": "topics/matplotlib.md"
     }
   ]
 }
