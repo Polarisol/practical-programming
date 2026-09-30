@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
   <link rel="stylesheet" href="css/style.css">
-  <script>try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; if (localStorage.getItem('view') === 'list') document.documentElement.dataset.view = 'list'; } catch (e) {}</script>
+  <script>document.documentElement.dataset.view = 'list'; try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; if (localStorage.getItem('view') === 'cards') delete document.documentElement.dataset.view; } catch (e) {}</script>
 </head>
 <body data-page="home">
   <canvas id="ascii-bg" aria-hidden="true"></canvas>
@@ -21,7 +21,7 @@
       <button class="py-toggle" type="button" aria-expanded="false" aria-controls="playground" title="Practice Python">
         <span class="py-toggle-icon" aria-hidden="true">&gt;_</span><span class="py-toggle-label">Python</span>
       </button>
-      <button class="view-toggle" type="button" aria-label="Switch to list view"></button>
+      <button class="view-toggle" type="button" aria-label="Switch to card view"></button>
       <button class="theme-toggle" type="button" aria-label="Toggle theme">☾</button>
     </div>
   </header>
