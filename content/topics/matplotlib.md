@@ -35,7 +35,7 @@ ax.plot(data_x, data_y,
 plt.show()
 ```
 
-3. $y=\sin(x)$ and $y=\cos(x)$
+3. y=sin(x) and y=cos(x)
 
 ```python
 data1_x = np.linspace(0, 4*np.pi, 100)
@@ -142,12 +142,6 @@ ax.set_title('Bar Plot of Categories vs Values')
 # Show plot
 plt.show()
 ```
-
-$\frac{data}{iux}$ ratio
-1
-Tuftee
-+
-- ask
 
 9. Now let's make it look nice
 
