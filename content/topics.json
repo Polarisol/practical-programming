@@ -69,33 +69,6 @@
           "url": "https://docs.python.org/3/tutorial/"
         }
       ]
-    },
-    {
-      "id": "photosynthesis",
-      "title": "Photosynthesis",
-      "icon": "☀",
-      "blurb": "How plants turn light, water and carbon dioxide into food.",
-      "videos": [
-        {
-          "title": "Photosynthesis: Crash Course Biology #8",
-          "youtube": "https://www.youtube.com/watch?v=sQK3Yr4Sc_k"
-        }
-      ],
-      "material": "topics/photosynthesis.md",
-      "bots": [
-        {
-          "label": "Photosynthesis quiz bot",
-          "description": "Hi! I'm your photosynthesis quiz bot. Think you can beat me?",
-          "url": "https://example.com/replace-with-your-bot"
-        }
-      ],
-      "links": [
-        {
-          "label": "Wikipedia: Photosynthesis",
-          "url": "https://en.wikipedia.org/wiki/Photosynthesis"
-        }
-      ]
-    }
-    
+    }   
   ]
 }
