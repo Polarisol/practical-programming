@@ -67,12 +67,12 @@
       "blurb": "Variables, loops and functions: your first steps in programming.",
       "videos": [
         {
-          "title": "Python for Beginners (1 hour)",
-          "youtube": "kqtD5dpn9C8"
+          "title": "A playlist of python lectures",
+          "youtube": "https://www.youtube.com/watch?v=SbS0TGpPs68&list=PLo9PXcvje6-rYhWvS-2t8EMaAKqxS0JCd"
         },
         {
-          "title": "Learn Python: full course",
-          "youtube": "https://youtu.be/rfscVS0vtbw",
+          "title": "10 minutes - Basic Python",
+          "youtube": "https://www.youtube.com/watch?v=fWjsdhR3z3c&t=5s",
           "start": 0
         }
       ],
