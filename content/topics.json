@@ -48,7 +48,7 @@
         {
           "label": "Study Bot",
           "description": "I can help you study, teach you and quiz you on Python basics.",
-          "url": "https://share.gemini.google/1xTf2b4fPziL"
+          "url": "https://share.gemini.google/oRhKoTA8rdPJ"
         }
       ],
       "links": [
@@ -85,7 +85,14 @@
       "title": "PySide6 - GUI",
       "icon": "🖥",
       "blurb": "Learn how to create graphical user interfaces using PySide6.",
-      "material": ["topics/pyside6_basics.md", "topics/reacting_to_signals.md"]
+      "material": ["topics/pyside6_basics.md", "topics/reacting_to_signals.md"],
+      "bots": [
+        {
+          "label": "Study Bot - Basic PySide6 (Not OOP)",
+          "description": "I can help you study, teach you and quiz you on Python basics.",
+          "url": "https://share.gemini.google/1jAtPViKHICX"
+        }
+      ]
     }
   ]
 }
