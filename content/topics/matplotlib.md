@@ -20,7 +20,7 @@ ax.plot(data_x, data_y)
 plt.show()
 ```
 
-![Resulting line plot](content/topics/images/graph1.png)
+![Resulting line plot](content/images/graph1.png)
 
 2. Let's style the plot
 
