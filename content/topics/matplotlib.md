@@ -9,7 +9,7 @@ import numpy as np
 
 ## Plotting lines
 
-1. $y=x^{\wedge}2$
+1. y=x^2
 
 ```python
 data_x = np.linspace(-10, 10, 21)
@@ -35,6 +35,8 @@ ax.plot(data_x, data_y,
 plt.show()
 ```
 
+![Resulting line plot](content/images/graph2.png)
+
 3. y=sin(x) and y=cos(x)
 
 ```python
@@ -47,6 +49,8 @@ ax.plot(data1_x, data1_y)
 ax.plot(data1_x, data1_y2)
 plt.show()
 ```
+
+![Resulting line plot](content/images/graph3.png)
 
 4. Style the surrounding area
 
@@ -65,6 +69,8 @@ ax.legend()
 plt.show()
 ```
 
+![Resulting line plot](content/images/graph4.png)
+
 ## Scatter plots
 
 5. Random scatter plot
@@ -82,6 +88,8 @@ ax.set_ylabel('Y')
 ax.legend()
 plt.show()
 ```
+
+![Resulting line plot](content/images/graph5.png)
 
 6. With a trend line (bonus)
 
@@ -104,6 +112,8 @@ ax.legend()
 plt.show()
 ```
 
+![Resulting line plot](content/images/graph6.png)
+
 ## Histograms
 
 7. Bar chart for grades
@@ -121,6 +131,8 @@ ax.set_ylabel('Frequency')
 ax.set_title('Grade Distribution')
 plt.show()
 ```
+
+![Resulting line plot](content/images/graph7.png)
 
 ## Bar Graphs
 
@@ -142,6 +154,8 @@ ax.set_title('Bar Plot of Categories vs Values')
 # Show plot
 plt.show()
 ```
+
+![Resulting line plot](content/images/graph8.png)
 
 9. Now let's make it look nice
 
@@ -178,3 +192,5 @@ for bar, calorie, color in zip(bars, calories, colors):
 # Show plot
 plt.show()
 ```
+
+![Resulting line plot](content/images/graph9.png)
