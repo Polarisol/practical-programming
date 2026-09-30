@@ -19,6 +19,12 @@
       "title": "Starting a Project",
       "icon": "📁",
       "blurb": "Set up a new Python project in VS Code with uv, step by step.",
+      "videos": [
+        {
+          "title": "Starting a new Project",
+          "youtube": "https://www.youtube.com/watch?v=PmRv_YIXFP4&feature=youtu.be"
+        }
+      ],
       "material": "topics/starting-a-project.md"
     },
     {
