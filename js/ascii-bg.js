@@ -23,6 +23,8 @@
   let w = 0, h = 0, cw = 0, ch = 0, cols = 0, rows = 0, radius = 120;
   let colors = ['110,231,183', '247,163,92'];
   let time = 0, lastFrame = 0, rafId = 0;
+  const dimTarget = () => (canvas.dataset.intensity === 'dim' ? 0.14 : 1);
+  let dimFactor = dimTarget();  // eases toward dimTarget() so intensity changes fade
   const pointer = { x: -1e4, y: -1e4, strength: 0, target: 0 };
   const ripples = [];
   // buckets[color][alphaStep] = flat list of x, y, charIndex
@@ -71,7 +73,6 @@
     for (const group of buckets) for (const b of group) b.length = 0;
 
     const r2 = 2 * radius * radius;
-    const dimFactor = canvas.dataset.intensity === 'dim' ? 0.14 : 1;
     const ps = pointer.strength;
 
     for (let r = 0; r < rows; r++) {
@@ -129,6 +130,7 @@
     time += dt;
 
     pointer.strength += (pointer.target - pointer.strength) * Math.min(1, dt * 5);
+    dimFactor += (dimTarget() - dimFactor) * Math.min(1, dt * 2.5);
     for (let i = ripples.length - 1; i >= 0; i--) {
       const rp = ripples[i];
       rp.age += dt;
@@ -185,6 +187,8 @@
   });
 
   const onThemeChange = () => { readColors(); if (reduced.matches) draw(); };
+  new MutationObserver(() => { if (reduced.matches) { dimFactor = dimTarget(); draw(); } })
+    .observe(canvas, { attributes: true, attributeFilter: ['data-intensity'] });
   new MutationObserver(onThemeChange).observe(document.documentElement, {
     attributes: true,
     attributeFilter: ['data-theme'],

@@ -58,25 +58,27 @@
   }
 
   // ---------- Theme toggle ----------
-  const toggle = document.querySelector('.theme-toggle');
+  // One in the top bar and one on the entry screen.
+  const toggles = document.querySelectorAll('.theme-toggle');
   const currentTheme = () => root.dataset.theme || 'light';
 
   function updateToggle() {
-    if (!toggle) return;
     const dark = currentTheme() === 'dark';
-    toggle.textContent = dark ? '☀' : '☾';
-    toggle.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    for (const toggle of toggles) {
+      toggle.textContent = dark ? '☀' : '☾';
+      toggle.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    }
   }
 
-  if (toggle) {
+  for (const toggle of toggles) {
     toggle.addEventListener('click', () => {
       const next = currentTheme() === 'dark' ? 'light' : 'dark';
       root.dataset.theme = next;
       try { localStorage.setItem('theme', next); } catch { /* storage unavailable */ }
       updateToggle();
     });
-    updateToggle();
   }
+  updateToggle();
 
   // ---------- View toggle (cards <-> minimal list), used on every page ----------
   const viewListeners = [];
@@ -687,7 +689,7 @@
       if (id === MAIN) showHome(main, data.site);
       else showTopic(main, topics.find((t) => t.id === id), fullName);
       document.body.dataset.page = id === MAIN ? 'home' : 'topic';
-      if (canvas) canvas.dataset.intensity = id === MAIN ? '' : 'dim';
+      if (canvas) canvas.dataset.intensity = entryOpen() ? '' : 'dim';
       nav.select(id);
     };
 
@@ -698,7 +700,7 @@
       e.preventDefault();
       const id = a.dataset.route;
       if (id === currentId()) return;
-      history.pushState(null, '', topicHref(id));
+      history.pushState({ main: true }, '', topicHref(id));
       show(id);
       window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
     });
@@ -707,6 +709,40 @@
     show(currentId());
   }
 
+  // ---------- Entry screen: shown over the main page until ENTER is pressed ----------
+  function entryOpen() {
+    return 'entry' in document.documentElement.dataset;
+  }
+
+  // The entry screen is its own step in the browser history, so Back returns to it.
+  function setEntry(open) {
+    if (open) document.documentElement.dataset.entry = '';
+    else delete document.documentElement.dataset.entry;
+    const canvas = document.getElementById('ascii-bg');
+    if (canvas) canvas.dataset.intensity = open ? '' : 'dim';
+    window.scrollTo(0, 0);
+  }
+
+  function setupEntry() {
+    const btn = document.querySelector('.entry-btn');
+    if (!btn) return;
+    if (entryOpen()) history.replaceState({ entry: true }, '');
+    const enter = () => {
+      history.pushState({ main: true }, '', './');
+      setEntry(false);
+    };
+    btn.addEventListener('click', enter);
+    // The Enter key works too, without having to tab to the button first.
+    document.addEventListener('keydown', (e) => {
+      if (entryOpen() && e.key === 'Enter' && e.target === document.body) enter();
+    });
+    window.addEventListener('popstate', () => {
+      const open = Boolean(history.state && history.state.entry);
+      if (open !== entryOpen()) setEntry(open);
+    });
+  }
+
   // ---------- Boot ----------
+  setupEntry();
   renderApp();
 })();

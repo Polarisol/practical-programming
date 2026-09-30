@@ -10,10 +10,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
   <link rel="stylesheet" href="css/style.css">
-  <script>document.documentElement.dataset.view = 'list'; try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; if (localStorage.getItem('view') === 'cards') delete document.documentElement.dataset.view; } catch (e) {}</script>
+  <script>document.documentElement.dataset.view = 'list'; try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; if (localStorage.getItem('view') === 'cards') delete document.documentElement.dataset.view; } catch (e) {}
+    // Opening the main address shows the entry screen first (a refresh after ENTER stays on the page you were on).
+    if (!new URLSearchParams(location.search).get('id') && !(history.state && history.state.main)) document.documentElement.dataset.entry = '';</script>
 </head>
 <body data-page="home">
   <canvas id="ascii-bg" aria-hidden="true"></canvas>
+  <!-- The ASCII field is vivid on the entry screen and faint everywhere else. -->
+  <script>if (!('entry' in document.documentElement.dataset)) document.getElementById('ascii-bg').dataset.intensity = 'dim';</script>
+
+  <section class="entry" aria-label="Welcome">
+    <button class="theme-toggle entry-theme" type="button" aria-label="Toggle theme">☾</button>
+    <div class="entry-inner">
+      <p class="prompt">$ ./start_course</p>
+      <h1 class="entry-title">Practical Programming Course</h1>
+      <p class="entry-author">Dr. Tal Alon</p>
+      <button class="entry-btn" type="button">ENTER <span aria-hidden="true">&rarr;</span></button>
+    </div>
+  </section>
 
   <header class="topbar">
     <a class="brand" href="./" data-route="" data-site-name>Practical Programming by Dr. Tal Alon</a>
