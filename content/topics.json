@@ -28,13 +28,6 @@
       "material": "topics/starting-a-project.md"
     },
     {
-      "id": "using-git",
-      "title": "Using Git",
-      "icon": "⎇",
-      "blurb": "Save snapshots of your project, undo mistakes and go back in time with git in VS Code.",
-      "material": "topics/using-git.md"
-    },
-    {
       "id": "python-basics",
       "title": "Python Basics",
       "icon": "{ }",
@@ -69,6 +62,13 @@
           "url": "https://docs.python.org/3/tutorial/"
         }
       ]
-    }   
+    },
+    {
+      "id": "using-git",
+      "title": "Using Git",
+      "icon": "⎇",
+      "blurb": "Save snapshots of your project, undo mistakes and go back in time with git in VS Code.",
+      "material": "topics/using-git.md"
+    }
   ]
 }
