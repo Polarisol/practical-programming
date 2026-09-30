@@ -82,8 +82,8 @@ data2_x = np.linspace(0, 10, 100)
 data2_y = 2.5 * data2_x + 2*np.random.normal(size=data2_x.size)
 
 fig, ax = plt.subplots(1,1)
-ax.scatter(data2_x, data2_y, label='Data', s=10, color='blue'
-           marker='x')
+ax.scatter(data2_x, data2_y, label='Data', s=10,
+           color='blue', marker='x')
 
 # Add Labels and Legend
 ax.set_xlabel('X')
@@ -109,8 +109,8 @@ line_x = np.linspace(0, 10, 100)
 line_y = line_function(line_x)
 
 fig, ax = plt.subplots(1,1)
-ax.scatter(data2_x, data2_y, label='Data', s=10, color='blue',
-           marker='x')
+ax.scatter(data2_x, data2_y, label='Data', s=10, 
+          color='blue', marker='x')
 ax.plot(line_x, line_y, color='red', label='Trend Line')
 ax.text(0, 20,
         f'y = {coefficients[0]:.2f}x + {coefficients[1]:.2f}',
@@ -178,11 +178,12 @@ colors = ['lightgray', 'lightgray', 'red', 'lightgray', 'lightgray']
 # Plot bar plot
 fig, ax = plt.subplots(1,1,dpi=150)
 bars = ax.bar(food, calories, color=colors, width=0.8)
-ax.set_title('Calories per 100g', fontsize=18, color=(0.3,0.3,0.3))
+ax.set_title('Calories per 100g', fontsize=18,
+             color=(0.3,0.3,0.3))
 
 # Hide x-axis ticks
-ax.tick_params(axis='x', which='both', bottom=False, top=False,
-               labelsize=14)
+ax.tick_params(axis='x', which='both', bottom=False,
+               top=False, labelsize=14)
 ax.set_yticks([])
 
 # Remove all spines
