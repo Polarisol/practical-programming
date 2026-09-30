@@ -15,6 +15,13 @@
       "material": "topics/install.md"
     },
     {
+      "id": "starting-a-project",
+      "title": "Starting a Project",
+      "icon": "📁",
+      "blurb": "Set up a new Python project in VS Code with uv, step by step.",
+      "material": "topics/starting-a-project.md"
+    },
+    {
       "id": "photosynthesis",
       "title": "Photosynthesis",
       "icon": "☀",
