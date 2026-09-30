@@ -423,6 +423,7 @@
   // Videos and written material expand in place; only one line is open at a time.
   let openLine = null;
   let lineCount = 0;
+  const lineItems = new WeakMap(); // line node -> its open/close handle
 
   const LINE_TYPES = { bot: 'Bot', text: 'Text', video: 'Video', link: 'Link' };
 
@@ -448,13 +449,14 @@
     const item = {
       label: button.querySelector('.line-label'),
       body,
-      open() {
+      // `auto`: opened by the page itself, not a click — no scrolling, no autoplay.
+      open(auto = false) {
         if (openLine && openLine !== item) openLine.close();
         openLine = item;
         button.setAttribute('aria-expanded', 'true');
         body.hidden = false;
-        if (onOpen) onOpen(body);
-        button.scrollIntoView({ block: 'nearest', behavior: reducedMotion ? 'auto' : 'smooth' });
+        if (onOpen) onOpen(body, auto);
+        if (!auto) button.scrollIntoView({ block: 'nearest', behavior: reducedMotion ? 'auto' : 'smooth' });
       },
       close() {
         if (openLine === item) openLine = null;
@@ -464,7 +466,9 @@
       },
     };
     button.addEventListener('click', () => (openLine === item ? item.close() : item.open()));
-    return { node: el('div', { class: 'line-item' }, button, body), item };
+    const node = el('div', { class: 'line-item' }, button, body);
+    lineItems.set(node, item);
+    return { node, item };
   }
 
   function botLines(bots) {
@@ -484,7 +488,7 @@
     const rows = videos
       .filter((v) => youtubeId(v))
       .map((v, i) => expandableLine('video', v.title || `Video ${i + 1}`, {
-        onOpen: (body) => body.replaceChildren(videoFrame(v, true)),
+        onOpen: (body, auto) => body.replaceChildren(videoFrame(v, !auto)),
         onClose: (body) => body.replaceChildren(), // removing the player stops the video
       }).node);
     return rows;
@@ -649,6 +653,8 @@
           ...linkLines(asList(topic.links)),
         ];
         sections = rows.length ? [el('div', { class: 'line-list topic-lines' }, ...rows)] : [];
+        // A topic with a single item shows it opened.
+        if (rows.length === 1 && lineItems.has(rows[0])) lineItems.get(rows[0]).open(true);
       } else {
         sections = [
           botsPanel(asList(topic.bots), topic),
