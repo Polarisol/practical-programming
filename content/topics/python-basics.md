@@ -1,4 +1,4 @@
-# Basics
+# Pyside6 Basics
 
 #### Output and Input
 

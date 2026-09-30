@@ -79,5 +79,13 @@
       "blurb": "Learn how to create visual representations of your data using matplotlib.",
       "material": "topics/matplotlib.md"
     }
+
+    {
+      "id": "pyside6",
+      "title": "PySide6 - GUI",
+      "icon": "🖥",
+      "blurb": "Learn how to create graphical user interfaces using PySide6.",
+      "material": ["topics/pyside6_basics.md", "topics/reacting_to_signals.md"]
+    }
   ]
 }
