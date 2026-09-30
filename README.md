@@ -23,8 +23,8 @@ All content lives in `content/`. You never need to edit the HTML or JavaScript.
 | Field      | What it is |
 |------------|------------|
 | `id`       | Short name with no spaces, used in the page address (`?id=...`) |
-| `title`    | Topic name shown on the card and page |
-| `icon`     | A symbol or emoji for the card, e.g. `☀`, `{ }`, `∑` |
+| `title`    | Topic name shown in the side list and on its page |
+| `icon`     | A symbol or emoji for the topic, e.g. `☀`, `{ }`, `∑` |
 | `blurb`    | One-line description |
 | `videos`   | List of `{ "title": "...", "youtube": "<link or video ID>" }`. Add `"start": 90` to start at 1:30 |
 | `material` | Path to a Markdown file inside `content/`, e.g. `"topics/my-topic.md"`. It can also be a list of files |
@@ -34,6 +34,8 @@ All content lives in `content/`. You never need to edit the HTML or JavaScript.
 3. Write your notes in `content/topics/<something>.md` using Markdown: `# Heading`, `**bold**`, `- lists`, tables and code blocks. Put images in `assets/` and reference them as `![description](assets/picture.png)`.
 
 Any field can be left out, and its section won't appear on the page.
+
+The text on the Main page comes from `content/home.md`. Edit it like any other Markdown notes file (to use a different file, set `"home"` in the `site` block).
 
 To change the site name (`title` + `author`, shown as "Practical Programming by Dr. Tal Alon"), subtitle or footer, edit the `site` block at the top of `topics.json`.
 
@@ -63,6 +65,7 @@ css/style.css         colours, layout, light/dark theme
 js/ascii-bg.js        interactive ASCII background
 js/app.js             reads topics.json and builds the pages
 content/topics.json   your topics  ← edit this
+content/home.md       Main page text ← and this
 content/topics/*.md   your notes   ← and these
 assets/               images, PDFs, worksheets
 ```

@@ -1,5 +1,5 @@
 /*
- * Loads content/topics.json and renders either the home page (topic cards)
+ * Loads content/topics.json and renders either the home page (content/home.md)
  * or a single topic page (videos, written material, bots, links).
  * You should not need to edit this file to add or change topics.
  */
@@ -46,10 +46,6 @@
     if (/^[\w-]{11}$/.test(s)) return s;
     const m = s.match(/(?:[?&]v=|youtu\.be\/|\/embed\/|\/shorts\/|\/live\/)([\w-]{11})/);
     return m ? m[1] : null;
-  }
-
-  function plural(n, word) {
-    return `${n} ${word}${n === 1 ? '' : 's'}`;
   }
 
   function asList(value) {
@@ -178,66 +174,32 @@
     scramble(out, text);
   }
 
-  function addTilt(card) {
-    card.addEventListener('pointermove', (e) => {
-      const r = card.getBoundingClientRect();
-      const px = (e.clientX - r.left) / r.width;
-      const py = (e.clientY - r.top) / r.height;
-      card.style.setProperty('--mx', `${px * 100}%`);
-      card.style.setProperty('--my', `${py * 100}%`);
-      if (canHover && !reducedMotion && root.dataset.view !== 'list') {
-        card.style.setProperty('--ry', `${(px - 0.5) * 8}deg`);
-        card.style.setProperty('--rx', `${(0.5 - py) * 8}deg`);
-      }
-    });
-    card.addEventListener('pointerleave', () => {
-      card.style.setProperty('--rx', '0deg');
-      card.style.setProperty('--ry', '0deg');
-    });
-  }
-
   const topicHref = (id) => (id ? `?id=${encodeURIComponent(id)}` : './');
 
-  function topicCard(topic, index) {
-    const videos = asList(topic.videos).length;
-    const bots = asList(topic.bots).length;
-    const notes = asList(topic.material).length;
-    const meta = [];
-    if (videos) meta.push(el('span', { text: `▶ ${plural(videos, 'video')}` }));
-    if (notes) meta.push(el('span', { text: '¶ notes' }));
-    if (bots) meta.push(el('span', { text: `◆ ${plural(bots, 'bot')}` }));
-
-    const card = el(
-      'a',
-      { class: 'card', href: topicHref(topic.id), 'data-route': topic.id, style: `--i:${index}` },
-      el('span', { class: 'card-icon', 'aria-hidden': 'true', text: topic.icon || '>_' }),
-      el('h2', { text: topic.title || topic.id }),
-      topic.blurb ? el('p', { text: topic.blurb }) : null,
-      meta.length ? el('div', { class: 'card-meta' }, ...meta) : null,
-    );
-    addTilt(card);
-    return card;
-  }
-
-  function showHome(main, topics, site) {
+  // The Main page text comes from a Markdown file (site.home, default "home.md").
+  function showHome(main, site) {
     const title = site.title || 'Class Resources';
     document.title = site.author ? `${title} by ${site.author}` : title;
     const heading = el('h1', { class: 'hero-title' });
     scrambleTitle(heading, title);
-    const grid = el('div', { class: 'topic-grid' });
-    if (topics.length) topics.forEach((t, i) => grid.append(topicCard(t, i)));
-    else grid.append(notice('No topics yet. Add one to content/topics.json.'));
+    const file = site.home || 'home.md';
+    const article = el('article', { class: 'prose home-intro' }, el('p', { class: 'muted', text: 'Loading…' }));
+    loadMaterial(file)
+      .then((text) => article.replaceChildren(...renderMarkdown(text)))
+      .catch(() => article.replaceChildren(
+        el('p', { class: 'muted', text: `Could not load ${CONTENT}${file}.` }),
+      ));
 
     main.replaceChildren(
       el(
         'section',
         { class: 'hero' },
-        el('p', { class: 'prompt', text: '$ ls ~/topics' }),
+        el('p', { class: 'prompt', text: '$ cat ~/welcome.md' }),
         heading,
         site.author ? el('p', { class: 'hero-byline', text: `by ${site.author}` }) : null,
         site.subtitle ? el('p', { class: 'hero-sub', text: site.subtitle }) : null,
       ),
-      el('section', { 'aria-label': 'Topics' }, grid),
+      article,
     );
   }
 
@@ -632,7 +594,7 @@
   function showTopic(main, topic, siteTitle) {
     if (!topic) {
       document.title = `Topic not found · ${siteTitle}`;
-      main.replaceChildren(notice('That topic doesn’t exist (yet). ', el('a', { href: './', 'data-route': MAIN }, 'See all topics')));
+      main.replaceChildren(notice('That topic doesn’t exist (yet). Pick one from the list.'));
       return;
     }
 
@@ -692,14 +654,14 @@
     const show = (id) => {
       drawTopicBody = null;
       openLine = null;
-      if (id === MAIN) showHome(main, topics, data.site);
+      if (id === MAIN) showHome(main, data.site);
       else showTopic(main, topics.find((t) => t.id === id), fullName);
       document.body.dataset.page = id === MAIN ? 'home' : 'topic';
       if (canvas) canvas.dataset.intensity = id === MAIN ? '' : 'dim';
       nav.select(id);
     };
 
-    // Links marked data-route (sidebar, cards, logo) switch pages without a reload.
+    // Links marked data-route (sidebar, logo) switch pages without a reload.
     document.addEventListener('click', (e) => {
       const a = e.target.closest('a[data-route]');
       if (!a || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
