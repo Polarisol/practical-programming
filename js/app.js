@@ -59,8 +59,7 @@
 
   // ---------- Theme toggle ----------
   const toggle = document.querySelector('.theme-toggle');
-  const currentTheme = () =>
-    root.dataset.theme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  const currentTheme = () => root.dataset.theme || 'light';
 
   function updateToggle() {
     if (!toggle) return;

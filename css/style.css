@@ -21,27 +21,6 @@
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --bg: #0a0c0f;
-    --surface: rgba(20, 24, 29, 0.8);
-    --surface-2: #1c2128;
-    --text: #e6e9ed;
-    --muted: #98a1ab;
-    --border: #272d36;
-    --accent: #6ee7b7;
-    --accent-contrast: #062a1e;
-    --glyph: 110, 231, 183;
-    --glyph-hot: 247, 163, 92;
-    --type-bot: 110, 231, 183;
-    --type-text: 125, 211, 252;
-    --type-video: 252, 129, 129;
-    --type-link: 196, 181, 253;
-    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 30px rgba(0, 0, 0, 0.35);
-  }
-}
-
 :root[data-theme="dark"] {
   color-scheme: dark;
   --bg: #0a0c0f;
