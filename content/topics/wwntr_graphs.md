@@ -10,4 +10,4 @@
 
 5. Graphs can be presented in misleading ways - for example, by not starting the y-axis at zero, using inappropriate scales, or selectively omitting data. The stories told by such graphs are distorted and will lead to incorrect conclusions. It is a deceiving thing to do, **tell the truth with your graphs**.
 
-6. We can use AI agents to create and customize our graphs for us. We do not have to write the code manually. But we need to feel free with **changing the code** ourselves so that we can fine-tune parameters and get our graphs to look exactly the way we want them, and fast.
+6. We can use AI agents to create and customize our graphs for us. We do not have to write the code manually. But we need to feel **comfortable with changing the code ourselves** so that we can fine-tune parameters and get our graphs to look exactly the way we want them, and fast.
