@@ -685,9 +685,10 @@ a { color: var(--accent); }
 .prose code { font-family: var(--font-mono); font-size: 0.9em; }
 .prose :not(pre) > code { padding: 0.1em 0.35em; border-radius: 4px; background: var(--surface-2); }
 .prose pre { overflow-x: auto; padding: 14px; border-radius: 8px; background: var(--surface-2); }
-.prose pre code { font-size: 0.625rem; }
+.prose pre { white-space: pre; overflow-wrap: normal; word-break: normal; }
+.prose pre code { font-size: 0.8rem; }
 .code-wrap { position: relative; }
-.code-wrap pre { padding-right: 84px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.code-wrap pre { padding-right: 84px; }
 .copy-btn {
   position: absolute;
   top: 8px;
