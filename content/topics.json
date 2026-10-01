@@ -85,6 +85,13 @@
       "title": "NumPy",
       "icon": "🔢",
       "blurb": "Work with arrays of numbers quickly and easily using NumPy.",
+      "bots": [
+        {
+          "label": "Study Bot",
+          "description": "I can help you study, teach you and quiz you on NumPy.",
+          "url": "https://share.gemini.google/AaIjyimlQPbq"
+        }
+      ],
       "videos": [
         {
           "title": "Numpy in 40 minutes",

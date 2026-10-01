@@ -4,7 +4,7 @@ Git keeps a history of your project. Every time you **commit**, git saves a snap
 
 ## Before you start: tell git who you are
 
-Git records your name and email in every commit, and refuses to commit until it knows them. If you didn't do this during **Installation**, open the terminal in VS Code (**View → Terminal**) and write:
+Git records your name and email in every commit, and refuses to commit until it knows them. Open the terminal in VS Code (**View → Terminal**) and write:
 
 ```bash
 git config --global user.name "place your name here"
