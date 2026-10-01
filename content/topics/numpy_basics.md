@@ -72,3 +72,32 @@ print(a * b)  # [10 40 90]
 ```
 
 This is much shorter, and much faster, than writing a loop to do the same thing.
+
+## Using NumPy methods
+
+NumPy arrays have useful methods for finding information about their values:
+
+```python
+scores = np.array([70, 85, 90, 65])
+
+print(scores.sum())   # 310: the total
+print(scores.mean())  # 77.5: the average
+print(scores.min())   # 65: the smallest value
+print(scores.max())   # 90: the largest value
+```
+
+These methods calculate results for the whole array without needing a loop.
+
+## Math functions
+
+NumPy also provides math functions that work on every value in an array. Trigonometric functions use angles in radians.
+
+```python
+angles = np.array([0, np.pi / 2, np.pi])
+
+print(np.sin(angles))   # [0. 1. 0.]
+print(np.cos(angles))   # [ 1.  0. -1.]
+
+numbers = np.array([1, 4, 9])
+print(np.sqrt(numbers))  # [1. 2. 3.]
+```
