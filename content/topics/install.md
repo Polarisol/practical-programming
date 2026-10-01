@@ -19,16 +19,10 @@
    4. go to the extensions tab and install the "python" and "jupyter" extensions by Microsoft (other extensions will automatically be installed and that is ok)
 
 4. git:
-   1. install from here: <https://git-scm.com/install/>
-   2. in vscode's terminal (view → terminal) write:
-
-      ```bash
-      git config --global user.name "place your name here"
-      git config --global user.email "place your email here"
-      ```
+   install from here: <https://git-scm.com/install/>
 
 5. DBBrowser:
-   1. download and install from here (standard 64bit): <https://sqlitebrowser.org/dl/>
+   download and install from here (standard 64bit): <https://sqlitebrowser.org/dl/>
 
 6. Optional:
    1. notepad++ from here (the top one): <https://notepad-plus-plus.org/downloads/>
