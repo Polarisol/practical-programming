@@ -1,4 +1,4 @@
-# NumPy Polynomial Fitting and Evaluation
+# Polynomial Fitting
 
 A polynomial can describe the relationship between numbers. NumPy can find a polynomial that fits measured data and then use it to estimate new values.
 

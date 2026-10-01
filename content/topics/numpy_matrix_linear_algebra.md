@@ -1,4 +1,4 @@
-# NumPy Matrix Operations and Linear Algebra
+# Linear Algebra
 
 NumPy can work with matrices, which are rectangular tables of numbers. These are useful in science, engineering, graphics, and many other areas.
 

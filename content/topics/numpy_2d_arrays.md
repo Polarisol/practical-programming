@@ -1,4 +1,4 @@
-# NumPy 2D Arrays
+# 2D Arrays
 
 ```python
 import numpy as np
