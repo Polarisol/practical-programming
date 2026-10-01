@@ -29,7 +29,7 @@ with open('data.csv', 'w') as f:
 
 ```python
 import os
-os.startfile('data.csv')
+os.startfile('data.csv') # windows only
 ```
 
 #### Reading the entire file content into a single string
