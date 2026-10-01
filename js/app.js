@@ -460,7 +460,7 @@
           x.row.classList.toggle('is-wrong', picked && !correct);
           x.row.classList.toggle('is-missed', !picked && correct);
           x.tag.hidden = !(picked || correct);
-          x.tag.textContent = picked ? (correct ? '✓ your answer' : '✗ your answer') : '✓ correct answer';
+          x.tag.textContent = picked ? (correct ? '✓ your answer' : '✗ your answer') : 'correct answer';
           if (x.feedback) x.feedback.hidden = !(picked || correct);
         }
         if (ok) right++;
