@@ -85,6 +85,12 @@
       "title": "NumPy",
       "icon": "🔢",
       "blurb": "Work with arrays of numbers quickly and easily using NumPy.",
+      "videos": [
+        {
+          "title": "Numpy in 40 minutes",
+          "youtube": "https://www.youtube.com/watch?v=zI5ducyfyNc"
+        }
+      ],
       "material": ["topics/numpy_basics.md", "topics/numpy_2d_arrays.md", "topics/numpy_random_numbers.md", "topics/numpy_matrix_linear_algebra.md", "topics/numpy_polynomials.md", "topics/wwntk_numpy.md"]
     },
 
