@@ -669,7 +669,7 @@ a { color: var(--accent); }
 .video figcaption { margin-top: 8px; font-weight: 500; }
 
 /* Written material */
-.prose { max-width: 72ch; overflow-wrap: anywhere; }
+.prose { max-width: 72ch; overflow-wrap: anywhere; font-size: 0.9rem; }
 .prose > :first-child { margin-top: 0; }
 .prose h1, .prose h2, .prose h3 { line-height: 1.25; }
 .prose img, .prose video { max-width: 100%; height: auto; border-radius: 8px; }
