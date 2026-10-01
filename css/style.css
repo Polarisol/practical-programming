@@ -625,6 +625,11 @@ a { color: var(--accent); }
   color: var(--accent);
 }
 .line-icon .robot { flex: none; width: 28px; height: 33px; }
+.line-icon .quiz-mark { flex: none; width: 28px; height: 33px; perspective: 120px; }
+.line-icon .quiz-mark-glyph { font-size: 1.6rem; text-shadow: 0 0 6px rgba(var(--type-quiz), 0.6); }
+.line-icon .quiz-mark-shadow { width: 16px; height: 3px; }
+.line:hover .quiz-mark-glyph { animation-duration: 1s, 0.8s; }
+.line:hover .quiz-mark-shadow { animation-duration: 0.8s; }
 .line-label { min-width: 0; font-weight: 600; }
 .line-sub {
   flex: 1;

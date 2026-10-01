@@ -510,8 +510,7 @@
     const bubble = el('p', { class: 'bot-bubble' });
     typeBubble(bubble, `Ready? ${n} question${n === 1 ? '' : 's'}. Let's see what you know!`, 700);
     const hero = el('div', { class: 'quiz-hero' },
-      el('div', { class: 'quiz-mark', 'aria-hidden': 'true' },
-        el('span', { class: 'quiz-mark-glyph', text: '?' }), el('span', { class: 'quiz-mark-shadow' })),
+      quizMark(),
       bubble);
 
     box.addEventListener('change', updateProgress);
@@ -524,6 +523,12 @@
       ...items.map((it) => it.group),
       el('div', { class: 'quiz-actions' }, submit, retry, progress),
     ].filter(Boolean));
+  }
+
+  // Spinning, bobbing question mark: the quiz's counterpart to the bots' robot.
+  function quizMark() {
+    return el('div', { class: 'quiz-mark', 'aria-hidden': 'true' },
+      el('span', { class: 'quiz-mark-glyph', text: '?' }), el('span', { class: 'quiz-mark-shadow' }));
   }
 
   // `onTitle` receives the quiz's title once the file has loaded.
@@ -679,12 +684,12 @@
     ];
   }
 
-  function expandableLine(type, label, { onOpen, onClose } = {}) {
+  function expandableLine(type, label, { onOpen, onClose, icon } = {}) {
     const id = `line-body-${++lineCount}`;
     const button = el(
       'button',
       { class: 'line', type: 'button', 'data-type': type, 'aria-expanded': 'false', 'aria-controls': id },
-      ...lineParts(type, label, null, '▸'),
+      ...lineParts(type, label, null, '▸', icon),
     );
     const body = el('div', { class: 'line-body', id, hidden: '' });
     const item = {
@@ -762,7 +767,7 @@
   // The quiz is built once, so answers survive closing and reopening the line.
   function quizLines(quizzes) {
     return quizzes.map((entry) => {
-      const { node, item } = expandableLine('quiz', entry.title || 'Quiz');
+      const { node, item } = expandableLine('quiz', entry.title || 'Quiz', { icon: quizMark() });
       item.body.append(quizView(entry, {
         showTitle: false,
         onTitle: (title) => { item.label.textContent = title; },
