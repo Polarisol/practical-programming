@@ -44,9 +44,18 @@ print(b)
 #  [3 4 5]]
 ```
 
-## Random arrays
+## Random numbers
 
 NumPy can generate random numbers, which is useful for testing and simulations.
+
+To get one random number, leave out the size argument:
+
+```python
+decimal = np.random.rand()          # one decimal between 0 and 1
+integer = np.random.randint(0, 10)  # one integer from 0 up to 10
+print(decimal)
+print(integer)
+```
 
 1. `random.rand` - random decimals between 0 and 1
 
