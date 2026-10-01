@@ -81,6 +81,14 @@
     },
 
     {
+      "id": "numpy",
+      "title": "NumPy",
+      "icon": "🔢",
+      "blurb": "Work with arrays of numbers quickly and easily using NumPy.",
+      "material": ["topics/numpy_basics.md", "topics/numpy_advanced.md", "topics/wwntk_numpy.md"]
+    },
+
+    {
       "id": "pyside6",
       "title": "PySide6 - GUI",
       "icon": "🖥",
