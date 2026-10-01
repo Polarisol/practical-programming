@@ -822,6 +822,36 @@ a { color: var(--accent); }
 .quiz + .quiz { margin-top: 32px; padding-top: 24px; border-top: 1px dashed var(--border); }
 .quiz-title { margin: 0 0 12px; font-size: 1.15rem; }
 .quiz-intro { margin-bottom: 12px; }
+
+/* Inviting spinning question mark at the top of a quiz */
+.quiz-hero { display: flex; align-items: center; gap: 18px; margin-bottom: 16px; animation: rise 0.5s ease both; }
+.quiz-hero .bot-bubble { flex: 1; min-width: 0; }
+.quiz-mark {
+  position: relative;
+  display: grid;
+  flex: 0 0 72px;
+  place-items: center;
+  height: 84px;
+  perspective: 300px;
+}
+.quiz-mark-glyph {
+  display: inline-block;
+  font: 700 4rem/1 var(--font-mono);
+  color: rgb(var(--type-quiz));
+  text-shadow: 0 0 12px rgba(var(--type-quiz), 0.6);
+  animation: quiz-spin 3s linear infinite, quiz-bob 2s ease-in-out infinite;
+}
+.quiz-mark-shadow {
+  position: absolute;
+  bottom: 0;
+  width: 40px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(var(--type-quiz), 0.35);
+  animation: quiz-shadow 2s ease-in-out infinite;
+}
+.quiz-hero:hover .quiz-mark-glyph { animation-duration: 1s, 0.8s; }
+.quiz-hero:hover .quiz-mark-shadow { animation-duration: 0.8s; }
 .quiz-q { padding: 18px 0; border-bottom: 1px dashed var(--border); }
 .quiz-q:first-of-type { padding-top: 4px; }
 .quiz-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; margin: 0 0 8px; font-weight: 600; overflow-wrap: anywhere; }
@@ -937,6 +967,9 @@ a { color: var(--accent); }
   24%, 46% { transform: rotate(8deg); }
 }
 @keyframes bot-dot { 0%, 100% { opacity: 0.3; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-3px); } }
+@keyframes quiz-spin { to { transform: rotateY(360deg); } }
+@keyframes quiz-bob { 50% { translate: 0 -6px; } }
+@keyframes quiz-shadow { 50% { scale: 0.7 1; opacity: 0.5; } }
 @keyframes bot-ring {
   0% { box-shadow: 0 0 0 0 rgba(var(--ring), 0.55); }
   70%, 100% { box-shadow: 0 0 0 14px rgba(var(--ring), 0); }

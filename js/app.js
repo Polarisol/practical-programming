@@ -506,10 +506,19 @@
       box.scrollIntoView({ block: 'start', behavior: reducedMotion ? 'auto' : 'smooth' });
     });
 
+    const n = items.length;
+    const bubble = el('p', { class: 'bot-bubble' });
+    typeBubble(bubble, `Ready? ${n} question${n === 1 ? '' : 's'}. Let's see what you know!`, 700);
+    const hero = el('div', { class: 'quiz-hero' },
+      el('div', { class: 'quiz-mark', 'aria-hidden': 'true' },
+        el('span', { class: 'quiz-mark-glyph', text: '?' }), el('span', { class: 'quiz-mark-shadow' })),
+      bubble);
+
     box.addEventListener('change', updateProgress);
     updateProgress();
     box.replaceChildren(...[
       showTitle ? el('h3', { class: 'quiz-title', text: title }) : null,
+      hero,
       quiz.intro ? el('div', { class: 'prose quiz-intro' }, ...renderMarkdown(quiz.intro)) : null,
       score,
       ...items.map((it) => it.group),
