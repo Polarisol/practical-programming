@@ -1,4 +1,4 @@
-# What we need to remember
+# * What we need to remember
 
 1. Git is a **version control system** that allows you to track changes in your code, collaborate with others, and manage different versions of your project.
 2. Git allows us to **travel back in time** by reviewing the history of every file and restoring previous versions if needed.

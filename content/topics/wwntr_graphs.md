@@ -1,4 +1,4 @@
-# What we need to remember
+# * What we need to remember
 
 1. We need to remember that matplotlib is a comprehensive **library for creating graphs and visualizations** in Python. 
 2. The graphs can be shown in jupyter notebooks, saved as image files, or displayed in graphical user interfaces.
