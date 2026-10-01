@@ -43,7 +43,7 @@
           "start": 0
         }
       ],
-      "material": ["topics/python-basics.md", "topics/global-variables.md", "topics/files.md"],
+      "material": ["topics/python-basics.md", "topics/global-variables.md", "topics/files.md", "topics/wwntr_python_basics.md"],
       "bots": [
         {
           "label": "Study Bot",
@@ -63,7 +63,7 @@
       "title": "Using Git",
       "icon": "⎇",
       "blurb": "Save snapshots of your project, undo mistakes and go back in time with git in VS Code.",
-      "material": "topics/using-git.md"
+      "material": ["topics/using-git.md", "topics/wwntr_git.md"]
     },
     {
       "id": "using-ai",
@@ -77,7 +77,7 @@
       "title": "Plotting Graphs",
       "icon": "📊",
       "blurb": "Learn how to create visual representations of your data using matplotlib.",
-      "material": "topics/matplotlib.md"
+      "material": ["topics/matplotlib.md", "topics/wwntr_graphs.md"]
     },
 
     {

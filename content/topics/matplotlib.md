@@ -1,5 +1,9 @@
 # Plotting Graphs with MatPlotLib
 
+## What is MatPlotLib
+
+Matplotlib is a comprehensive library for creating graphs and visualizations in Python. The graphs can be shown in jupyter notebooks, saved as image files, or displayed in graphical user interfaces.
+
 ## Imports
 
 ```python
