@@ -1,6 +1,6 @@
 /*
  * Loads content/topics.json and renders either the home page (content/home.md)
- * or a single topic page (videos, written material, bots, links).
+ * or a single topic page (bots, videos, written material, quizzes, links).
  * You should not need to edit this file to add or change topics.
  */
 (() => {
@@ -309,6 +309,236 @@
     return panel('Written material', body);
   }
 
+  // ---------- Quizzes ----------
+  // A quiz is a Markdown file in content/quizzes/:
+  //   # Quiz title                 (optional)
+  //   ## Question                  (each "## " starts a question; text/code below it is part of the question)
+  //   - [ ] wrong option           ("- [x]" marks a correct option; several [x] = choose all that apply)
+  //     > feedback                 (indented "> " under an option = feedback for that option)
+  //   > explanation                (unindented "> " after the options = shown with the corrections)
+  const OPTION_RE = /^[-*]\s+\[([ xX])\]\s+(.*)$/;
+  const FENCE_RE = /^\s*(```|~~~)/;
+
+  function parseQuiz(text, file) {
+    const quiz = { title: '', intro: [], questions: [] };
+    let q = null;
+    let option = null;
+    let fence = false;
+
+    const finish = () => {
+      if (!q) return;
+      const correct = q.options.filter((o) => o.correct).length;
+      if (!q.options.length) console.warn(`${file}: question "${q.heading}" has no options, skipped.`);
+      else if (!correct) console.warn(`${file}: question "${q.heading}" has no correct option [x], skipped.`);
+      else {
+        quiz.questions.push({
+          heading: q.heading,
+          prompt: q.prompt.join('\n').trim(),
+          options: q.options.map((o) => ({ ...o, feedback: o.feedback.join(' ').trim() })),
+          explanation: q.explanation.join('\n').trim(),
+          multi: correct > 1,
+        });
+      }
+    };
+
+    for (const line of text.split(/\r?\n/)) {
+      // Code blocks belong to the question text, whatever they contain.
+      if (fence || FENCE_RE.test(line)) {
+        if (FENCE_RE.test(line)) fence = !fence;
+        if (q && !q.options.length) q.prompt.push(line);
+        else if (!q) quiz.intro.push(line);
+        continue;
+      }
+      const h = line.match(/^(#{1,2})\s+(.*)$/);
+      if (h && h[1] === '#' && !q && !quiz.title) { quiz.title = h[2].trim(); continue; }
+      if (h && h[1] === '##') {
+        finish();
+        q = { heading: h[2].trim(), prompt: [], options: [], explanation: [] };
+        option = null;
+        continue;
+      }
+      if (!q) { quiz.intro.push(line); continue; }
+
+      const opt = line.match(OPTION_RE);
+      const quote = line.match(/^(\s*)>\s?(.*)$/);
+      if (opt && !q.explanation.length) {
+        option = { text: opt[2].trim(), correct: opt[1] !== ' ', feedback: [] };
+        q.options.push(option);
+      } else if (quote && q.options.length) {
+        if (quote[1] && option && !q.explanation.length) option.feedback.push(quote[2]);
+        else q.explanation.push(quote[2]);
+      } else if (!q.options.length) {
+        q.prompt.push(line);
+      } else if (option && /^\s+\S/.test(line) && !q.explanation.length) {
+        option.text += ` ${line.trim()}`; // an option that continues on the next line
+      }
+    }
+    finish();
+    quiz.intro = quiz.intro.join('\n').trim();
+    return quiz;
+  }
+
+  // Short Markdown (an option, a feedback line) without wrapping paragraphs.
+  function renderInline(text) {
+    const span = el('span');
+    if (window.marked && window.DOMPurify) span.innerHTML = window.DOMPurify.sanitize(window.marked.parseInline(text));
+    else span.textContent = text;
+    return span;
+  }
+
+  // "quizzes" in topics.json: "file.md", ["a.md", "b.md"] or [{ "title": "...", "file": "..." }].
+  function quizEntries(value) {
+    return asList(value)
+      .map((q) => (typeof q === 'string' ? { file: q } : q))
+      .filter((q) => q && typeof q.file === 'string');
+  }
+
+  function scoreMessage(pct) {
+    if (pct === 100) return 'Perfect score! 🎉';
+    if (pct >= 80) return 'Great job! Check the corrections for what you missed.';
+    if (pct >= 50) return 'Good effort. Read the feedback below, then try again.';
+    return 'Keep practicing. Read the feedback below, then try again.';
+  }
+
+  let quizCount = 0;
+
+  function buildQuiz(box, quiz, entry, showTitle) {
+    const id = ++quizCount;
+    const title = entry.title || quiz.title || 'Quiz';
+    if (!quiz.questions.length) {
+      box.replaceChildren(el('p', { class: 'muted', text: `No valid questions found in ${CONTENT}${entry.file}.` }));
+      return;
+    }
+
+    const items = quiz.questions.map((q, qi) => {
+      const name = `quiz-${id}-q${qi}`;
+      const headingId = `${name}-h`;
+      const opts = q.options.map((o, oi) => {
+        const input = el('input', { type: q.multi ? 'checkbox' : 'radio', name, value: String(oi) });
+        const tag = el('span', { class: 'quiz-tag', hidden: '' });
+        const feedback = o.feedback ? el('div', { class: 'quiz-feedback', hidden: '' }, renderInline(o.feedback)) : null;
+        const row = el('li', { class: 'quiz-opt' },
+          el('label', {}, input, el('span', { class: 'quiz-opt-text' }, renderInline(o.text)), tag),
+          feedback);
+        return { o, input, tag, feedback, row };
+      });
+      const badge = el('span', { class: 'quiz-badge', hidden: '' });
+      const explanation = q.explanation
+        ? el('div', { class: 'prose quiz-explain', hidden: '' }, ...renderMarkdown(q.explanation))
+        : null;
+      const group = el('div', { class: 'quiz-q', role: 'group', 'aria-labelledby': headingId },
+        el('p', { class: 'quiz-heading', id: headingId },
+          el('span', { class: 'quiz-num', text: `${qi + 1}.` }), renderInline(q.heading), badge),
+        q.prompt ? el('div', { class: 'prose quiz-prompt' }, ...renderMarkdown(q.prompt)) : null,
+        q.multi ? el('p', { class: 'quiz-hint', text: 'Choose all that apply.' }) : null,
+        el('ul', { class: 'quiz-opts' }, ...opts.map((x) => x.row)),
+        explanation);
+      return { opts, badge, explanation, group };
+    });
+
+    const answered = (it) => it.opts.some((x) => x.input.checked);
+    const score = el('div', { class: 'quiz-score', role: 'status', tabindex: '-1', hidden: '' });
+    const progress = el('span', { class: 'quiz-progress' });
+    const submit = el('button', { class: 'btn', type: 'button', text: 'Submit answers' });
+    const retry = el('button', { class: 'btn', type: 'button', text: '↻ Try again', hidden: '' });
+    const updateProgress = () => {
+      progress.textContent = `${items.filter(answered).length} / ${items.length} answered`;
+    };
+
+    submit.addEventListener('click', () => {
+      const missing = items.filter((it) => !answered(it)).length;
+      if (missing && !window.confirm(`${missing} of ${items.length} questions are not answered yet. Submit anyway?`)) return;
+      let right = 0;
+      for (const it of items) {
+        let ok = true;
+        for (const x of it.opts) {
+          const picked = x.input.checked;
+          const correct = x.o.correct;
+          if (picked !== correct) ok = false;
+          x.input.disabled = true;
+          x.row.classList.toggle('is-correct', picked && correct);
+          x.row.classList.toggle('is-wrong', picked && !correct);
+          x.row.classList.toggle('is-missed', !picked && correct);
+          x.tag.hidden = !(picked || correct);
+          x.tag.textContent = picked ? (correct ? '✓ your answer' : '✗ your answer') : '✓ correct answer';
+          if (x.feedback) x.feedback.hidden = !(picked || correct);
+        }
+        if (ok) right++;
+        it.group.classList.toggle('is-right', ok);
+        it.group.classList.toggle('is-wrong', !ok);
+        it.badge.hidden = false;
+        it.badge.textContent = ok ? '✓ Correct' : answered(it) ? '✗ Incorrect' : '— Not answered';
+        if (it.explanation) it.explanation.hidden = false;
+      }
+      const pct = Math.round((right / items.length) * 100);
+      score.replaceChildren(
+        el('strong', { class: 'quiz-score-num', text: `${right} / ${items.length}` }),
+        el('span', { class: 'quiz-score-pct', text: `${pct}%` }),
+        el('span', { text: scoreMessage(pct) }),
+      );
+      score.dataset.band = pct === 100 ? 'perfect' : pct >= 50 ? 'pass' : 'low';
+      score.hidden = false;
+      submit.hidden = true;
+      retry.hidden = false;
+      progress.hidden = true;
+      score.focus({ preventScroll: true });
+      score.scrollIntoView({ block: 'center', behavior: reducedMotion ? 'auto' : 'smooth' });
+    });
+
+    retry.addEventListener('click', () => {
+      for (const it of items) {
+        for (const x of it.opts) {
+          x.input.checked = false;
+          x.input.disabled = false;
+          x.row.classList.remove('is-correct', 'is-wrong', 'is-missed');
+          x.tag.hidden = true;
+          if (x.feedback) x.feedback.hidden = true;
+        }
+        it.group.classList.remove('is-right', 'is-wrong');
+        it.badge.hidden = true;
+        if (it.explanation) it.explanation.hidden = true;
+      }
+      score.hidden = true;
+      submit.hidden = false;
+      retry.hidden = true;
+      progress.hidden = false;
+      updateProgress();
+      box.scrollIntoView({ block: 'start', behavior: reducedMotion ? 'auto' : 'smooth' });
+    });
+
+    box.addEventListener('change', updateProgress);
+    updateProgress();
+    box.replaceChildren(...[
+      showTitle ? el('h3', { class: 'quiz-title', text: title }) : null,
+      quiz.intro ? el('div', { class: 'prose quiz-intro' }, ...renderMarkdown(quiz.intro)) : null,
+      score,
+      ...items.map((it) => it.group),
+      el('div', { class: 'quiz-actions' }, submit, retry, progress),
+    ].filter(Boolean));
+  }
+
+  // `onTitle` receives the quiz's title once the file has loaded.
+  function quizView(entry, { showTitle = true, onTitle } = {}) {
+    const box = el('div', { class: 'quiz' }, el('p', { class: 'muted', text: 'Loading…' }));
+    loadMaterial(entry.file)
+      .then((text) => {
+        const quiz = parseQuiz(text, entry.file);
+        buildQuiz(box, quiz, entry, showTitle);
+        if (onTitle) onTitle(entry.title || quiz.title || 'Quiz');
+      })
+      .catch(() => box.replaceChildren(
+        el('p', { class: 'muted', text: `Could not load ${CONTENT}${entry.file}.` }),
+      ));
+    return box;
+  }
+
+  function quizPanel(quizzes) {
+    if (!quizzes.length) return null;
+    const section = panel(quizzes.length > 1 ? 'Quizzes' : 'Quiz', ...quizzes.map((q) => quizView(q)));
+    section.classList.add('quiz-panel');
+    return section;
+  }
+
   // ---------- Bots: animated robots at the top of a topic ----------
   const ROBOT_SVG = `
     <svg viewBox="0 0 120 140" width="100%" height="100%" focusable="false">
@@ -427,9 +657,9 @@
   let lineCount = 0;
   const lineItems = new WeakMap(); // line node -> its open/close handle
 
-  const LINE_TYPES = { bot: 'Bot', text: 'Text', video: 'Video', link: 'Link' };
+  const LINE_TYPES = { bot: 'Bot', text: 'Text', video: 'Video', quiz: 'Quiz', link: 'Link' };
 
-  // Every line starts with a coloured type tag: Bot / Text / Video / Link.
+  // Every line starts with a coloured type tag: Bot / Text / Video / Quiz / Link.
   function lineParts(type, label, sub, end, icon) {
     return [
       el('span', { class: 'line-type', text: LINE_TYPES[type] }),
@@ -518,6 +748,18 @@
       return node;
     });
     return rows;
+  }
+
+  // The quiz is built once, so answers survive closing and reopening the line.
+  function quizLines(quizzes) {
+    return quizzes.map((entry) => {
+      const { node, item } = expandableLine('quiz', entry.title || 'Quiz');
+      item.body.append(quizView(entry, {
+        showTitle: false,
+        onTitle: (title) => { item.label.textContent = title; },
+      }));
+      return node;
+    });
   }
 
   function linkLines(links) {
@@ -652,6 +894,7 @@
           ...botLines(asList(topic.bots)),
           ...videoLines(asList(topic.videos)),
           ...materialLines(asList(topic.material)),
+          ...quizLines(quizEntries(topic.quizzes)),
           ...linkLines(asList(topic.links)),
         ];
         sections = rows.length ? [el('div', { class: 'line-list topic-lines' }, ...rows)] : [];
@@ -662,6 +905,7 @@
           botsPanel(asList(topic.bots), topic),
           videosPanel(asList(topic.videos)),
           materialPanel(asList(topic.material)),
+          quizPanel(quizEntries(topic.quizzes)),
           linksPanel(asList(topic.links)),
         ];
       }

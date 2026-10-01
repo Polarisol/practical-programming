@@ -29,11 +29,46 @@ All content lives in `content/`. You never need to edit the HTML or JavaScript.
 | `videos`   | List of `{ "title": "...", "youtube": "<link or video ID>" }`. Add `"start": 90` to start at 1:30 |
 | `material` | Path to a Markdown file inside `content/`, e.g. `"topics/my-topic.md"`. It can also be a list of files |
 | `bots`     | List of `{ "label": "...", "description": "...", "url": "https://..." }`. Each bot appears **at the top** of the topic as an animated robot. `description` is what the robot "says" in its speech bubble. |
+| `quizzes`  | Path to a quiz file inside `content/`, e.g. `"quizzes/my-quiz.md"`, or a list of them. See **Write a quiz** below |
 | `links`    | List of `{ "label": "...", "url": "https://..." }`. A file in `assets/` works too, e.g. `"assets/worksheet.pdf"` |
 
 3. Write your notes in `content/topics/<something>.md` using Markdown: `# Heading`, `**bold**`, `- lists`, tables and code blocks. Put images in `assets/` and reference them as `![description](assets/picture.png)`.
 
 Any field can be left out, and its section won't appear on the page.
+
+## Write a quiz
+
+A quiz is a Markdown file in `content/quizzes/`. Students answer every question and press **Submit answers**. They then see their score, which answers were right or wrong, and your feedback. **Try again** starts over.
+
+````markdown
+# Python Basics Quiz
+
+## What does `len([1, 2, 3])` return?
+- [ ] 2
+  > Not quite: len counts the items.
+- [x] 3
+  > Correct! The list has three items.
+- [ ] 6
+
+## Which names are valid?
+```python
+# code blocks can be part of the question
+```
+- [x] `total_sum`
+- [ ] `2nd_place`
+  > A name can't start with a digit.
+- [x] `_count`
+> Shown after submitting: an explanation for the whole question.
+````
+
+- `# ` (optional) is the quiz title. Any text before the first question is shown at the top.
+- Each `## ` starts a new question. Text and code blocks under it are part of the question.
+- `- [ ]` is an option and `- [x]` is a correct option. If a question has more than one `[x]`, it shows checkboxes with "Choose all that apply". A question is only marked correct if exactly the right options are chosen.
+- An **indented** `> ` line under an option is that option's feedback. It shows after submitting, for the options the student chose and for the correct ones.
+- An **unindented** `> ` line after the options is an explanation for the whole question.
+- A question with no options or no `[x]` is skipped. The browser console (F12) shows a warning that names it.
+
+Then add it to a topic in `topics.json`: `"quizzes": ["quizzes/my-quiz.md"]`. To give it a different title, use `"quizzes": [{ "title": "Week 1 quiz", "file": "quizzes/my-quiz.md" }]`.
 
 The text on the Main page comes from `content/home.md`. Edit it like any other Markdown notes file (to use a different file, set `"home"` in the `site` block).
 
@@ -67,5 +102,6 @@ js/app.js             reads topics.json and builds the pages
 content/topics.json   your topics  ← edit this
 content/home.md       Main page text ← and this
 content/topics/*.md   your notes   ← and these
+content/quizzes/*.md  your quizzes ← and these
 assets/               images, PDFs, worksheets
 ```
