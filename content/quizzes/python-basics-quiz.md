@@ -1,4 +1,4 @@
-# Python Basics Quiz
+# Quiz yourself!
 
 Answer all the questions, then press **Submit answers** to see your score and the corrections.
 
