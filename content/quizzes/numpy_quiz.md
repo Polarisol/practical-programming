@@ -1,86 +1,86 @@
-# Quiz Yourself!
+# NumPy Basics and Random Numbers
 
-Test your knowledge on NumPy arrays, element-wise operations, and generating pseudo-random numbers based on what you need to remember.[cite: 2]
+Test your knowledge on NumPy arrays, element-wise operations, and generating pseudo-random numbers based on what you need to remember.
 
 ## Why is NumPy generally faster and more efficient than regular Python lists for numerical data?
-- [x] It is written in C and handles loops internally.[cite: 2, 3]
-  > Correct! Backstage, NumPy is written in C, which makes dealing with data much faster and more efficient.[cite: 2, 3]
-- [ ] It runs on a remote server.
-  > Not quite. NumPy is faster because it is written in C, not because of remote servers.[cite: 2]
 - [ ] It uses the standard Python Math module for its calculations.
-  > Incorrect. You should use NumPy's functions for array operations, not the standard Math module.[cite: 2]
-> NumPy is faster because it is memory-efficient and written in C, allowing you to perform mathematical operations on entire arrays without writing Python loops.[cite: 2, 3]
+  > Incorrect. You should use NumPy's functions for array operations, not the standard Math module.
+- [ ] It runs on a remote server.
+  > Not quite. NumPy is faster because it is written in C, not because of remote servers.
+- [x] It is written in C and handles loops internally.
+  > Correct! Backstage, NumPy is written in C, which makes dealing with data much faster and more efficient.
+> NumPy is faster because it is memory-efficient and written in C, allowing you to perform mathematical operations on entire arrays without writing Python loops.
 
 ## What will be the output when you run the code `np.linspace(0, 10, 5)`?
-- [x] `[ 0.   2.5  5.   7.5 10. ]`
-  > Right! `linspace` lets you choose exactly how many evenly spaced values you want, generating 5 values starting at 0 and ending at 10, including both ends.[cite: 3]
-- [ ] `[0 5]`
-  > Incorrect. `linspace` uses the third argument to determine the total number of values generated, not the step size.[cite: 3]
 - [ ] `[0 2 4 6 8]`
-  > Not quite. This would be the result if you used a step size of 2 using the `arange` function.[cite: 3]
-> We need to remember how to work with `linspace` to create arrays.[cite: 2] It requires you to specify the start, stop, and the exact number of values you want to generate.[cite: 3]
+  > Not quite. This would be the result if you used a step size of 2 using the `arange` function.
+- [x] `[ 0.   2.5  5.   7.5 10. ]`
+  > Right! `linspace` lets you choose exactly how many evenly spaced values you want, generating 5 values starting at 0 and ending at 10, including both ends.
+- [ ] `[0 5]`
+  > Incorrect. `linspace` uses the third argument to determine the total number of values generated, not the step size.
+> We need to remember how to work with `linspace` to create arrays. It requires you to specify the start, stop, and the exact number of values you want to generate.
 
 ## What will be the output when you run the code `np.arange(0, 10, 5)`?
-- [x] `[0 5]`
-  > Correct! `arange` starts at 0 and takes a step of 5, generating numbers up to, but not including, the end value of 10.[cite: 3]
 - [ ] `[ 0.   2.5  5.   7.5 10. ]`
-  > Incorrect. This is the output for `linspace`, which creates a specific number of evenly spaced values.[cite: 3]
+  > Incorrect. This is the output for `linspace`, which creates a specific number of evenly spaced values.
 - [ ] `[0 5 10]`
-  > Close, but `arange` generates numbers up to, but *not including*, the stop value, so 10 is left out.[cite: 3]
-> We need to remember how to work with `arange` to create arrays.[cite: 2] The `arange` function takes a start, stop, and step size, generating values up to (but not including) the stop value.[cite: 3]
+  > Close, but `arange` generates numbers up to, but *not including*, the stop value, so 10 is left out.
+- [x] `[0 5]`
+  > Correct! `arange` starts at 0 and takes a step of 5, generating numbers up to, but not including, the end value of 10.
+> We need to remember how to work with `arange` to create arrays. The `arange` function takes a start, stop, and step size, generating values up to (but not including) the stop value.
 
 ## If you have a NumPy array named `a`, what is the most efficient way to generate a new array with all the original values doubled?
 - [x] `a * 2`
-  > Correct! Because NumPy supports element-wise operations, applying multiplication directly to the array automatically scales every single value inside it.[cite: 2, 3]
+  > Correct! Because NumPy supports element-wise operations, applying multiplication directly to the array automatically scales every single value inside it.
 - [ ] Write a `for` loop to multiply each item by 2.
-  > While this works for standard Python lists, it defeats the purpose of NumPy. You can do this much faster without loops.[cite: 2, 3]
+  > While this works for standard Python lists, it defeats the purpose of NumPy. You can do this much faster without loops.
 - [ ] `a ** 2`
-  > This operation would square every value in the array rather than doubling them.[cite: 3]
-> NumPy allows you to use normal mathematical operators directly on arrays, applying the computation to every element instantly by handling the loops internally in C.[cite: 2, 3]
+  > This operation would square every value in the array rather than doubling them.
+> NumPy allows you to use normal mathematical operators directly on arrays, applying the computation to every element instantly by handling the loops internally in C.
 
-## If you want to generate 5 random whole numbers ranging from 0 up to (but not including) 10, which method should you use?
-- [ ] `np.random.rand(5)`
-  > This generates 5 random decimals between 0 and 1, not whole numbers.[cite: 1]
-- [ ] `np.random.uniform(0, 10, 5)`
-  > This generates 5 random decimals in a custom range, not whole numbers.[cite: 1]
-- [x] `np.random.randint(0, 10, 5)`
-  > Right! `randint` generates random integers in a range.[cite: 1, 2]
-> The methods of `np.random` include `rand()` for decimals between 0 and 1, `randint()` for integers, and `uniform()` for decimals in a custom range.[cite: 1, 2]
+## If you need to generate an array of 5 random decimal (float) numbers between 0 and 10, which NumPy method should you choose?
+- [ ] `np.random.randint(0, 10, 5)`
+  > Incorrect. The `randint` method generates whole numbers (integers), not decimals.
+- [ ] `np.random.rand(0, 10, 5)`
+  > Not quite. While `rand` does generate random decimals, it only creates values between 0 and 1, without allowing you to specify a custom range like 0 to 10.
+- [x] `np.random.uniform(0, 10, 5)`
+  > Correct! The `uniform` method is exactly what you need to generate random decimal numbers within a specific, custom range.
+> To get random decimals in a custom range, `np.random.uniform()` is the right tool, whereas `rand()` is strictly for decimals between 0 and 1, and `randint()` is strictly for integers.
 
 ## What does it mean when we say NumPy's random numbers are "pseudo-random"?
 - [ ] They are truly unpredictable and completely random.
-  > Incorrect. Random numbers generated by a computer are not truly random.[cite: 1, 2]
-- [x] They are produced by an algorithm and determined by an initial seed value.
-  > Correct! Because they use a seed value and an algorithm, they only look random.[cite: 1, 2]
+  > Incorrect. Random numbers generated by a computer are not truly random.
 - [ ] They are only random if the array size is small.
   > The size of the array doesn't affect whether they are pseudo-random.
-> Random numbers generated by a computer are pseudo-random, meaning they are determined by an initial value called a seed.[cite: 2] If we use the same seed, we will get the same sequence of random numbers.[cite: 2]
+- [x] They are produced by an algorithm and determined by an initial seed value.
+  > Correct! Because they use a seed value and an algorithm, they only look random.
+> Random numbers generated by a computer are pseudo-random, meaning they are determined by an initial value called a seed. If we use the same seed, we will get the same sequence of random numbers.
 
 ## Which of the following statements about NumPy are true?
-- [x] NumPy provides a wide range of functions for creating and manipulating arrays efficiently.[cite: 2]
-  > Correct! NumPy is designed for efficient array computation.[cite: 2]
-- [x] NumPy includes linear algebra functions and operations for polynomial fitting.[cite: 2]
-  > Correct! You do not need to remember them by heart, but you should know they exist.[cite: 2]
 - [ ] You should use the standard Python Math module for operations on NumPy arrays.
-  > Incorrect. You should use NumPy's built-in functions, not the Math module.[cite: 2]
-- [x] NumPy allows the creation of 1D and multi-dimensional arrays to represent matrices.[cite: 2]
-  > Correct! NumPy can easily create multi-dimensional arrays to represent matrices and higher-dimensional data.[cite: 2]
-> NumPy is highly versatile, supporting everything from simple 1D arrays to matrices, and it includes advanced features like linear algebra and polynomial fitting.[cite: 2]
+  > Incorrect. You should use NumPy's built-in functions, not the Math module.
+- [x] NumPy allows the creation of 1D and multi-dimensional arrays to represent matrices.
+  > Correct! NumPy can easily create multi-dimensional arrays to represent matrices and higher-dimensional data.
+- [x] NumPy provides a wide range of functions for creating and manipulating arrays efficiently.
+  > Correct! NumPy is designed for efficient array computation.
+- [x] NumPy includes linear algebra functions and operations for polynomial fitting.
+  > Correct! You do not need to remember them by heart, but you should know they exist.
+> NumPy is highly versatile, supporting everything from simple 1D arrays to matrices, and it includes advanced features like linear algebra and polynomial fitting.
 
 ## You have a standard Python list filled with numerical data. How do you convert this existing list into a NumPy array?
 - [x] Pass the list into `np.array()`
-  > Correct! Wrapping your standard list in `np.array()` will instantly convert it into a NumPy array structure.[cite: 2, 3]
-- [ ] Use `np.arange()`
-  > Incorrect. `arange` generates a completely new sequence of numbers based on a step size, rather than converting existing data.[cite: 3]
+  > Correct! Wrapping your standard list in `np.array()` will instantly convert it into a NumPy array structure.
 - [ ] Use `np.linspace()`
-  > Incorrect. `linspace` is used to create a new array with evenly spaced intervals, not to transform an old list.[cite: 3]
-> We need to remember how to turn a regular Python list into a powerful NumPy array by utilizing the `np.array()` function.[cite: 2, 3]
+  > Incorrect. `linspace` is used to create a new array with evenly spaced intervals, not to transform an old list.
+- [ ] Use `np.arange()`
+  > Incorrect. `arange` generates a completely new sequence of numbers based on a step size, rather than converting existing data.
+> We need to remember how to turn a regular Python list into a powerful NumPy array by utilizing the `np.array()` function.
 
 ## You are designing a digital board game and need to simulate rolling a standard six-sided die 100 times to test the movement mechanics. Which NumPy function call will give you an array of 100 dice rolls (integers from 1 to 6)?
-- [x] `np.random.randint(1, 7, 100)`
-  > Correct! The `randint` function generates integers starting from the lower bound up to, but not including, the upper bound.[cite: 1, 2] Setting the range from 1 to 7 ensures you get the whole numbers 1 through 6.[cite: 1] 
 - [ ] `np.random.randint(1, 6, 100)`
-  > Close, but `randint` does not include the upper limit.[cite: 1] This would only generate numbers from 1 up to 5.[cite: 1]
+  > Close, but `randint` does not include the upper limit. This would only generate numbers from 1 up to 5.
 - [ ] `np.random.uniform(1, 6, 100)`
-  > Incorrect. The `uniform` method generates random decimals in a custom range, not the whole integers needed for a standard dice roll.[cite: 1, 2]
-> Remember that `np.random.randint()` is used to get random whole numbers in a specific range.[cite: 1, 2] The upper limit provided to the function is always exclusive, meaning it is not included in the possible results.[cite: 1]
+  > Incorrect. The `uniform` method generates random decimals in a custom range, not the whole integers needed for a standard dice roll.
+- [x] `np.random.randint(1, 7, 100)`
+  > Correct! The `randint` function generates integers starting from the lower bound up to, but not including, the upper bound. Setting the range from 1 to 7 ensures you get the whole numbers 1 through 6. 
+> Remember that `np.random.randint()` is used to get random whole numbers in a specific range. The upper limit provided to the function is always exclusive, meaning it is not included in the possible results.
