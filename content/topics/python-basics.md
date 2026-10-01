@@ -25,6 +25,7 @@ s = "Hello, World!"
 print(s.lower())      # 'hello, world!'
 print(s.upper())      # 'HELLO, WORLD!'
 print(s.replace("World", "Python"))  # 'Hello, Python!'
+print(len(s))  # prints the length of the string
 ```
 
 Multi-line strings are created using triple quotes. f-strings allow embedding expressions directly inside a string.
@@ -56,6 +57,7 @@ Lists are mutable collections of items.
 
 ```python
 numbers = [1, 2, 3, 4, 5]
+print(len(numbers))  # prints the length of the list
 print(numbers[0])    # First index
 print(numbers[1:3])  # List slicing
 numbers.append(6)    # Adds an item to the end of the list

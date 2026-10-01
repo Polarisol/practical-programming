@@ -99,7 +99,8 @@
           "youtube": "https://www.youtube.com/watch?v=zI5ducyfyNc"
         }
       ],
-      "material": ["topics/numpy_basics.md", "topics/numpy_2d_arrays.md", "topics/numpy_random_numbers.md", "topics/numpy_matrix_linear_algebra.md", "topics/numpy_polynomials.md", "topics/wwntr_numpy.md"]
+      "material": ["topics/numpy_basics.md", "topics/numpy_2d_arrays.md", "topics/numpy_random_numbers.md", "topics/numpy_matrix_linear_algebra.md", "topics/numpy_polynomials.md", "topics/wwntr_numpy.md"],
+      "quizzes": ["quizzes/numpy_quiz.md"]
     },
 
     {
