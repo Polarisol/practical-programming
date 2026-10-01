@@ -1,4 +1,4 @@
-# NumPy Basics and Random Numbers
+# Quiz yourself!
 
 Test your knowledge on NumPy arrays, element-wise operations, and generating pseudo-random numbers based on what you need to remember.
 
