@@ -1,4 +1,4 @@
-# NumPy Random Numbers
+# Random Numbers
 
 ```python
 import numpy as np
