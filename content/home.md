@@ -1,8 +1,12 @@
-Everyone can create great software solutions today, it is easier than ever with AI, but when it comes to **science** and **engineering**, it still requires careful thought and guidance.
+Everyone can create great software solutions today, it is easier than ever with AI.
 
-In this site you'll find a lot of material to help you understand the things we learn in class and practice them. 
+**Knowing how to harness the full power of a computer makes you so much more powerful!** (buhaha!)
 
-> Programming is learned by doing. Write code, run it, and see what happens.
+But when it comes to **science** and **engineering**, it still requires understanding, careful thought and guidance.
+
+In this site you'll find a lot of material to help you understand the things we learn in class.
+
+> Remember: Programming is learned by doing. Write code, run it, and see what happens.
 
 Don't worry... you'll be fine, as long as you never ever **g̷̈́ͅ█i̶̛͜v̴̧͝■**!
 
