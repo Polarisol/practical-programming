@@ -44,7 +44,7 @@ class Cat:
 Let's go over it line by line:
 
 * `class Cat:` - we are writing a recipe called `Cat`. Class names usually start with a **capital letter**.
-* `def __init__(self, name, color, birth_year):` - this special function runs **automatically every time a new cat is created**. Its job is to set up the new cat. (`init` is short for *initialize*, which means "set up at the start".) Note that the name of the method must be '__init__', it is a special name.
+* `def __init__(self, name, color, birth_year):` - this special function runs **automatically every time a new cat is created**. Its job is to set up the new cat. (`init` is short for *initialize*, which means "set up at the start".) Note that the name of the method must be `__init__`, it is a special name.
 * `name`, `color`, `birth_year` - the information we must give when we create a cat.
 * `self` - means **"this cat"**, the cat that is being created right now. Python gives it to us by itself, we never pass it.
 * `self.name = name` - "save the name we got **inside this cat**". The same goes for the color and the birth year.
