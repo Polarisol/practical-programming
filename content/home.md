@@ -5,3 +5,5 @@ In this site you'll find a lot of material to help you understand the things we 
 > Programming is learned by doing. Write code, run it, and see what happens.
 
 Don't worry... you'll be fine, as long as you never ever **g̷̈́ͅ█i̶̛͜v̴̧͝■**!
+
+Tal
