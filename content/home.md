@@ -1,21 +1,9 @@
-## Welcome
+## Hello Student
 
-This is the home of **Practical Programming**, a hands-on course about writing real code that solves real problems. You don't need any previous programming experience, just curiosity and a willingness to experiment (and to break things now and then).
+Everyone can create great software solutions today, it is easier than ever with AI, but when it comes to **science** and **engineering**, it still requires careful thought and guidance.
 
-### How the course works
+In this site you'll find a lot of material to help you understand the course content and practice it.
 
-Each topic in the list on the side is a self-contained unit. Inside you'll find:
+> Programming is learned by doing. Write code, run it, and see what happens.
 
-- **Videos** that walk through the ideas step by step
-- **Notes** you can read at your own pace and come back to later
-- **Practice bots** you can chat with to test yourself and get unstuck
-
-### Getting started
-
-1. Start with **Installation** to set up everything you need on your computer.
-2. Work through the topics in order. Each one builds on the ones before it.
-3. Type the examples yourself instead of copying and pasting. Your fingers learn too.
-
-> Programming is learned by doing. Read a little, write a little, run it, and see what happens.
-
-Good luck, and have fun!
+Good luck, have fun, **don't g̷̈́ͅ█i̶̛͜v̴̧͝■**!
