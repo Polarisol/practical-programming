@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 230" width="200" height="230">
+  <rect x="4" y="4" width="192" height="222" rx="18" fill="#fff3e0" stroke="#b35a0c" stroke-opacity="0.25"/>
+  <path transform="translate(40 22) scale(0.9)" fill="#e5484d" d="M0 4 C0 -1 7 -1 7 4 C7 -1 14 -1 14 4 C14 9 7 13 7 15 C7 13 0 9 0 4 Z"/><path transform="translate(70 22) scale(0.9)" fill="#e5484d" d="M0 4 C0 -1 7 -1 7 4 C7 -1 14 -1 14 4 C14 9 7 13 7 15 C7 13 0 9 0 4 Z"/><path transform="translate(100 22) scale(0.9)" fill="#e5484d" d="M0 4 C0 -1 7 -1 7 4 C7 -1 14 -1 14 4 C14 9 7 13 7 15 C7 13 0 9 0 4 Z"/>
+  <g stroke="#b35a0c" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+    <!-- tail -->
+    <path d="M140 170 C185 165 180 110 160 105" fill="none" stroke="#b35a0c" stroke-width="16"/>
+    <path d="M140 170 C185 165 180 110 160 105" fill="none" stroke="#f08a24" stroke-width="10"/>
+    <!-- body -->
+    <ellipse cx="100" cy="155" rx="48" ry="42" fill="#f08a24"/>
+    <!-- front paws -->
+    <ellipse cx="82" cy="193" rx="13" ry="8" fill="#f08a24"/>
+    <ellipse cx="118" cy="193" rx="13" ry="8" fill="#f08a24"/>
+    <!-- ears -->
+    <path d="M58 82 L62 38 L92 62 Z" fill="#f08a24"/>
+    <path d="M142 82 L138 38 L108 62 Z" fill="#f08a24"/>
+    <!-- head -->
+    <circle cx="100" cy="90" r="42" fill="#f08a24"/>
+  </g>
+  <!-- inner ears -->
+  <path d="M65 70 L67 50 L83 62 Z" fill="#f4a6b8"/>
+  <path d="M135 70 L133 50 L117 62 Z" fill="#f4a6b8"/>
+  <!-- eyes -->
+  <ellipse cx="84" cy="86" rx="8" ry="10" fill="#3a9d3a"/>
+  <ellipse cx="116" cy="86" rx="8" ry="10" fill="#3a9d3a"/>
+  <ellipse cx="84" cy="87" rx="3" ry="7" fill="#111"/>
+  <ellipse cx="116" cy="87" rx="3" ry="7" fill="#111"/>
+  <circle cx="86" cy="83" r="2" fill="#fff"/>
+  <circle cx="118" cy="83" r="2" fill="#fff"/>
+  <!-- nose and mouth -->
+  <path d="M95 101 L105 101 L100 107 Z" fill="#e8798f"/>
+  <path d="M100 107 Q100 113 93 113 M100 107 Q100 113 107 113" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round"/>
+  <!-- whiskers -->
+  <g stroke="#777" stroke-width="1.5" stroke-linecap="round">
+    <path d="M78 104 L48 98"/><path d="M78 108 L48 110"/>
+    <path d="M122 104 L152 98"/><path d="M122 108 L152 110"/>
+  </g>
+  <text x="100" y="218" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="600" fill="#333">Mitzi · patted 3×</text>
+</svg>

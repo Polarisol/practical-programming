@@ -107,6 +107,14 @@
     },
 
     {
+      "id": "oop",
+      "title": "Object Oriented Programming",
+      "icon": "🐱",
+      "blurb": "Classes and objects: keep each thing's information and abilities together.",
+      "material": "topics/OOP_basics.md"
+    },
+
+    {
       "id": "pyside6",
       "title": "PySide6 - GUI",
       "icon": "🖥",
