@@ -16,7 +16,7 @@ coefficients = np.polyfit(x, y, 1)
 print(coefficients)  # [2. 1.]
 ```
 
-These coefficients describe the line $y = 2x + 1$.
+These coefficients describe the line y = 2x + 1.
 
 ## Evaluating the polynomial
 
