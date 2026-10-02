@@ -111,6 +111,13 @@
       "title": "OOP",
       "icon": "🐱",
       "blurb": "Classes and objects: keep each thing's information and abilities together.",
+      "bots": [
+        {
+          "label": "Study Bot",
+          "description": "I can help you study, teach you and quiz you on OOP.",
+          "url": "https://xxxxxxx"
+        }
+      ],
       "videos": [
         {
           "title": "OOP in Python",
