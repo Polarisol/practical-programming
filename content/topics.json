@@ -2,7 +2,6 @@
   "site": {
     "title": "Practical Programming",
     "author": "Dr. Tal Alon",
-    "subtitle": "Pick a topic from the list to find videos, notes and practice bots.",
     "home": "home.md",
     "footer": "Practical Programming · Dr. Tal Alon"
   },
