@@ -124,7 +124,7 @@
           "youtube": "https://www.youtube.com/watch?v=JeznW_7DlB0"
         }
       ],
-      "material": ["topics/OOP_basics.md", "topics/OOP_inheritance.md"],
+      "material": ["topics/OOP_basics.md", "topics/OOP_inheritance.md", "topics/wwntr_oop.md"],
       "quizzes": ["quizzes/oop_quiz.md"]
     },
 
