@@ -1,4 +1,4 @@
-# PySide6 OOP Form
+# PySide6 Basic OOP Form
 
 As programs grow, keeping every widget and function as a global variable becomes messy and hard to follow. Writing the window as a **class** keeps all of its widgets and the functions that react to them together in one place, and this is how almost all real PySide6 programs are written.
 
