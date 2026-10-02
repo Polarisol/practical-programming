@@ -1,4 +1,4 @@
-# PySide6 Widgets Reference
+# Widgets Reference
 
 This page is a reference for the most common PySide6 widgets. For each widget you will find:
 
