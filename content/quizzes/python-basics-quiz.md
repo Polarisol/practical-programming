@@ -145,6 +145,8 @@ print(numbers[1:4])
   > The slice `[1:4]` stops **before** index 4 so 10 is not included.
 - [x] [4, 6, 8]
   > Right! The slice `[1:4]` includes elements at indices 1, 2, and 3.
+- [ ] [2, 4]
+  > Index 4 has nothing to do with the value 4.
 > Remember that list slicing in Python is inclusive of the start index and exclusive of the end index.
 
 ## What does this code print?
