@@ -108,10 +108,17 @@
 
     {
       "id": "oop",
-      "title": "Object Oriented Programming",
+      "title": "OOP",
       "icon": "🐱",
       "blurb": "Classes and objects: keep each thing's information and abilities together.",
-      "material": ["topics/OOP_basics.md", "topics/OOP_inheritance.md"]
+      "videos": [
+        {
+          "title": "OOP in Python",
+          "youtube": "https://www.youtube.com/watch?v=JeznW_7DlB0"
+        }
+      ],
+      "material": ["topics/OOP_basics.md", "topics/OOP_inheritance.md"],
+      "quizzes": ["quizzes/oop_quiz.md"]
     },
 
     {
