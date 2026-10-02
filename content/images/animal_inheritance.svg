@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 600" width="680" height="600">
+  <defs>
+    <marker id="arrow" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+      <path d="M1 1 L11 6 L1 11 Z" fill="#fff" stroke="#555" stroke-width="1.5" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- ===== Animal (parent) ===== -->
+  <rect x="190" y="10" width="300" height="236" rx="18" fill="#f1ecfb" stroke="#6a4fb3" stroke-opacity="0.45" stroke-width="2"/>
+  <!-- amorphous blob creature -->
+  <path d="M290 116 C270 104 284 78 300 74 C298 46 326 30 348 44 C370 30 404 50 394 78 C412 92 404 122 386 126 C380 146 350 150 336 140 C318 152 292 140 290 116 Z"
+        fill="#b9a7e0" stroke="#6a4fb3" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M312 140 Q310 152 304 156 M338 144 Q340 154 346 157 M366 136 Q372 146 378 148" fill="none" stroke="#6a4fb3" stroke-width="3" stroke-linecap="round"/>
+  <ellipse cx="330" cy="84" rx="7" ry="9" fill="#fff" stroke="#6a4fb3" stroke-width="1.5"/>
+  <ellipse cx="358" cy="84" rx="7" ry="9" fill="#fff" stroke="#6a4fb3" stroke-width="1.5"/>
+  <circle cx="331" cy="86" r="3.5" fill="#222"/>
+  <circle cx="359" cy="86" r="3.5" fill="#222"/>
+  <path d="M334 108 Q344 116 354 108" fill="none" stroke="#4a3585" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="408" y="62" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#6a4fb3" fill-opacity="0.7">?</text>
+  <text x="340" y="184" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="20" font-weight="700" fill="#333">class Animal</text>
+  <text x="340" y="208" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#444">name, color, birth_year, pat_counter</text>
+  <text x="340" y="229" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#444">can be patted: pat()</text>
+
+  <!-- ===== arrows: child -> parent ===== -->
+  <path d="M170 338 L284 254" fill="none" stroke="#555" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <path d="M510 338 L396 254" fill="none" stroke="#555" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="196" y="286" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-style="italic" fill="#555">inherits from</text>
+  <text x="484" y="286" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-style="italic" fill="#555">inherits from</text>
+
+  <!-- ===== Cat (child) ===== -->
+  <rect x="20" y="340" width="300" height="250" rx="18" fill="#fff3e0" stroke="#b35a0c" stroke-opacity="0.35" stroke-width="2"/>
+  <g transform="translate(110 350) scale(0.6)">
+    <g stroke="#b35a0c" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M140 170 C185 165 180 110 160 105" fill="none" stroke="#b35a0c" stroke-width="16"/>
+      <path d="M140 170 C185 165 180 110 160 105" fill="none" stroke="#f08a24" stroke-width="10"/>
+      <ellipse cx="100" cy="155" rx="48" ry="42" fill="#f08a24"/>
+      <ellipse cx="82" cy="193" rx="13" ry="8" fill="#f08a24"/>
+      <ellipse cx="118" cy="193" rx="13" ry="8" fill="#f08a24"/>
+      <path d="M58 82 L62 38 L92 62 Z" fill="#f08a24"/>
+      <path d="M142 82 L138 38 L108 62 Z" fill="#f08a24"/>
+      <circle cx="100" cy="90" r="42" fill="#f08a24"/>
+    </g>
+    <path d="M65 70 L67 50 L83 62 Z" fill="#f4a6b8"/>
+    <path d="M135 70 L133 50 L117 62 Z" fill="#f4a6b8"/>
+    <ellipse cx="84" cy="86" rx="8" ry="10" fill="#3a9d3a"/>
+    <ellipse cx="116" cy="86" rx="8" ry="10" fill="#3a9d3a"/>
+    <ellipse cx="84" cy="87" rx="3" ry="7" fill="#111"/>
+    <ellipse cx="116" cy="87" rx="3" ry="7" fill="#111"/>
+    <circle cx="86" cy="83" r="2" fill="#fff"/>
+    <circle cx="118" cy="83" r="2" fill="#fff"/>
+    <path d="M95 101 L105 101 L100 107 Z" fill="#e8798f"/>
+    <path d="M100 107 Q100 113 93 113 M100 107 Q100 113 107 113" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round"/>
+    <g stroke="#777" stroke-width="1.5" stroke-linecap="round">
+      <path d="M78 104 L48 98"/><path d="M78 108 L48 110"/>
+      <path d="M122 104 L152 98"/><path d="M122 108 L152 110"/>
+    </g>
+  </g>
+  <text x="170" y="510" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="20" font-weight="700" fill="#333">class Cat(Animal)</text>
+  <text x="170" y="537" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#444">gets everything from Animal</text>
+  <text x="170" y="560" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#444">adds nothing new (pass)</text>
+
+  <!-- ===== Dog (child) ===== -->
+  <rect x="360" y="340" width="300" height="250" rx="18" fill="#f5ebe0" stroke="#7a4a24" stroke-opacity="0.35" stroke-width="2"/>
+  <g transform="translate(450 350) scale(0.6)">
+    <g stroke="#6b3f1d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+      <!-- wagging tail -->
+      <path d="M142 160 C170 150 178 120 172 96" fill="none" stroke="#6b3f1d" stroke-width="16"/>
+      <path d="M142 160 C170 150 178 120 172 96" fill="none" stroke="#a0673a" stroke-width="10"/>
+      <!-- body -->
+      <ellipse cx="100" cy="155" rx="48" ry="42" fill="#a0673a"/>
+      <!-- front paws -->
+      <ellipse cx="82" cy="193" rx="13" ry="8" fill="#a0673a"/>
+      <ellipse cx="118" cy="193" rx="13" ry="8" fill="#a0673a"/>
+      <!-- head -->
+      <circle cx="100" cy="88" r="42" fill="#a0673a"/>
+      <!-- floppy ears -->
+      <path d="M66 58 C42 56 34 92 46 118 C54 130 70 118 72 100 Z" fill="#6b3f1d"/>
+      <path d="M134 58 C158 56 166 92 154 118 C146 130 130 118 128 100 Z" fill="#6b3f1d"/>
+      <!-- snout -->
+      <ellipse cx="100" cy="108" rx="24" ry="18" fill="#dcb07f"/>
+    </g>
+    <!-- collar with ID tag -->
+    <path d="M66 126 Q100 142 134 126" fill="none" stroke="#c62828" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="100" cy="146" r="9" fill="#f2c230" stroke="#9c7a10" stroke-width="2"/>
+    <text x="100" y="150" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#6b5208">#</text>
+    <!-- eyes -->
+    <circle cx="85" cy="80" r="7" fill="#1d1d1d"/>
+    <circle cx="115" cy="80" r="7" fill="#1d1d1d"/>
+    <circle cx="87" cy="77" r="2.2" fill="#fff"/>
+    <circle cx="117" cy="77" r="2.2" fill="#fff"/>
+    <!-- nose, mouth, tongue -->
+    <ellipse cx="100" cy="100" rx="9" ry="6.5" fill="#1d1d1d"/>
+    <path d="M100 106 L100 112 M100 112 Q92 118 86 113 M100 112 Q108 118 114 113" fill="none" stroke="#3a2412" stroke-width="2" stroke-linecap="round"/>
+    <path d="M95 116 Q95 128 100 128 Q105 128 105 116 Z" fill="#e8798f" stroke="#b84d63" stroke-width="1.2"/>
+  </g>
+  <text x="510" y="510" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="20" font-weight="700" fill="#333">class Dog(Animal)</text>
+  <text x="510" y="537" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#444">gets everything from Animal</text>
+  <text x="510" y="560" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#7a4a24">adds: id_number</text>
+</svg>

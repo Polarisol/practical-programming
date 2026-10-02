@@ -111,7 +111,7 @@
       "title": "Object Oriented Programming",
       "icon": "🐱",
       "blurb": "Classes and objects: keep each thing's information and abilities together.",
-      "material": "topics/OOP_basics.md"
+      "material": ["topics/OOP_basics.md", "topics/OOP_inheritance.md"]
     },
 
     {
