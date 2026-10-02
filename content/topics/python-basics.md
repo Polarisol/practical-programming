@@ -58,8 +58,10 @@ Lists are mutable collections of items.
 ```python
 numbers = [1, 2, 3, 4, 5]
 print(len(numbers))  # prints the length of the list
-print(numbers[0])    # First index
-print(numbers[1:3])  # List slicing
+print(numbers[0])    # First value 1
+print(numbers[1:3])  # List slicing [2, 3]
+print(numbers[-1])   # Last value 5
+print(numbers[2:])   # slicing to the end [3, 4, 5]
 numbers.append(6)    # Adds an item to the end of the list
 numbers.insert(0, 0) # Inserts an item at the beginning of the list
 del numbers[2]       # Deletes the item at index 2
