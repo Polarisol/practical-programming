@@ -6,23 +6,21 @@
 
 Think about the real world. It is full of things: cats, cars, phones, students. Every thing has:
 
-* **Information about itself**: a cat has a name, a color and a birth year.
-* **Things it can do**: a cat can be patted, it can meow, it can sleep.
+* **Information about itself**: a car, for example, has a make, a model and a year.
+* **Things it can do**: every car can drive, it can honk, it can be repaired.
 
 OOP lets us write programs the same way: we keep the information about a thing **and** the things it can do **together in one place**.
 
 ## Classes and Objects
 
-There are two words to learn: **class** and **object**.
+There are two words to learn: **class** and **object**. And lets go with the cat example... because cats are awesome.
 
-* A **class** is a **recipe** (or a blueprint). It describes what every cat has and what every cat can do. A class is **not** a cat. It is the instructions for making cats.
-* An **object** is a **real cat made from the recipe**. From one class we can make as many objects as we like.
-
-Think about a cookie cutter. The cookie cutter is the **class**. Each cookie you cut with it is an **object**. All the cookies have the same shape, but each cookie is its own cookie: you can put chocolate on one and sprinkles on another.
+* A **class** is a **blueprint** (or a template). It describes what every object of its type has and what every object of its type can do. A class of a cat is **not** a cat. It is the instructions for making cats.
+* An **object** of a cat however is a **real cat made from the blueprint**. From one class we can make as many objects as we like... so... we can create many cats.
 
 ### Each object has its own information
 
-Every cat we make has its **own** name, its **own** color and its **own** birth year. Changing one cat does not change any other cat. This is called the object's **state** (its own information).
+Every cat object we make has its **own** name, its **own** color and its **own** birth year. Changing one cat does not change any other cat. This is called the object's **state** (its own information).
 
 ### All objects share the same abilities
 
@@ -32,7 +30,7 @@ All cats are made from the same recipe, so they can all do the **same things**. 
 
 ## Our First Class: a Cat
 
-Here is a class that describes a cat:
+Here is the code for a class that describes a cat. don't worry if it looks confusing at first, along with my explanations in class this will be easy:
 
 ```python
 class Cat:
@@ -46,7 +44,7 @@ class Cat:
 Let's go over it line by line:
 
 * `class Cat:` - we are writing a recipe called `Cat`. Class names usually start with a **capital letter**.
-* `def __init__(self, name, color, birth_year):` - this special function runs **automatically every time a new cat is created**. Its job is to set up the new cat. (`init` is short for *initialize*, which means "set up at the start".)
+* `def __init__(self, name, color, birth_year):` - this special function runs **automatically every time a new cat is created**. Its job is to set up the new cat. (`init` is short for *initialize*, which means "set up at the start".) Note that the name of the method must be '__init__', it is a special name.
 * `name`, `color`, `birth_year` - the information we must give when we create a cat.
 * `self` - means **"this cat"**, the cat that is being created right now. Python gives it to us by itself, we never pass it.
 * `self.name = name` - "save the name we got **inside this cat**". The same goes for the color and the birth year.
@@ -64,7 +62,7 @@ snow = Cat("Snow", "white", 2020)
 smokey = Cat("Smokey", "gray", 2023)
 ```
 
-Each line creates a **new, separate cat object**. Python runs `__init__` for each one, with the values we gave.
+Each line creates a **new, separate cat object**. Python runs `__init__` for each one, with the values we gave. When we create mitzi, the 'self' inside the Cat class refers to mitzi. When we create shadow, the 'self' refers to shadow, and so on.
 
 ![Mitzi, an orange cat](content/images/cat_mitzi.svg) ![Shadow, a black cat](content/images/cat_shadow.svg) ![Snow, a white cat](content/images/cat_snow.svg) ![Smokey, a gray cat](content/images/cat_smokey.svg)
 
