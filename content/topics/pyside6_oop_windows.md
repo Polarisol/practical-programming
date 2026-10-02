@@ -1,13 +1,140 @@
 # PySide6 Multiple Windows
 
-Many programs need more than one window. For example, a main window where the user enters values, and a second window that shows a graph.
+Many programs need more than one window. For example, an "About" window, or a second window that shows a graph.
 
-In this tutorial we build two connected windows:
+This tutorial has two parts:
+
+1. **A simple second window** - the basic steps to create and open another window.
+2. **Two windows that talk to each other** - sharing data between the windows.
+
+## Part 1: A Simple Second Window
+
+We will add an **About** window to a program. The main window has an "About" button, and clicking it opens the About window.
+
+![The main window and the About window](content/images/pyside_oop_about_window.png)
+
+The process has 4 steps:
+
+1. Create a class for the second window.
+2. Import it in the main window's code.
+3. Create an object of the second window in the main window's `__init__`.
+4. Call `show()` when you want it to appear, for example when a button is clicked.
+
+We will use **two files**, in the same folder:
+
+* `about_window.py` - the About window.
+* `main.py` - the main window. This is the file you run.
+
+### Step 1: Create the Second Window Class
+
+The second window is a normal OOP window. Write it in its own file, `about_window.py`:
+
+```python
+from PySide6.QtWidgets import QWidget, QLabel
+
+
+class AboutWindow(QWidget):
+
+    def __init__(self):
+        super().__init__()
+        self.initUI()
+
+    def initUI(self):
+        self.setWindowTitle("About")
+        self.setGeometry(550, 100, 300, 150)
+
+        self.info_label = QLabel("My Calculator\nVersion 1.0\nWritten by: Dana Cohen", self)
+        self.info_label.setGeometry(30, 30, 240, 90)
+```
+
+This file has **no** `QApplication` and no `if __name__ == "__main__":` part. It only describes the window. The program itself is started from `main.py`.
+
+### Step 2: Import It in the Main Window
+
+At the top of `main.py`, import the class from the file. The file name is written **without** `.py`:
+
+```python
+from about_window import AboutWindow
+```
+
+### Step 3: Create the Second Window in `__init__`
+
+In the main window's `__init__`, create **one** object of the second window and save it with `self.`:
+
+```python
+class MainWindow(QWidget):
+
+    def __init__(self):
+        super().__init__()
+        self.about_window = AboutWindow()    # created, but not visible yet
+        self.initUI()
+```
+
+* The About window now exists, but nobody has called `show()` on it, so it is **hidden**.
+* It is saved as `self.about_window` so that the other methods (like the button's method) can use it.
+
+### Step 4: Show It When Needed
+
+Add a button, and call `show()` in the button's method:
+
+```python
+    def initUI(self):
+        self.setWindowTitle("My Calculator")
+        self.setGeometry(100, 100, 400, 200)
+
+        self.about_button = QPushButton("About", self)
+        self.about_button.setGeometry(30, 30, 120, 40)
+        self.about_button.clicked.connect(self.about_clicked)
+
+    def about_clicked(self):
+        self.about_window.show()
+```
+
+### The Complete `main.py`
+
+```python
+from PySide6.QtWidgets import QApplication, QWidget, QPushButton
+from about_window import AboutWindow
+
+
+class MainWindow(QWidget):
+
+    def __init__(self):
+        super().__init__()
+        self.about_window = AboutWindow()
+        self.initUI()
+
+    def initUI(self):
+        self.setWindowTitle("My Calculator")
+        self.setGeometry(100, 100, 400, 200)
+
+        self.about_button = QPushButton("About", self)
+        self.about_button.setGeometry(30, 30, 120, 40)
+        self.about_button.clicked.connect(self.about_clicked)
+
+    def about_clicked(self):
+        self.about_window.show()
+
+
+if __name__ == "__main__":
+    app = QApplication()
+    window = MainWindow()
+    window.show()
+    app.exec()
+```
+
+Run `main.py` and click **About**. The About window opens. Close it with its **X** and click **About** again: it opens again.
+
+## Part 2: Two Windows That Talk to Each Other
+
+The About window only **shows** information. Often the two windows need to **share data**. For example, a main window where the user enters a temperature, and a graph window that shows it.
+
+We build two connected windows:
 
 * **`HeatTransferWidget`** - the main window.
 * **`GraphWindow`** - a second window.
 
-Each window will be able to **reach the other one**, so they can share data.
+Each window will be able to **reach the other one**. To keep the example short, both classes are in **one file** here. You can also split them into two files, as in Part 1.
 
 ![Two connected windows](content/images/OOP_windows.png)
 
@@ -16,7 +143,7 @@ The picture shows the idea:
 * **Red arrow:** the main window keeps the second window in `self.graph_window`.
 * **Green arrow:** the second window keeps the main window in `self.main_window`.
 
-## Step 1: The Second Window
+### Step 1: The Second Window
 
 The second window is a normal OOP window, with one addition: it receives the main window as a parameter and saves it.
 
@@ -38,7 +165,7 @@ class GraphWindow(QWidget):
 
 > **Important:** do **not** write `super().__init__(main_window)`. Giving a widget a parent puts it **inside** the parent, so the "window" would appear as a part of the main window instead of as a separate window.
 
-## Step 2: Create the Second Window in the Main Window
+### Step 2: Create the Second Window in the Main Window
 
 The main window creates the second window **once**, in its `__init__`:
 
@@ -61,7 +188,7 @@ The second window now exists, but it is **not visible yet**. Nothing calls `show
 * There is only **one** second window for the whole program.
 * Its widgets and data are kept even when it is hidden. When it appears again, it looks the same as before.
 
-## Step 3: Show and Hide
+### Step 3: Show and Hide
 
 Every window has two methods that control whether it is visible:
 
@@ -103,11 +230,11 @@ The second window can also hide **itself**, with `self.hide()`:
 
 > **Note:** clicking the **X** of the second window also just hides it. You can show it again later with `show()`.
 
-## Step 4: Sharing Data Between the Windows
+### Step 4: Sharing Data Between the Windows
 
 Each window can reach the other one, and through it, all of its widgets and methods.
 
-### Main window → second window
+#### Main window → second window
 
 Use **`self.graph_window`**:
 
@@ -125,7 +252,7 @@ This calls a method of the second window:
         self.temp_label.setText(f"Temperature: {value}")
 ```
 
-### Second window → main window
+#### Second window → main window
 
 Use **`self.main_window`**:
 
@@ -137,7 +264,7 @@ Use **`self.main_window`**:
 
 This changes the spin box that lives in the main window.
 
-### In short
+#### In short
 
 | Code is written in... | To reach the other window, use... | Example |
 |---|---|---|
@@ -146,7 +273,7 @@ This changes the spin box that lives in the main window.
 
 > **Tip:** you can reach the other window's widgets directly, like `self.main_window.temp_spin`. Calling one of its **methods** is usually cleaner, like `self.graph_window.update_temperature(value)`. That way, each window is responsible for its own widgets.
 
-## Step 5: Closing Both Windows Together
+### Step 5: Closing Both Windows Together
 
 A PySide6 program keeps running while **any** of its windows is open. If the user closes the main window while the second window is still visible, the program does not end.
 
@@ -160,7 +287,7 @@ To close the second window together with the main window, add this method to the
 
 `closeEvent` is a special method name. PySide6 calls it automatically when the window is closed.
 
-## The Complete Program
+### The Complete Program
 
 ![The complete program](content/images/pyside_oop_two_windows.png)
 
