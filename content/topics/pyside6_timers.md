@@ -1,4 +1,4 @@
-# PySide6 Timers
+# PySide6 Timers (OOP examples)
 
 Sometimes a program needs to do something **by itself**, again and again, without the user clicking anything. For example: a clock that updates every second, a countdown, or a graph that reads a new measurement every 100 milliseconds.
 
