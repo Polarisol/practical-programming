@@ -53,6 +53,30 @@ Using a timer has 3 steps:
 
 > **Important:** save the timer as `self.timer`. You need it later to stop it, and a plain variable `timer` would disappear when `initUI` ends.
 
+### Starting the Timer Later
+
+`start` does **not** have to be called right after the timer is created. Steps 1 and 2 only **prepare** the timer. It does nothing until `start` is called, and that can happen anywhere in the class, at any time.
+
+A common case is to create and connect the timer in `initUI`, and start and stop it when the user clicks a button:
+
+```python
+    def initUI(self):
+        # ... widgets ...
+        self.timer = QTimer(self)                    # created and connected,
+        self.timer.timeout.connect(self.timer_tick)  # but not running yet
+
+    def start_clicked(self):
+        self.timer.start(1000)      # the timer starts ticking now
+
+    def stop_clicked(self):
+        self.timer.stop()           # the ticks stop
+
+    def timer_tick(self):
+        print("One second passed")
+```
+
+The same timer can be started and stopped as many times as you want.
+
 ## Useful Timer Methods
 
 | Method | What it does |
