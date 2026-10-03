@@ -15,7 +15,7 @@
   --type-text: 3, 105, 161;
   --type-video: 190, 40, 40;
   --type-link: 109, 40, 217;
-  --type-file: 190, 24, 93;
+  --type-file: 92, 98, 106;
   --type-quiz: 180, 100, 0;
   --ok: 21, 128, 61;          /* quiz: right / wrong answers */
   --bad: 190, 40, 40;
@@ -42,7 +42,7 @@
   --type-text: 125, 211, 252;
   --type-video: 252, 129, 129;
   --type-link: 196, 181, 253;
-  --type-file: 249, 168, 212;
+  --type-file: 170, 178, 188;
   --type-quiz: 251, 191, 36;
   --ok: 74, 222, 128;
   --bad: 252, 129, 129;
