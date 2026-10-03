@@ -1,4 +1,4 @@
-# PySide6 Basics Quiz
+# PySide6 basics quiz
 
 Check your understanding of the PySide6 basics: the event loop, widgets, `setGeometry` and signals. Answer all the questions, then press **Submit answers**.
 
