@@ -1,6 +1,6 @@
 /*
  * Loads content/topics.json and renders either the home page (content/home.md)
- * or a single topic page (bots, videos, written material, quizzes, links).
+ * or a single topic page (bots, videos, written material, quizzes, files, links).
  * You should not need to edit this file to add or change topics.
  */
 (() => {
@@ -742,15 +742,34 @@
     return items.length ? panel('More resources', el('ul', { class: 'link-list' }, ...items)) : null;
   }
 
+  // "files" in topics.json: "files/code.zip", a list of them, or [{ "label": "...", "file": "..." }].
+  // Paths are inside content/. Clicking one downloads it.
+  function fileEntries(value) {
+    return asList(value)
+      .map((f) => (typeof f === 'string' ? { file: f } : f))
+      .filter((f) => f && typeof f.file === 'string' && safeUrl(CONTENT + f.file))
+      .map((f) => ({ ...f, url: safeUrl(CONTENT + f.file), label: f.label || f.file.split('/').pop() }));
+  }
+
+  function filesPanel(files, key) {
+    const items = files.map((f) => {
+      const views = viewCounter(key('file', f.file));
+      const link = el('a', { href: f.url.href, download: '' }, f.label, views.node);
+      link.addEventListener('click', views.hit);
+      return el('li', {}, link);
+    });
+    return items.length ? panel('Files', el('ul', { class: 'link-list file-list' }, ...items)) : null;
+  }
+
   // ---------- Topic page, list view: every item is one line ----------
   // Videos and written material expand in place; only one line is open at a time.
   let openLine = null;
   let lineCount = 0;
   const lineItems = new WeakMap(); // line node -> its open/close handle
 
-  const LINE_TYPES = { bot: 'Bot', text: 'Text', video: 'Video', quiz: 'Quiz', link: 'Link' };
+  const LINE_TYPES = { bot: 'Bot', text: 'Text', video: 'Video', quiz: 'Quiz', file: 'File', link: 'Link' };
 
-  // Every line starts with a coloured type tag: Bot / Text / Video / Quiz / Link.
+  // Every line starts with a coloured type tag: Bot / Text / Video / Quiz / File / Link.
   function lineParts(type, label, sub, end, icon, views) {
     return [
       el('span', { class: 'line-type', text: LINE_TYPES[type] }),
@@ -859,6 +878,16 @@
         onTitle: (title) => { item.label.textContent = title; },
       }));
       return node;
+    });
+  }
+
+  function fileLines(files, key) {
+    return files.map((f) => {
+      const views = viewCounter(key('file', f.file));
+      const row = el('a', { class: 'line', 'data-type': 'file', href: f.url.href, download: '' },
+        ...lineParts('file', f.label, null, '⬇', null, views));
+      row.addEventListener('click', views.hit);
+      return row;
     });
   }
 
@@ -1001,6 +1030,7 @@
           ...videoLines(asList(topic.videos), key),
           ...materialLines(asList(topic.material), key),
           ...quizLines(quizEntries(topic.quizzes), key),
+          ...fileLines(fileEntries(topic.files), key),
           ...linkLines(asList(topic.links), key),
         ];
         sections = rows.length ? [el('div', { class: 'line-list topic-lines' }, ...rows)] : [];
@@ -1012,6 +1042,7 @@
           videosPanel(asList(topic.videos), key),
           materialPanel(asList(topic.material), key),
           quizPanel(quizEntries(topic.quizzes), key),
+          filesPanel(fileEntries(topic.files), key),
           linksPanel(asList(topic.links), key),
         ];
       }

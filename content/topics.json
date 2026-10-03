@@ -142,8 +142,13 @@
           "url": "https://share.gemini.google/1jAtPViKHICX"
         }
       ],
-      "quizzes": ["quizzes/pyside6_basics_quiz.md", "quizzes/pyside6_oop_quiz.md"]
-    
+      "quizzes": ["quizzes/pyside6_basics_quiz.md", "quizzes/pyside6_oop_quiz.md"],
+      "files": [
+        {
+          "label": "Two Windows Code",
+          "file": "files/TwoWindowsCode.zip"
+        }
+      ]
     }
   ]
 }

@@ -11,10 +11,11 @@
   --accent-contrast: #f2f0ea;
   --glyph: 13, 122, 91;       /* ASCII background colour (r, g, b) */
   --glyph-hot: 181, 80, 28;   /* colour near the pointer */
-  --type-bot: 13, 122, 91;    /* line-view tags: Bot / Text / Video / Link / Quiz */
+  --type-bot: 13, 122, 91;    /* line-view tags: Bot / Text / Video / Link / Quiz / File */
   --type-text: 3, 105, 161;
   --type-video: 190, 40, 40;
   --type-link: 109, 40, 217;
+  --type-file: 190, 24, 93;
   --type-quiz: 180, 100, 0;
   --ok: 21, 128, 61;          /* quiz: right / wrong answers */
   --bad: 190, 40, 40;
@@ -41,6 +42,7 @@
   --type-text: 125, 211, 252;
   --type-video: 252, 129, 129;
   --type-link: 196, 181, 253;
+  --type-file: 249, 168, 212;
   --type-quiz: 251, 191, 36;
   --ok: 74, 222, 128;
   --bad: 252, 129, 129;
@@ -602,6 +604,7 @@ a { color: var(--accent); }
 .line[data-type="video"] { --t: var(--type-video); }
 .line[data-type="link"] { --t: var(--type-link); }
 .line[data-type="quiz"] { --t: var(--type-quiz); }
+.line[data-type="file"] { --t: var(--type-file); }
 .line:hover { background: rgba(var(--t, var(--glyph)), 0.07); }
 
 .line-type {
@@ -943,6 +946,7 @@ a { color: var(--accent); }
 .link-list li:last-child a { border-bottom: 0; }
 .link-list a:hover { color: var(--accent); }
 .link-list a::after { content: "↗"; color: var(--muted); }
+.file-list a::after { content: "⬇"; }
 
 /* Messages */
 .notice {
