@@ -63,7 +63,7 @@ app.exec()
   > `new` is not a thing we use
 - [x] `label = QLabel("Hello", window)`
   > Right! The label is created with `window` as its last argument, and `setGeometry` gets all four numbers.
-> To put a widget in a window, pass `window` as the **last argument** when you create it, then place it with `setGeometry(x, y, width, height)`.
+> To put a widget in a window, pass `window` as the **last argument** when you create it.
 
 ## What does this code print?
 ```python
