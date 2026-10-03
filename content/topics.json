@@ -141,7 +141,9 @@
           "description": "I can help you study, teach you and quiz you on Python basics.",
           "url": "https://share.gemini.google/1jAtPViKHICX"
         }
-      ]
+      ],
+      "quizzes": ["quizzes/pyside6_basics_quiz.md"]
+    
     }
   ]
 }
