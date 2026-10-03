@@ -42,7 +42,7 @@ app.exec()
 > To react to an event, connect the widget's **signal** to your function: `widget.signal.connect(function)`. Write the function name **without parentheses**: you give PySide6 the function, and PySide6 calls it later.
 
 ## The button inside this window was placed with one line of code. Which line?
-![A 400 by 200 window. A Start button starts 50 pixels from the left and 60 pixels from the top of the window, and is 150 pixels wide and 40 pixels tall.](content/images/quiz_button_geometry.png)
+![A window](content/images/geometry_question.webp)
 - [x] `button.setGeometry(50, 60, 150, 40)`
   > Right! The order is `(x, y, width, height)`, and `x` and `y` are measured from the top-left corner of the window.
 - [ ] `button.setGeometry(150, 40, 50, 60)`
