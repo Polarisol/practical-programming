@@ -1,4 +1,4 @@
-# * What we need to remember (OOP)
+# * What we need to remember (Advanced)
 
 1. You should go over the code skeleton for the OOP version of PySide6 and understand it thoroughly.
 
@@ -15,3 +15,5 @@
 7. You should understand the setup that enable data to be accessed across different windows. See 'PySide6 Multiple Windows Part 2' for more details.
 
 8. You should know what timers are, why they are used, and how to use them. See 'PySide6 Timers' for more details.
+
+9. Remember that we can use AI to help us do many things, such as adding a graph area or an upper menubar. When we ask AI to do such things, we examine the changes it makes in the code and try to understand them (at least the important parts) so we can better control them later.
