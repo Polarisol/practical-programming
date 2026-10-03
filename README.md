@@ -76,6 +76,12 @@ To change the site name (`title` + `author`, shown as "Practical Programming by 
 
 > Tip: if the home page shows an error after an edit, the JSON probably has a missing comma or quote. Paste it into <https://jsonlint.com> to find the error.
 
+## View counts
+
+Each topic shows a faint `👁 12` next to its title, and each item (bot, video, written material, quiz, link) shows one too. A topic counts when its page is opened. An item counts when it is opened in list view or scrolled into sight in card view; bots and links count when clicked. Each counts at most once per page load, and nothing is counted while you test on `localhost`.
+
+The numbers are kept by [Abacus](https://abacus.jasoncameron.dev), a free counter service, under the name in `"views"` in the `site` block of `content/topics.json`. Remove that line to turn the counts off. An item's count follows its file name or link, so renaming a file or changing a link starts that count again from zero.
+
 ## Publish for free with GitHub Pages
 
 1. Create a free account at <https://github.com> and click **New repository**. Name it (e.g. `class-site`) and make it **Public**.

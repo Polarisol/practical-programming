@@ -665,6 +665,23 @@ a { color: var(--accent); }
   .line-body { padding: 6px 14px 18px; }
 }
 
+/* View counts: a faint watermark on every item and next to a topic's title */
+.views {
+  flex: 0 0 auto;
+  font: 400 0.75rem var(--font-mono);
+  letter-spacing: 0;
+  color: var(--muted);
+  opacity: 0.5;
+  white-space: nowrap;
+}
+.topic-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; }
+.line .views { margin-left: auto; }
+.line .views:not([hidden]) + .line-end { margin-left: 0; }
+.material, .quiz { position: relative; }
+.material > .views, .quiz > .views { position: absolute; top: 0; right: 0; }
+.video figcaption, .bot-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.link-list a .views { margin-left: auto; }
+
 /* Videos */
 .video-grid {
   display: grid;

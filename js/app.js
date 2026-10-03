@@ -57,6 +57,62 @@
     return el('div', { class: 'notice', role: 'status' }, ...children);
   }
 
+  // ---------- View counts ----------
+  // Kept by Abacus, a free counter service. "views" in the site block of topics.json
+  // is this site's namespace there; leave it out to turn the counts off.
+  const COUNTER = 'https://abacus.jasoncameron.dev';
+  const isLocal = ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname); // testing doesn't count
+  let viewsNs = null;
+  const counted = new Set();    // keys already counted since the page loaded
+  const viewCounts = new Map(); // key -> promise of its latest count
+
+  // Counter names may only hold letters, digits, "_", "-" and ".", up to 64 characters.
+  function viewKey(...parts) {
+    return parts.join('.').replace(/https?:\/\//, '').replace(/[^\w.-]+/g, '-').slice(-64).replace(/^[.-]+|[.-]+$/g, '');
+  }
+
+  function requestViews(action, key) {
+    return fetch(`${COUNTER}/${action}/${viewsNs}/${key}`, { keepalive: action === 'hit' })
+      .then((res) => (res.ok ? res.json() : res.status === 404 ? { value: 0 } : null))
+      .then((data) => (data && Number.isFinite(data.value) ? data.value : null))
+      .catch(() => null);
+  }
+
+  // A faint "👁 12" label. hit() adds one view, at most once per page load.
+  function viewCounter(key) {
+    const node = el('span', { class: 'views', hidden: '' });
+    let shown = -1;
+    const update = (hit) => {
+      if (!viewsNs) return;
+      if (hit && !isLocal && !counted.has(key)) {
+        counted.add(key);
+        viewCounts.set(key, requestViews('hit', key));
+      } else if (!viewCounts.has(key)) {
+        viewCounts.set(key, requestViews('get', key));
+      }
+      viewCounts.get(key).then((n) => {
+        if (n == null || n <= shown) return;
+        shown = n;
+        node.textContent = `👁 ${n}`;
+        node.title = `Viewed ${n} time${n === 1 ? '' : 's'}`;
+        node.hidden = false;
+      });
+    };
+    update(false);
+    return { node, hit: () => update(true) };
+  }
+
+  // Card view: an item counts as viewed once it scrolls into sight.
+  function hitWhenSeen(node, views) {
+    if (!('IntersectionObserver' in window)) { views.hit(); return; }
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries.some((e) => e.isIntersecting)) return;
+      observer.disconnect();
+      views.hit();
+    });
+    observer.observe(node);
+  }
+
   // ---------- Theme toggle ----------
   // One in the top bar and one on the entry screen.
   const toggles = document.querySelectorAll('.theme-toggle');
@@ -229,12 +285,16 @@
     );
   }
 
-  function videosPanel(videos) {
+  function videosPanel(videos, key) {
     const items = videos
       .map((v) => {
         const frame = videoFrame(v);
         if (!frame) return null;
-        return el('figure', { class: 'video' }, frame, v.title ? el('figcaption', { text: v.title }) : null);
+        const views = viewCounter(key('video', youtubeId(v)));
+        const figure = el('figure', { class: 'video' }, frame,
+          el('figcaption', {}, el('span', { text: v.title || '' }), views.node));
+        hitWhenSeen(figure, views);
+        return figure;
       })
       .filter(Boolean);
     return items.length ? panel('Videos', el('div', { class: 'video-grid' }, ...items)) : null;
@@ -294,17 +354,20 @@
     return materialCache.get(file);
   }
 
-  function materialPanel(files) {
+  function materialPanel(files, key) {
     if (!files.length) return null;
     const body = el('div');
     for (const file of files) {
       const article = el('article', { class: 'prose material' }, el('p', { class: 'muted', text: 'Loading…' }));
+      const views = viewCounter(key('text', file));
       body.append(article);
       loadMaterial(file)
         .then((text) => article.replaceChildren(...renderMarkdown(text)))
         .catch(() => article.replaceChildren(
           el('p', { class: 'muted', text: `Could not load ${CONTENT}${file}.` }),
-        ));
+        ))
+        .finally(() => article.append(views.node));
+      hitWhenSeen(article, views);
     }
     return panel('Written material', body);
   }
@@ -546,9 +609,15 @@
     return box;
   }
 
-  function quizPanel(quizzes) {
+  function quizPanel(quizzes, key) {
     if (!quizzes.length) return null;
-    const section = panel(quizzes.length > 1 ? 'Quizzes' : 'Quiz', ...quizzes.map((q) => quizView(q)));
+    const boxes = quizzes.map((q) => {
+      const views = viewCounter(key('quiz', q.file));
+      const box = quizView(q, { onTitle: () => box.append(views.node) });
+      hitWhenSeen(box, views);
+      return box;
+    });
+    const section = panel(quizzes.length > 1 ? 'Quizzes' : 'Quiz', ...boxes);
     section.classList.add('quiz-panel');
     return section;
   }
@@ -623,7 +692,7 @@
     }, { passive: true });
   }
 
-  function botsPanel(bots, topic) {
+  function botsPanel(bots, topic, key) {
     const items = bots
       .map((b, i) => {
         const url = safeUrl(b.url);
@@ -631,6 +700,9 @@
         const greeting = b.description || `Hi! Want to practice ${topic.title || 'this topic'} with me?`;
         const bubble = el('p', { class: 'bot-bubble' });
         typeBubble(bubble, greeting, 700 + i * 1200);
+        const views = viewCounter(key('bot', b.url));
+        const link = el('a', { class: 'btn btn-bot', ...linkAttrs(url) }, 'Start chatting ↗');
+        link.addEventListener('click', views.hit);
         return el(
           'div',
           { class: 'bot-card', style: `--i:${i}` },
@@ -638,9 +710,10 @@
           el(
             'div',
             { class: 'bot-body' },
-            el('strong', { class: 'bot-name', text: b.label || 'Practice bot' }),
+            el('div', { class: 'bot-head' },
+              el('strong', { class: 'bot-name', text: b.label || 'Practice bot' }), views.node),
             bubble,
-            el('a', { class: 'btn btn-bot', ...linkAttrs(url) }, 'Start chatting ↗'),
+            link,
           ),
         );
       })
@@ -655,11 +728,15 @@
     return section;
   }
 
-  function linksPanel(links) {
+  function linksPanel(links, key) {
     const items = links
       .map((l) => {
         const url = safeUrl(l.url);
-        return url ? el('li', {}, el('a', linkAttrs(url), l.label || url.hostname)) : null;
+        if (!url) return null;
+        const views = viewCounter(key('link', l.url));
+        const link = el('a', linkAttrs(url), l.label || url.hostname, views.node);
+        link.addEventListener('click', views.hit);
+        return el('li', {}, link);
       })
       .filter(Boolean);
     return items.length ? panel('More resources', el('ul', { class: 'link-list' }, ...items)) : null;
@@ -674,22 +751,23 @@
   const LINE_TYPES = { bot: 'Bot', text: 'Text', video: 'Video', quiz: 'Quiz', link: 'Link' };
 
   // Every line starts with a coloured type tag: Bot / Text / Video / Quiz / Link.
-  function lineParts(type, label, sub, end, icon) {
+  function lineParts(type, label, sub, end, icon, views) {
     return [
       el('span', { class: 'line-type', text: LINE_TYPES[type] }),
       icon ? el('span', { class: 'line-icon', 'aria-hidden': 'true' }, icon) : null,
       el('span', { class: 'line-label', text: label }),
       sub ? el('span', { class: 'line-sub', text: sub }) : null,
+      views ? views.node : null,
       el('span', { class: 'line-end', 'aria-hidden': 'true', text: end }),
     ];
   }
 
-  function expandableLine(type, label, { onOpen, onClose, icon } = {}) {
+  function expandableLine(type, label, { onOpen, onClose, icon, views } = {}) {
     const id = `line-body-${++lineCount}`;
     const button = el(
       'button',
       { class: 'line', type: 'button', 'data-type': type, 'aria-expanded': 'false', 'aria-controls': id },
-      ...lineParts(type, label, null, '▸', icon),
+      ...lineParts(type, label, null, '▸', icon, views),
     );
     const body = el('div', { class: 'line-body', id, hidden: '' });
     const item = {
@@ -701,6 +779,7 @@
         openLine = item;
         button.setAttribute('aria-expanded', 'true');
         body.hidden = false;
+        if (views) views.hit();
         if (onOpen) onOpen(body, auto);
         if (!auto) button.scrollIntoView({ block: 'nearest', behavior: reducedMotion ? 'auto' : 'smooth' });
       },
@@ -717,32 +796,36 @@
     return { node, item };
   }
 
-  function botLines(bots) {
+  function botLines(bots, key) {
     const rows = bots
       .map((b) => {
         const url = safeUrl(b.url);
         if (!url) return null;
-        return el('a', { class: 'line line-bot', 'data-type': 'bot', ...linkAttrs(url) },
-          ...lineParts('bot', b.label || 'Practice bot', b.description, 'chat ↗', robot()));
+        const views = viewCounter(key('bot', b.url));
+        const row = el('a', { class: 'line line-bot', 'data-type': 'bot', ...linkAttrs(url) },
+          ...lineParts('bot', b.label || 'Practice bot', b.description, 'chat ↗', robot(), views));
+        row.addEventListener('click', views.hit);
+        return row;
       })
       .filter(Boolean);
     if (rows.length) trackEyes();
     return rows;
   }
 
-  function videoLines(videos) {
+  function videoLines(videos, key) {
     const rows = videos
       .filter((v) => youtubeId(v))
       .map((v, i) => expandableLine('video', v.title || `Video ${i + 1}`, {
         onOpen: (body, auto) => body.replaceChildren(videoFrame(v, !auto)),
         onClose: (body) => body.replaceChildren(), // removing the player stops the video
+        views: viewCounter(key('video', youtubeId(v))),
       }).node);
     return rows;
   }
 
-  function materialLines(files) {
+  function materialLines(files, key) {
     const rows = files.map((file) => {
-      const { node, item } = expandableLine('text', 'Written material');
+      const { node, item } = expandableLine('text', 'Written material', { views: viewCounter(key('text', file)) });
       item.body.classList.add('prose');
       item.body.append(el('p', { class: 'muted', text: 'Loading…' }));
       loadMaterial(file)
@@ -765,9 +848,12 @@
   }
 
   // The quiz is built once, so answers survive closing and reopening the line.
-  function quizLines(quizzes) {
+  function quizLines(quizzes, key) {
     return quizzes.map((entry) => {
-      const { node, item } = expandableLine('quiz', entry.title || 'Quiz', { icon: quizMark() });
+      const { node, item } = expandableLine('quiz', entry.title || 'Quiz', {
+        icon: quizMark(),
+        views: viewCounter(key('quiz', entry.file)),
+      });
       item.body.append(quizView(entry, {
         showTitle: false,
         onTitle: (title) => { item.label.textContent = title; },
@@ -776,13 +862,16 @@
     });
   }
 
-  function linkLines(links) {
+  function linkLines(links, key) {
     const rows = links
       .map((l) => {
         const url = safeUrl(l.url);
-        return url
-          ? el('a', { class: 'line', 'data-type': 'link', ...linkAttrs(url) }, ...lineParts('link', l.label || url.hostname, null, '↗'))
-          : null;
+        if (!url) return null;
+        const views = viewCounter(key('link', l.url));
+        const row = el('a', { class: 'line', 'data-type': 'link', ...linkAttrs(url) },
+          ...lineParts('link', l.label || url.hostname, null, '↗', null, views));
+        row.addEventListener('click', views.hit);
+        return row;
       })
       .filter(Boolean);
     return rows;
@@ -888,13 +977,16 @@
     document.title = `${topicTitle} · ${siteTitle}`;
     const heading = el('h1');
     scrambleTitle(heading, topicTitle);
+    const views = viewCounter(viewKey('topic', topic.id));
+    views.hit();
+    const key = (type, ref) => viewKey(topic.id, type, ref);
     const body = el('div', { class: 'topic-body' });
     main.replaceChildren(
       el(
         'header',
         { class: 'topic-head' },
         el('span', { class: 'card-icon', 'aria-hidden': 'true', text: topic.icon || '>_' }),
-        heading,
+        el('div', { class: 'topic-title' }, heading, views.node),
         topic.blurb ? el('p', { text: topic.blurb }) : null,
       ),
       body,
@@ -905,22 +997,22 @@
       let sections;
       if (root.dataset.view === 'list') {
         const rows = [
-          ...botLines(asList(topic.bots)),
-          ...videoLines(asList(topic.videos)),
-          ...materialLines(asList(topic.material)),
-          ...quizLines(quizEntries(topic.quizzes)),
-          ...linkLines(asList(topic.links)),
+          ...botLines(asList(topic.bots), key),
+          ...videoLines(asList(topic.videos), key),
+          ...materialLines(asList(topic.material), key),
+          ...quizLines(quizEntries(topic.quizzes), key),
+          ...linkLines(asList(topic.links), key),
         ];
         sections = rows.length ? [el('div', { class: 'line-list topic-lines' }, ...rows)] : [];
         // A topic with a single item shows it opened.
         if (rows.length === 1 && lineItems.has(rows[0])) lineItems.get(rows[0]).open(true);
       } else {
         sections = [
-          botsPanel(asList(topic.bots), topic),
-          videosPanel(asList(topic.videos)),
-          materialPanel(asList(topic.material)),
-          quizPanel(quizEntries(topic.quizzes)),
-          linksPanel(asList(topic.links)),
+          botsPanel(asList(topic.bots), topic, key),
+          videosPanel(asList(topic.videos), key),
+          materialPanel(asList(topic.material), key),
+          quizPanel(quizEntries(topic.quizzes), key),
+          linksPanel(asList(topic.links), key),
         ];
       }
       body.replaceChildren(...sections.filter(Boolean));
@@ -935,6 +1027,7 @@
     const data = await loadData(main);
     if (!data) return;
     const { fullName } = applySite(data.site);
+    if (/^[\w.-]{3,64}$/.test(data.site.views || '')) viewsNs = data.site.views;
     const topics = data.topics.filter((t) => t && t.id);
     const currentId = () => new URLSearchParams(location.search).get('id') || MAIN;
 
