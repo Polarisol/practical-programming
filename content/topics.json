@@ -311,6 +311,21 @@
           "url": "https://xxxxxxx"
         }
       ]
+    },
+
+    {
+      "id": "distribution",
+      "title": "Distribution",
+      "icon": "📦",
+      "blurb": "Package your program into an app anyone can run, even without Python.",
+      "bots": [
+        {
+          "label": "Study Bot",
+          "description": "I can help you study, teach you and quiz you on Distribution.",
+          "url": "https://xxxxxxx"
+        }
+      ],
+      "material": "topics/pyinstall.md"
     }
   ]
 }
