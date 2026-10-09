@@ -226,7 +226,8 @@
           "description": "I can help you study, teach you and quiz you on SymPy.",
           "url": "https://xxxxxxx"
         }
-      ]
+      ],
+      "material": ["topics/sympy_basics.md"]
     },
 
     {
