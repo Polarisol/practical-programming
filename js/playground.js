@@ -19,7 +19,7 @@
   };
 
   const panel = document.getElementById('playground');
-  const openBtn = document.querySelector('.py-toggle');
+  const openBtn = document.querySelector('button.py-toggle');
   if (!panel || !openBtn) return;
 
   const $ = (sel) => panel.querySelector(sel);

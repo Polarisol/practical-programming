@@ -262,6 +262,8 @@ a { color: var(--accent); }
   cursor: pointer;
 }
 .py-toggle-icon { color: var(--accent); }
+.colab-link { text-decoration: none; }
+.colab-link .py-toggle-icon { font-weight: 700; }
 .py-toggle:hover, .py-toggle[aria-expanded="true"] { border-color: var(--accent); background: rgba(var(--glyph), 0.12); }
 .py-toggle:focus-visible, .theme-toggle:focus-visible, .view-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 /* Theme menu: opened from either theme button. */
