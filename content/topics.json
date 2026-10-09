@@ -152,6 +152,14 @@
     },
 
     {
+      "id": "recursion",
+      "title": "Recursion",
+      "icon": "🔁",
+      "blurb": "Functions that call themselves to solve a problem one smaller piece at a time.",
+      "material": ["topics/recursion_intro.md", "topics/recursion_be_careful.md", "topics/recursion_memoization.md", "topics/wwntr_recursion.md"]
+    },
+
+    {
       "id": "monte-carlo",
       "title": "Monte Carlo",
       "icon": "🎲",
