@@ -48,6 +48,25 @@
     return m ? m[1] : null;
   }
 
+  const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  // Network hiccups and busy servers (429, 5xx) are usually gone a moment later, so
+  // try again a few times before giving up. Resolves to the last response or rejects.
+  async function fetchRetrying(url, options = {}, delays = [600, 2000, 5000]) {
+    for (let attempt = 0; ; attempt++) {
+      let res = null;
+      try {
+        res = await fetch(url, options);
+        if (res.ok || (res.status !== 429 && res.status < 500)) return res;
+      } catch (err) {
+        if (attempt >= delays.length) throw err;
+      }
+      if (attempt >= delays.length) return res;
+      const after = res && Number(res.headers.get('Retry-After'));
+      await wait(after > 0 ? Math.min(after * 1000, 10000) : delays[attempt]);
+    }
+  }
+
   function asList(value) {
     if (!value) return [];
     return Array.isArray(value) ? value : [value];
@@ -71,11 +90,31 @@
     return parts.join('.').replace(/https?:\/\//, '').replace(/[^\w.-]+/g, '-').slice(-64).replace(/^[.-]+|[.-]+$/g, '');
   }
 
+  // A topic page asks for many counts at once, and the service turns away bursts,
+  // so only a few requests run at a time and refused ones are retried.
+  const VIEW_REQUESTS_AT_ONCE = 3;
+  let viewRequestsRunning = 0;
+  const viewRequestQueue = [];
+
   function requestViews(action, key) {
-    return fetch(`${COUNTER}/${action}/${viewsNs}/${key}`, { keepalive: action === 'hit' })
-      .then((res) => (res.ok ? res.json() : res.status === 404 ? { value: 0 } : null))
-      .then((data) => (data && Number.isFinite(data.value) ? data.value : null))
-      .catch(() => null);
+    return new Promise((resolve) => {
+      viewRequestQueue.push(() => fetchRetrying(`${COUNTER}/${action}/${viewsNs}/${key}`, { keepalive: action === 'hit' })
+        .then((res) => (res.ok ? res.json() : res.status === 404 ? { value: 0 } : null))
+        .then((data) => (data && Number.isFinite(data.value) ? data.value : null))
+        .catch(() => null)
+        .then(resolve));
+      runViewRequests();
+    });
+  }
+
+  function runViewRequests() {
+    while (viewRequestsRunning < VIEW_REQUESTS_AT_ONCE && viewRequestQueue.length) {
+      viewRequestsRunning++;
+      viewRequestQueue.shift()().finally(() => {
+        viewRequestsRunning--;
+        runViewRequests();
+      });
+    }
   }
 
   // A faint "👁 12" label. hit() adds one view, at most once per page load.
@@ -91,7 +130,13 @@
         viewCounts.set(key, requestViews('get', key));
       }
       viewCounts.get(key).then((n) => {
-        if (n == null || n <= shown) return;
+        if (n == null) {
+          // Gave up for now: forget the failure so the next look or click asks again.
+          viewCounts.delete(key);
+          if (hit) counted.delete(key);
+          return;
+        }
+        if (n <= shown) return;
         shown = n;
         node.textContent = `👁 ${n}`;
         node.title = `Viewed ${n} time${n === 1 ? '' : 's'}`;
@@ -317,11 +362,13 @@
     scrambleTitle(heading, title);
     const file = site.home || 'home.md';
     const article = el('article', { class: 'prose home-intro' }, el('p', { class: 'muted', text: 'Loading…' }));
-    loadMaterial(file)
+    const fill = () => loadMaterial(file)
       .then((text) => article.replaceChildren(...renderMarkdown(text)))
-      .catch(() => article.replaceChildren(
-        el('p', { class: 'muted', text: `Could not load ${CONTENT}${file}.` }),
-      ));
+      .catch(() => article.replaceChildren(loadError(file, () => {
+        article.replaceChildren(el('p', { class: 'muted', text: 'Loading…' }));
+        fill();
+      })));
+    fill();
 
     main.replaceChildren(
       el(
@@ -419,15 +466,53 @@
     return [el('pre', { text })];
   }
 
+  // marked and DOMPurify come from cdnjs (see index.html). If that didn't load,
+  // fetch the same files from a second CDN before any Markdown is shown.
+  function loadScript(src, integrity) {
+    return new Promise((resolve) => {
+      const script = el('script', { src, integrity, crossorigin: 'anonymous' });
+      script.onload = script.onerror = resolve;
+      document.head.append(script);
+    });
+  }
+  let markdownReady = null;
+  function loadMarkdownLibs() {
+    if (!markdownReady) {
+      markdownReady = Promise.all([
+        window.marked || loadScript('https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js',
+          'sha384-/TQbtLCAerC3jgaim+N78RZSDYV7ryeoBCVqTuzRrFec2akfBkHS7ACQ3PQhvMVi'),
+        window.DOMPurify || loadScript('https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js',
+          'sha384-+VfUPEb0PdtChMwmBcBmykRMDd+v6D/oFmB3rZM/puCMDYcIvF968OimRh4KQY9a'),
+      ]);
+    }
+    return markdownReady;
+  }
+
   const materialCache = new Map();
   function loadMaterial(file) {
     if (!materialCache.has(file)) {
-      materialCache.set(file, fetch(`${CONTENT}${file}`, { cache: 'no-cache' }).then((res) => {
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return res.text();
-      }));
+      const loading = Promise.all([
+        fetchRetrying(`${CONTENT}${file}`, { cache: 'no-cache' }).then((res) => {
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          return res.text();
+        }),
+        loadMarkdownLibs(),
+      ]).then(([text]) => text);
+      // Don't keep a failure, so trying again really loads the file again.
+      loading.catch(() => materialCache.delete(file));
+      materialCache.set(file, loading);
     }
     return materialCache.get(file);
+  }
+
+  // "Could not load ..." with a button that runs retry().
+  function loadError(file, retry) {
+    const again = el('button', { class: 'btn', type: 'button', text: '↻ Try again' });
+    again.addEventListener('click', (e) => {
+      e.stopPropagation();
+      retry();
+    });
+    return el('p', { class: 'muted' }, `Could not load ${CONTENT}${file}. `, again);
   }
 
   function materialPanel(files, key) {
@@ -437,12 +522,14 @@
       const article = el('article', { class: 'prose material' }, el('p', { class: 'muted', text: 'Loading…' }));
       const views = viewCounter(key('text', file));
       body.append(article);
-      loadMaterial(file)
+      const fill = () => loadMaterial(file)
         .then((text) => article.replaceChildren(...renderMarkdown(text)))
-        .catch(() => article.replaceChildren(
-          el('p', { class: 'muted', text: `Could not load ${CONTENT}${file}.` }),
-        ))
+        .catch(() => article.replaceChildren(loadError(file, () => {
+          article.replaceChildren(el('p', { class: 'muted', text: 'Loading…' }));
+          fill();
+        })))
         .finally(() => article.append(views.node));
+      fill();
       hitWhenSeen(article, views);
     }
     return panel('Written material', body);
@@ -673,15 +760,17 @@
   // `onTitle` receives the quiz's title once the file has loaded.
   function quizView(entry, { showTitle = true, onTitle } = {}) {
     const box = el('div', { class: 'quiz' }, el('p', { class: 'muted', text: 'Loading…' }));
-    loadMaterial(entry.file)
+    const fill = () => loadMaterial(entry.file)
       .then((text) => {
         const quiz = parseQuiz(text, entry.file);
         buildQuiz(box, quiz, entry, showTitle);
         if (onTitle) onTitle(entry.title || quiz.title || 'Quiz');
       })
-      .catch(() => box.replaceChildren(
-        el('p', { class: 'muted', text: `Could not load ${CONTENT}${entry.file}.` }),
-      ));
+      .catch(() => box.replaceChildren(loadError(entry.file, () => {
+        box.replaceChildren(el('p', { class: 'muted', text: 'Loading…' }));
+        fill();
+      })));
+    fill();
     return box;
   }
 
@@ -922,8 +1011,7 @@
     const rows = files.map((file) => {
       const { node, item } = expandableLine('text', 'Written material', { views: viewCounter(key('text', file)) });
       item.body.classList.add('prose');
-      item.body.append(el('p', { class: 'muted', text: 'Loading…' }));
-      loadMaterial(file)
+      const fill = () => loadMaterial(file)
         .then((text) => {
           let nodes = renderMarkdown(text);
           // The document's first heading becomes the line's label.
@@ -934,9 +1022,12 @@
           }
           item.body.replaceChildren(...nodes);
         })
-        .catch(() => item.body.replaceChildren(
-          el('p', { class: 'muted', text: `Could not load ${CONTENT}${file}.` }),
-        ));
+        .catch(() => item.body.replaceChildren(loadError(file, () => {
+          item.body.replaceChildren(el('p', { class: 'muted', text: 'Loading…' }));
+          fill();
+        })));
+      item.body.append(el('p', { class: 'muted', text: 'Loading…' }));
+      fill();
       return node;
     });
     return rows;
@@ -1156,14 +1247,20 @@
   // Built once, the first time someone searches.
   let searchIndex = null;
   function loadSearchIndex(topics) {
-    if (!searchIndex) searchIndex = buildSearchIndex(topics);
+    if (!searchIndex) {
+      const building = buildSearchIndex(topics);
+      searchIndex = building;
+      // A file that didn't load is missing from the index: build it again next search.
+      building.then((index) => { if (index.incomplete && searchIndex === building) searchIndex = null; });
+    }
     return searchIndex;
   }
 
   async function buildSearchIndex(topics) {
     const items = [];
     const add = (topic, type, src, title, text = '') => items.push({ topic, type, src, title, text });
-    const load = (file) => loadMaterial(file).catch(() => '');
+    let incomplete = false;
+    const load = (file) => loadMaterial(file).catch(() => { incomplete = true; return ''; });
     for (const t of topics) {
       for (const b of asList(t.bots)) if (safeUrl(b.url)) add(t, 'bot', b, b.label || 'Practice bot', b.description || '');
       asList(t.videos).filter((v) => youtubeId(v)).forEach((v, i) => {
@@ -1184,6 +1281,7 @@
         if (url) add(t, 'link', l, l.label || url.hostname);
       }
     }
+    items.incomplete = incomplete;
     return items;
   }
 
