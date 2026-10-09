@@ -1481,13 +1481,43 @@
       brand.blur(); // so the Enter key opens the site again
     });
 
-    // The up and down arrow keys move one unit up or down the topic list.
+    // Arrow keys: up and down move through the unit list; right steps over to the unit's
+    // items (lines in the list view, panels in the cards view), where up and down move
+    // between items instead; left steps back to the unit list.
+    const pageItems = () => [...main.querySelectorAll(root.dataset.view === 'list' ? '.line' : '.panel')];
+    const focusItem = (item) => {
+      if (!item.matches('a, button')) item.tabIndex = -1;
+      item.focus({ preventScroll: true });
+      item.scrollIntoView({ block: 'nearest', behavior: reducedMotion ? 'auto' : 'smooth' });
+    };
     document.addEventListener('keydown', (e) => {
-      if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
+      if (!['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) return;
       if (e.defaultPrevented || e.ctrlKey || e.metaKey || e.altKey || e.shiftKey || entryOpen()) return;
       if (e.target.closest && e.target.closest('input, textarea, select, [contenteditable], [role="menu"]')) return;
+      const items = pageItems();
+      const active = document.activeElement;
+      const at = items.findIndex((i) => (i.closest('.line-item') || i).contains(active));
+      const step = e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : -1;
+      if (at >= 0) {
+        // In the item list.
+        if (e.key === 'ArrowLeft') { e.preventDefault(); active.blur(); return; }
+        if (e.key === 'ArrowRight') return;
+        const next = items[at + step];
+        e.preventDefault();
+        if (next) focusItem(next);
+        return;
+      }
+      // In the unit list.
+      if (e.key === 'ArrowLeft') return;
+      if (e.key === 'ArrowRight') {
+        if (!items.length) return;
+        e.preventDefault();
+        const open = items.find((i) => i.getAttribute('aria-expanded') === 'true');
+        focusItem(open || items[0]);
+        return;
+      }
       const order = [...(query ? [SEARCH] : []), MAIN, ...topics.map((t) => t.id)];
-      const next = order[order.indexOf(currentId()) + (e.key === 'ArrowDown' ? 1 : -1)];
+      const next = order[order.indexOf(currentId()) + step];
       if (next === undefined) return;
       e.preventDefault();
       go(next);
