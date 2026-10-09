@@ -1357,16 +1357,33 @@
         }
         if (e.key === 'Enter') input.blur(); // closes the keyboard on phones
       });
-      // "/" jumps to the search box from anywhere on the page.
+      // Typing anywhere on the page goes into the search box ("/" just jumps there).
+      // Space is left alone so it still scrolls the page and presses buttons.
       document.addEventListener('keydown', (e) => {
-        if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey || entryOpen()) return;
+        if (e.key.length !== 1 || e.key === ' ' || e.ctrlKey || e.metaKey || e.altKey || e.isComposing) return;
+        if (entryOpen() || e.target === input) return;
         if (e.target.closest && e.target.closest('input, textarea, select, [contenteditable]')) return;
-        e.preventDefault();
+        if (e.key === '/') e.preventDefault();
         input.focus();
+        // The key itself then lands in the box, after anything already typed there.
+        const end = input.value.length;
+        input.setSelectionRange(end, end);
       });
     }
 
-    // Links marked data-route (sidebar, logo) switch pages without a reload.
+    // The site name in the top bar goes back to the entry screen (over the main page).
+    const brand = document.querySelector('.brand');
+    if (brand) brand.addEventListener('click', (e) => {
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      if (query) setQuery('');
+      history.pushState({ entry: true }, '', './');
+      show(MAIN);
+      setEntry(true);
+      brand.blur(); // so the Enter key opens the site again
+    });
+
+    // Links marked data-route (sidebar) switch pages without a reload.
     document.addEventListener('click', (e) => {
       const a = e.target.closest('a[data-route]');
       if (!a || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
