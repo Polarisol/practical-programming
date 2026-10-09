@@ -12,13 +12,6 @@
       "title": "Installation",
       "icon": "⬇",
       "blurb": "What and how to install what you need",
-      "bots": [
-        {
-          "label": "Study Bot",
-          "description": "I can help you study, teach you and quiz you on Installation.",
-          "url": "https://xxxxxxx"
-        }
-      ],
       "material": "topics/install.md"
     },
     {
@@ -26,13 +19,6 @@
       "title": "Starting a Project",
       "icon": "📁",
       "blurb": "Set up a new Python project in VS Code with uv, step by step.",
-      "bots": [
-        {
-          "label": "Study Bot",
-          "description": "I can help you study, teach you and quiz you on Starting a Project.",
-          "url": "https://xxxxxxx"
-        }
-      ],
       "videos": [
         {
           "title": "Starting a new Project",

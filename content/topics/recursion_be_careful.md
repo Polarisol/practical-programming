@@ -1,10 +1,12 @@
-# Be Careful
+# Be Careful - Stack Overflow
 
 Every time a function is called, Python saves information about that call in memory: its parameters, its local variables and where to return to. This area of memory is called the **call stack**. The information is only removed when the call finishes.
 
 In recursion, a call does not finish until all the calls below it finish. So every level of recursion adds another entry to the stack, and they all stay there at the same time.
 
 The call stack is **very small**. Your computer may have many gigabytes of memory, but the call stack does not get to use them. The operating system gives each program a fixed, small area for its stack, usually only a few megabytes (often around 8 MB, and as little as 1 MB on Windows). Adding more memory to the computer does not make the stack any bigger. So a recursive function can run out of stack space while most of the computer's memory sits unused.
+
+So... if we are not careful we might run into something called a **stack overflow**. This happens when the call stack runs out of space because there are too many active function calls at the same time.
 
 ## Forgetting the base case
 
