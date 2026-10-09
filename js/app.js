@@ -1481,6 +1481,18 @@
       brand.blur(); // so the Enter key opens the site again
     });
 
+    // The up and down arrow keys move one unit up or down the topic list.
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
+      if (e.defaultPrevented || e.ctrlKey || e.metaKey || e.altKey || e.shiftKey || entryOpen()) return;
+      if (e.target.closest && e.target.closest('input, textarea, select, [contenteditable], [role="menu"]')) return;
+      const order = [...(query ? [SEARCH] : []), MAIN, ...topics.map((t) => t.id)];
+      const next = order[order.indexOf(currentId()) + (e.key === 'ArrowDown' ? 1 : -1)];
+      if (next === undefined) return;
+      e.preventDefault();
+      go(next);
+    });
+
     // Links marked data-route (sidebar) switch pages without a reload.
     document.addEventListener('click', (e) => {
       const a = e.target.closest('a[data-route]');
