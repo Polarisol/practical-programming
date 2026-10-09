@@ -1231,8 +1231,8 @@
     const main = el('span', { class: 'search-main' });
     label.replaceWith(main);
     main.append(label,
-      el('span', { class: 'search-topic', text: `${item.topic.icon || '>_'} ${item.topic.title || item.topic.id}` }),
-      item.text ? el('span', { class: 'search-snippet' }, highlight(snippet(item.text, words), words)) : null);
+      el('span', { class: 'search-topic', text: `${item.topic.icon || '>_'} ${item.topic.title || item.topic.id}` }));
+    if (item.text) main.append(el('span', { class: 'search-snippet' }, highlight(snippet(item.text, words), words)));
     return node;
   }
 
