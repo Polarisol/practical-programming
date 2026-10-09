@@ -134,7 +134,7 @@
       "title": "PySide6 - GUI",
       "icon": "🖥",
       "blurb": "Learn how to create graphical user interfaces using PySide6.",
-      "material": ["topics/pyside6_basics.md", "topics/pyside6_widgets.md", "topics/pyside6_oop.md", "topics/pyside6_oop_windows.md", "topics/pyside6_timers.md", "topics/wwntr_pyside6_basic.md", "topics/wwntr_pyside6_oop.md"],
+      "material": ["topics/pyside6_basics.md", "topics/pyside6_widgets.md", "topics/pyside6_oop.md", "topics/pyside6_oop_windows.md", "topics/pyside6_timers.md", "topics/pyside6_extras.md", "topics/wwntr_pyside6_basic.md", "topics/wwntr_pyside6_oop.md"],
       "bots": [
         {
           "label": "Study Bot - Basic PySide6 (Not OOP)",
