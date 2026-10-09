@@ -113,27 +113,103 @@
     observer.observe(node);
   }
 
-  // ---------- Theme toggle ----------
-  // One in the top bar and one on the entry screen.
+  // ---------- Theme menu ----------
+  // One button in the top bar and one on the entry screen; both open the same menu.
+  const THEMES = [
+    { id: 'light', name: 'Light', bg: '#dedad1', accent: '#0b6a4f' },
+    { id: 'dark', name: 'Dark', bg: '#0a0c0f', accent: '#6ee7b7' },
+    { id: 'solarized', name: 'Solarized', bg: '#fdf6e3', accent: '#268bd2' },
+    { id: 'rose', name: 'Rosé Dawn', bg: '#faf4ed', accent: '#d7827e' },
+    { id: 'nord', name: 'Nord', bg: '#2e3440', accent: '#88c0d0' },
+    { id: 'dracula', name: 'Dracula', bg: '#282a36', accent: '#bd93f9' },
+    { id: 'gruvbox', name: 'Gruvbox', bg: '#282828', accent: '#fabd2f' },
+  ];
+  const ICON_PALETTE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.7 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-.9.8-1.7 1.7-1.7H16a5 5 0 0 0 5-5c0-4-4-7.2-9-7.2z"/>'
+    + '<circle cx="7.5" cy="11.5" r="1.2"/><circle cx="10.5" cy="7.5" r="1.2"/><circle cx="15.5" cy="8" r="1.2"/></svg>';
   const toggles = document.querySelectorAll('.theme-toggle');
-  const currentTheme = () => root.dataset.theme || 'light';
+  const currentTheme = () => (THEMES.some((t) => t.id === root.dataset.theme) ? root.dataset.theme : 'light');
+
+  const menu = document.createElement('div');
+  menu.className = 'theme-menu';
+  menu.setAttribute('role', 'menu');
+  menu.setAttribute('aria-label', 'Colour scheme');
+  menu.hidden = true;
+  for (const t of THEMES) {
+    const option = document.createElement('button');
+    option.type = 'button';
+    option.className = 'theme-option';
+    option.setAttribute('role', 'menuitemradio');
+    option.dataset.theme = t.id;
+    option.innerHTML = '<span class="theme-swatch" aria-hidden="true"></span>';
+    option.append(t.name);
+    option.firstChild.style.setProperty('--sw-bg', t.bg);
+    option.firstChild.style.setProperty('--sw-accent', t.accent);
+    option.addEventListener('click', () => { setTheme(t.id); closeMenu(); });
+    menu.append(option);
+  }
+  document.body.append(menu);
+  const options = [...menu.children];
+  let menuOpener = null;
+
+  function setTheme(id) {
+    root.dataset.theme = id;
+    try { localStorage.setItem('theme', id); } catch { /* storage unavailable */ }
+    updateToggle();
+  }
 
   function updateToggle() {
-    const dark = currentTheme() === 'dark';
-    for (const toggle of toggles) {
-      toggle.textContent = dark ? '☀' : '☾';
-      toggle.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    const id = currentTheme();
+    const name = THEMES.find((t) => t.id === id).name;
+    for (const toggle of toggles) toggle.setAttribute('aria-label', `Colour scheme: ${name}`);
+    for (const option of options) option.setAttribute('aria-checked', String(option.dataset.theme === id));
+  }
+
+  function openMenu(toggle) {
+    menuOpener = toggle;
+    menu.hidden = false;
+    const r = toggle.getBoundingClientRect();
+    const width = menu.offsetWidth;
+    menu.style.top = `${r.bottom + 8}px`;
+    menu.style.left = `${Math.max(8, Math.min(r.right - width, window.innerWidth - width - 8))}px`;
+    toggle.setAttribute('aria-expanded', 'true');
+    (options.find((o) => o.getAttribute('aria-checked') === 'true') || options[0]).focus();
+  }
+
+  function closeMenu(returnFocus) {
+    if (menu.hidden) return;
+    menu.hidden = true;
+    if (menuOpener) {
+      menuOpener.setAttribute('aria-expanded', 'false');
+      if (returnFocus) menuOpener.focus();
     }
+    menuOpener = null;
   }
 
   for (const toggle of toggles) {
+    toggle.innerHTML = ICON_PALETTE;
+    toggle.title = 'Colour scheme';
+    toggle.setAttribute('aria-haspopup', 'menu');
+    toggle.setAttribute('aria-expanded', 'false');
     toggle.addEventListener('click', () => {
-      const next = currentTheme() === 'dark' ? 'light' : 'dark';
-      root.dataset.theme = next;
-      try { localStorage.setItem('theme', next); } catch { /* storage unavailable */ }
-      updateToggle();
+      if (menuOpener === toggle) closeMenu(); else { closeMenu(); openMenu(toggle); }
     });
   }
+
+  menu.addEventListener('keydown', (e) => {
+    const i = options.indexOf(document.activeElement);
+    if (e.key === 'Escape' || e.key === 'Tab') { e.preventDefault(); closeMenu(true); return; }
+    let next = null;
+    if (e.key === 'ArrowDown') next = (i + 1) % options.length;
+    else if (e.key === 'ArrowUp') next = (i - 1 + options.length) % options.length;
+    else if (e.key === 'Home') next = 0;
+    else if (e.key === 'End') next = options.length - 1;
+    if (next !== null) { e.preventDefault(); options[next].focus(); }
+  });
+  document.addEventListener('pointerdown', (e) => {
+    if (!menu.hidden && !menu.contains(e.target) && !(menuOpener && menuOpener.contains(e.target))) closeMenu();
+  });
+  window.addEventListener('resize', () => closeMenu());
+  window.addEventListener('scroll', () => closeMenu(), { passive: true });
   updateToggle();
 
   // ---------- View toggle (cards <-> minimal list), used on every page ----------

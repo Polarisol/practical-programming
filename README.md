@@ -103,7 +103,7 @@ To update the site later, upload or push the changed files. The site refreshes b
 ```
 index.html            the whole site: Main page + every topic (switches in place)
 topic.html            redirect for old topic.html?id=... links
-css/style.css         colours, layout, light/dark theme
+css/style.css         colours, layout, colour schemes
 js/ascii-bg.js        interactive ASCII background
 js/app.js             reads topics.json and builds the pages
 content/topics.json   your topics  ← edit this
