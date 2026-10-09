@@ -367,7 +367,7 @@
         const frame = videoFrame(v);
         if (!frame) return null;
         const views = viewCounter(key('video', youtubeId(v)));
-        const figure = el('figure', { class: 'video', 'data-ref': key('video', youtubeId(v)) }, frame,
+        const figure = el('figure', { class: 'video' }, frame,
           el('figcaption', {}, el('span', { text: v.title || '' }), views.node));
         hitWhenSeen(figure, views);
         return figure;
@@ -434,7 +434,7 @@
     if (!files.length) return null;
     const body = el('div');
     for (const file of files) {
-      const article = el('article', { class: 'prose material', 'data-ref': key('text', file) }, el('p', { class: 'muted', text: 'Loading…' }));
+      const article = el('article', { class: 'prose material' }, el('p', { class: 'muted', text: 'Loading…' }));
       const views = viewCounter(key('text', file));
       body.append(article);
       loadMaterial(file)
@@ -690,7 +690,6 @@
     const boxes = quizzes.map((q) => {
       const views = viewCounter(key('quiz', q.file));
       const box = quizView(q, { onTitle: () => box.append(views.node) });
-      box.dataset.ref = key('quiz', q.file);
       hitWhenSeen(box, views);
       return box;
     });
@@ -782,7 +781,7 @@
         link.addEventListener('click', views.hit);
         return el(
           'div',
-          { class: 'bot-card', style: `--i:${i}`, 'data-ref': key('bot', b.url) },
+          { class: 'bot-card', style: `--i:${i}` },
           robot(),
           el(
             'div',
@@ -813,7 +812,7 @@
         const views = viewCounter(key('link', l.url));
         const link = el('a', linkAttrs(url), l.label || url.hostname, views.node);
         link.addEventListener('click', views.hit);
-        return el('li', { 'data-ref': key('link', l.url) }, link);
+        return el('li', {}, link);
       })
       .filter(Boolean);
     return items.length ? panel('More resources', el('ul', { class: 'link-list' }, ...items)) : null;
@@ -833,7 +832,7 @@
       const views = viewCounter(key('file', f.file));
       const link = el('a', { href: f.url.href, download: '' }, f.label, views.node);
       link.addEventListener('click', views.hit);
-      return el('li', { 'data-ref': key('file', f.file) }, link);
+      return el('li', {}, link);
     });
     return items.length ? panel('Files', el('ul', { class: 'link-list file-list' }, ...items)) : null;
   }
@@ -858,7 +857,7 @@
     ];
   }
 
-  function expandableLine(type, label, { onOpen, onClose, icon, views, ref } = {}) {
+  function expandableLine(type, label, { onOpen, onClose, icon, views } = {}) {
     const id = `line-body-${++lineCount}`;
     const button = el(
       'button',
@@ -887,7 +886,7 @@
       },
     };
     button.addEventListener('click', () => (openLine === item ? item.close() : item.open()));
-    const node = el('div', { class: 'line-item', 'data-ref': ref }, button, body);
+    const node = el('div', { class: 'line-item' }, button, body);
     lineItems.set(node, item);
     return { node, item };
   }
@@ -898,7 +897,7 @@
         const url = safeUrl(b.url);
         if (!url) return null;
         const views = viewCounter(key('bot', b.url));
-        const row = el('a', { class: 'line line-bot', 'data-type': 'bot', 'data-ref': key('bot', b.url), ...linkAttrs(url) },
+        const row = el('a', { class: 'line line-bot', 'data-type': 'bot', ...linkAttrs(url) },
           ...lineParts('bot', b.label || 'Practice bot', b.description, 'chat ↗', robot(), views));
         row.addEventListener('click', views.hit);
         return row;
@@ -915,17 +914,13 @@
         onOpen: (body, auto) => body.replaceChildren(videoFrame(v, !auto)),
         onClose: (body) => body.replaceChildren(), // removing the player stops the video
         views: viewCounter(key('video', youtubeId(v))),
-        ref: key('video', youtubeId(v)),
       }).node);
     return rows;
   }
 
   function materialLines(files, key) {
     const rows = files.map((file) => {
-      const { node, item } = expandableLine('text', 'Written material', {
-        views: viewCounter(key('text', file)),
-        ref: key('text', file),
-      });
+      const { node, item } = expandableLine('text', 'Written material', { views: viewCounter(key('text', file)) });
       item.body.classList.add('prose');
       item.body.append(el('p', { class: 'muted', text: 'Loading…' }));
       loadMaterial(file)
@@ -953,7 +948,6 @@
       const { node, item } = expandableLine('quiz', entry.title || 'Quiz', {
         icon: quizMark(),
         views: viewCounter(key('quiz', entry.file)),
-        ref: key('quiz', entry.file),
       });
       item.body.append(quizView(entry, {
         showTitle: false,
@@ -966,7 +960,7 @@
   function fileLines(files, key) {
     return files.map((f) => {
       const views = viewCounter(key('file', f.file));
-      const row = el('a', { class: 'line', 'data-type': 'file', 'data-ref': key('file', f.file), href: f.url.href, download: '' },
+      const row = el('a', { class: 'line', 'data-type': 'file', href: f.url.href, download: '' },
         ...lineParts('file', f.label, null, '⬇', null, views));
       row.addEventListener('click', views.hit);
       return row;
@@ -979,7 +973,7 @@
         const url = safeUrl(l.url);
         if (!url) return null;
         const views = viewCounter(key('link', l.url));
-        const row = el('a', { class: 'line', 'data-type': 'link', 'data-ref': key('link', l.url), ...linkAttrs(url) },
+        const row = el('a', { class: 'line', 'data-type': 'link', ...linkAttrs(url) },
           ...lineParts('link', l.label || url.hostname, null, '↗', null, views));
         row.addEventListener('click', views.hit);
         return row;
@@ -997,7 +991,7 @@
     const indicator = el('span', { class: 'nav-indicator', 'aria-hidden': 'true' });
     const items = new Map();
     const list = el('ul', { class: 'nav-list', id: 'nav-list' }, indicator);
-    const entries = [{ id: MAIN, title: 'Main', icon: '~' }, ...topics];
+    const entries = [{ id: SEARCH, title: 'Search Results', icon: '⌕' }, { id: MAIN, title: 'Main', icon: '~' }, ...topics];
     for (const t of entries) {
       const text = t.title || t.id;
       const title = el('span', { class: 'nav-title', text });
@@ -1008,8 +1002,9 @@
         title,
       );
       items.set(t.id, { link, title, text, icon: t.icon || '>_' });
-      list.append(el('li', {}, link));
+      list.append(el('li', { hidden: t.id === SEARCH ? '' : null }, link));
     }
+    const searchLink = items.get(SEARCH).link;
 
     const toggleIcon = el('span', { class: 'nav-icon', 'aria-hidden': 'true' });
     const toggleTitle = el('span', { class: 'nav-title' });
@@ -1070,6 +1065,12 @@
         indicator.classList.add('arrive');
       },
       place,
+      // The "Search Results" entry is listed only while there is a search.
+      setSearch(query) {
+        searchLink.parentElement.hidden = !query;
+        if (query) searchLink.href = searchHref(query);
+        place(false);
+      },
     };
   }
 
@@ -1133,7 +1134,12 @@
     drawTopicBody();
   }
 
-  // ---------- Search: titles and text of every item in every topic ----------
+  // ---------- Search: a temporary "Search Results" unit ----------
+  // Lists every item whose title or text holds all the searched words, in the order
+  // they appear on the site. The items work just as they do on their own topic.
+  const SEARCH = '?search'; // the unit's id in the topic list (topic ids have no "?")
+  const searchHref = (query) => `?q=${encodeURIComponent(query)}`;
+
   // Markdown to plain text, good enough for matching and snippets.
   function plainText(md) {
     return md
@@ -1146,51 +1152,50 @@
 
   const firstHeading = (md) => plainText((md.match(/^#\s+(.+)$/m) || [])[1] || '');
 
-  // One entry per item, in the same order as on the topic page.
+  // One entry per item, in site order: topics top to bottom, items as on the topic page.
+  // Built once, the first time someone searches.
+  let searchIndex = null;
+  function loadSearchIndex(topics) {
+    if (!searchIndex) searchIndex = buildSearchIndex(topics);
+    return searchIndex;
+  }
+
   async function buildSearchIndex(topics) {
     const items = [];
-    const add = (topic, type, ref, title, text = '') =>
-      items.push({ topic, type, ref: viewKey(topic.id, type, ref), title, text });
+    const add = (topic, type, src, title, text = '') => items.push({ topic, type, src, title, text });
     const load = (file) => loadMaterial(file).catch(() => '');
     for (const t of topics) {
-      for (const b of asList(t.bots)) if (safeUrl(b.url)) add(t, 'bot', b.url, b.label || 'Practice bot', b.description || '');
-      asList(t.videos).filter((v) => youtubeId(v))
-        .forEach((v, i) => add(t, 'video', youtubeId(v), v.title || `Video ${i + 1}`));
+      for (const b of asList(t.bots)) if (safeUrl(b.url)) add(t, 'bot', b, b.label || 'Practice bot', b.description || '');
+      asList(t.videos).filter((v) => youtubeId(v)).forEach((v, i) => {
+        const title = v.title || `Video ${i + 1}`;
+        add(t, 'video', { ...v, title }, title);
+      });
       for (const file of asList(t.material)) {
         const md = await load(file);
         add(t, 'text', file, firstHeading(md) || 'Written material', plainText(md));
       }
       for (const q of quizEntries(t.quizzes)) {
         const md = await load(q.file);
-        add(t, 'quiz', q.file, q.title || firstHeading(md) || 'Quiz', plainText(md));
+        add(t, 'quiz', q, q.title || firstHeading(md) || 'Quiz', plainText(md));
       }
-      for (const f of fileEntries(t.files)) add(t, 'file', f.file, f.label);
+      for (const f of fileEntries(t.files)) add(t, 'file', f, f.label);
       for (const l of asList(t.links)) {
         const url = safeUrl(l.url);
-        if (url) add(t, 'link', l.url, l.label || url.hostname);
+        if (url) add(t, 'link', l, l.label || url.hostname);
       }
     }
     return items;
   }
 
-  // Every word of the query must appear in the item's title or text.
-  function searchItems(index, query) {
-    const words = query.toLowerCase().split(/\s+/).filter(Boolean);
-    if (!words.length) return [];
-    return index
-      .map((item, order) => {
-        const title = item.title.toLowerCase();
-        const text = item.text.toLowerCase();
-        if (!words.every((w) => title.includes(w) || text.includes(w))) return null;
-        const score = words.reduce((n, w) => n + (title.includes(w) ? 100 : 0) + text.split(w).length - 1, 0);
-        return { item, score, order };
-      })
-      .filter(Boolean)
-      .sort((a, b) => b.score - a.score || a.order - b.order)
-      .map((r) => r.item);
+  const searchWords = (query) => query.toLowerCase().split(/\s+/).filter(Boolean);
+
+  function matches(item, words) {
+    const title = item.title.toLowerCase();
+    const text = item.text.toLowerCase();
+    return words.length > 0 && words.every((w) => title.includes(w) || text.includes(w));
   }
 
-  // Text with every query word wrapped in <mark>.
+  // Text with every searched word wrapped in <mark>.
   function highlight(text, words) {
     const span = el('span');
     const pattern = words.map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
@@ -1213,94 +1218,60 @@
     return `${start ? '…' : ''}${text.slice(start, end).trim()}${end < text.length ? '…' : ''}`;
   }
 
-  // After opening a result: open its line (list view) or scroll to its card, and flash it.
-  function focusItem(main, ref) {
-    const node = [...main.querySelectorAll('[data-ref]')].find((n) => n.dataset.ref === ref);
-    if (!node) return;
-    if (lineItems.has(node)) lineItems.get(node).open(true);
-    node.scrollIntoView({ block: lineItems.has(node) ? 'start' : 'center', behavior: reducedMotion ? 'auto' : 'smooth' });
-    node.classList.remove('search-hit');
-    void node.offsetWidth;
-    node.classList.add('search-hit');
+  const LINE_BUILDERS = { bot: botLines, video: videoLines, text: materialLines, quiz: quizLines, file: fileLines, link: linkLines };
+
+  // The item's usual line, plus the topic it comes from and a piece of the matching text.
+  function resultLine(item, words) {
+    const key = (type, ref) => viewKey(item.topic.id, type, ref);
+    const node = LINE_BUILDERS[item.type]([item.src], key)[0];
+    const line = node.classList.contains('line') ? node : node.querySelector('.line');
+    const label = line.querySelector('.line-label');
+    const sub = line.querySelector('.line-sub');
+    if (sub) sub.remove(); // a bot's description: the snippet shows it instead
+    const main = el('span', { class: 'search-main' });
+    label.replaceWith(main);
+    main.append(label,
+      el('span', { class: 'search-topic', text: `${item.topic.icon || '>_'} ${item.topic.title || item.topic.id}` }),
+      item.text ? el('span', { class: 'search-snippet' }, highlight(snippet(item.text, words), words)) : null);
+    return node;
   }
 
-  function setupSearch(main, topics, go) {
-    const input = document.querySelector('.search-input');
-    if (!input) return { reset() {} };
-    let index = null;
-    let saved = null; // the page that was showing before the search started
-
-    const getIndex = () => {
-      if (!index) index = buildSearchIndex(topics);
-      return index;
-    };
-
-    const restore = () => {
-      if (!saved) return;
-      main.replaceChildren(...saved);
-      document.body.dataset.page = saved.page;
-      saved = null;
-    };
-
-    const render = async () => {
-      const query = input.value.trim();
-      if (!query) { restore(); return; }
-      if (!saved) {
-        saved = [...main.childNodes];
-        saved.page = document.body.dataset.page;
-        if (openLine) openLine.close(); // stops a playing video
-      }
-      document.body.dataset.page = 'search';
-      const items = await getIndex();
-      if (input.value.trim() !== query) return; // a newer search is on its way
-      const words = query.toLowerCase().split(/\s+/).filter(Boolean);
-      const results = searchItems(items, query);
-      const rows = results.map((item) => {
-        const row = el('a', { class: 'line search-line', 'data-type': item.type, href: topicHref(item.topic.id) },
-          el('span', { class: 'line-type', text: LINE_TYPES[item.type] }),
-          el('span', { class: 'search-main' },
-            el('span', { class: 'line-label' }, highlight(item.title, words)),
-            el('span', { class: 'search-topic', text: `${item.topic.icon || '>_'} ${item.topic.title || item.topic.id}` }),
-            item.text ? el('span', { class: 'search-snippet' }, highlight(snippet(item.text, words), words)) : null),
-          el('span', { class: 'line-end', 'aria-hidden': 'true', text: '→' }));
-        row.addEventListener('click', (e) => {
-          if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-          e.preventDefault();
-          go(item.topic.id);
-          focusItem(main, item.ref);
-        });
-        return row;
-      });
-      main.replaceChildren(el('section', { class: 'search-results' },
-        el('p', { class: 'prompt', text: `$ grep -ri "${query}"` }),
-        el('p', { class: 'search-count', role: 'status', text: rows.length
-          ? `${rows.length} item${rows.length === 1 ? '' : 's'} found`
-          : 'Nothing found. Try other words.' }),
-        rows.length ? el('div', { class: 'line-list' }, ...rows) : null));
-    };
-
-    input.addEventListener('focus', getIndex, { once: true });
-    input.addEventListener('input', render);
-    input.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') { input.value = ''; restore(); input.blur(); }
-      if (e.key === 'Enter') {
-        const first = main.querySelector('.search-line');
-        if (first) first.click();
-      }
-    });
-    // "/" jumps to the search box from anywhere on the page.
-    document.addEventListener('keydown', (e) => {
-      if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey || entryOpen()) return;
-      if (e.target.closest && e.target.closest('input, textarea, select, [contenteditable]')) return;
-      e.preventDefault();
-      input.focus();
-    });
+  // The Search Results page. It is kept while the search lasts, so leaving it for a
+  // topic and coming back keeps opened items and quiz answers.
+  function searchPage(topics) {
+    let shownQuery = null;
+    const heading = el('h1');
+    const count = el('p', { role: 'status' });
+    const list = el('div', { class: 'line-list topic-lines' });
+    const node = el('div', {},
+      el('header', { class: 'topic-head' },
+        el('span', { class: 'card-icon', 'aria-hidden': 'true', text: '⌕' }),
+        el('div', { class: 'topic-title' }, heading),
+        count),
+      el('div', { class: 'topic-body' }, list));
 
     return {
-      // Called whenever a page is shown: the search is over.
-      reset() {
-        saved = null;
-        input.value = '';
+      node,
+      // Puts the page into `main` (again) and brings it up to date with `query`.
+      async show(main, query) {
+        main.replaceChildren(node);
+        scrambleTitle(heading, 'Search Results');
+        // Coming back: the line left open is still open.
+        const open = [...list.querySelectorAll('.line-item')].find((n) => !n.querySelector('.line-body').hidden);
+        if (open) openLine = lineItems.get(open);
+        if (query === shownQuery) return;
+        shownQuery = query;
+        count.textContent = 'Searching…';
+        const items = await loadSearchIndex(topics);
+        if (query !== shownQuery) return; // a newer search is on its way
+        const words = searchWords(query);
+        const found = items.filter((item) => matches(item, words));
+        openLine = null;
+        list.replaceChildren(...found.map((item) => resultLine(item, words)));
+        list.hidden = !found.length;
+        count.textContent = found.length
+          ? `${found.length} item${found.length === 1 ? '' : 's'} match “${query}”`
+          : `Nothing matches “${query}”. Try other words.`;
       },
     };
   }
@@ -1314,42 +1285,100 @@
     const { fullName } = applySite(data.site);
     if (/^[\w.-]{3,64}$/.test(data.site.views || '')) viewsNs = data.site.views;
     const topics = data.topics.filter((t) => t && t.id);
-    const currentId = () => new URLSearchParams(location.search).get('id') || MAIN;
+    const urlQuery = () => (new URLSearchParams(location.search).get('q') || '').trim();
+    const currentId = () => (urlQuery() ? SEARCH : new URLSearchParams(location.search).get('id') || MAIN);
 
     const nav = topicNav(topics);
     document.getElementById('topic-nav-slot').replaceWith(nav.node);
 
-    let search = null;
+    // ----- Search: the box in the top bar runs a temporary "Search Results" unit -----
+    const input = document.querySelector('.search-input');
+    let query = '';
+    let results = null;    // the Search Results page while a search lasts
+    let returnTo = MAIN;   // where clearing the search goes back to
+
+    const setQuery = (q) => {
+      query = q;
+      if (input && input.value.trim() !== q) input.value = q;
+      if (!q) results = null;
+      else if (!results) results = searchPage(topics);
+      nav.setSearch(q);
+    };
+
     const show = (id) => {
-      if (search) search.reset();
       drawTopicBody = null;
       openLine = null;
-      if (id === MAIN) showHome(main, data.site);
+      if (id === SEARCH) {
+        document.title = `Search Results · ${fullName}`;
+        results.show(main, query);
+      } else if (id === MAIN) showHome(main, data.site);
       else showTopic(main, topics.find((t) => t.id === id), fullName);
-      document.body.dataset.page = id === MAIN ? 'home' : 'topic';
+      document.body.dataset.page = id === SEARCH ? 'search' : id === MAIN ? 'home' : 'topic';
       if (canvas) canvas.dataset.intensity = entryOpen() ? '' : 'dim';
       nav.select(id);
     };
 
-    // Opens a page (from the sidebar, the logo or a search result).
+    const hrefFor = (id) => (id === SEARCH ? searchHref(query) : topicHref(id));
     const go = (id) => {
-      if (id !== currentId()) history.pushState({ main: true }, '', topicHref(id));
+      if (id === currentId()) return;
+      history.pushState({ main: true }, '', hrefFor(id));
       show(id);
       window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
     };
-    search = setupSearch(main, topics, go);
+
+    if (input) {
+      input.addEventListener('focus', () => loadSearchIndex(topics), { once: true });
+      input.addEventListener('input', () => {
+        const q = input.value.trim();
+        if (q === query) return;
+        if (!q) {
+          // Search cleared: the unit goes away; if it was showing, go back.
+          setQuery('');
+          if (currentId() === SEARCH) {
+            history.replaceState(history.state, '', topicHref(returnTo));
+            show(returnTo);
+          }
+          return;
+        }
+        setQuery(q);
+        if (currentId() === SEARCH) {
+          history.replaceState(history.state, '', searchHref(q));
+          results.show(main, q);
+        } else {
+          returnTo = currentId();
+          go(SEARCH);
+        }
+      });
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          input.value = '';
+          input.dispatchEvent(new Event('input'));
+          input.blur();
+        }
+        if (e.key === 'Enter') input.blur(); // closes the keyboard on phones
+      });
+      // "/" jumps to the search box from anywhere on the page.
+      document.addEventListener('keydown', (e) => {
+        if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey || entryOpen()) return;
+        if (e.target.closest && e.target.closest('input, textarea, select, [contenteditable]')) return;
+        e.preventDefault();
+        input.focus();
+      });
+    }
 
     // Links marked data-route (sidebar, logo) switch pages without a reload.
     document.addEventListener('click', (e) => {
       const a = e.target.closest('a[data-route]');
       if (!a || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       e.preventDefault();
-      const id = a.dataset.route;
-      if (id === currentId() && document.body.dataset.page !== 'search') return;
-      go(id);
+      go(a.dataset.route);
     });
-    window.addEventListener('popstate', () => show(currentId()));
+    window.addEventListener('popstate', () => {
+      if (urlQuery()) setQuery(urlQuery());
+      show(currentId());
+    });
     window.matchMedia('(min-width: 820px)').addEventListener('change', () => nav.place(false));
+    if (urlQuery()) setQuery(urlQuery());
     show(currentId());
   }
 
