@@ -189,12 +189,13 @@
   --type-file: 31, 179, 31;
   --type-quiz: 204, 255, 204;
   --ok: 102, 255, 102;
-  --bad: 0, 153, 0;
+  --bad: 255, 51, 51;          /* the one non-green colour: wrong quiz answers */
   --explain: 153, 255, 153;
   --shadow: 0 0 0 1px rgba(51, 255, 51, 0.12), 0 0 18px rgba(51, 255, 51, 0.08);
   --font-sans: var(--font-mono);
 }
 :root[data-theme="terminal"] body { text-shadow: 0 0 2px rgba(51, 255, 51, 0.45); }
+:root[data-theme="terminal"] .quiz .is-wrong { text-shadow: 0 0 2px rgba(255, 51, 51, 0.45); }
 
 /* ---------- Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
