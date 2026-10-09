@@ -64,13 +64,6 @@
       "title": "Using Git",
       "icon": "⎇",
       "blurb": "Save snapshots of your project, undo mistakes and go back in time with git in VS Code.",
-      "bots": [
-        {
-          "label": "Study Bot",
-          "description": "I can help you study, teach you and quiz you on Using Git.",
-          "url": "https://xxxxxxx"
-        }
-      ],
       "material": ["topics/using-git.md", "topics/wwntr_git.md"]
     },
     {
@@ -78,13 +71,6 @@
       "title": "Using AI",
       "icon": "🤖",
       "blurb": "The correct way to use AI tools like GitHub Copilot in your coding workflow.",
-      "bots": [
-        {
-          "label": "Study Bot",
-          "description": "I can help you study, teach you and quiz you on Using AI.",
-          "url": "https://xxxxxxx"
-        }
-      ],
       "material": "topics/github_copilot.md"
     },
     {
