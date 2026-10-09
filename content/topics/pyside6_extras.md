@@ -1,6 +1,6 @@
 # Extras
 
-Two more things that make a PySide6 program look and feel like a "real" application: a **menu bar** at the top of the window, and **splitters** that let the user drag to resize parts of the window.
+Three more things that make a PySide6 program look and feel like a "real" application: a **menu bar** at the top of the window, **splitters** that let the user drag to resize parts of the window, and **layouts** that arrange the widgets by themselves and adjust them when the window changes its size.
 
 ## Part 1: The Upper Menu Bar
 
@@ -417,6 +417,311 @@ Notice:
 * `self.right_splitter.setChildrenCollapsible(False)` was not called, so the user can drag the lower handle all the way down and hide the label. Try it.
 * Make the window bigger: the text box grows, but the line edit and the button in the left panel keep their size, because they were placed with `setGeometry`.
 
+## Part 3: Layouts
+
+### The Problem With `setGeometry`
+
+Until now every widget was placed with `setGeometry`: an exact position and an exact size, in pixels. This is simple, but the widgets **never change**. When the user makes the window bigger, the widgets stay small in the corner, and the rest of the window is empty:
+
+![The same window, small and big. With setGeometry the widgets keep their place and size](content/images/pyside_layout_problem.png)
+
+And when the window is made smaller, widgets are cut off. There are more problems: a longer text in a label may not fit in the size you chose, and on a screen with bigger fonts everything may overlap.
+
+A **layout** solves this. Instead of telling every widget exactly where to be, you tell the layout the **order** of the widgets: "one under the other", or "side by side", or "in a table". The layout calculates the positions and sizes by itself, and calculates them again every time the window changes its size.
+
+All the layouts are imported from `PySide6.QtWidgets`.
+
+### The Basic Steps
+
+Using a layout has 3 steps:
+
+1. Create the widgets **without** a parent and **without** `setGeometry`.
+2. Create the layout and add the widgets to it with `addWidget`, in order.
+3. Give the layout to the window with `self.setLayout(layout)`.
+
+```python
+    def initUI(self):
+        self.setWindowTitle("QVBoxLayout")
+
+        self.label = QLabel("Enter your name:")      # 1. no parent, no setGeometry
+        self.name_input = QLineEdit()
+        self.ok_button = QPushButton("OK")
+
+        layout = QVBoxLayout()                        # 2. create the layout
+        layout.addWidget(self.label)                  #    and add the widgets, in order
+        layout.addWidget(self.name_input)
+        layout.addWidget(self.ok_button)
+
+        self.setLayout(layout)                        # 3. the window uses the layout
+```
+
+* There is no need for a parent: `setLayout` makes the window the parent of all the widgets in the layout.
+* The widgets are still saved with `self.`, because the methods of the class need them. The layout itself is not needed after `initUI`, so a plain variable `layout` is fine.
+* The window can still get a starting size with `self.setGeometry(...)`. The layout fills whatever size the window has.
+
+There are 4 common layouts. In the images below, the left window is what the user sees, and the right window shows the layout's boxes drawn on top.
+
+### `QVBoxLayout`: One Under the Other
+
+**V** for **vertical**. Every `addWidget` puts the widget **below** the previous one. The code above creates this window:
+
+![QVBoxLayout: the label, the line edit and the button one under the other](content/images/pyside_layout_vbox.png)
+
+Every widget gets the full width of the window. The label got the extra height, which does not look good. This is fixed with a **stretch**, explained below.
+
+### `QHBoxLayout`: Side by Side
+
+**H** for **horizontal**. Every `addWidget` puts the widget to the **right** of the previous one:
+
+```python
+        self.back_button = QPushButton("Back")
+        self.next_button = QPushButton("Next")
+        self.cancel_button = QPushButton("Cancel")
+
+        layout = QHBoxLayout()
+        layout.addWidget(self.back_button)
+        layout.addWidget(self.next_button)
+        layout.addWidget(self.cancel_button)
+
+        self.setLayout(layout)
+```
+
+![QHBoxLayout: three buttons side by side](content/images/pyside_layout_hbox.png)
+
+### `QGridLayout`: A Table of Rows and Columns
+
+In a grid, `addWidget` also gets the **row** and the **column** of the widget. Rows and columns are counted from 0, like a list:
+
+```python
+        layout.addWidget(self.some_button, 1, 2)     # row 1, column 2
+```
+
+A widget can also take more than one cell. Two more numbers give how many **rows** and how many **columns** it takes:
+
+```python
+        layout.addWidget(self.display, 0, 0, 1, 3)   # row 0, column 0, 1 row high, 3 columns wide
+```
+
+Example: the keys of a calculator. The display takes the 3 columns of row 0, and the `0` key takes 2 columns:
+
+```python
+        layout = QGridLayout()
+
+        self.display = QLineEdit("0")
+        layout.addWidget(self.display, 0, 0, 1, 3)
+
+        texts = ["7", "8", "9", "4", "5", "6", "1", "2", "3"]
+        for i in range(9):
+            button = QPushButton(texts[i])
+            layout.addWidget(button, 1 + i // 3, i % 3)
+
+        layout.addWidget(QPushButton("0"), 4, 0, 1, 2)
+        layout.addWidget(QPushButton("="), 4, 2)
+
+        self.setLayout(layout)
+```
+
+![QGridLayout: a calculator keypad, with the row and column of every cell](content/images/pyside_layout_grid.png)
+
+The numbers in the corners of the right window are `row,column`, and the size of the widgets that take more than one cell.
+
+The loop calculates the place of each of the 9 buttons: `i // 3` is the row (0, 0, 0, 1, 1, 1, ...) and `i % 3` is the column (0, 1, 2, 0, 1, 2, ...). The row starts at 1, because row 0 is the display.
+
+> **Note:** to connect the buttons that were created in the loop, connect each one inside the loop, for example `button.clicked.connect(self.digit_clicked)`. In `digit_clicked`, `self.sender().text()` tells you which button was clicked.
+
+### `QFormLayout`: Labels and Fields
+
+A form is a common case: a column of labels on the left, and a column of fields on the right. `QFormLayout` does exactly this. `addRow` gets the label's text and the field, and creates the label by itself:
+
+```python
+        self.name_input = QLineEdit()
+        self.age_input = QSpinBox()
+        self.email_input = QLineEdit()
+
+        layout = QFormLayout()
+        layout.addRow("Name:", self.name_input)
+        layout.addRow("Age:", self.age_input)
+        layout.addRow("Email:", self.email_input)
+
+        self.setLayout(layout)
+```
+
+![QFormLayout: labels on the left, fields on the right](content/images/pyside_layout_form.png)
+
+The labels column is exactly as wide as the longest label, and the fields get the rest of the width.
+
+### Stretch: Empty Space That Pushes
+
+In the `QVBoxLayout` example, the extra height was given to the label, and the widgets were spread over the window. Usually we want the widgets to stay together at the top, and the empty space to be at the bottom.
+
+`addStretch()` adds an **invisible spring** to the layout. The spring takes all the extra space, and pushes the widgets away from it:
+
+```python
+        layout = QVBoxLayout()
+        layout.addWidget(self.label)
+        layout.addWidget(self.name_input)
+        layout.addWidget(self.ok_button)
+        layout.addStretch()                  # all the extra space goes here, at the bottom
+```
+
+![Without addStretch the widgets are spread over the window. With addStretch they stay at the top](content/images/pyside_layout_stretch.png)
+
+Where you put the stretch decides where the widgets go:
+
+* Stretch **after** the widgets: the widgets are pushed to the **start** (top, or left).
+* Stretch **before** the widgets: the widgets are pushed to the **end** (bottom, or right).
+* Stretch **before and after**: the widgets are in the **middle**.
+
+A very common use: buttons on the right side of a window, like **OK** and **Cancel** in many programs. Add a stretch **before** the buttons:
+
+```python
+        layout = QHBoxLayout()
+        layout.addStretch()                  # pushes the buttons to the right
+        layout.addWidget(self.back_button)
+        layout.addWidget(self.next_button)
+        layout.addWidget(self.cancel_button)
+```
+
+![Without addStretch the buttons share the width. With addStretch before them, they are pushed to the right](content/images/pyside_layout_hstretch.png)
+
+### Stretch Factor: Who Gets More Space
+
+When two widgets can both grow, they share the extra space equally. To give one of them more, add a **stretch factor** as a second value to `addWidget`. The space is divided by the ratio of the numbers:
+
+```python
+        layout = QHBoxLayout()
+        layout.addWidget(self.left_text, 1)      # gets 1 part
+        layout.addWidget(self.right_text, 2)     # gets 2 parts: twice as wide
+```
+
+![Stretch factors 1 and 2: the right text box is twice as wide as the left one](content/images/pyside_layout_stretch_factor.png)
+
+### Layouts Inside Layouts
+
+Real windows are not just one column or one row. The solution is to put layouts **inside** layouts. `addLayout` adds a whole layout to another layout, as if it were one widget.
+
+Example: a **Sign Up** window. It is built from 3 parts, one under the other, so the main layout is a `QVBoxLayout`:
+
+1. A form with the user's details: a `QFormLayout`.
+2. A row of buttons on the right: a `QHBoxLayout` with a stretch before the buttons.
+3. A text box that lists the users that were added.
+
+![Layouts inside layouts: a form layout and a buttons layout inside a vertical main layout](content/images/pyside_layout_nested.png)
+
+The trick is to **plan first**: look at the window you want, and draw boxes around groups of widgets, like in the right window. Every box is a layout. Then write the code from the inside out: first the small layouts, then the main layout that holds them.
+
+```python
+from PySide6.QtWidgets import (QApplication, QWidget, QLineEdit, QSpinBox, QPushButton,
+                               QTextEdit, QVBoxLayout, QHBoxLayout, QFormLayout)
+
+
+class SignUpWindow(QWidget):
+
+    def __init__(self):
+        super().__init__()
+        self.initUI()
+
+    def initUI(self):
+        self.setWindowTitle("Sign Up")
+        self.setGeometry(100, 100, 340, 300)
+
+        # ----- 1. the form -----
+        self.name_input = QLineEdit()
+        self.age_input = QSpinBox()
+        self.email_input = QLineEdit()
+
+        form_layout = QFormLayout()
+        form_layout.addRow("Name:", self.name_input)
+        form_layout.addRow("Age:", self.age_input)
+        form_layout.addRow("Email:", self.email_input)
+
+        # ----- 2. the buttons, pushed to the right -----
+        self.add_button = QPushButton("Add")
+        self.add_button.clicked.connect(self.add_clicked)
+        self.clear_button = QPushButton("Clear")
+        self.clear_button.clicked.connect(self.clear_clicked)
+
+        buttons_layout = QHBoxLayout()
+        buttons_layout.addStretch()
+        buttons_layout.addWidget(self.add_button)
+        buttons_layout.addWidget(self.clear_button)
+
+        # ----- 3. the list of users -----
+        self.users_box = QTextEdit()
+        self.users_box.setReadOnly(True)
+
+        # ----- the main layout holds everything -----
+        main_layout = QVBoxLayout()
+        main_layout.addLayout(form_layout)          # a layout inside a layout
+        main_layout.addLayout(buttons_layout)       # a layout inside a layout
+        main_layout.addWidget(self.users_box)
+
+        self.setLayout(main_layout)
+
+    def add_clicked(self):
+        line = self.name_input.text() + ", " + str(self.age_input.value()) + ", " + self.email_input.text()
+        self.users_box.append(line)
+        self.name_input.clear()
+        self.age_input.setValue(0)
+        self.email_input.clear()
+
+    def clear_clicked(self):
+        self.users_box.clear()
+
+
+if __name__ == "__main__":
+    app = QApplication()
+    window = SignUpWindow()
+    window.show()
+    app.exec()
+```
+
+Notice:
+
+* Only the main layout is given to the window with `self.setLayout`. The other layouts are inside it.
+* `addLayout` is used for a layout, and `addWidget` for a widget. Both can be used in the same layout.
+* The text box is the only widget that can grow in height, so it gets all the extra height. Nothing else needs a stretch.
+
+Now make the window bigger. Everything adjusts by itself: the fields get wider, the buttons stay on the right, and the text box gets all the new space:
+
+![The Sign Up window at two sizes. The widgets grow with the window](content/images/pyside_layout_resize.png)
+
+### Spacing and Margins
+
+Two methods change the empty space a layout leaves:
+
+```python
+        layout.setSpacing(20)                     # 20 pixels between the widgets
+        layout.setContentsMargins(5, 5, 5, 5)     # space around the edges: left, top, right, bottom
+```
+
+Use `setContentsMargins(0, 0, 0, 0)` on an inner layout when you want it to touch the edges exactly.
+
+### Layouts With a Menu Bar and Splitters
+
+Layouts work together with the first two parts:
+
+* **In a `QMainWindow`**, the layout is not given to the window itself (it already has its own layout, for the menu bar and the central widget). Give it to the **central widget** instead:
+
+  ```python
+          self.central = QWidget()
+          self.setCentralWidget(self.central)
+          self.central.setLayout(main_layout)        # not self.setLayout
+  ```
+
+* **In a splitter**, a panel can use a layout instead of `setGeometry`. Then the widgets in the panel grow and shrink when the user drags the splitter's handle:
+
+  ```python
+          self.left_panel = QWidget()
+          panel_layout = QVBoxLayout()
+          panel_layout.addWidget(self.note_input)
+          panel_layout.addWidget(self.add_button)
+          panel_layout.addStretch()
+          self.left_panel.setLayout(panel_layout)
+  ```
+
+> **Note:** a widget is placed **either** with `setGeometry` **or** with a layout, not both. If a widget is in a layout, the layout decides its position and size, and `setGeometry` is ignored.
+
 ## In Short
 
 | I want to... | Use |
@@ -434,3 +739,13 @@ Notice:
 | Starting sizes of the parts | `splitter.setSizes([150, 350])` |
 | Parts that cannot disappear | `splitter.setChildrenCollapsible(False)` |
 | Several widgets in one part | Put them in a `QWidget` panel, and add the panel |
+| Widgets that adjust to the window's size | A layout: `addWidget` in order, then `self.setLayout(layout)` |
+| Widgets one under the other | `QVBoxLayout()` |
+| Widgets side by side | `QHBoxLayout()` |
+| Widgets in rows and columns | `QGridLayout()`, `layout.addWidget(w, row, column)` |
+| A widget that takes several cells | `layout.addWidget(w, row, column, rows, columns)` |
+| Labels and fields | `QFormLayout()`, `layout.addRow("Name:", w)` |
+| Push widgets to one side | `layout.addStretch()` before or after them |
+| One widget gets more space | `layout.addWidget(w, 2)` (stretch factor) |
+| A layout inside a layout | `main_layout.addLayout(inner_layout)` |
+| A layout in a `QMainWindow` | `self.central.setLayout(layout)` |
