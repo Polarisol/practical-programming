@@ -43,7 +43,7 @@
           "start": 0
         }
       ],
-      "material": ["topics/python-basics.md", "topics/global-variables.md", "topics/files.md", "topics/wwntr_python_basics.md"],
+      "material": ["topics/python-basics.md", "topics/global-variables.md", "topics/files.md", "topics/python_extras.md", "topics/wwntr_python_basics.md"],
       "quizzes": ["quizzes/python-basics-quiz.md"],
       "bots": [
         {
