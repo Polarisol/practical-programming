@@ -197,6 +197,31 @@
 :root[data-theme="terminal"] body { text-shadow: 0 0 2px rgba(51, 255, 51, 0.45); }
 :root[data-theme="terminal"] .quiz .is-wrong { text-shadow: 0 0 2px rgba(255, 51, 51, 0.45); }
 
+/* Ink on paper: only #242424 on #bdbdbd */
+:root[data-theme="mono"] {
+  color-scheme: light;
+  --bg: #bdbdbd;
+  --surface: rgba(189, 189, 189, 0.9);
+  --surface-2: #bdbdbd;
+  --text: #242424;
+  --muted: #242424;
+  --border: #242424;
+  --accent: #242424;
+  --accent-contrast: #bdbdbd;
+  --glyph: 36, 36, 36;
+  --glyph-hot: 36, 36, 36;
+  --type-bot: 36, 36, 36;
+  --type-text: 36, 36, 36;
+  --type-video: 36, 36, 36;
+  --type-link: 36, 36, 36;
+  --type-file: 36, 36, 36;
+  --type-quiz: 36, 36, 36;
+  --ok: 36, 36, 36;
+  --bad: 180, 0, 0;            /* the one non-black colour: wrong quiz answers */
+  --explain: 36, 36, 36;
+  --shadow: none;
+}
+
 /* ---------- Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
