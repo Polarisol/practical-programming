@@ -367,7 +367,7 @@
         const frame = videoFrame(v);
         if (!frame) return null;
         const views = viewCounter(key('video', youtubeId(v)));
-        const figure = el('figure', { class: 'video' }, frame,
+        const figure = el('figure', { class: 'video', 'data-ref': key('video', youtubeId(v)) }, frame,
           el('figcaption', {}, el('span', { text: v.title || '' }), views.node));
         hitWhenSeen(figure, views);
         return figure;
@@ -434,7 +434,7 @@
     if (!files.length) return null;
     const body = el('div');
     for (const file of files) {
-      const article = el('article', { class: 'prose material' }, el('p', { class: 'muted', text: 'Loading…' }));
+      const article = el('article', { class: 'prose material', 'data-ref': key('text', file) }, el('p', { class: 'muted', text: 'Loading…' }));
       const views = viewCounter(key('text', file));
       body.append(article);
       loadMaterial(file)
@@ -690,6 +690,7 @@
     const boxes = quizzes.map((q) => {
       const views = viewCounter(key('quiz', q.file));
       const box = quizView(q, { onTitle: () => box.append(views.node) });
+      box.dataset.ref = key('quiz', q.file);
       hitWhenSeen(box, views);
       return box;
     });
@@ -781,7 +782,7 @@
         link.addEventListener('click', views.hit);
         return el(
           'div',
-          { class: 'bot-card', style: `--i:${i}` },
+          { class: 'bot-card', style: `--i:${i}`, 'data-ref': key('bot', b.url) },
           robot(),
           el(
             'div',
@@ -812,7 +813,7 @@
         const views = viewCounter(key('link', l.url));
         const link = el('a', linkAttrs(url), l.label || url.hostname, views.node);
         link.addEventListener('click', views.hit);
-        return el('li', {}, link);
+        return el('li', { 'data-ref': key('link', l.url) }, link);
       })
       .filter(Boolean);
     return items.length ? panel('More resources', el('ul', { class: 'link-list' }, ...items)) : null;
@@ -832,7 +833,7 @@
       const views = viewCounter(key('file', f.file));
       const link = el('a', { href: f.url.href, download: '' }, f.label, views.node);
       link.addEventListener('click', views.hit);
-      return el('li', {}, link);
+      return el('li', { 'data-ref': key('file', f.file) }, link);
     });
     return items.length ? panel('Files', el('ul', { class: 'link-list file-list' }, ...items)) : null;
   }
@@ -857,7 +858,7 @@
     ];
   }
 
-  function expandableLine(type, label, { onOpen, onClose, icon, views } = {}) {
+  function expandableLine(type, label, { onOpen, onClose, icon, views, ref } = {}) {
     const id = `line-body-${++lineCount}`;
     const button = el(
       'button',
@@ -886,7 +887,7 @@
       },
     };
     button.addEventListener('click', () => (openLine === item ? item.close() : item.open()));
-    const node = el('div', { class: 'line-item' }, button, body);
+    const node = el('div', { class: 'line-item', 'data-ref': ref }, button, body);
     lineItems.set(node, item);
     return { node, item };
   }
@@ -897,7 +898,7 @@
         const url = safeUrl(b.url);
         if (!url) return null;
         const views = viewCounter(key('bot', b.url));
-        const row = el('a', { class: 'line line-bot', 'data-type': 'bot', ...linkAttrs(url) },
+        const row = el('a', { class: 'line line-bot', 'data-type': 'bot', 'data-ref': key('bot', b.url), ...linkAttrs(url) },
           ...lineParts('bot', b.label || 'Practice bot', b.description, 'chat ↗', robot(), views));
         row.addEventListener('click', views.hit);
         return row;
@@ -914,13 +915,17 @@
         onOpen: (body, auto) => body.replaceChildren(videoFrame(v, !auto)),
         onClose: (body) => body.replaceChildren(), // removing the player stops the video
         views: viewCounter(key('video', youtubeId(v))),
+        ref: key('video', youtubeId(v)),
       }).node);
     return rows;
   }
 
   function materialLines(files, key) {
     const rows = files.map((file) => {
-      const { node, item } = expandableLine('text', 'Written material', { views: viewCounter(key('text', file)) });
+      const { node, item } = expandableLine('text', 'Written material', {
+        views: viewCounter(key('text', file)),
+        ref: key('text', file),
+      });
       item.body.classList.add('prose');
       item.body.append(el('p', { class: 'muted', text: 'Loading…' }));
       loadMaterial(file)
@@ -948,6 +953,7 @@
       const { node, item } = expandableLine('quiz', entry.title || 'Quiz', {
         icon: quizMark(),
         views: viewCounter(key('quiz', entry.file)),
+        ref: key('quiz', entry.file),
       });
       item.body.append(quizView(entry, {
         showTitle: false,
@@ -960,7 +966,7 @@
   function fileLines(files, key) {
     return files.map((f) => {
       const views = viewCounter(key('file', f.file));
-      const row = el('a', { class: 'line', 'data-type': 'file', href: f.url.href, download: '' },
+      const row = el('a', { class: 'line', 'data-type': 'file', 'data-ref': key('file', f.file), href: f.url.href, download: '' },
         ...lineParts('file', f.label, null, '⬇', null, views));
       row.addEventListener('click', views.hit);
       return row;
@@ -973,7 +979,7 @@
         const url = safeUrl(l.url);
         if (!url) return null;
         const views = viewCounter(key('link', l.url));
-        const row = el('a', { class: 'line', 'data-type': 'link', ...linkAttrs(url) },
+        const row = el('a', { class: 'line', 'data-type': 'link', 'data-ref': key('link', l.url), ...linkAttrs(url) },
           ...lineParts('link', l.label || url.hostname, null, '↗', null, views));
         row.addEventListener('click', views.hit);
         return row;
@@ -1127,6 +1133,178 @@
     drawTopicBody();
   }
 
+  // ---------- Search: titles and text of every item in every topic ----------
+  // Markdown to plain text, good enough for matching and snippets.
+  function plainText(md) {
+    return md
+      .replace(/!?\[([^\]]*)\]\([^)]*\)/g, '$1')
+      .replace(/^\s*[-*]\s+\[[ xX]\]\s+/gm, '')
+      .replace(/[#*_`>|~]+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  const firstHeading = (md) => plainText((md.match(/^#\s+(.+)$/m) || [])[1] || '');
+
+  // One entry per item, in the same order as on the topic page.
+  async function buildSearchIndex(topics) {
+    const items = [];
+    const add = (topic, type, ref, title, text = '') =>
+      items.push({ topic, type, ref: viewKey(topic.id, type, ref), title, text });
+    const load = (file) => loadMaterial(file).catch(() => '');
+    for (const t of topics) {
+      for (const b of asList(t.bots)) if (safeUrl(b.url)) add(t, 'bot', b.url, b.label || 'Practice bot', b.description || '');
+      asList(t.videos).filter((v) => youtubeId(v))
+        .forEach((v, i) => add(t, 'video', youtubeId(v), v.title || `Video ${i + 1}`));
+      for (const file of asList(t.material)) {
+        const md = await load(file);
+        add(t, 'text', file, firstHeading(md) || 'Written material', plainText(md));
+      }
+      for (const q of quizEntries(t.quizzes)) {
+        const md = await load(q.file);
+        add(t, 'quiz', q.file, q.title || firstHeading(md) || 'Quiz', plainText(md));
+      }
+      for (const f of fileEntries(t.files)) add(t, 'file', f.file, f.label);
+      for (const l of asList(t.links)) {
+        const url = safeUrl(l.url);
+        if (url) add(t, 'link', l.url, l.label || url.hostname);
+      }
+    }
+    return items;
+  }
+
+  // Every word of the query must appear in the item's title or text.
+  function searchItems(index, query) {
+    const words = query.toLowerCase().split(/\s+/).filter(Boolean);
+    if (!words.length) return [];
+    return index
+      .map((item, order) => {
+        const title = item.title.toLowerCase();
+        const text = item.text.toLowerCase();
+        if (!words.every((w) => title.includes(w) || text.includes(w))) return null;
+        const score = words.reduce((n, w) => n + (title.includes(w) ? 100 : 0) + text.split(w).length - 1, 0);
+        return { item, score, order };
+      })
+      .filter(Boolean)
+      .sort((a, b) => b.score - a.score || a.order - b.order)
+      .map((r) => r.item);
+  }
+
+  // Text with every query word wrapped in <mark>.
+  function highlight(text, words) {
+    const span = el('span');
+    const pattern = words.map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
+    if (!pattern) { span.textContent = text; return span; }
+    text.split(new RegExp(`(${pattern})`, 'gi')).forEach((part, i) => {
+      span.append(i % 2 ? el('mark', { text: part }) : part);
+    });
+    return span;
+  }
+
+  // A piece of the text around the first match.
+  function snippet(text, words) {
+    const lower = text.toLowerCase();
+    const at = Math.min(...words.map((w) => lower.indexOf(w)).filter((i) => i >= 0));
+    if (!Number.isFinite(at)) return text.length > 140 ? `${text.slice(0, 140)}…` : text;
+    let start = Math.max(0, at - 50);
+    const space = text.indexOf(' ', start);
+    if (start && space >= 0 && space < at) start = space + 1; // begin on a whole word
+    const end = Math.min(text.length, at + 110);
+    return `${start ? '…' : ''}${text.slice(start, end).trim()}${end < text.length ? '…' : ''}`;
+  }
+
+  // After opening a result: open its line (list view) or scroll to its card, and flash it.
+  function focusItem(main, ref) {
+    const node = [...main.querySelectorAll('[data-ref]')].find((n) => n.dataset.ref === ref);
+    if (!node) return;
+    if (lineItems.has(node)) lineItems.get(node).open(true);
+    node.scrollIntoView({ block: lineItems.has(node) ? 'start' : 'center', behavior: reducedMotion ? 'auto' : 'smooth' });
+    node.classList.remove('search-hit');
+    void node.offsetWidth;
+    node.classList.add('search-hit');
+  }
+
+  function setupSearch(main, topics, go) {
+    const input = document.querySelector('.search-input');
+    if (!input) return { reset() {} };
+    let index = null;
+    let saved = null; // the page that was showing before the search started
+
+    const getIndex = () => {
+      if (!index) index = buildSearchIndex(topics);
+      return index;
+    };
+
+    const restore = () => {
+      if (!saved) return;
+      main.replaceChildren(...saved);
+      document.body.dataset.page = saved.page;
+      saved = null;
+    };
+
+    const render = async () => {
+      const query = input.value.trim();
+      if (!query) { restore(); return; }
+      if (!saved) {
+        saved = [...main.childNodes];
+        saved.page = document.body.dataset.page;
+        if (openLine) openLine.close(); // stops a playing video
+      }
+      document.body.dataset.page = 'search';
+      const items = await getIndex();
+      if (input.value.trim() !== query) return; // a newer search is on its way
+      const words = query.toLowerCase().split(/\s+/).filter(Boolean);
+      const results = searchItems(items, query);
+      const rows = results.map((item) => {
+        const row = el('a', { class: 'line search-line', 'data-type': item.type, href: topicHref(item.topic.id) },
+          el('span', { class: 'line-type', text: LINE_TYPES[item.type] }),
+          el('span', { class: 'search-main' },
+            el('span', { class: 'line-label' }, highlight(item.title, words)),
+            el('span', { class: 'search-topic', text: `${item.topic.icon || '>_'} ${item.topic.title || item.topic.id}` }),
+            item.text ? el('span', { class: 'search-snippet' }, highlight(snippet(item.text, words), words)) : null),
+          el('span', { class: 'line-end', 'aria-hidden': 'true', text: '→' }));
+        row.addEventListener('click', (e) => {
+          if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+          e.preventDefault();
+          go(item.topic.id);
+          focusItem(main, item.ref);
+        });
+        return row;
+      });
+      main.replaceChildren(el('section', { class: 'search-results' },
+        el('p', { class: 'prompt', text: `$ grep -ri "${query}"` }),
+        el('p', { class: 'search-count', role: 'status', text: rows.length
+          ? `${rows.length} item${rows.length === 1 ? '' : 's'} found`
+          : 'Nothing found. Try other words.' }),
+        rows.length ? el('div', { class: 'line-list' }, ...rows) : null));
+    };
+
+    input.addEventListener('focus', getIndex, { once: true });
+    input.addEventListener('input', render);
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { input.value = ''; restore(); input.blur(); }
+      if (e.key === 'Enter') {
+        const first = main.querySelector('.search-line');
+        if (first) first.click();
+      }
+    });
+    // "/" jumps to the search box from anywhere on the page.
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey || entryOpen()) return;
+      if (e.target.closest && e.target.closest('input, textarea, select, [contenteditable]')) return;
+      e.preventDefault();
+      input.focus();
+    });
+
+    return {
+      // Called whenever a page is shown: the search is over.
+      reset() {
+        saved = null;
+        input.value = '';
+      },
+    };
+  }
+
   // ---------- App: one page, switching between Main and topics in place ----------
   async function renderApp() {
     const main = document.getElementById('app');
@@ -1141,7 +1319,9 @@
     const nav = topicNav(topics);
     document.getElementById('topic-nav-slot').replaceWith(nav.node);
 
+    let search = null;
     const show = (id) => {
+      if (search) search.reset();
       drawTopicBody = null;
       openLine = null;
       if (id === MAIN) showHome(main, data.site);
@@ -1151,16 +1331,22 @@
       nav.select(id);
     };
 
+    // Opens a page (from the sidebar, the logo or a search result).
+    const go = (id) => {
+      if (id !== currentId()) history.pushState({ main: true }, '', topicHref(id));
+      show(id);
+      window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
+    };
+    search = setupSearch(main, topics, go);
+
     // Links marked data-route (sidebar, logo) switch pages without a reload.
     document.addEventListener('click', (e) => {
       const a = e.target.closest('a[data-route]');
       if (!a || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       e.preventDefault();
       const id = a.dataset.route;
-      if (id === currentId()) return;
-      history.pushState({ main: true }, '', topicHref(id));
-      show(id);
-      window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
+      if (id === currentId() && document.body.dataset.page !== 'search') return;
+      go(id);
     });
     window.addEventListener('popstate', () => show(currentId()));
     window.matchMedia('(min-width: 820px)').addEventListener('change', () => nav.place(false));
