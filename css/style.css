@@ -285,7 +285,7 @@ a { color: var(--accent); }
 
 .topbar-actions { display: flex; flex: 0 0 auto; gap: 8px; }
 
-.theme-toggle, .view-toggle {
+.theme-toggle, .view-toggle, .icons-toggle {
   display: inline-grid;
   place-items: center;
   flex: 0 0 auto;
@@ -298,8 +298,9 @@ a { color: var(--accent); }
   font-size: 1.1rem;
   cursor: pointer;
 }
-.theme-toggle:hover, .view-toggle:hover { border-color: var(--accent); }
-.theme-toggle svg, .view-toggle svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.theme-toggle:hover, .view-toggle:hover, .icons-toggle:hover { border-color: var(--accent); }
+.theme-toggle svg, .view-toggle svg, .icons-toggle svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.icons-toggle[aria-pressed="false"] { color: var(--muted); border-style: dashed; }
 
 .py-toggle {
   display: inline-flex;
@@ -318,7 +319,10 @@ a { color: var(--accent); }
 .colab-link { text-decoration: none; }
 .colab-link .py-toggle-icon { font-weight: 700; }
 .py-toggle:hover, .py-toggle[aria-expanded="true"] { border-color: var(--accent); background: rgba(var(--glyph), 0.12); }
-.py-toggle:focus-visible, .theme-toggle:focus-visible, .view-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.py-toggle:focus-visible, .theme-toggle:focus-visible, .view-toggle:focus-visible, .icons-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+/* Unit icons (beside unit names and atop a unit page) can be switched off. */
+:root[data-icons="off"] .nav-icon, :root[data-icons="off"] .card-icon,
+:root[data-icons="off"] .search-topic-icon { display: none; }
 /* Theme menu: opened from either theme button. */
 .theme-menu {
   position: fixed;

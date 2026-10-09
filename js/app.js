@@ -289,6 +289,34 @@
     updateViewToggle();
   }
 
+  // ---------- Icons toggle: show or hide the small icons beside unit names ----------
+  const iconsToggle = document.querySelector('.icons-toggle');
+  const ICON_ICONS = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="6" height="6" rx="1.5"/>'
+    + '<path d="M13 8h7.5"/><rect x="3.5" y="13" width="6" height="6" rx="1.5"/><path d="M13 16h7.5"/></svg>';
+
+  function updateIconsToggle() {
+    if (!iconsToggle) return;
+    const shown = root.dataset.icons !== 'off';
+    const label = shown ? 'Hide unit icons' : 'Show unit icons';
+    iconsToggle.innerHTML = ICON_ICONS;
+    iconsToggle.setAttribute('aria-pressed', String(shown));
+    iconsToggle.setAttribute('aria-label', label);
+    iconsToggle.title = label;
+  }
+
+  if (iconsToggle) {
+    iconsToggle.addEventListener('click', () => {
+      const shown = root.dataset.icons === 'off';
+      if (shown) delete root.dataset.icons;
+      else root.dataset.icons = 'off';
+      try { localStorage.setItem('icons', shown ? 'on' : 'off'); } catch { /* storage unavailable */ }
+      updateIconsToggle();
+      // The sidebar marker sits over the selected unit, whose size just changed.
+      window.dispatchEvent(new Event('resize'));
+    });
+    updateIconsToggle();
+  }
+
   // ---------- Data ----------
   async function loadData(container) {
     try {
@@ -1349,7 +1377,8 @@
     const main = el('span', { class: 'search-main' });
     label.replaceWith(main);
     main.append(label,
-      el('span', { class: 'search-topic', text: `${item.topic.icon || '>_'} ${item.topic.title || item.topic.id}` }));
+      el('span', { class: 'search-topic' },
+        el('span', { class: 'search-topic-icon', text: `${item.topic.icon || '>_'} ` }), item.topic.title || item.topic.id));
     if (item.text) main.append(el('span', { class: 'search-snippet' }, highlight(snippet(item.text, words), words)));
     return node;
   }

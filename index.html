@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
   <link rel="stylesheet" href="css/style.css">
-  <script>document.documentElement.dataset.view = 'list'; try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; if (localStorage.getItem('view') === 'cards') delete document.documentElement.dataset.view; } catch (e) {}
+  <script>document.documentElement.dataset.view = 'list'; try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; if (localStorage.getItem('view') === 'cards') delete document.documentElement.dataset.view; if (localStorage.getItem('icons') === 'off') document.documentElement.dataset.icons = 'off'; } catch (e) {}
     // Opening the main address shows the entry screen first (a refresh after ENTER stays on the page you were on).
     if (!new URLSearchParams(location.search).get('id') && !(history.state && history.state.main)) document.documentElement.dataset.entry = '';</script>
 </head>
@@ -45,6 +45,7 @@
         <span class="py-toggle-icon" aria-hidden="true">co</span><span class="py-toggle-label">Colab</span>
       </a>
       <button class="view-toggle" type="button" aria-label="Switch to card view"></button>
+      <button class="icons-toggle" type="button" aria-label="Hide unit icons" aria-pressed="true"></button>
       <button class="theme-toggle" type="button" aria-label="Colour scheme"></button>
     </div>
   </header>
