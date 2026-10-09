@@ -615,6 +615,12 @@ a { color: var(--accent); }
 .topic-nav.open .nav-list { display: block; animation: rise 0.2s ease both; }
 .topic-nav .nav-list li + li { margin-top: 2px; }
 
+/* Scrollable, but with the scrollbar hidden */
+.topic-nav,
+.topic-nav .nav-list { scrollbar-width: none; -ms-overflow-style: none; }
+.topic-nav::-webkit-scrollbar,
+.topic-nav .nav-list::-webkit-scrollbar { display: none; }
+
 @media (min-width: 820px) {
   .topbar { max-width: 1320px; }
   .app-layout {
