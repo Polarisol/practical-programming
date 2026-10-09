@@ -184,7 +184,8 @@
           "url": "https://xxxxxxx"
         }
       ],
-      "material": ["topics/recursion_intro.md", "topics/recursion_be_careful.md", "topics/recursion_memoization.md", "topics/wwntr_recursion.md"]
+      "material": ["topics/recursion_intro.md", "topics/recursion_be_careful.md", "topics/recursion_memoization.md", "topics/wwntr_recursion.md"],
+      "quizzes": ["quizzes/recursion_quiz.md"]
     },
 
     {

@@ -11,3 +11,7 @@
 5. You should be able to read a recursive function and understand what it does, what goals it achieves.
 
 6. You should be aware of the potential for stack overflow if the recursion is too deep or if the base case is not reached correctly.
+
+7. You should understand how memoization can be used to optimize recursive functions by saving the results of expensive function calls and reusing them when the same inputs occur again.
+
+8. You should be able to implement memoization using a dictionary to store previously computed results.
