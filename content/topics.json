@@ -230,6 +230,20 @@
     },
 
     {
+      "id": "pandas",
+      "title": "Pandas",
+      "icon": "🐼",
+      "blurb": "Load, clean and explore tables of data with pandas.",
+      "bots": [
+        {
+          "label": "Study Bot",
+          "description": "I can help you study, teach you and quiz you on Pandas.",
+          "url": "https://xxxxxxx"
+        }
+      ]
+    },
+
+    {
       "id": "machine-learning",
       "title": "Machine Learning",
       "icon": "🧠",
