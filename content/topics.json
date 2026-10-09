@@ -149,6 +149,55 @@
           "file": "files/TwoWindowsCode.zip"
         }
       ]
+    },
+
+    {
+      "id": "monte-carlo",
+      "title": "Monte Carlo",
+      "icon": "🎲",
+      "blurb": "Use random sampling to estimate answers and simulate experiments."
+    },
+
+    {
+      "id": "sympy",
+      "title": "SymPy",
+      "icon": "∑",
+      "blurb": "Do symbolic math in Python: solve equations, simplify, differentiate and integrate."
+    },
+
+    {
+      "id": "machine-learning",
+      "title": "Machine Learning",
+      "icon": "🧠",
+      "blurb": "Teach the computer to find patterns in data and make predictions."
+    },
+
+    {
+      "id": "integrating-llms",
+      "title": "Integrating LLMs",
+      "icon": "💬",
+      "blurb": "Call large language models from your own Python programs."
+    },
+
+    {
+      "id": "sql",
+      "title": "SQL",
+      "icon": "🗄",
+      "blurb": "Store, query and update data in a database with SQL."
+    },
+
+    {
+      "id": "pygame",
+      "title": "Pygame",
+      "icon": "🎮",
+      "blurb": "Build simple 2D games with graphics, sound and keyboard input."
+    },
+
+    {
+      "id": "graph-navigation",
+      "title": "Graph Navigation",
+      "icon": "🧭",
+      "blurb": "Find your way through graphs and mazes with BFS, DFS and A*."
     }
   ]
 }
