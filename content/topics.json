@@ -240,6 +240,13 @@
           "description": "I can help you study, teach you and quiz you on Pandas.",
           "url": "https://xxxxxxx"
         }
+      ],
+      "material": ["topics/pandas_basics.md"],
+      "files": [
+        {
+          "label": "kids.csv",
+          "file": "files/kids.csv"
+        }
       ]
     },
 
