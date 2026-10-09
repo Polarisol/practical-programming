@@ -12,6 +12,13 @@
       "title": "Installation",
       "icon": "⬇",
       "blurb": "What and how to install what you need",
+      "bots": [
+        {
+          "label": "Study Bot",
+          "description": "I can help you study, teach you and quiz you on Installation.",
+          "url": "https://xxxxxxx"
+        }
+      ],
       "material": "topics/install.md"
     },
     {
@@ -19,6 +26,13 @@
       "title": "Starting a Project",
       "icon": "📁",
       "blurb": "Set up a new Python project in VS Code with uv, step by step.",
+      "bots": [
+        {
+          "label": "Study Bot",
+          "description": "I can help you study, teach you and quiz you on Starting a Project.",
+          "url": "https://xxxxxxx"
+        }
+      ],
       "videos": [
         {
           "title": "Starting a new Project",
@@ -64,6 +78,13 @@
       "title": "Using Git",
       "icon": "⎇",
       "blurb": "Save snapshots of your project, undo mistakes and go back in time with git in VS Code.",
+      "bots": [
+        {
+          "label": "Study Bot",
+          "description": "I can help you study, teach you and quiz you on Using Git.",
+          "url": "https://xxxxxxx"
+        }
+      ],
       "material": ["topics/using-git.md", "topics/wwntr_git.md"]
     },
     {
@@ -71,6 +92,13 @@
       "title": "Using AI",
       "icon": "🤖",
       "blurb": "The correct way to use AI tools like GitHub Copilot in your coding workflow.",
+      "bots": [
+        {
+          "label": "Study Bot",
+          "description": "I can help you study, teach you and quiz you on Using AI.",
+          "url": "https://xxxxxxx"
+        }
+      ],
       "material": "topics/github_copilot.md"
     },
     {
@@ -78,6 +106,13 @@
       "title": "Plotting Graphs",
       "icon": "📊",
       "blurb": "Learn how to create visual representations of your data using matplotlib.",
+      "bots": [
+        {
+          "label": "Study Bot",
+          "description": "I can help you study, teach you and quiz you on Plotting Graphs.",
+          "url": "https://xxxxxxx"
+        }
+      ],
       "material": ["topics/matplotlib.md", "topics/wwntr_graphs.md"]
     },
 
@@ -156,6 +191,13 @@
       "title": "Recursion",
       "icon": "🔁",
       "blurb": "Functions that call themselves to solve a problem one smaller piece at a time.",
+      "bots": [
+        {
+          "label": "Study Bot",
+          "description": "I can help you study, teach you and quiz you on Recursion.",
+          "url": "https://xxxxxxx"
+        }
+      ],
       "material": ["topics/recursion_intro.md", "topics/recursion_be_careful.md", "topics/recursion_memoization.md", "topics/wwntr_recursion.md"]
     },
 
@@ -163,49 +205,98 @@
       "id": "monte-carlo",
       "title": "Monte Carlo",
       "icon": "🎲",
-      "blurb": "Use random sampling to estimate answers and simulate experiments."
+      "blurb": "Use random sampling to estimate answers and simulate experiments.",
+      "bots": [
+        {
+          "label": "Study Bot",
+          "description": "I can help you study, teach you and quiz you on Monte Carlo.",
+          "url": "https://xxxxxxx"
+        }
+      ]
     },
 
     {
       "id": "sympy",
       "title": "SymPy",
       "icon": "∑",
-      "blurb": "Do symbolic math in Python: solve equations, simplify, differentiate and integrate."
+      "blurb": "Do symbolic math in Python: solve equations, simplify, differentiate and integrate.",
+      "bots": [
+        {
+          "label": "Study Bot",
+          "description": "I can help you study, teach you and quiz you on SymPy.",
+          "url": "https://xxxxxxx"
+        }
+      ]
     },
 
     {
       "id": "machine-learning",
       "title": "Machine Learning",
       "icon": "🧠",
-      "blurb": "Teach the computer to find patterns in data and make predictions."
+      "blurb": "Teach the computer to find patterns in data and make predictions.",
+      "bots": [
+        {
+          "label": "Study Bot",
+          "description": "I can help you study, teach you and quiz you on Machine Learning.",
+          "url": "https://xxxxxxx"
+        }
+      ]
     },
 
     {
       "id": "integrating-llms",
       "title": "Integrating LLMs",
       "icon": "💬",
-      "blurb": "Call large language models from your own Python programs."
+      "blurb": "Call large language models from your own Python programs.",
+      "bots": [
+        {
+          "label": "Study Bot",
+          "description": "I can help you study, teach you and quiz you on Integrating LLMs.",
+          "url": "https://xxxxxxx"
+        }
+      ]
     },
 
     {
       "id": "sql",
       "title": "SQL",
       "icon": "🗄",
-      "blurb": "Store, query and update data in a database with SQL."
+      "blurb": "Store, query and update data in a database with SQL.",
+      "bots": [
+        {
+          "label": "Study Bot",
+          "description": "I can help you study, teach you and quiz you on SQL.",
+          "url": "https://xxxxxxx"
+        }
+      ]
     },
 
     {
       "id": "pygame",
       "title": "Pygame",
       "icon": "🎮",
-      "blurb": "Build simple 2D games with graphics, sound and keyboard input."
+      "blurb": "Build simple 2D games with graphics, sound and keyboard input.",
+      "bots": [
+        {
+          "label": "Study Bot",
+          "description": "I can help you study, teach you and quiz you on Pygame.",
+          "url": "https://xxxxxxx"
+        }
+      ]
     },
 
     {
       "id": "graph-navigation",
       "title": "Graph Navigation",
       "icon": "🧭",
-      "blurb": "Find your way through graphs and mazes with BFS, DFS and A*."
+      "blurb": "Find your way through graphs and mazes with BFS, DFS and A*.",
+      "bots": [
+        {
+          "label": "Study Bot",
+          "description": "I can help you study, teach you and quiz you on Graph Navigation.",
+          "url": "https://xxxxxxx"
+        }
+      ]
     }
   ]
 }
