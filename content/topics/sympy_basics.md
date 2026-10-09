@@ -4,12 +4,9 @@
 
 When we write `x = 5` in Python, `x` is just a name for a number. Python can only calculate with values it already knows. But in a math class we often work with an **unknown** `x`: we expand `(x + 1)²`, solve `2x + 3 = 11`, or find the derivative of `x³`.
 
-**SymPy** (Symbolic Python) is a library that lets Python do this kind of math. It works with **symbols** and gives **exact** answers, just like you would write them on paper:
+**SymPy** (Symbolic Python) is a library that lets Python do this kind of math. It works with **symbols** and gives **exact** answers, just like you would write them on paper.
 
-- NumPy says `√8 = 2.8284271247461903` (a rounded decimal).
-- SymPy says `√8 = 2*sqrt(2)` (the exact answer).
-
-SymPy can simplify, expand and factor expressions, solve equations and systems of equations, differentiate, integrate, find limits, work with matrices and much more. It is free, written entirely in Python, and is a good "calculator" to check your homework.
+SymPy can simplify, expand and factor expressions, solve equations and systems of equations, differentiate, integrate, find limits, work with matrices and much more. It is free, written entirely in Python, and is a good way for your project / robot to solve math or physics problems.
 
 ## Installing SymPy
 
