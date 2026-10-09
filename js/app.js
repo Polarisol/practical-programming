@@ -1121,10 +1121,27 @@
       indicator.style.height = `${li.offsetHeight}px`;
     };
 
+    // Scrolls the list (the sidebar on wide screens, the open strip on phones) just
+    // enough to show the selected unit, with a little room around it.
+    const reveal = (animate) => {
+      const item = items.get(activeId);
+      const li = item && item.link.parentElement;
+      if (!li || !li.offsetHeight) return;
+      const box = [node, list].find((b) => b.scrollHeight > b.clientHeight + 1);
+      if (!box) return;
+      const pad = 24;
+      const top = li.getBoundingClientRect().top - box.getBoundingClientRect().top;
+      const bottom = top + li.offsetHeight;
+      let by = 0;
+      if (top < pad) by = top - pad;
+      else if (bottom > box.clientHeight - pad) by = bottom - box.clientHeight + pad;
+      if (by) box.scrollBy({ top: by, behavior: animate && !reducedMotion ? 'smooth' : 'auto' });
+    };
+
     const setOpen = (open) => {
       node.classList.toggle('open', open);
       toggle.setAttribute('aria-expanded', String(open));
-      if (open) place(false);
+      if (open) { place(false); reveal(false); }
     };
     toggle.addEventListener('click', () => setOpen(!node.classList.contains('open')));
     document.addEventListener('click', (e) => {
@@ -1150,6 +1167,7 @@
         item.link.setAttribute('aria-current', 'page');
         scramble(item.title, item.text);
         place(!first);
+        reveal(!first);
         // A short burst of light when the marker arrives.
         indicator.classList.remove('arrive');
         void indicator.offsetWidth;
