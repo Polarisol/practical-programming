@@ -257,6 +257,7 @@
       "title": "SQL",
       "icon": "🗄",
       "blurb": "Store, query and update data in a database with SQL.",
+      "material": "topics/sql_basics.md",
       "bots": [
         {
           "label": "Study Bot",
