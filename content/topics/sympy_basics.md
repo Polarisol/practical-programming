@@ -52,11 +52,23 @@ print(sp.Rational(1, 3))                       # 1/3
 print(sp.Rational(1, 3) + sp.Rational(1, 6))   # 1/2
 ```
 
+```math
+\frac{1}{3}
+\frac{1}{2}
+```
+
+The comments show what `print` writes in the terminal. Blocks like the one above show the same results as they would be written in math notation.
+
 Square roots and constants like `pi` also stay exact, and SymPy simplifies them for you:
 
 ```python
 print(sp.sqrt(8))        # 2*sqrt(2)
 print(sp.sqrt(2) ** 2)   # 2         (exactly 2, not 2.0000000000000004)
+```
+
+```math
+2 \sqrt{2}
+2
 ```
 
 When you do want a decimal number, use `evalf()` (or `sp.N`). You can ask for as many digits as you like:
@@ -84,6 +96,12 @@ print(expr + x)      # x**2 + 3*x + 1
 print(2 * expr)      # 2*x**2 + 4*x + 2
 ```
 
+```math
+x^{2} + 2 x + 1
+x^{2} + 3 x + 1
+2 x^{2} + 4 x + 2
+```
+
 SymPy collects like terms automatically (`2*x + x` became `3*x`).
 
 ### Substituting values: `subs`
@@ -93,6 +111,11 @@ SymPy collects like terms automatically (`2*x + x` became `3*x`).
 ```python
 print(expr.subs(x, 3))        # 16
 print(expr.subs(x, y + 1))    # 2*y + (y + 1)**2 + 3
+```
+
+```math
+16
+2 y + \left(y + 1\right)^{2} + 3
 ```
 
 ### Pretty printing
@@ -110,6 +133,10 @@ x  - 1
 x + 3
 ```
 
+```math
+\frac{x^{2} - 1}{x + 3}
+```
+
 > Tip: in Jupyter, just writing the expression on the last line of a cell shows it as real math notation.
 
 ## Level 3: Rearranging expressions
@@ -124,10 +151,22 @@ SymPy does not change the form of an expression unless you ask it to. These func
 | `sp.cancel` | Cancels common factors in a fraction | `sp.cancel((x**2 + 2*x + 1)/(x**2 + x))` | `(x + 1)/x` |
 | `sp.apart` | Splits into partial fractions | `sp.apart(1/(x**2 - 1))` | `-1/(2*(x + 1)) + 1/(2*(x - 1))` |
 
+```math
+(x + 1)^{3} = x^{3} + 3 x^{2} + 3 x + 1
+x^{2} - 5 x + 6 = \left(x - 3\right) \left(x - 2\right)
+\frac{x^{2} - 1}{x - 1} = x + 1
+\frac{x^{2} + 2 x + 1}{x^{2} + x} = \frac{x + 1}{x}
+\frac{1}{x^{2} - 1} = - \frac{1}{2 \left(x + 1\right)} + \frac{1}{2 \left(x - 1\right)}
+```
+
 `simplify` also knows trigonometric identities:
 
 ```python
 print(sp.simplify(sp.sin(x)**2 + sp.cos(x)**2))   # 1
+```
+
+```math
+\sin^{2}{\left(x \right)} + \cos^{2}{\left(x \right)} = 1
 ```
 
 ## Level 4: Solving equations
@@ -138,10 +177,18 @@ print(sp.simplify(sp.sin(x)**2 + sp.cos(x)**2))   # 1
 print(sp.solve(x**2 - 5*x + 6, x))   # [2, 3]
 ```
 
+```math
+x^{2} - 5 x + 6 = 0 \quad\Rightarrow\quad x = 2,\ x = 3
+```
+
 If the equation has something other than 0 on the right side, write it with `sp.Eq(left, right)`. (We can't use `=` or `==` for this: `=` is assignment and `==` checks if two expressions are identical.)
 
 ```python
 print(sp.solve(sp.Eq(2*x + 3, 11), x))   # [4]
+```
+
+```math
+2 x + 3 = 11 \quad\Rightarrow\quad x = 4
 ```
 
 The answers are exact. Use `evalf` if you need decimals:
@@ -152,10 +199,18 @@ print(solutions)                          # [-sqrt(2), sqrt(2)]
 print([s.evalf(4) for s in solutions])    # [-1.414, 1.414]
 ```
 
+```math
+x^{2} - 2 = 0 \quad\Rightarrow\quad x = - \sqrt{2},\ x = \sqrt{2}
+```
+
 SymPy also finds complex solutions (`I` is the imaginary unit, √-1):
 
 ```python
 print(sp.solve(x**2 + 1, x))   # [-I, I]
+```
+
+```math
+x^{2} + 1 = 0 \quad\Rightarrow\quad x = - i,\ x = i
 ```
 
 ### Systems of equations
@@ -164,6 +219,10 @@ Pass a list of equations and a list of unknowns. The answer is a dictionary:
 
 ```python
 print(sp.solve([x + y - 10, x - y - 2], [x, y]))   # {x: 6, y: 4}
+```
+
+```math
+\begin{cases} x + y = 10 \\ x - y = 2 \end{cases} \quad\Rightarrow\quad x = 6,\ y = 4
 ```
 
 ## Level 5: Calculus
@@ -177,10 +236,21 @@ print(sp.diff(x**4, x, 2))              # 12*x**2   (second derivative)
 print(sp.diff(x**2 * y**3, y))          # 3*x**2*y**2   (derivative by y; x is a constant)
 ```
 
+```math
+\frac{d}{dx}\left(x^{3} + 2 x\right) = 3 x^{2} + 2
+\frac{d}{dx}\left(e^{x} \sin{\left(x \right)}\right) = e^{x} \sin{\left(x \right)} + e^{x} \cos{\left(x \right)}
+\frac{d^{2}}{dx^{2}}\, x^{4} = 12 x^{2}
+\frac{\partial}{\partial y}\left(x^{2} y^{3}\right) = 3 x^{2} y^{2}
+```
+
 To get the slope at a point, differentiate first and then substitute:
 
 ```python
 print(sp.diff(x**2, x).subs(x, 3))   # 6
+```
+
+```math
+\left.\frac{d}{dx}\, x^{2}\right|_{x=3} = 6
 ```
 
 ### Integrals: `integrate`
@@ -193,6 +263,12 @@ print(sp.integrate(sp.sin(x), (x, 0, sp.pi)))               # 2
 print(sp.integrate(sp.exp(-x**2), (x, -sp.oo, sp.oo)))      # sqrt(pi)
 ```
 
+```math
+\int x^{2}\, dx = \frac{x^{3}}{3}
+\int_{0}^{\pi} \sin{\left(x \right)}\, dx = 2
+\int_{-\infty}^{\infty} e^{- x^{2}}\, dx = \sqrt{\pi}
+```
+
 `sp.oo` (two letters o) is infinity.
 
 ### Limits: `limit`
@@ -201,6 +277,12 @@ print(sp.integrate(sp.exp(-x**2), (x, -sp.oo, sp.oo)))      # sqrt(pi)
 print(sp.limit(sp.sin(x) / x, x, 0))           # 1
 print(sp.limit(1 / x, x, 0, '+'))              # oo   (from the right)
 print(sp.limit((1 + 1/x)**x, x, sp.oo))        # E    (the number e)
+```
+
+```math
+\lim_{x \to 0} \frac{\sin{\left(x \right)}}{x} = 1
+\lim_{x \to 0^{+}} \frac{1}{x} = \infty
+\lim_{x \to \infty} \left(1 + \frac{1}{x}\right)^{x} = e
 ```
 
 ### Series
@@ -212,11 +294,19 @@ print(sp.series(sp.sin(x), x, 0, 8))
 # x - x**3/6 + x**5/120 - x**7/5040 + O(x**8)
 ```
 
+```math
+\sin{\left(x \right)} = x - \frac{x^{3}}{6} + \frac{x^{5}}{120} - \frac{x^{7}}{5040} + O\left(x^{8}\right)
+```
+
 And `summation` can even add up infinite sums:
 
 ```python
 n = sp.symbols('n')
 print(sp.summation(1 / n**2, (n, 1, sp.oo)))   # pi**2/6
+```
+
+```math
+\sum_{n=1}^{\infty} \frac{1}{n^{2}} = \frac{\pi^{2}}{6}
 ```
 
 ## Level 6: Matrices
@@ -233,6 +323,12 @@ a, b = sp.symbols('a b')
 A = sp.Matrix([[a, b], [b, a]])
 print(A.det())         # a**2 - b**2
 print(A.eigenvals())   # {a - b: 1, a + b: 1}
+```
+
+```math
+M = \left[\begin{matrix}1 & 2\\3 & 4\end{matrix}\right] \qquad \det M = -2 \qquad M^{-1} = \left[\begin{matrix}-2 & 1\\\frac{3}{2} & - \frac{1}{2}\end{matrix}\right]
+\lambda = \frac{5}{2} - \frac{\sqrt{33}}{2},\ \ \lambda = \frac{5}{2} + \frac{\sqrt{33}}{2}
+A = \left[\begin{matrix}a & b\\b & a\end{matrix}\right] \qquad \det A = a^{2} - b^{2} \qquad \lambda = a - b,\ \ \lambda = a + b
 ```
 
 In `eigenvals`, the number after each value is how many times it appears.
@@ -253,6 +349,11 @@ print(sp.dsolve(f(x).diff(x, 2) + f(x), f(x)))
 # Eq(f(x), C1*sin(x) + C2*cos(x))
 ```
 
+```math
+f'(x) = f(x) \quad\Rightarrow\quad f{\left(x \right)} = C_{1} e^{x}
+f''(x) + f(x) = 0 \quad\Rightarrow\quad f{\left(x \right)} = C_{1} \sin{\left(x \right)} + C_{2} \cos{\left(x \right)}
+```
+
 ## Level 8: From symbols back to numbers
 
 SymPy is exact, but slow when you need to calculate an expression for thousands of values (for example, to draw a graph). `sp.lambdify` turns an expression into a regular, fast Python function that works on NumPy arrays:
@@ -270,6 +371,12 @@ And to put a result in a report or presentation, `sp.latex` gives the LaTeX code
 
 ```python
 print(sp.latex(sp.Integral(x**2, x)))   # \int x^{2}\, dx
+```
+
+This is how that LaTeX code looks once it is drawn:
+
+```math
+\int x^{2}\, dx
 ```
 
 ## Summary

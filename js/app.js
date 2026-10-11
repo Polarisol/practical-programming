@@ -477,6 +477,23 @@
     wrap.append(pre, button);
   }
 
+  // A ```math block holds LaTeX, one formula per line, drawn with KaTeX.
+  // Without KaTeX (e.g. offline) the LaTeX source stays as a code block.
+  function mathBlock(code) {
+    if (!window.katex) return;
+    const box = el('div', { class: 'math-block' });
+    code.textContent.split('\n').filter((line) => line.trim()).forEach((line) => {
+      const row = el('div', { class: 'math-line' });
+      try {
+        window.katex.render(line, row, { displayMode: true, throwOnError: false });
+      } catch {
+        row.textContent = line;
+      }
+      box.append(row);
+    });
+    code.parentElement.replaceWith(box);
+  }
+
   function renderMarkdown(text) {
     if (window.marked && window.DOMPurify) {
       const html = window.DOMPurify.sanitize(window.marked.parse(text));
@@ -489,6 +506,7 @@
           a.rel = 'noopener noreferrer';
         }
       });
+      div.querySelectorAll('pre > code.language-math').forEach(mathBlock);
       div.querySelectorAll('pre').forEach(addCopyButton);
       return [...div.childNodes];
     }
@@ -518,6 +536,23 @@
     return markdownReady;
   }
 
+  // KaTeX is only fetched for material that has ```math blocks.
+  let mathReady = null;
+  function loadMathLibs() {
+    if (!mathReady) {
+      const base = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/';
+      document.head.append(el('link', {
+        rel: 'stylesheet',
+        href: `${base}katex.min.css`,
+        integrity: 'sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+',
+        crossorigin: 'anonymous',
+      }));
+      mathReady = loadScript(`${base}katex.min.js`,
+        'sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg');
+    }
+    return mathReady;
+  }
+
   const materialCache = new Map();
   function loadMaterial(file) {
     if (!materialCache.has(file)) {
@@ -527,7 +562,10 @@
           return res.text();
         }),
         loadMarkdownLibs(),
-      ]).then(([text]) => text);
+      ]).then(async ([text]) => {
+        if (/^```math\s*$/m.test(text)) await loadMathLibs();
+        return text;
+      });
       // Don't keep a failure, so trying again really loads the file again.
       loading.catch(() => materialCache.delete(file));
       materialCache.set(file, loading);

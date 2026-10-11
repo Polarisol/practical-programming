@@ -958,6 +958,9 @@ a { color: var(--accent); }
 .prose pre code { font-size: 0.8rem; }
 .code-wrap { position: relative; }
 .code-wrap pre { padding-right: 84px; }
+.prose .math-block { margin: 1em 0; padding: 4px 14px; border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; background: var(--surface-2); overflow-x: auto; }
+.prose .math-line .katex-display { margin: 0.5em 0; text-align: left; }
+.prose .math-line .katex-display > .katex { text-align: left; }
 .copy-btn {
   position: absolute;
   top: 8px;
