@@ -6,6 +6,8 @@ Three more things that make a PySide6 program look and feel like a "real" applic
 
 The menu bar is the row at the top of the window with menus like **File**, **Edit** and **Help**. Clicking a menu opens a list of items, and clicking an item runs a method, just like clicking a button.
 
+![A window with a menu bar: File, Edit and View. The File menu is open and shows Clear and Exit (Ctrl+Q)](content/images/pyside_menubar.png)
+
 ### Step 1: Use `QMainWindow` Instead of `QWidget`
 
 Until now our window class inherited from `QWidget`. A plain `QWidget` has no menu bar. For a menu bar we use **`QMainWindow`**, which is a window that already has a place for a menu bar at the top (and for a status bar at the bottom).
@@ -221,6 +223,10 @@ Notice:
 * The actions are created first, and only then added to the menus. This keeps the code organized: all the "what does each item do" in one place, and all the "where does it appear" in another.
 * The methods connected to the actions are written exactly like the methods connected to buttons.
 
+This is how the editor looks. On the left, **Edit > Change Case** is open and shows the submenu. On the right, **View** is open, and **Read Only** has a check mark because it was clicked:
+
+![Left: the Edit menu with the Change Case submenu open. Right: the View menu with Read Only checked](content/images/pyside_menubar_submenu_check.png)
+
 > **Note for Mac users:** on macOS the menu bar is not shown inside the window. It appears at the top of the screen, like in every other Mac program. The code is the same.
 
 ## Part 2: Splitters
@@ -248,6 +254,10 @@ from PySide6.QtCore import Qt
 ```
 
 The widgets added to a splitter are created **without** a parent and **without** `setGeometry`. The splitter becomes their parent, and it decides their size and position by itself.
+
+Here is a window with a horizontal splitter and two text boxes. The pink arrow shows the handle between them. Dragging it to the right makes the left part bigger and the right part smaller:
+
+![A horizontal splitter with two text boxes, before and after dragging the handle to the right](content/images/pyside_splitter_drag.png)
 
 ### Making the Splitter Fill the Window
 
@@ -416,6 +426,10 @@ Notice:
 * `self.setGeometry(...)` is still used for the **window** itself. Inside the splitters, only the widgets in the left panel use `setGeometry`, because they are placed inside the panel, not directly in a splitter.
 * `self.right_splitter.setChildrenCollapsible(False)` was not called, so the user can drag the lower handle all the way down and hide the label. Try it.
 * Make the window bigger: the text box grows, but the line edit and the button in the left panel keep their size, because they were placed with `setGeometry`.
+
+This is how the window looks after adding three notes. On the right, the same window with the two splitter handles marked in pink: the handle of `main_splitter` (left/right) and the handle of `right_splitter` (top/bottom):
+
+![The Notes window. On the right, the handles of main_splitter and right_splitter are marked in pink](content/images/pyside_splitter_notes.png)
 
 ## Part 3: Layouts
 
