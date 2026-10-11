@@ -47,23 +47,24 @@ The examples below use `import sympy as sp`.
 Regular Python division gives a rounded decimal. SymPy's `Rational` keeps the exact fraction:
 
 ```python
-print(1 / 3)                                   # 0.3333333333333333
-print(sp.Rational(1, 3))                       # 1/3
-print(sp.Rational(1, 3) + sp.Rational(1, 6))   # 1/2
+print(1 / 3)
+print(sp.Rational(1, 3))
+print(sp.Rational(1, 3) + sp.Rational(1, 6))
 ```
 
 ```math
+0.3333333333333333
 \frac{1}{3}
 \frac{1}{2}
 ```
 
-The comments show what `print` writes in the terminal. Blocks like the one above show the same results as they would be written in math notation.
+The box under a code block shows what the code prints, written in math notation.
 
 Square roots and constants like `pi` also stay exact, and SymPy simplifies them for you:
 
 ```python
-print(sp.sqrt(8))        # 2*sqrt(2)
-print(sp.sqrt(2) ** 2)   # 2         (exactly 2, not 2.0000000000000004)
+print(sp.sqrt(8))
+print(sp.sqrt(2) ** 2)   # exactly 2, not 2.0000000000000004
 ```
 
 ```math
@@ -91,9 +92,9 @@ Now we can build **expressions** with the usual Python operators. Remember that 
 
 ```python
 expr = x**2 + 2*x + 1
-print(expr)          # x**2 + 2*x + 1
-print(expr + x)      # x**2 + 3*x + 1
-print(2 * expr)      # 2*x**2 + 4*x + 2
+print(expr)
+print(expr + x)
+print(2 * expr)
 ```
 
 ```math
@@ -109,8 +110,8 @@ SymPy collects like terms automatically (`2*x + x` became `3*x`).
 `subs` replaces a symbol with a number, or even with another expression:
 
 ```python
-print(expr.subs(x, 3))        # 16
-print(expr.subs(x, y + 1))    # 2*y + (y + 1)**2 + 3
+print(expr.subs(x, 3))
+print(expr.subs(x, y + 1))
 ```
 
 ```math
@@ -120,17 +121,10 @@ print(expr.subs(x, y + 1))    # 2*y + (y + 1)**2 + 3
 
 ### Pretty printing
 
-`sp.pprint` draws the expression in a more "math-like" way in the terminal:
+`sp.pprint` draws the expression in a more "math-like" way in the terminal, using text characters:
 
 ```python
 sp.pprint((x**2 - 1) / (x + 3))
-```
-
-```text
- 2
-x  - 1
-──────
-x + 3
 ```
 
 ```math
@@ -143,13 +137,13 @@ x + 3
 
 SymPy does not change the form of an expression unless you ask it to. These functions change the form without changing the value:
 
-| Function | What it does | Example | Result |
-|---|---|---|---|
-| `sp.expand` | Opens brackets | `sp.expand((x + 1)**3)` | `x**3 + 3*x**2 + 3*x + 1` |
-| `sp.factor` | Writes as a product | `sp.factor(x**2 - 5*x + 6)` | `(x - 3)*(x - 2)` |
-| `sp.simplify` | Tries to find the simplest form | `sp.simplify((x**2 - 1)/(x - 1))` | `x + 1` |
-| `sp.cancel` | Cancels common factors in a fraction | `sp.cancel((x**2 + 2*x + 1)/(x**2 + x))` | `(x + 1)/x` |
-| `sp.apart` | Splits into partial fractions | `sp.apart(1/(x**2 - 1))` | `-1/(2*(x + 1)) + 1/(2*(x - 1))` |
+| Function | What it does | Example |
+|---|---|---|
+| `sp.expand` | Opens brackets | `sp.expand((x + 1)**3)` |
+| `sp.factor` | Writes as a product | `sp.factor(x**2 - 5*x + 6)` |
+| `sp.simplify` | Tries to find the simplest form | `sp.simplify((x**2 - 1)/(x - 1))` |
+| `sp.cancel` | Cancels common factors in a fraction | `sp.cancel((x**2 + 2*x + 1)/(x**2 + x))` |
+| `sp.apart` | Splits into partial fractions | `sp.apart(1/(x**2 - 1))` |
 
 ```math
 (x + 1)^{3} = x^{3} + 3 x^{2} + 3 x + 1
@@ -162,7 +156,7 @@ x^{2} - 5 x + 6 = \left(x - 3\right) \left(x - 2\right)
 `simplify` also knows trigonometric identities:
 
 ```python
-print(sp.simplify(sp.sin(x)**2 + sp.cos(x)**2))   # 1
+print(sp.simplify(sp.sin(x)**2 + sp.cos(x)**2))
 ```
 
 ```math
@@ -174,7 +168,7 @@ print(sp.simplify(sp.sin(x)**2 + sp.cos(x)**2))   # 1
 `sp.solve(expression, x)` finds the values of `x` that make the expression **equal to zero**:
 
 ```python
-print(sp.solve(x**2 - 5*x + 6, x))   # [2, 3]
+print(sp.solve(x**2 - 5*x + 6, x))
 ```
 
 ```math
@@ -184,7 +178,7 @@ x^{2} - 5 x + 6 = 0 \quad\Rightarrow\quad x = 2,\ x = 3
 If the equation has something other than 0 on the right side, write it with `sp.Eq(left, right)`. (We can't use `=` or `==` for this: `=` is assignment and `==` checks if two expressions are identical.)
 
 ```python
-print(sp.solve(sp.Eq(2*x + 3, 11), x))   # [4]
+print(sp.solve(sp.Eq(2*x + 3, 11), x))
 ```
 
 ```math
@@ -195,8 +189,8 @@ The answers are exact. Use `evalf` if you need decimals:
 
 ```python
 solutions = sp.solve(x**2 - 2, x)
-print(solutions)                          # [-sqrt(2), sqrt(2)]
-print([s.evalf(4) for s in solutions])    # [-1.414, 1.414]
+print(solutions)
+print([s.evalf(4) for s in solutions])   # [-1.414, 1.414]
 ```
 
 ```math
@@ -206,7 +200,7 @@ x^{2} - 2 = 0 \quad\Rightarrow\quad x = - \sqrt{2},\ x = \sqrt{2}
 SymPy also finds complex solutions (`I` is the imaginary unit, √-1):
 
 ```python
-print(sp.solve(x**2 + 1, x))   # [-I, I]
+print(sp.solve(x**2 + 1, x))
 ```
 
 ```math
@@ -218,7 +212,7 @@ x^{2} + 1 = 0 \quad\Rightarrow\quad x = - i,\ x = i
 Pass a list of equations and a list of unknowns. The answer is a dictionary:
 
 ```python
-print(sp.solve([x + y - 10, x - y - 2], [x, y]))   # {x: 6, y: 4}
+print(sp.solve([x + y - 10, x - y - 2], [x, y]))
 ```
 
 ```math
@@ -230,10 +224,10 @@ print(sp.solve([x + y - 10, x - y - 2], [x, y]))   # {x: 6, y: 4}
 ### Derivatives: `diff`
 
 ```python
-print(sp.diff(x**3 + 2*x, x))           # 3*x**2 + 2
-print(sp.diff(sp.sin(x) * sp.exp(x), x)) # exp(x)*sin(x) + exp(x)*cos(x)   (product rule)
-print(sp.diff(x**4, x, 2))              # 12*x**2   (second derivative)
-print(sp.diff(x**2 * y**3, y))          # 3*x**2*y**2   (derivative by y; x is a constant)
+print(sp.diff(x**3 + 2*x, x))
+print(sp.diff(sp.sin(x) * sp.exp(x), x))   # product rule
+print(sp.diff(x**4, x, 2))                 # second derivative
+print(sp.diff(x**2 * y**3, y))             # derivative by y; x is a constant
 ```
 
 ```math
@@ -246,7 +240,7 @@ print(sp.diff(x**2 * y**3, y))          # 3*x**2*y**2   (derivative by y; x is a
 To get the slope at a point, differentiate first and then substitute:
 
 ```python
-print(sp.diff(x**2, x).subs(x, 3))   # 6
+print(sp.diff(x**2, x).subs(x, 3))
 ```
 
 ```math
@@ -258,9 +252,9 @@ print(sp.diff(x**2, x).subs(x, 3))   # 6
 Without limits we get the antiderivative (SymPy does not add the `+ C`). With a tuple `(x, a, b)` we get a definite integral:
 
 ```python
-print(sp.integrate(x**2, x))                                # x**3/3
-print(sp.integrate(sp.sin(x), (x, 0, sp.pi)))               # 2
-print(sp.integrate(sp.exp(-x**2), (x, -sp.oo, sp.oo)))      # sqrt(pi)
+print(sp.integrate(x**2, x))
+print(sp.integrate(sp.sin(x), (x, 0, sp.pi)))
+print(sp.integrate(sp.exp(-x**2), (x, -sp.oo, sp.oo)))
 ```
 
 ```math
@@ -274,9 +268,9 @@ print(sp.integrate(sp.exp(-x**2), (x, -sp.oo, sp.oo)))      # sqrt(pi)
 ### Limits: `limit`
 
 ```python
-print(sp.limit(sp.sin(x) / x, x, 0))           # 1
-print(sp.limit(1 / x, x, 0, '+'))              # oo   (from the right)
-print(sp.limit((1 + 1/x)**x, x, sp.oo))        # E    (the number e)
+print(sp.limit(sp.sin(x) / x, x, 0))
+print(sp.limit(1 / x, x, 0, '+'))         # from the right
+print(sp.limit((1 + 1/x)**x, x, sp.oo))   # the number e
 ```
 
 ```math
@@ -291,7 +285,6 @@ print(sp.limit((1 + 1/x)**x, x, sp.oo))        # E    (the number e)
 
 ```python
 print(sp.series(sp.sin(x), x, 0, 8))
-# x - x**3/6 + x**5/120 - x**7/5040 + O(x**8)
 ```
 
 ```math
@@ -302,7 +295,7 @@ And `summation` can even add up infinite sums:
 
 ```python
 n = sp.symbols('n')
-print(sp.summation(1 / n**2, (n, 1, sp.oo)))   # pi**2/6
+print(sp.summation(1 / n**2, (n, 1, sp.oo)))
 ```
 
 ```math
@@ -315,14 +308,14 @@ SymPy matrices work like NumPy matrices, but the answers are exact, and they can
 
 ```python
 M = sp.Matrix([[1, 2], [3, 4]])
-print(M.det())         # -2
-print(M.inv())         # Matrix([[-2, 1], [3/2, -1/2]])
-print(M.eigenvals())   # {5/2 - sqrt(33)/2: 1, 5/2 + sqrt(33)/2: 1}
+print(M.det())
+print(M.inv())
+print(M.eigenvals())
 
 a, b = sp.symbols('a b')
 A = sp.Matrix([[a, b], [b, a]])
-print(A.det())         # a**2 - b**2
-print(A.eigenvals())   # {a - b: 1, a + b: 1}
+print(A.det())
+print(A.eigenvals())
 ```
 
 ```math
@@ -340,13 +333,8 @@ A differential equation connects a function with its derivatives. First declare 
 ```python
 f = sp.Function('f')
 
-# f'(x) = f(x)
 print(sp.dsolve(f(x).diff(x) - f(x), f(x)))
-# Eq(f(x), C1*exp(x))
-
-# f''(x) + f(x) = 0
 print(sp.dsolve(f(x).diff(x, 2) + f(x), f(x)))
-# Eq(f(x), C1*sin(x) + C2*cos(x))
 ```
 
 ```math
