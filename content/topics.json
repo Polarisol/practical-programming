@@ -292,7 +292,8 @@
           "description": "I can help you study, teach you and quiz you on Graph Navigation.",
           "url": "https://xxxxxxx"
         }
-      ]
+      ],
+      "material": ["topics/graph_nav_intro.md", "topics/graph_nav_bfs.md", "topics/graph_nav_dfs.md", "topics/graph_nav_astar.md"]
     },
 
     {

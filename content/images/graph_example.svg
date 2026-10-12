@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 340" width="600" height="340">
+  <rect x="0" y="0" width="600" height="340" rx="18" fill="#f6f3ec"/>
+  <line x1="80" y1="175" x2="220" y2="85" stroke="#b9ab95" stroke-width="4"/>
+  <line x1="80" y1="175" x2="220" y2="265" stroke="#b9ab95" stroke-width="4"/>
+  <line x1="220" y1="85" x2="370" y2="55" stroke="#b9ab95" stroke-width="4"/>
+  <line x1="220" y1="85" x2="370" y2="175" stroke="#b9ab95" stroke-width="4"/>
+  <line x1="220" y1="265" x2="370" y2="290" stroke="#b9ab95" stroke-width="4"/>
+  <line x1="370" y1="175" x2="370" y2="290" stroke="#b9ab95" stroke-width="4"/>
+  <line x1="370" y1="175" x2="520" y2="175" stroke="#b9ab95" stroke-width="4"/>
+  <circle cx="80" cy="175" r="24" fill="#ffffff" stroke="#8a7a66" stroke-width="2.5"/>
+  <text x="80" y="182" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#4a3a2a" text-anchor="middle">A</text>
+  <circle cx="220" cy="85" r="24" fill="#ffffff" stroke="#8a7a66" stroke-width="2.5"/>
+  <text x="220" y="92" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#4a3a2a" text-anchor="middle">B</text>
+  <circle cx="220" cy="265" r="24" fill="#ffffff" stroke="#8a7a66" stroke-width="2.5"/>
+  <text x="220" y="272" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#4a3a2a" text-anchor="middle">C</text>
+  <circle cx="370" cy="55" r="24" fill="#ffffff" stroke="#8a7a66" stroke-width="2.5"/>
+  <text x="370" y="62" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#4a3a2a" text-anchor="middle">D</text>
+  <circle cx="370" cy="175" r="24" fill="#ffffff" stroke="#8a7a66" stroke-width="2.5"/>
+  <text x="370" y="182" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#4a3a2a" text-anchor="middle">E</text>
+  <circle cx="370" cy="290" r="24" fill="#ffffff" stroke="#8a7a66" stroke-width="2.5"/>
+  <text x="370" y="297" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#4a3a2a" text-anchor="middle">F</text>
+  <circle cx="520" cy="175" r="24" fill="#ffffff" stroke="#8a7a66" stroke-width="2.5"/>
+  <text x="520" y="182" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#4a3a2a" text-anchor="middle">G</text>
+</svg>
