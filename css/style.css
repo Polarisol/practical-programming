@@ -11,12 +11,13 @@
   --accent-contrast: #f2f0ea;
   --glyph: 13, 122, 91;       /* ASCII background colour (r, g, b) */
   --glyph-hot: 181, 80, 28;   /* colour near the pointer */
-  --type-bot: 13, 122, 91;    /* line-view tags: Bot / Text / Video / Link / Quiz / File */
+  --type-bot: 13, 122, 91;    /* line-view tags: Bot / Text / Video / Link / Quiz / Sim / File */
   --type-text: 3, 105, 161;
   --type-video: 190, 40, 40;
   --type-link: 109, 40, 217;
   --type-file: 92, 98, 106;
   --type-quiz: 180, 100, 0;
+  --type-sim: 190, 24, 120;
   --ok: 21, 128, 61;          /* quiz: right / wrong answers */
   --bad: 190, 40, 40;
   --explain: 109, 40, 217;    /* quiz: explanation under a question */
@@ -44,6 +45,7 @@
   --type-link: 196, 181, 253;
   --type-file: 170, 178, 188;
   --type-quiz: 251, 191, 36;
+  --type-sim: 244, 114, 182;
   --ok: 74, 222, 128;
   --bad: 252, 129, 129;
   --explain: 196, 181, 253;
@@ -69,6 +71,7 @@
   --type-link: 98, 103, 186;
   --type-file: 88, 110, 117;
   --type-quiz: 160, 115, 0;
+  --type-sim: 211, 54, 130;
   --ok: 107, 124, 0;
   --bad: 210, 45, 42;
   --explain: 98, 103, 186;
@@ -92,6 +95,7 @@
   --type-link: 121, 99, 148;
   --type-file: 110, 106, 138;
   --type-quiz: 176, 112, 20;
+  --type-sim: 215, 130, 126;
   --ok: 40, 105, 131;
   --bad: 180, 99, 122;
   --explain: 121, 99, 148;
@@ -115,6 +119,7 @@
   --type-link: 200, 160, 195;
   --type-file: 176, 185, 201;
   --type-quiz: 235, 203, 139;
+  --type-sim: 208, 135, 112;
   --ok: 163, 190, 140;
   --bad: 222, 128, 137;
   --explain: 200, 160, 195;
@@ -139,6 +144,7 @@
   --type-link: 255, 121, 198;
   --type-file: 166, 174, 208;
   --type-quiz: 241, 250, 140;
+  --type-sim: 255, 184, 108;
   --ok: 80, 250, 123;
   --bad: 255, 85, 85;
   --explain: 189, 147, 249;
@@ -163,6 +169,7 @@
   --type-link: 211, 134, 155;
   --type-file: 168, 153, 132;
   --type-quiz: 254, 128, 25;
+  --type-sim: 142, 192, 124;
   --ok: 184, 187, 38;
   --bad: 251, 73, 52;
   --explain: 211, 134, 155;
@@ -188,6 +195,7 @@
   --type-link: 153, 255, 153;
   --type-file: 31, 179, 31;
   --type-quiz: 204, 255, 204;
+  --type-sim: 128, 255, 128;
   --ok: 102, 255, 102;
   --bad: 255, 51, 51;          /* the one non-green colour: wrong quiz answers */
   --explain: 153, 255, 153;
@@ -216,6 +224,7 @@
   --type-link: 36, 36, 36;
   --type-file: 36, 36, 36;
   --type-quiz: 36, 36, 36;
+  --type-sim: 36, 36, 36;
   --ok: 36, 36, 36;
   --bad: 180, 0, 0;            /* the one non-black colour: wrong quiz answers */
   --explain: 36, 36, 36;
@@ -847,6 +856,7 @@ a { color: var(--accent); }
 .line[data-type="video"] { --t: var(--type-video); }
 .line[data-type="link"] { --t: var(--type-link); }
 .line[data-type="quiz"] { --t: var(--type-quiz); }
+.line[data-type="sim"] { --t: var(--type-sim); }
 .line[data-type="file"] { --t: var(--type-file); }
 .line:hover { background: rgba(var(--t, var(--glyph)), 0.07); }
 
@@ -1178,6 +1188,108 @@ a { color: var(--accent); }
 .quiz-actions .btn { margin: 0; border: 0; cursor: pointer; }
 .quiz-progress { font: 0.85rem var(--font-mono); color: var(--muted); }
 @media (max-width: 480px) { .quiz-feedback { padding-left: 14px; } }
+
+/* Simulations: a 10 x 10 grid where BFS, DFS and A* search for the goal */
+.sim-box + .sim-box { margin-top: 32px; padding-top: 24px; border-top: 1px dashed var(--border); }
+.sim-title { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; margin: 0 0 6px; font-size: 1.15rem; }
+.sim { --t: var(--type-sim); }
+.sim-controls { display: flex; flex-wrap: wrap; gap: 10px 28px; }
+.sim-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.sim-label { font: 600 0.8rem var(--font-mono); color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.sim-seg { display: inline-flex; flex-wrap: wrap; overflow: hidden; border: 1px solid var(--border); border-radius: 10px; }
+.sim-seg button, .sim-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font: 600 0.85rem var(--font-mono);
+  cursor: pointer;
+}
+.sim-seg button + button { border-left: 1px solid var(--border); }
+.sim-seg button:hover, .sim-btn:hover:not(:disabled) { background: rgba(var(--t), 0.1); }
+.sim-seg button[aria-pressed="true"] { background: rgba(var(--t), 0.2); color: rgb(var(--t)); }
+.sim-btn { border: 1px solid var(--border); border-radius: 999px; }
+.sim-btn:disabled { opacity: 0.45; cursor: default; }
+.sim-seg button:focus-visible, .sim-btn:focus-visible, .sim-cell:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.sim-mark { display: inline-grid; place-items: center; width: 1.3em; height: 1.3em; border-radius: 4px; font-size: 0.8em; }
+.sim-mark-start { background: rgb(var(--ok)); color: var(--bg); }
+.sim-mark-goal { background: rgb(var(--bad)); color: var(--bg); }
+.sim-mark-wall { color: var(--text); }
+.sim-mark-erase { color: var(--muted); }
+.sim-about { margin: 12px 0 14px; color: var(--muted); font-size: 0.95rem; }
+
+.sim-stage { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 20px 28px; }
+.sim-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 3px;
+  flex: 0 1 420px;
+  min-width: 0;
+  width: 100%;
+  max-width: 420px;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface-2, var(--surface));
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.sim-cell {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  min-width: 0;
+  padding: 0;
+  border: 1px solid rgba(var(--glyph), 0.18);
+  border-radius: 5px;
+  background: var(--bg);
+  color: var(--text);
+  font: 600 clamp(0.6rem, 2.4vw, 0.8rem) var(--font-mono);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.sim-cell:hover { border-color: rgba(var(--t), 0.7); }
+.sim-cell.is-wall, .sim-key.is-wall { background: var(--text); border-color: var(--text); }
+.sim-cell.is-waiting, .sim-key.is-waiting { background: rgba(var(--type-quiz), 0.3); border-color: rgba(var(--type-quiz), 0.8); }
+.sim-cell.is-explored, .sim-key.is-explored { background: rgba(var(--t), 0.28); border-color: rgba(var(--t), 0.5); color: var(--text); }
+.sim-cell.is-explored { animation: sim-pop 0.3s ease; }
+.sim-cell.is-current, .sim-key.is-current { background: rgb(var(--t)); border-color: rgb(var(--t)); color: var(--bg); }
+.sim-cell.is-path, .sim-key.is-path { background: var(--accent); border-color: var(--accent); color: var(--accent-contrast); }
+.sim-cell.is-path { animation: sim-pop 0.4s ease; }
+.sim-cell.is-start, .sim-cell.is-goal { color: var(--bg); font-size: clamp(0.75rem, 3vw, 1rem); }
+.sim-cell.is-start { background: rgb(var(--ok)); border-color: rgb(var(--ok)); }
+.sim-cell.is-goal { background: rgb(var(--bad)); border-color: rgb(var(--bad)); }
+.sim-cell.is-start.is-current, .sim-cell.is-goal.is-current, .sim-cell.is-start.is-path, .sim-cell.is-goal.is-path { box-shadow: 0 0 0 2px var(--accent), 0 0 10px var(--accent); }
+
+.sim-side { display: flex; flex: 1 1 240px; flex-direction: column; gap: 12px; min-width: 0; }
+.sim-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.sim-actions .btn { margin: 0; border: 0; cursor: pointer; background: rgb(var(--t)); color: var(--bg); min-width: 8.5em; justify-content: center; }
+.sim-speed { display: flex; align-items: center; gap: 8px; font: 0.8rem var(--font-mono); color: var(--muted); }
+.sim-speed input { flex: 0 1 140px; accent-color: rgb(var(--t)); }
+.sim-status { margin: 0; font: 600 0.9rem var(--font-mono); color: rgb(var(--t)); min-height: 2.8em; }
+.sim-list { margin: 0; font: 0.8rem/1.6 var(--font-mono); overflow-wrap: anywhere; min-height: 4.8em; }
+.sim-list-title { color: var(--muted); }
+.sim-list-body { white-space: pre-wrap; }
+.sim-legend { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; font-size: 0.85rem; color: var(--muted); }
+.sim-legend li { display: flex; align-items: center; gap: 8px; }
+.sim-key { display: inline-grid; place-items: center; width: 18px; height: 18px; border: 1px solid; border-radius: 4px; font: 600 0.65rem var(--font-mono); }
+
+@media (max-width: 560px) {
+  .sim-seg button { padding: 6px 8px; font-size: 0.8rem; }
+  .sim-mark { display: none; }
+}
+
+/* The line-view icon: a tiny grid lit up square by square, like a search spreading out */
+.sim-icon { display: grid; grid-template-columns: repeat(3, 7px); gap: 2px; padding: 6px 2px; }
+.sim-icon span { width: 7px; height: 7px; border-radius: 2px; background: rgba(var(--type-sim), 0.25); animation: sim-wave 2.4s calc(var(--n) * 0.2s) ease-in-out infinite; }
+.line:hover .sim-icon span { animation-duration: 1.2s; }
+
+@keyframes sim-pop { from { transform: scale(0.6); } }
+@keyframes sim-wave { 0%, 60%, 100% { background: rgba(var(--type-sim), 0.25); } 20% { background: rgb(var(--type-sim)); } }
 
 /* Links */
 .link-list { margin: 0; padding: 0; list-style: none; }

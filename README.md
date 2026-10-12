@@ -30,6 +30,7 @@ All content lives in `content/`. You never need to edit the HTML or JavaScript.
 | `material` | Path to a Markdown file inside `content/`, e.g. `"topics/my-topic.md"`. It can also be a list of files |
 | `bots`     | List of `{ "label": "...", "description": "...", "url": "https://..." }`. Each bot appears **at the top** of the topic as an animated robot. `description` is what the robot "says" in its speech bubble. |
 | `quizzes`  | Path to a quiz file inside `content/`, e.g. `"quizzes/my-quiz.md"`, or a list of them. See **Write a quiz** below |
+| `simulations` | List of `{ "title": "...", "type": "grid-path", "description": "..." }`. An interactive demo inside the page. `grid-path` is a 10 x 10 grid where students place a start, a goal and walls, and watch BFS, DFS or A* search |
 | `files`    | List of `{ "label": "...", "file": "files/my-code.zip" }` for files students download. Put the file in `content/files/`. A bare path or a list of paths works too, and then the file name is the label |
 | `links`    | List of `{ "label": "...", "url": "https://..." }`. A file in `assets/` works too, e.g. `"assets/worksheet.pdf"` |
 
@@ -79,7 +80,7 @@ To change the site name (`title` + `author`, shown as "Practical Programming by 
 
 ## View counts
 
-Each topic shows a faint `👁 12` next to its title, and each item (bot, video, written material, quiz, file, link) shows one too. A topic counts when its page is opened. An item counts when it is opened in list view or scrolled into sight in card view; bots, files and links count when clicked. Each counts at most once per page load, and nothing is counted while you test on `localhost`.
+Each topic shows a faint `👁 12` next to its title, and each item (bot, video, written material, quiz, simulation, file, link) shows one too. A topic counts when its page is opened. An item counts when it is opened in list view or scrolled into sight in card view; bots, files and links count when clicked. Each counts at most once per page load, and nothing is counted while you test on `localhost`.
 
 The numbers are kept by [Abacus](https://abacus.jasoncameron.dev), a free counter service, under the name in `"views"` in the `site` block of `content/topics.json`. Remove that line to turn the counts off. An item's count follows its file name or link, so renaming a file or changing a link starts that count again from zero.
 
@@ -106,6 +107,7 @@ topic.html            redirect for old topic.html?id=... links
 css/style.css         colours, layout, colour schemes
 js/ascii-bg.js        interactive ASCII background
 js/app.js             reads topics.json and builds the pages
+js/grid-sim.js        the grid path-finding simulation (BFS, DFS, A*)
 content/topics.json   your topics  ← edit this
 content/home.md       Main page text ← and this
 content/topics/*.md   your notes   ← and these

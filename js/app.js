@@ -1,6 +1,6 @@
 /*
  * Loads content/topics.json and renders either the home page (content/home.md)
- * or a single topic page (bots, videos, written material, quizzes, files, links).
+ * or a single topic page (bots, videos, written material, quizzes, simulations, files, links).
  * You should not need to edit this file to add or change topics.
  */
 (() => {
@@ -855,6 +855,46 @@
     return section;
   }
 
+  // ---------- Simulations: interactive demos built in the browser ----------
+  // "simulations" in topics.json: [{ "title": "...", "type": "grid-path", "description": "..." }].
+  // Each type is made by its own script (js/grid-sim.js for "grid-path").
+  const SIMULATIONS = {
+    'grid-path': () => window.GridSim && window.GridSim.create(),
+  };
+
+  function simEntries(value) {
+    return asList(value)
+      .map((s) => (typeof s === 'string' ? { type: s } : s))
+      .filter((s) => s && SIMULATIONS[s.type])
+      .map((s, i) => ({ ...s, title: s.title || `Simulation ${i + 1}` }));
+  }
+
+  // A small grid whose squares light up one after another, like a search spreading out.
+  function simMark() {
+    return el('span', { class: 'sim-icon', 'aria-hidden': 'true' },
+      ...Array.from({ length: 9 }, (_, i) => el('span', { style: `--n:${Math.floor(i / 3) + (i % 3)}` })));
+  }
+
+  function simView(entry) {
+    const sim = SIMULATIONS[entry.type]();
+    if (sim) return sim;
+    return { node: notice('This simulation could not start. Refresh the page to try again.'), pause() {} };
+  }
+
+  function simPanel(sims, key) {
+    if (!sims.length) return null;
+    const boxes = sims.map((s) => {
+      const views = viewCounter(key('sim', s.type + (s.title ? `-${s.title}` : '')));
+      const box = el('div', { class: 'sim-box' },
+        el('h3', { class: 'sim-title' }, el('span', { text: s.title }), views.node),
+        s.description ? el('p', { class: 'muted', text: s.description }) : null,
+        simView(s).node);
+      hitWhenSeen(box, views);
+      return box;
+    });
+    return panel(sims.length > 1 ? 'Simulations' : 'Simulation', ...boxes);
+  }
+
   // ---------- Bots: animated robots at the top of a topic ----------
   const ROBOT_SVG = `
     <svg viewBox="0 0 120 140" width="100%" height="100%" focusable="false">
@@ -1000,9 +1040,9 @@
   let lineCount = 0;
   const lineItems = new WeakMap(); // line node -> its open/close handle
 
-  const LINE_TYPES = { bot: 'Bot', text: 'Text', video: 'Video', quiz: 'Quiz', file: 'File', link: 'Link' };
+  const LINE_TYPES = { bot: 'Bot', text: 'Text', video: 'Video', quiz: 'Quiz', sim: 'Sim', file: 'File', link: 'Link' };
 
-  // Every line starts with a coloured type tag: Bot / Text / Video / Quiz / File / Link.
+  // Every line starts with a coloured type tag: Bot / Text / Video / Quiz / Sim / File / Link.
   function lineParts(type, label, sub, end, icon, views) {
     return [
       el('span', { class: 'line-type', text: LINE_TYPES[type] }),
@@ -1112,6 +1152,22 @@
         showTitle: false,
         onTitle: (title) => { item.label.textContent = title; },
       }));
+      return node;
+    });
+  }
+
+  // Like a quiz, the simulation is built once, so the grid survives closing and reopening the line.
+  function simLines(sims, key) {
+    return sims.map((s) => {
+      let sim = null;
+      const { node, item } = expandableLine('sim', s.title, {
+        icon: simMark(),
+        views: viewCounter(key('sim', s.type + (s.title ? `-${s.title}` : ''))),
+        onClose: () => sim && sim.pause(), // closing the line stops the animation
+      });
+      if (s.description) node.querySelector('.line-label').after(el('span', { class: 'line-sub', text: s.description }));
+      sim = simView(s);
+      item.body.append(sim.node);
       return node;
     });
   }
@@ -1290,6 +1346,7 @@
           ...videoLines(asList(topic.videos), key),
           ...materialLines(asList(topic.material), key),
           ...quizLines(quizEntries(topic.quizzes), key),
+          ...simLines(simEntries(topic.simulations), key),
           ...fileLines(fileEntries(topic.files), key),
           ...linkLines(asList(topic.links), key),
         ];
@@ -1302,6 +1359,7 @@
           videosPanel(asList(topic.videos), key),
           materialPanel(asList(topic.material), key),
           quizPanel(quizEntries(topic.quizzes), key),
+          simPanel(simEntries(topic.simulations), key),
           filesPanel(fileEntries(topic.files), key),
           linksPanel(asList(topic.links), key),
         ];
@@ -1361,6 +1419,7 @@
         const md = await load(q.file);
         add(t, 'quiz', q, q.title || firstHeading(md) || 'Quiz', plainText(md));
       }
+      for (const s of simEntries(t.simulations)) add(t, 'sim', s, s.title, s.description || '');
       for (const f of fileEntries(t.files)) add(t, 'file', f, f.label);
       for (const l of asList(t.links)) {
         const url = safeUrl(l.url);
@@ -1402,7 +1461,7 @@
     return `${start ? '…' : ''}${text.slice(start, end).trim()}${end < text.length ? '…' : ''}`;
   }
 
-  const LINE_BUILDERS = { bot: botLines, video: videoLines, text: materialLines, quiz: quizLines, file: fileLines, link: linkLines };
+  const LINE_BUILDERS = { bot: botLines, video: videoLines, text: materialLines, quiz: quizLines, sim: simLines, file: fileLines, link: linkLines };
 
   // The item's usual line, plus the topic it comes from and a piece of the matching text.
   function resultLine(item, words) {
