@@ -38,6 +38,30 @@ greeting = f"Hello, {name}!"
 print(greeting)  # 'Hello, Alice!'
 ```
 
+#### Conditionals
+
+Comparison operators (`==`, `!=`, `<`, `>`, `<=`, `>=`) return `True` or `False`. Logical operators combine them: `and` (both true), `or` (at least one true), `not` (reverses).
+
+```python
+x = 7
+print(x == 7, x != 7, x <= 10)  # True False True
+print(x > 5 and x < 10)         # True
+print(x < 5 or x == 7)          # True
+print(not x == 7)               # False
+```
+
+`if` runs a block only when its condition is true, `elif` checks further conditions in order, and `else` runs when none matched.
+
+```python
+grade = 85
+if grade >= 90:
+    print("A")
+elif grade >= 80 and grade < 90:
+    print("B")  # This runs
+else:
+    print("Keep going")
+```
+
 #### Loops
 
 A `for` loop is used to iterate over items in a collection. `break` exits the loop, and `continue` skips to the next iteration.
