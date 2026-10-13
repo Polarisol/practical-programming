@@ -40,71 +40,26 @@ print(greeting)  # 'Hello, Alice!'
 
 #### Conditionals
 
-Comparison operators compare two values and return `True` or `False`.
+Comparison operators (`==`, `!=`, `<`, `>`, `<=`, `>=`) return `True` or `False`. Logical operators combine them: `and` (both true), `or` (at least one true), `not` (reverses).
 
 ```python
 x = 7
-print(x == 7)   # True  - equal to
-print(x != 7)   # False - not equal to
-print(x < 10)   # True  - less than
-print(x > 10)   # False - greater than
-print(x <= 7)   # True  - less than or equal to
-print(x >= 8)   # False - greater than or equal to
+print(x == 7, x != 7, x <= 10)  # True False True
+print(x > 5 and x < 10)         # True
+print(x < 5 or x == 7)          # True
+print(not x == 7)               # False
 ```
 
-Logical operators combine or reverse conditions: `and` is `True` only if both sides are true, `or` is `True` if at least one side is true, and `not` flips the result.
-
-```python
-age = 20
-has_ticket = False
-print(age >= 18 and has_ticket)  # False - both must be True
-print(age >= 18 or has_ticket)   # True  - one is enough
-print(not has_ticket)            # True  - reverses False
-```
-
-A simple `if` runs its indented block only when the condition is true.
-
-```python
-temperature = 30
-if temperature > 25:
-    print("It's hot today!")  # Runs only if the condition is True
-```
-
-An `if` / `else` chooses between two options.
-
-```python
-number = int(input("Enter a number: "))
-if number % 2 == 0:
-    print("Even")
-else:
-    print("Odd")
-```
-
-`elif` (short for "else if") checks more conditions in order. Only the first block whose condition is true runs.
+`if` runs a block only when its condition is true, `elif` checks further conditions in order, and `else` runs when none matched.
 
 ```python
 grade = 85
 if grade >= 90:
     print("A")
-elif grade >= 80:
-    print("B")  # This runs, and the rest are skipped
-elif grade >= 70:
-    print("C")
+elif grade >= 80 and grade < 90:
+    print("B")  # This runs
 else:
-    print("Needs improvement")
-```
-
-Conditions can combine comparison and logical operators.
-
-```python
-username = "admin"
-password = "1234"
-if username == "admin" and password != "":
-    print("Logging in...")
-elif username == "" or password == "":
-    print("Please fill in all fields")
-else:
-    print("Unknown user")
+    print("Keep going")
 ```
 
 #### Loops
