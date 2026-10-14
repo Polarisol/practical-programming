@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400" font-family="sans-serif">
+  <rect x="0" y="0" width="600" height="400" rx="18" fill="#f6f3ec"/>
+  <text x="300.0" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="#3a342c">Phones sold this year</text>
+  <line x1="90" y1="330.0" x2="560" y2="330.0" stroke="#e3dccf" stroke-width="1"/>
+  <text x="80" y="335.0" text-anchor="end" font-size="15" fill="#3a342c">96</text>
+  <line x1="90" y1="286.7" x2="560" y2="286.7" stroke="#e3dccf" stroke-width="1"/>
+  <text x="80" y="291.7" text-anchor="end" font-size="15" fill="#3a342c">97</text>
+  <line x1="90" y1="243.3" x2="560" y2="243.3" stroke="#e3dccf" stroke-width="1"/>
+  <text x="80" y="248.3" text-anchor="end" font-size="15" fill="#3a342c">98</text>
+  <line x1="90" y1="200.0" x2="560" y2="200.0" stroke="#e3dccf" stroke-width="1"/>
+  <text x="80" y="205.0" text-anchor="end" font-size="15" fill="#3a342c">99</text>
+  <line x1="90" y1="156.7" x2="560" y2="156.7" stroke="#e3dccf" stroke-width="1"/>
+  <text x="80" y="161.7" text-anchor="end" font-size="15" fill="#3a342c">100</text>
+  <line x1="90" y1="113.3" x2="560" y2="113.3" stroke="#e3dccf" stroke-width="1"/>
+  <text x="80" y="118.3" text-anchor="end" font-size="15" fill="#3a342c">101</text>
+  <line x1="90" y1="70.0" x2="560" y2="70.0" stroke="#e3dccf" stroke-width="1"/>
+  <text x="80" y="75.0" text-anchor="end" font-size="15" fill="#3a342c">102</text>
+  <line x1="90" y1="70" x2="90" y2="330" stroke="#3a342c" stroke-width="2"/>
+  <text transform="translate(28 200.0) rotate(-90)" text-anchor="middle" font-size="15" fill="#3a342c">Phones sold (thousands)</text>
+  <rect x="180" y="286.7" width="100" height="43.3" fill="#b9ab95"/>
+  <text x="230" y="355" text-anchor="middle" font-size="16" fill="#3a342c">Brand A</text>
+  <rect x="370" y="113.3" width="100" height="216.7" fill="#e05a47"/>
+  <text x="420" y="355" text-anchor="middle" font-size="16" fill="#3a342c">Brand B</text>
+  <line x1="90" y1="330" x2="560" y2="330" stroke="#3a342c" stroke-width="2"/>
+</svg>
