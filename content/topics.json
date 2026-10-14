@@ -48,8 +48,8 @@
       "bots": [
         {
           "label": "Study Bot",
-          "description": "I can help you study, teach you and quiz you on Python basics.",
-          "url": "https://share.gemini.google/oRhKoTA8rdPJ"
+          "description": "Let's make sure you understand everything. We can also talk in Hebrew.",
+          "url": "https://share.gemini.google/7CrPSARg3W5t"
         }
       ],
       "links": [
@@ -146,8 +146,13 @@
       "bots": [
         {
           "label": "Study Bot - Basic PySide6 (Not OOP)",
-          "description": "I can help you study, teach you and quiz you on Python basics.",
-          "url": "https://share.gemini.google/1jAtPViKHICX"
+          "description": "Let's make sure you understand the basics. We can talk in Hebrew.",
+          "url": "https://share.gemini.google/qk3gTuWej5H0"
+        },
+        {
+          "label": "Study Bot - OOP PySide6",
+          "description": "Let's focus on the OOP aspects of PySide6. We can talk in Hebrew.",
+          "url": "https://share.gemini.google/IsY5fCUdE1KY"
         }
       ],
       "quizzes": ["quizzes/pyside6_basics_quiz.md", "quizzes/pyside6_oop_quiz.md"],
