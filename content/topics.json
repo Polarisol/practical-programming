@@ -31,7 +31,7 @@
       "id": "python-basics",
       "title": "Python Basics",
       "icon": "{ }",
-      "blurb": "Variables, loops and functions: your first steps in programming.",
+      "blurb": "babies need to learn how to walk before they can run. You are not a baby, are you? but you still have to do it.",
       "videos": [
         {
           "title": "A playlist of python lectures",
@@ -63,14 +63,14 @@
       "id": "using-git",
       "title": "Using Git",
       "icon": "⎇",
-      "blurb": "Time travel is here! at least for your project files. With git in VS Code, you can save snapshots of your project, and go back in time to undo mistakes.",
+      "blurb": "Time travel is here! Really! at least for your project files.",
       "material": ["topics/using-git.md", "topics/wwntr_git.md"]
     },
     {
       "id": "using-ai",
       "title": "Using AI",
       "icon": "🤖",
-      "blurb": "Using AI correctly is not cheating, using it incorrectly can be extremely harmful. Things are not supposed to be too easy.",
+      "blurb": "Using AI correctly is not cheating, using it incorrectly can be extremely harmful. Don't be harmful. Things are not supposed to be too easy.",
       "material": ["topics/AIRules.md", "topics/github_copilot.md"],
       "quizzes": ["quizzes/ai-tools-quiz.md"]
     },
@@ -78,7 +78,7 @@
       "id": "matplotlib",
       "title": "Plotting Graphs",
       "icon": "📊",
-      "blurb": "A graph, like a picture, tells a thousand words, but a bad graph tells the wrong story. Be professional and tell the truth, in a way that is easy to understand.",
+      "blurb": "A graph, like a picture, tells a thousand words. They better tell an interesting story and not sell us fake news.",
       "bots": [
         {
           "label": "Study Bot",
@@ -93,7 +93,7 @@
       "id": "numpy",
       "title": "NumPy",
       "icon": "🔢",
-      "blurb": "The need for speed... on computers it is crucial, and safer than when you are in a car. Numpy can crunch numbers at lightning speed.",
+      "blurb": "The need for speed... on computers it is crucial, and safer than when you are in a car.",
       "bots": [
         {
           "label": "Study Bot",
@@ -119,7 +119,7 @@
       "id": "oop",
       "title": "OOP",
       "icon": "🐱",
-      "blurb": "Classes and objects: This topic can be a little tricky at first, but you don't have to master it for now, just understand the basics well.",
+      "blurb": "Classes and objects: This topic can be a little tricky at first, but you don't have to master it for now, just understand the basics well. No joke here... it is no laughing matter.",
       "bots": [
         {
           "label": "Study Bot",
@@ -141,7 +141,7 @@
       "id": "pyside6",
       "title": "PySide6 - GUI",
       "icon": "🖥",
-      "blurb": "Apps without a good graphical interface will struggle to engage users. Your apps will look and feel great with PySide6.",
+      "blurb": "Apps without a good graphical interface are no fun. I don't want to use them, and my friends don't either. Your apps need to look and feel great.",
       "material": ["topics/pyside6_basics.md", "topics/pyside6_widgets.md", "topics/pyside6_oop.md", "topics/pyside6_oop_windows.md", "topics/pyside6_timers.md", "topics/pyside6_extras.md", "topics/wwntr_pyside6_basic.md", "topics/wwntr_pyside6_oop.md"],
       "bots": [
         {
@@ -193,7 +193,7 @@
       "id": "sympy",
       "title": "SymPy",
       "icon": "∑",
-      "blurb": "'X' - it's a known symbol that we use in equations. Keeping it as a symbol allows us to perform symbolic math: solve equations, simplify, differentiate and integrate.",
+      "blurb": "'X' - it's a symbol. You know... from all the equations you have to solve... The computer can solve these equations faster than you. You are not that speacial.",
       "bots": [
         {
           "label": "Study Bot",
@@ -257,7 +257,7 @@
       "id": "sql",
       "title": "SQL",
       "icon": "🗄",
-      "blurb": "You probably heard the term SQL. It was a mystery to you. you felt stupid for not knowing what it is. No more.",
+      "blurb": "You probably heard the term SQL. It was a mystery to you. you felt stupid for not knowing what it is. You were. No more.",
       "material": ["topics/sql_basics.md", "topics/sql_abstraction.md", "topics/sql_injection.md", "topics/wwntr_sql.md"],
       "bots": [
         {
