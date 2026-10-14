@@ -82,8 +82,8 @@
       "bots": [
         {
           "label": "Study Bot",
-          "description": "I can help you study, teach you and quiz you on Plotting Graphs.",
-          "url": "https://xxxxxxx"
+          "description": "I can help you understand eeeevrything. We can also talk in Hebrew.",
+          "url": "https://share.gemini.google/G5xVshGKlAZ6"
         }
       ],
       "material": ["topics/matplotlib.md", "topics/wwntr_graphs.md"]
@@ -97,8 +97,8 @@
       "bots": [
         {
           "label": "Study Bot",
-          "description": "I can help you study, teach you and quiz you on NumPy.",
-          "url": "https://share.gemini.google/AaIjyimlQPbq"
+          "description": "I'll teach you NumPy. We can also talk in Hebrew.",
+          "url": "https://share.gemini.google/VayjFdjDBexT"
         }
       ],
       "videos": [
@@ -123,8 +123,8 @@
       "bots": [
         {
           "label": "Study Bot",
-          "description": "I can help you study, teach you and quiz you on OOP.",
-          "url": "https://xxxxxxx"
+          "description": "OOP is easy... when i teach it. We can also talk in Hebrew.",
+          "url": "https://share.gemini.google/N7mR0vyDI4IG"
         }
       ],
       "videos": [
