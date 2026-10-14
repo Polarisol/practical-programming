@@ -1,12 +1,12 @@
-Everyone can create great software solutions today, it is easier than ever with AI.
+Everyone can create great software solutions today, it is easier than ever because now we have powerful AI tools.
 
-**Knowing how to harness the full power of a computer makes you so much more powerful!** (buhaha!)
+**Knowing how to create the tools you need makes you so much more powerful!**
 
-But when it comes to **science** and **engineering**, it still requires understanding, careful thought and guidance.
+When it comes to **science** and **engineering**, these tools require more control, and a good understanding of what exactly happens under the hood.
 
 In this site you'll find a lot of material to help you understand the things we learn in class.
 
-> Remember: Programming is learned by doing. Write code, run it, and see what happens.
+> Programming is learned by doing. Write code often and experiment with new ideas.
 
 Don't worry... you'll be fine, as long as you never ever **g̷̈́ͅ█i̶̛͜v̴̧͝■**!
 
