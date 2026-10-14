@@ -11,14 +11,14 @@
       "id": "installation",
       "title": "Installation",
       "icon": "⬇",
-      "blurb": "What and how to install what you need",
+      "blurb": "What to install and how to install it (and when to install it... which is now).",
       "material": "topics/install.md"
     },
     {
       "id": "starting-a-project",
       "title": "Starting a Project",
       "icon": "📁",
-      "blurb": "Set up a new Python project in VS Code with uv, step by step.",
+      "blurb": "A beginning is a very delicate time. Let me take you through it, step by step.",
       "videos": [
         {
           "title": "Starting a new Project",
@@ -31,7 +31,7 @@
       "id": "python-basics",
       "title": "Python Basics",
       "icon": "{ }",
-      "blurb": "babies need to learn how to walk before they can run. You are not a baby, are you? but you still have to do it.",
+      "blurb": "Babies need to learn how to walk before they can run. You are not a baby, are you? but you still have to do it.",
       "videos": [
         {
           "title": "A playlist of python lectures",
