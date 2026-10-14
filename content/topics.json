@@ -193,7 +193,7 @@
       "id": "sympy",
       "title": "SymPy",
       "icon": "∑",
-      "blurb": "'X' - it's a symbol. You know... from all the equations you have to solve... The computer can solve these equations faster than you. You are not that speacial.",
+      "blurb": "'X' - it's a symbol. You know... from all the equations you have to solve... The computer can solve these equations faster than you. You are not that special.",
       "bots": [
         {
           "label": "Study Bot",
