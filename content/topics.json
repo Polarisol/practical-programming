@@ -71,7 +71,8 @@
       "title": "Using AI",
       "icon": "🤖",
       "blurb": "The correct way to use AI tools like GitHub Copilot in your coding workflow.",
-      "material": "topics/github_copilot.md"
+      "material": ["topics/AIRules.md", "topics/github_copilot.md"]
+      "quizzes": ["quizzes/ai-tools-quiz.md"]
     },
     {
       "id": "matplotlib",

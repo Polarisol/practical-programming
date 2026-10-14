@@ -1,6 +1,6 @@
 # GitHub Copilot: A Beginner's Guide
 
-GitHub Copilot is a great helper, but you must stay in control. Here are simple tips for using it safely.
+In our course we can use chatbots and AI agents to assist us. One such tool is GitHub Copilot which is integrated natively into VS Code (our development environment). Here are simple tips for using it.
 
 #### 1. Take Small Steps
 
@@ -32,17 +32,7 @@ GitHub Copilot is a great helper, but you must stay in control. Here are simple 
 
 * **Brainstorm:** Use this space to plan your code, ask how to start a project, or figure out why something is broken.
 
-#### 6. Use Special Commands
-
-Type these shortcuts in the chat to get better help:
-
-* **`@workspace`**: Ask questions about your entire project, not just the file you have open.
-
-* **`/fix`**: Highlight broken code and type this to ask for a fix.
-
-* **`/tests`**: Highlight a function and type this to get automatic tests for it.
-
-#### 7. Be Careful with Auto-Complete
+#### 6. Be Careful with Auto-Complete
 
 * **Read first:** Copilot will suggest code using light gray text. Read it before you press `Tab` to accept it.
 
