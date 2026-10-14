@@ -257,7 +257,7 @@
       "id": "sql",
       "title": "SQL",
       "icon": "🗄",
-      "blurb": "You probably heard the term SQL. It was a mystery to you. you felt stupid for not knowing what it is. You were. No more.",
+      "blurb": "You probably heard the term SQL. It was a mystery to you. You felt stupid for not knowing what it is. You were. No more.",
       "material": ["topics/sql_basics.md", "topics/sql_abstraction.md", "topics/sql_injection.md", "topics/wwntr_sql.md"],
       "bots": [
         {
