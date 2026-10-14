@@ -63,14 +63,14 @@
       "id": "using-git",
       "title": "Using Git",
       "icon": "⎇",
-      "blurb": "Save snapshots of your project, undo mistakes and go back in time with git in VS Code.",
+      "blurb": "Time travel is here! at least for your project files. With git in VS Code, you can save snapshots of your project, and go back in time to undo mistakes.",
       "material": ["topics/using-git.md", "topics/wwntr_git.md"]
     },
     {
       "id": "using-ai",
       "title": "Using AI",
       "icon": "🤖",
-      "blurb": "The correct way to use AI tools like GitHub Copilot in your coding workflow.",
+      "blurb": "Using AI correctly is not cheating, using it incorrectly can be extremely harmful. Things are not supposed to be too easy.",
       "material": ["topics/AIRules.md", "topics/github_copilot.md"],
       "quizzes": ["quizzes/ai-tools-quiz.md"]
     },
@@ -78,7 +78,7 @@
       "id": "matplotlib",
       "title": "Plotting Graphs",
       "icon": "📊",
-      "blurb": "Learn how to create visual representations of your data using matplotlib.",
+      "blurb": "A graph, like a picture, tells a thousand words, but a bad graph tells the wrong story. Be professional and tell the truth, in a way that is easy to understand.",
       "bots": [
         {
           "label": "Study Bot",
@@ -93,7 +93,7 @@
       "id": "numpy",
       "title": "NumPy",
       "icon": "🔢",
-      "blurb": "Work with arrays of numbers quickly and easily using NumPy.",
+      "blurb": "The need for speed... on computers it is crucial, and safer than when you are in a car. Numpy can crunch numbers at lightning speed.",
       "bots": [
         {
           "label": "Study Bot",
@@ -119,7 +119,7 @@
       "id": "oop",
       "title": "OOP",
       "icon": "🐱",
-      "blurb": "Classes and objects: keep each thing's information and abilities together.",
+      "blurb": "Classes and objects: This topic can be a little tricky at first, but you don't have to master it for now, just understand the basics well.",
       "bots": [
         {
           "label": "Study Bot",
@@ -141,7 +141,7 @@
       "id": "pyside6",
       "title": "PySide6 - GUI",
       "icon": "🖥",
-      "blurb": "Learn how to create graphical user interfaces using PySide6.",
+      "blurb": "Apps without a good graphical interface will struggle to engage users. Your apps will look and feel great with PySide6.",
       "material": ["topics/pyside6_basics.md", "topics/pyside6_widgets.md", "topics/pyside6_oop.md", "topics/pyside6_oop_windows.md", "topics/pyside6_timers.md", "topics/pyside6_extras.md", "topics/wwntr_pyside6_basic.md", "topics/wwntr_pyside6_oop.md"],
       "bots": [
         {
@@ -163,7 +163,7 @@
       "id": "recursion",
       "title": "Recursion",
       "icon": "🔁",
-      "blurb": "Functions that call themselves to solve a problem one smaller piece at a time.",
+      "blurb": "You ever pick up the phone and call yourself?.... Really? I don't, but functions do. They call themselves to solve problems in an interesting way.",
       "bots": [
         {
           "label": "Study Bot",
@@ -179,7 +179,7 @@
       "id": "monte-carlo",
       "title": "Monte Carlo",
       "icon": "🎲",
-      "blurb": "Use random sampling to estimate answers and simulate experiments.",
+      "blurb": "Stop being such a control freak! Let go and embrace uncertainty! It can be very useful. Sometimes you just have to roll the dice and see what happens.",
       "bots": [
         {
           "label": "Study Bot",
@@ -193,7 +193,7 @@
       "id": "sympy",
       "title": "SymPy",
       "icon": "∑",
-      "blurb": "Do symbolic math in Python: solve equations, simplify, differentiate and integrate.",
+      "blurb": "'X' - it's a known symbol that we use in equations. Keeping it as a symbol allows us to perform symbolic math: solve equations, simplify, differentiate and integrate.",
       "bots": [
         {
           "label": "Study Bot",
@@ -208,7 +208,7 @@
       "id": "pandas",
       "title": "Pandas",
       "icon": "🐼",
-      "blurb": "Load, clean and explore tables of data with pandas.",
+      "blurb": "I will nooot make a pandas joke... I will nooot do it... Tal! Control yourself!",
       "bots": [
         {
           "label": "Study Bot",
@@ -229,7 +229,7 @@
       "id": "machine-learning",
       "title": "Machine Learning",
       "icon": "🧠",
-      "blurb": "Teach the computer to find patterns in data and make predictions.",
+      "blurb": "The basics of all currently adored and feared AI tools. We gave them the ability to learn from data! Let's hope they remember that when they are in control.",
       "bots": [
         {
           "label": "Study Bot",
@@ -243,7 +243,7 @@
       "id": "integrating-llms",
       "title": "Integrating LLMs",
       "icon": "💬",
-      "blurb": "Call large language models from your own Python programs.",
+      "blurb": "Wow! we can now call large language models from our own Python programs? The future is here!",
       "bots": [
         {
           "label": "Study Bot",
@@ -257,7 +257,7 @@
       "id": "sql",
       "title": "SQL",
       "icon": "🗄",
-      "blurb": "Store, query and update data in a database with SQL.",
+      "blurb": "You probably heard the term SQL. It was a mystery to you. you felt stupid for not knowing what it is. No more.",
       "material": ["topics/sql_basics.md", "topics/sql_abstraction.md", "topics/sql_injection.md", "topics/wwntr_sql.md"],
       "bots": [
         {
@@ -272,7 +272,7 @@
       "id": "pygame",
       "title": "Pygame",
       "icon": "🎮",
-      "blurb": "Build simple 2D games with graphics, sound and keyboard input.",
+      "blurb": "We can make things move and animate stuff. physics looks so cool when you see it in motion.",
       "bots": [
         {
           "label": "Study Bot",
@@ -286,7 +286,7 @@
       "id": "graph-navigation",
       "title": "Graph Navigation",
       "icon": "🧭",
-      "blurb": "Find your way through graphs and mazes with BFS, DFS and A*.",
+      "blurb": "Do you know how to get to where you want without Waze or Google Maps? I don't think so. You are not that cool. Now you will be, because you'll know how these maps work!",
       "bots": [
         {
           "label": "Study Bot",
@@ -308,7 +308,7 @@
       "id": "distribution",
       "title": "Distribution",
       "icon": "📦",
-      "blurb": "Package your program into an app anyone can run, even without Python.",
+      "blurb": "Mom! I am sending you my app!... no no ... you don't need to install anything. just run it.",
       "bots": [
         {
           "label": "Study Bot",
