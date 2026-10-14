@@ -86,7 +86,8 @@
           "url": "https://share.gemini.google/G5xVshGKlAZ6"
         }
       ],
-      "material": ["topics/matplotlib.md", "topics/wwntr_graphs.md"]
+      "material": ["topics/matplotlib.md", "topics/wwntr_graphs.md"],
+      "quizzes": ["quizzes/graphs_quiz.md"]
     },
 
     {

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400" font-family="sans-serif">
+  <rect x="0" y="0" width="600" height="400" rx="18" fill="#f6f3ec"/>
+  <text x="300.0" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="#3a342c">Bugs found in our app each month</text>
+  <line x1="90" y1="70.0" x2="560" y2="70.0" stroke="#e3dccf" stroke-width="1"/>
+  <text x="80" y="75.0" text-anchor="end" font-size="15" fill="#3a342c">0</text>
+  <line x1="90" y1="122.0" x2="560" y2="122.0" stroke="#e3dccf" stroke-width="1"/>
+  <text x="80" y="127.0" text-anchor="end" font-size="15" fill="#3a342c">10</text>
+  <line x1="90" y1="174.0" x2="560" y2="174.0" stroke="#e3dccf" stroke-width="1"/>
+  <text x="80" y="179.0" text-anchor="end" font-size="15" fill="#3a342c">20</text>
+  <line x1="90" y1="226.0" x2="560" y2="226.0" stroke="#e3dccf" stroke-width="1"/>
+  <text x="80" y="231.0" text-anchor="end" font-size="15" fill="#3a342c">30</text>
+  <line x1="90" y1="278.0" x2="560" y2="278.0" stroke="#e3dccf" stroke-width="1"/>
+  <text x="80" y="283.0" text-anchor="end" font-size="15" fill="#3a342c">40</text>
+  <line x1="90" y1="330.0" x2="560" y2="330.0" stroke="#e3dccf" stroke-width="1"/>
+  <text x="80" y="335.0" text-anchor="end" font-size="15" fill="#3a342c">50</text>
+  <line x1="90" y1="70" x2="90" y2="330" stroke="#3a342c" stroke-width="2"/>
+  <text transform="translate(28 200.0) rotate(-90)" text-anchor="middle" font-size="15" fill="#3a342c">Number of bugs</text>
+  <polyline points="130.0,96.0 208.0,122.0 286.0,163.6 364.0,200.0 442.0,241.6 520.0,304.0" fill="none" stroke="#e05a47" stroke-width="4" stroke-linejoin="round"/>
+  <circle cx="130.0" cy="96.0" r="6" fill="#e05a47"/>
+  <text x="130.0" y="355" text-anchor="middle" font-size="15" fill="#3a342c">Jan</text>
+  <circle cx="208.0" cy="122.0" r="6" fill="#e05a47"/>
+  <text x="208.0" y="355" text-anchor="middle" font-size="15" fill="#3a342c">Feb</text>
+  <circle cx="286.0" cy="163.6" r="6" fill="#e05a47"/>
+  <text x="286.0" y="355" text-anchor="middle" font-size="15" fill="#3a342c">Mar</text>
+  <circle cx="364.0" cy="200.0" r="6" fill="#e05a47"/>
+  <text x="364.0" y="355" text-anchor="middle" font-size="15" fill="#3a342c">Apr</text>
+  <circle cx="442.0" cy="241.6" r="6" fill="#e05a47"/>
+  <text x="442.0" y="355" text-anchor="middle" font-size="15" fill="#3a342c">May</text>
+  <circle cx="520.0" cy="304.0" r="6" fill="#e05a47"/>
+  <text x="520.0" y="355" text-anchor="middle" font-size="15" fill="#3a342c">Jun</text>
+  <line x1="90" y1="330" x2="560" y2="330" stroke="#3a342c" stroke-width="2"/>
+</svg>

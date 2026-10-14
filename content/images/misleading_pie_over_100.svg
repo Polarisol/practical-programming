@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400" font-family="sans-serif">
+  <rect x="0" y="0" width="600" height="400" rx="18" fill="#f6f3ec"/>
+  <text x="300.0" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="#3a342c">Favourite lunch of students in our class</text>
+  <path d="M220,220 L220.0,80.0 A140,140 0 0 1 290.0,341.2 Z" fill="#e05a47" stroke="#f6f3ec" stroke-width="3"/>
+  <text x="301.1" y="206.3" text-anchor="middle" font-size="22" font-weight="bold" fill="#ffffff">50%</text>
+  <path d="M220,220 L290.0,341.2 A140,140 0 0 1 80.0,220.0 Z" fill="#e8a33d" stroke="#f6f3ec" stroke-width="3"/>
+  <text x="178.0" y="300.7" text-anchor="middle" font-size="22" font-weight="bold" fill="#ffffff">40%</text>
+  <path d="M220,220 L80.0,220.0 A140,140 0 0 1 220.0,80.0 Z" fill="#6a9a5b" stroke="#f6f3ec" stroke-width="3"/>
+  <text x="160.6" y="168.6" text-anchor="middle" font-size="22" font-weight="bold" fill="#ffffff">30%</text>
+  <rect x="410" y="134" width="22" height="22" rx="4" fill="#e05a47"/>
+  <text x="444" y="152" font-size="18" fill="#3a342c">Pizza</text>
+  <rect x="410" y="179" width="22" height="22" rx="4" fill="#e8a33d"/>
+  <text x="444" y="197" font-size="18" fill="#3a342c">Falafel</text>
+  <rect x="410" y="224" width="22" height="22" rx="4" fill="#6a9a5b"/>
+  <text x="444" y="242" font-size="18" fill="#3a342c">Salad</text>
+</svg>
