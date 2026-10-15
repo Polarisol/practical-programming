@@ -94,16 +94,16 @@
     const guess = (i) => Math.abs(rowOf(i) - rowOf(goal)) + Math.abs(colOf(i) - colOf(goal));
     const steps = new Map([[start, 0]]); // g: the real number of steps from the start
     const cameFrom = new Map([[start, -1]]);
-    let toVisit = [{ f: guess(start), g: 0, cell: start }];
+    let toVisit = [{ f: guess(start), h: guess(start), cell: start }];
     const explored = [];
     const done = new Set();
-    // Like Python's heapq with (f, -g, (row, col)) entries: smallest f first; on a tie, the most
-    // steps so far (closest to the goal) first; then by row and column.
-    const order = (a, b) => a.f - b.f || b.g - a.g || a.cell - b.cell;
+    // Like Python's heapq with (f, h, (row, col)) entries: smallest f first; on a tie, the smallest
+    // guess (closest to the goal) first; then by row and column.
+    const order = (a, b) => a.f - b.f || a.h - b.h || a.cell - b.cell;
     const waiting = () => toVisit
       .filter((e) => !done.has(e.cell) && steps.get(e.cell) + guess(e.cell) === e.f) // skip outdated entries
       .sort(order)
-      .map((e) => ({ cell: e.cell, note: `${e.g}+${guess(e.cell)}=${e.f}`, f: e.f }));
+      .map((e) => ({ cell: e.cell, note: `${steps.get(e.cell)}+${e.h}=${e.f}`, f: e.f }));
     while (toVisit.length) {
       toVisit.sort(order);
       const { cell } = toVisit.shift();
@@ -116,7 +116,7 @@
         if (!steps.has(nb) || newSteps < steps.get(nb)) { // a new square, or a shorter way to it
           steps.set(nb, newSteps);
           cameFrom.set(nb, cell);
-          toVisit.push({ f: newSteps + guess(nb), g: newSteps, cell: nb });
+          toVisit.push({ f: newSteps + guess(nb), h: guess(nb), cell: nb });
         }
       }
       yield { current: cell, explored, waiting: waiting() };
@@ -127,7 +127,7 @@
   const ALGORITHMS = {
     bfs: { label: 'BFS', search: bfs, list: 'Queue (front → back)', about: 'Takes the square that has waited longest: it spreads out in rings.' },
     dfs: { label: 'DFS', search: dfs, list: 'Stack (top → bottom)', about: 'Takes the square added last: it dives deep, then backtracks.' },
-    astar: { label: 'A*', search: astar, list: 'Priority queue (smallest f = g + h first, then largest g)', about: 'Takes the square with the smallest f = steps so far (g) + guess to the goal (h). On a tie, the one with the larger g.' },
+    astar: { label: 'A*', search: astar, list: 'Priority queue (smallest f = g + h first, then smallest h)', about: 'Takes the square with the smallest f = steps so far (g) + guess to the goal (h). On a tie, the one with the smaller h (closer to the goal).' },
   };
 
   const TOOLS = {
