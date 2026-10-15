@@ -259,34 +259,13 @@
   window.addEventListener('scroll', () => closeMenu(), { passive: true });
   updateToggle();
 
-  // ---------- View toggle (cards <-> minimal list), used on every page ----------
-  const viewListeners = [];
+  // ---------- View button ----------
+  // Pages always use the list view. The button stays in the top bar with no action yet.
   const viewToggle = document.querySelector('.view-toggle');
-  const ICON_CARDS = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/>'
-    + '<rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/>'
-    + '<rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>';
-  const ICON_LIST = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>';
-
-  // The button shows the view you will switch *to*.
-  function updateViewToggle() {
-    if (!viewToggle) return;
-    const list = root.dataset.view === 'list';
-    viewToggle.innerHTML = list ? ICON_CARDS : ICON_LIST;
-    const label = list ? 'Switch to card view' : 'Switch to list view';
-    viewToggle.setAttribute('aria-label', label);
-    viewToggle.title = label;
-  }
-
   if (viewToggle) {
-    viewToggle.addEventListener('click', () => {
-      const list = root.dataset.view !== 'list';
-      if (list) root.dataset.view = 'list';
-      else delete root.dataset.view;
-      try { localStorage.setItem('view', list ? 'list' : 'cards'); } catch { /* storage unavailable */ }
-      updateViewToggle();
-      viewListeners.forEach((fn) => fn());
-    });
-    updateViewToggle();
+    viewToggle.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/>'
+      + '<rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/>'
+      + '<rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>';
   }
 
   // ---------- Icons toggle: show or hide the small icons beside unit names ----------
@@ -1309,7 +1288,6 @@
 
   // ---------- Topic page ----------
   let drawTopicBody = null;
-  viewListeners.push(() => drawTopicBody && drawTopicBody());
 
   function showTopic(main, topic, siteTitle) {
     if (!topic) {
