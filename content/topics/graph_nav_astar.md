@@ -26,7 +26,7 @@ For every square it knows about, A\* keeps three numbers:
 
 A\* always explores the square with the **smallest f** next: the square on the shortest-looking trip.
 
-When several squares share the smallest f, A\* takes the one with the **largest g** first: the one that has already walked the furthest, so it is probably closer to the goal. This does not change the answer (A\* still finds a shortest path), it just helps A\* reach the goal sooner instead of trying many equally good squares side by side.
+When several squares share the smallest f, A\* takes the one with the **smallest h** first: the one whose guess says it is closest to the goal. This does not change the answer (A\* still finds a shortest path), it just helps A\* reach the goal sooner instead of trying many equally good squares side by side.
 
 A good guess on a grid is the **Manhattan distance**: the number of rows plus the number of columns between the square and the goal, as if there were no walls. (It is named after the streets of Manhattan, where you can only walk along a grid of blocks.)
 
@@ -68,7 +68,7 @@ heapq.heappush(waiting, (12, 'far away'))
 print(heapq.heappop(waiting))   # (8, 'right') - the smallest number comes out first
 ```
 
-We push `(f, -g, square)`, so the square with the smallest f comes out first. Python compares tuples one item at a time, so when two squares have the same f, it compares `-g` next: the smaller `-g` belongs to the **larger** g, so the square that has walked further comes out first.
+We push `(f, h, square)`, so the square with the smallest f comes out first. Python compares tuples one item at a time, so when two squares have the same f, it compares `h` next: the square closer to the goal comes out first.
 
 ## The code
 
@@ -110,11 +110,11 @@ def guess(cell, goal):
 def a_star(start, goal):
     steps = {start: 0}              # g: the real number of steps from the start
     came_from = {start: None}
-    to_visit = [(guess(start, goal), 0, start)]  # (f, -g, cell): smallest f first, on a tie largest g
+    to_visit = [(guess(start, goal), guess(start, goal), start)]  # (f, h, cell): smallest f first, on a tie smallest h
     explored = set()                # squares we already took out of the priority queue
 
     while to_visit:
-        f, minus_g, cell = heapq.heappop(to_visit)
+        f, h, cell = heapq.heappop(to_visit)
         if cell in explored:        # an older entry for a square we already explored
             continue
         explored.add(cell)
@@ -125,7 +125,7 @@ def a_star(start, goal):
             if nb not in steps or new_steps < steps[nb]:   # a new square, or a shorter way to it
                 steps[nb] = new_steps
                 came_from[nb] = cell
-                heapq.heappush(to_visit, (new_steps + guess(nb, goal), -new_steps, nb))
+                heapq.heappush(to_visit, (new_steps + guess(nb, goal), guess(nb, goal), nb))
 
     if goal not in came_from:
         return None, len(explored)  # the goal cannot be reached
