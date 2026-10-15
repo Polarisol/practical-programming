@@ -1,27 +1,35 @@
 {
   "site": {
     "title": "Practical Programming",
+    "title_he": "תכנות מעשי",
     "author": "Dr. Tal Alon",
+    "author_he": "ד״ר טל אלון",
     "home": "home.md",
     "views": "polarisol-practical-programming",
-    "footer": "Practical Programming · Dr. Tal Alon"
+    "footer": "Practical Programming · Dr. Tal Alon",
+    "footer_he": "תכנות מעשי · ד״ר טל אלון"
   },
   "topics": [
     {
       "id": "installation",
       "title": "Installation",
+      "title_he": "התקנה",
       "icon": "⬇",
       "blurb": "What to install and how to install it (and when to install it... which is now).",
+      "blurb_he": "מה להתקין ואיך להתקין (ומתי להתקין... כלומר עכשיו).",
       "material": "topics/install.md"
     },
     {
       "id": "starting-a-project",
       "title": "Starting a Project",
+      "title_he": "התחלת פרויקט",
       "icon": "📁",
       "blurb": "A beginning is a very delicate time. Let me take you through it, step by step.",
+      "blurb_he": "התחלה היא זמן עדין מאוד. אני אוביל אתכם דרכה, צעד אחר צעד.",
       "videos": [
         {
           "title": "Starting a new Project",
+          "title_he": "התחלת פרויקט חדש",
           "youtube": "https://www.youtube.com/watch?v=PmRv_YIXFP4&feature=youtu.be"
         }
       ],
@@ -30,15 +38,19 @@
     {
       "id": "python-basics",
       "title": "Python Basics",
+      "title_he": "יסודות Python",
       "icon": "{ }",
       "blurb": "Babies need to learn how to walk before they can run. You are not a baby, are you? but you still have to do it.",
+      "blurb_he": "תינוקות צריכים ללמוד ללכת לפני שהם רצים. אתם לא תינוקות, נכון? אבל עדיין צריך לעשות את זה.",
       "videos": [
         {
           "title": "A playlist of python lectures",
+          "title_he": "רשימת השמעה של הרצאות Python",
           "youtube": "https://www.youtube.com/watch?v=SbS0TGpPs68&list=PLo9PXcvje6-rYhWvS-2t8EMaAKqxS0JCd"
         },
         {
           "title": "10 minutes - Basic Python",
+          "title_he": "10 דקות - Python בסיסי",
           "youtube": "https://www.youtube.com/watch?v=fWjsdhR3z3c&t=5s",
           "start": 0
         }
@@ -48,13 +60,16 @@
       "bots": [
         {
           "label": "Study Bot",
+          "label_he": "בוט לימוד",
           "description": "Let's make sure you understand everything. We can also talk in Hebrew.",
+          "description_he": "בואו נוודא שהבנתם הכול. אפשר לדבר איתי גם בעברית.",
           "url": "https://share.gemini.google/7CrPSARg3W5t"
         }
       ],
       "links": [
         {
           "label": "The official Python tutorial",
+          "label_he": "המדריך הרשמי של Python",
           "url": "https://docs.python.org/3/tutorial/"
         }
       ]
@@ -62,27 +77,35 @@
     {
       "id": "using-git",
       "title": "Using Git",
+      "title_he": "עבודה עם Git",
       "icon": "⎇",
       "blurb": "Time travel is here! Really! at least for your project files.",
+      "blurb_he": "מסע בזמן כבר כאן! באמת! לפחות בשביל קובצי הפרויקט שלכם.",
       "material": ["topics/using-git.md", "topics/wwntr_git.md"]
     },
     {
       "id": "using-ai",
       "title": "Using AI",
+      "title_he": "שימוש בבינה מלאכותית",
       "icon": "🤖",
       "blurb": "Using AI correctly is not cheating, using it incorrectly can be extremely harmful. Don't be harmful. Things are not supposed to be too easy.",
+      "blurb_he": "שימוש נכון בבינה מלאכותית הוא לא רמאות, שימוש לא נכון יכול להזיק מאוד. אל תזיקו. דברים לא אמורים להיות קלים מדי.",
       "material": ["topics/AIRules.md", "topics/github_copilot.md"],
       "quizzes": ["quizzes/ai-tools-quiz.md"]
     },
     {
       "id": "matplotlib",
       "title": "Plotting Graphs",
+      "title_he": "שרטוט גרפים",
       "icon": "📊",
       "blurb": "A graph, like a picture, tells a thousand words. They better tell an interesting story and not sell us fake news.",
+      "blurb_he": "גרף, כמו תמונה, שווה אלף מילים. כדאי שהוא יספר סיפור מעניין ולא ימכור לנו פייק ניוז.",
       "bots": [
         {
           "label": "Study Bot",
+          "label_he": "בוט לימוד",
           "description": "I can help you understand eeeevrything. We can also talk in Hebrew.",
+          "description_he": "אני יכול לעזור לכם להבין הכוווול. אפשר לדבר איתי גם בעברית.",
           "url": "https://share.gemini.google/G5xVshGKlAZ6"
         }
       ],
@@ -95,20 +118,25 @@
       "title": "NumPy",
       "icon": "🔢",
       "blurb": "The need for speed... on computers it is crucial, and safer than when you are in a car.",
+      "blurb_he": "הצורך במהירות... במחשבים הוא קריטי, ובטוח יותר מאשר במכונית.",
       "bots": [
         {
           "label": "Study Bot",
+          "label_he": "בוט לימוד",
           "description": "I'll teach you NumPy. We can also talk in Hebrew.",
+          "description_he": "אני אלמד אתכם NumPy. אפשר לדבר איתי גם בעברית.",
           "url": "https://share.gemini.google/VayjFdjDBexT"
         }
       ],
       "videos": [
         {
           "title": "Numpy in 40 minutes",
+          "title_he": "NumPy ב־40 דקות",
           "youtube": "https://www.youtube.com/watch?v=zI5ducyfyNc"
         },
         {
           "title": "NumPy intro",
+          "title_he": "מבוא ל־NumPy",
           "youtube": "https://www.youtube.com/watch?v=-WVcwBqzMPg"
         }
       ],
@@ -119,18 +147,23 @@
     {
       "id": "oop",
       "title": "OOP",
+      "title_he": "תכנות מונחה עצמים",
       "icon": "🐱",
       "blurb": "Classes and objects: This topic can be a little tricky at first, but you don't have to master it for now, just understand the basics well. No joke here... it is no laughing matter.",
+      "blurb_he": "מחלקות ואובייקטים: הנושא הזה יכול להיות קצת מבלבל בהתחלה, אבל לא צריך לשלוט בו לגמרי כרגע, רק להבין היטב את היסודות. בלי בדיחה הפעם... זה לא עניין לצחוק בו.",
       "bots": [
         {
           "label": "Study Bot",
+          "label_he": "בוט לימוד",
           "description": "OOP is easy... when I teach it. We can also talk in Hebrew.",
+          "description_he": "תכנות מונחה עצמים זה קל... כשאני מלמד אותו. אפשר לדבר איתי גם בעברית.",
           "url": "https://share.gemini.google/N7mR0vyDI4IG"
         }
       ],
       "videos": [
         {
           "title": "OOP in Python",
+          "title_he": "תכנות מונחה עצמים ב־Python",
           "youtube": "https://www.youtube.com/watch?v=JeznW_7DlB0"
         }
       ],
@@ -141,18 +174,24 @@
     {
       "id": "pyside6",
       "title": "PySide6 - GUI",
+      "title_he": "PySide6 - ממשק גרפי",
       "icon": "🖥",
       "blurb": "Apps without a good graphical interface are no fun. I don't want to use them, and my friends don't either. Your apps need to look and feel great.",
+      "blurb_he": "אפליקציות בלי ממשק גרפי טוב הן לא כיף. אני לא רוצה להשתמש בהן, וגם החברים שלי לא. האפליקציות שלכם צריכות להיראות ולהרגיש מעולה.",
       "material": ["topics/pyside6_basics.md", "topics/pyside6_widgets.md", "topics/pyside6_oop.md", "topics/pyside6_oop_windows.md", "topics/pyside6_timers.md", "topics/pyside6_extras.md", "topics/wwntr_pyside6_basic.md", "topics/wwntr_pyside6_oop.md"],
       "bots": [
         {
           "label": "Study Bot - Basic PySide6 (Not OOP)",
+          "label_he": "בוט לימוד - PySide6 בסיסי (בלי OOP)",
           "description": "Let's make sure you understand the basics. We can talk in Hebrew.",
+          "description_he": "בואו נוודא שהבנתם את היסודות. אפשר לדבר איתי בעברית.",
           "url": "https://share.gemini.google/qk3gTuWej5H0"
         },
         {
           "label": "Study Bot - OOP PySide6",
+          "label_he": "בוט לימוד - PySide6 מונחה עצמים",
           "description": "Let's focus on the OOP aspects of PySide6. We can talk in Hebrew.",
+          "description_he": "בואו נתמקד בצד מונחה העצמים של PySide6. אפשר לדבר איתי בעברית.",
           "url": "https://share.gemini.google/IsY5fCUdE1KY"
         }
       ],
@@ -160,6 +199,7 @@
       "files": [
         {
           "label": "Two Windows Code",
+          "label_he": "הקוד של שני החלונות",
           "file": "files/TwoWindowsCode.zip"
         }
       ]
@@ -168,12 +208,16 @@
     {
       "id": "recursion",
       "title": "Recursion",
+      "title_he": "רקורסיה",
       "icon": "🔁",
       "blurb": "You ever pick up the phone and call yourself?.... Really? I don't, but functions do. They call themselves to solve problems in an interesting way.",
+      "blurb_he": "יצא לכם פעם להרים טלפון ולהתקשר לעצמכם?.... באמת? לי לא, אבל לפונקציות כן. הן קוראות לעצמן כדי לפתור בעיות בדרך מעניינת.",
       "bots": [
         {
           "label": "Study Bot",
+          "label_he": "בוט לימוד",
           "description": "I can help you study, teach you and quiz you on Recursion.",
+          "description_he": "אני יכול לעזור לכם ללמוד, ללמד אתכם ולבחון אתכם על רקורסיה.",
           "url": "https://xxxxxxx"
         }
       ],
@@ -184,12 +228,16 @@
     {
       "id": "monte-carlo",
       "title": "Monte Carlo",
+      "title_he": "מונטה קרלו",
       "icon": "🎲",
       "blurb": "Stop being such a control freak! Let go and embrace uncertainty! It can be very useful. Sometimes you just have to roll the dice and see what happens.",
+      "blurb_he": "מספיק להיות פריקים של שליטה! שחררו ואמצו את אי־הוודאות! היא יכולה להיות מאוד שימושית. לפעמים פשוט צריך להטיל קובייה ולראות מה יקרה.",
       "bots": [
         {
           "label": "Study Bot",
+          "label_he": "בוט לימוד",
           "description": "I can help you study, teach you and quiz you on Monte Carlo.",
+          "description_he": "אני יכול לעזור לכם ללמוד, ללמד אתכם ולבחון אתכם על מונטה קרלו.",
           "url": "https://xxxxxxx"
         }
       ]
@@ -200,10 +248,13 @@
       "title": "SymPy",
       "icon": "∑",
       "blurb": "'X' - it's a symbol. You know... from all the equations you have to solve... The computer can solve these equations faster than you. You are not that special.",
+      "blurb_he": "'X' - זה סמל. אתם יודעים... מכל המשוואות שאתם צריכים לפתור... המחשב יכול לפתור את המשוואות האלה מהר יותר מכם. אתם לא כאלה מיוחדים.",
       "bots": [
         {
           "label": "Study Bot",
+          "label_he": "בוט לימוד",
           "description": "I can help you study, teach you and quiz you on SymPy.",
+          "description_he": "אני יכול לעזור לכם ללמוד, ללמד אתכם ולבחון אתכם על SymPy.",
           "url": "https://xxxxxxx"
         }
       ],
@@ -215,10 +266,13 @@
       "title": "Pandas",
       "icon": "🐼",
       "blurb": "I will nooot make a pandas joke... I will nooot do it... Tal! Control yourself!",
+      "blurb_he": "אני לאאא אעשה בדיחת פנדות... לאאא אעשה את זה... טל! תשלוט בעצמך!",
       "bots": [
         {
           "label": "Study Bot",
+          "label_he": "בוט לימוד",
           "description": "I can help you study, teach you and quiz you on Pandas.",
+          "description_he": "אני יכול לעזור לכם ללמוד, ללמד אתכם ולבחון אתכם על Pandas.",
           "url": "https://xxxxxxx"
         }
       ],
@@ -234,12 +288,16 @@
     {
       "id": "machine-learning",
       "title": "Machine Learning",
+      "title_he": "למידת מכונה",
       "icon": "🧠",
       "blurb": "The basics of all currently adored and feared AI tools. We gave them the ability to learn from data! Let's hope they remember that when they are in control.",
+      "blurb_he": "היסודות של כל כלי הבינה המלאכותית שכולם אוהבים ומפחדים מהם היום. נתנו להם את היכולת ללמוד מנתונים! נקווה שהם יזכרו את זה כשהם יהיו בשליטה.",
       "bots": [
         {
           "label": "Study Bot",
+          "label_he": "בוט לימוד",
           "description": "I can help you study, teach you and quiz you on Machine Learning.",
+          "description_he": "אני יכול לעזור לכם ללמוד, ללמד אתכם ולבחון אתכם על למידת מכונה.",
           "url": "https://xxxxxxx"
         }
       ]
@@ -248,12 +306,16 @@
     {
       "id": "integrating-llms",
       "title": "Integrating LLMs",
+      "title_he": "שילוב מודלי שפה גדולים",
       "icon": "💬",
       "blurb": "Wow! we can now call large language models from our own Python programs? The future is here!",
+      "blurb_he": "וואו! אפשר עכשיו לקרוא למודלי שפה גדולים מתוך תוכניות Python שלנו? העתיד כבר כאן!",
       "bots": [
         {
           "label": "Study Bot",
+          "label_he": "בוט לימוד",
           "description": "I can help you study, teach you and quiz you on Integrating LLMs.",
+          "description_he": "אני יכול לעזור לכם ללמוד, ללמד אתכם ולבחון אתכם על שילוב מודלי שפה גדולים.",
           "url": "https://xxxxxxx"
         }
       ]
@@ -264,11 +326,14 @@
       "title": "SQL",
       "icon": "🗄",
       "blurb": "You probably heard the term SQL. It was a mystery to you. You felt stupid for not knowing what it is. You were. No more.",
+      "blurb_he": "בטח שמעתם את המונח SQL. הוא היה תעלומה בשבילכם. הרגשתם טיפשים שאתם לא יודעים מה זה. הייתם. לא עוד.",
       "material": ["topics/sql_basics.md", "topics/sql_abstraction.md", "topics/sql_injection.md", "topics/wwntr_sql.md"],
       "bots": [
         {
           "label": "Study Bot",
+          "label_he": "בוט לימוד",
           "description": "I can help you study, teach you and quiz you on SQL.",
+          "description_he": "אני יכול לעזור לכם ללמוד, ללמד אתכם ולבחון אתכם על SQL.",
           "url": "https://xxxxxxx"
         }
       ]
@@ -279,10 +344,13 @@
       "title": "Pygame",
       "icon": "🎮",
       "blurb": "We can make things move and animate stuff. physics looks so cool when you see it in motion.",
+      "blurb_he": "אפשר לגרום לדברים לזוז וליצור אנימציות. פיזיקה נראית כל כך מגניב כשרואים אותה בתנועה.",
       "bots": [
         {
           "label": "Study Bot",
+          "label_he": "בוט לימוד",
           "description": "I can help you study, teach you and quiz you on Pygame.",
+          "description_he": "אני יכול לעזור לכם ללמוד, ללמד אתכם ולבחון אתכם על Pygame.",
           "url": "https://xxxxxxx"
         }
       ]
@@ -291,12 +359,16 @@
     {
       "id": "graph-navigation",
       "title": "Graph Navigation",
+      "title_he": "ניווט בגרפים",
       "icon": "🧭",
       "blurb": "Do you know how to get to where you want without Waze or Google Maps? I don't think so. You are not that cool. Now you will be, because you'll know how these maps work!",
+      "blurb_he": "אתם יודעים להגיע לאן שאתם רוצים בלי Waze או Google Maps? לא נראה לי. אתם לא כאלה מגניבים. עכשיו תהיו, כי תדעו איך המפות האלה עובדות!",
       "bots": [
         {
           "label": "Study Bot",
+          "label_he": "בוט לימוד",
           "description": "I can help you study, teach you and quiz you on Graph Navigation.",
+          "description_he": "אני יכול לעזור לכם ללמוד, ללמד אתכם ולבחון אתכם על ניווט בגרפים.",
           "url": "https://xxxxxxx"
         }
       ],
@@ -304,8 +376,10 @@
       "simulations": [
         {
           "title": "Path finding simulation: BFS, DFS and A*",
+          "title_he": "הדמיית חיפוש מסלול: BFS, DFS ו־A*",
           "type": "grid-path",
-          "description": "Place the start, the goal and walls on a 10 x 10 grid, then watch each algorithm search."
+          "description": "Place the start, the goal and walls on a 10 x 10 grid, then watch each algorithm search.",
+          "description_he": "הציבו התחלה, יעד וקירות על לוח של 10 על 10, וצפו בכל אלגוריתם מחפש."
         }
       ]
     },
@@ -313,12 +387,16 @@
     {
       "id": "distribution",
       "title": "Distribution",
+      "title_he": "הפצה",
       "icon": "📦",
       "blurb": "Mom! I am sending you my app!... no no ... you don't need to install anything. just run it.",
+      "blurb_he": "אמא! אני שולח לך את האפליקציה שלי!... לא לא... לא צריך להתקין כלום. פשוט תריצי אותה.",
       "bots": [
         {
           "label": "Study Bot",
+          "label_he": "בוט לימוד",
           "description": "I can help you study, teach you and quiz you on Distribution.",
+          "description_he": "אני יכול לעזור לכם ללמוד, ללמד אתכם ולבחון אתכם על הפצה.",
           "url": "https://xxxxxxx"
         }
       ],

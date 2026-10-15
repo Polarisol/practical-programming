@@ -9,6 +9,7 @@
   const TIME_LIMIT_MS = 10000;
   const OUTPUT_LIMIT = 100000; // characters
   const STORE_KEY = 'playground-code';
+  const t = window.I18N ? window.I18N.t : (s) => s;
 
   const EXAMPLES = {
     hello: '# Change the name and press Run\nname = "Ada"\nprint("Hello,", name)\n',
@@ -94,7 +95,7 @@
     examples.value = '';
     if (!code) return;
     const edited = editor.value.trim() && !Object.values(EXAMPLES).includes(editor.value);
-    if (edited && !confirm('Replace your code with this example?')) return;
+    if (edited && !confirm(t('Replace your code with this example?'))) return;
     editor.value = code;
     updateGutter();
     save();
@@ -122,7 +123,7 @@
     if (last && last.className === cls) last.textContent += text;
     else output.append(Object.assign(document.createElement('span'), { className: cls, textContent: text }));
     output.scrollTop = output.scrollHeight;
-    if (written > OUTPUT_LIMIT) halt('Stopped: the program printed too much. Is there a loop that never ends?');
+    if (written > OUTPUT_LIMIT) halt(t('Stopped: the program printed too much. Is there a loop that never ends?'));
   }
 
   function setRunning(on) {
@@ -135,22 +136,22 @@
   function startWorker() {
     ready = false;
     worker = new Worker('js/py-worker.js');
-    setStatus('Loading Python… (the first time takes a few seconds)', 'busy');
+    setStatus(t('Loading Python… (the first time takes a few seconds)'), 'busy');
     worker.onmessage = (e) => {
       const msg = e.data;
       if (msg.type === 'ready') {
         ready = true;
-        setStatus('Ready', 'ok');
+        setStatus(t('Ready'), 'ok');
         if (queued) { queued = false; run(); }
       } else if (msg.type === 'chunks') {
         if (running) msg.chunks.forEach((c) => write(c.text, c.type));
       } else if (msg.type === 'flood') {
-        halt('Stopped: the program printed too much. Is there a loop that never ends?');
+        halt(t('Stopped: the program printed too much. Is there a loop that never ends?'));
       } else if (msg.type === 'done') {
         clearTimeout(timer);
         setRunning(false);
-        setStatus(`Finished in ${((performance.now() - startedAt) / 1000).toFixed(2)} s`, 'ok');
-        if (!output.childNodes.length) write('(no output: use print() to show something)', 'note');
+        setStatus(t('Finished in {s} s', { s: ((performance.now() - startedAt) / 1000).toFixed(2) }), 'ok');
+        if (!output.childNodes.length) write(t('(no output: use print() to show something)'), 'note');
       } else if (msg.type === 'fail') {
         failed();
       }
@@ -162,7 +163,7 @@
     stopWorker();
     queued = false;
     setRunning(false);
-    setStatus('Python could not load. Check your internet connection and try again.', 'error');
+    setStatus(t('Python could not load. Check your internet connection and try again.'), 'error');
   }
 
   function stopWorker() {
@@ -188,14 +189,14 @@
     written = 0;
     if (!ready) {
       queued = true;
-      write('Python is still loading. Your code will run as soon as it is ready…\n', 'note');
+      write(`${t('Python is still loading. Your code will run as soon as it is ready…')}\n`, 'note');
       return;
     }
     setRunning(true);
-    setStatus('Running…', 'busy');
+    setStatus(t('Running…'), 'busy');
     startedAt = performance.now();
     timer = setTimeout(
-      () => halt(`Stopped: the program ran for more than ${TIME_LIMIT_MS / 1000} seconds. Is there a loop that never ends?`),
+      () => halt(t('Stopped: the program ran for more than {n} seconds. Is there a loop that never ends?', { n: TIME_LIMIT_MS / 1000 })),
       TIME_LIMIT_MS,
     );
     const inputs = stdin.value ? stdin.value.replace(/\n$/, '').split('\n') : [];
@@ -203,7 +204,7 @@
   }
 
   runBtn.addEventListener('click', run);
-  stopBtn.addEventListener('click', () => halt('Stopped.'));
+  stopBtn.addEventListener('click', () => halt(t('Stopped.')));
   $('.pg-clear').addEventListener('click', () => { output.replaceChildren(); written = 0; });
 
   // ---------- Opening and closing the panel ----------
