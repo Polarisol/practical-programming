@@ -468,6 +468,56 @@
     code.parentElement.replaceWith(box);
   }
 
+  // In Hebrew, a run of English, numbers or symbols (a list like [2, 4, 6] or printed
+  // output like 0 2 4) is kept left to right, so its first item stays on the left.
+  const HEBREW = /[\u0590-\u05FF]/;
+  const LTR_RUN = /[A-Za-z0-9[({'"+\-][^\u0590-\u05FF\n]*[A-Za-z0-9\])}'"]|[A-Za-z0-9]/g;
+  const PAIRS = { ')': '(', ']': '[', '}': '{' };
+
+  // Drops brackets at either end that have no partner inside the run.
+  function trimUnpaired(run) {
+    for (;;) {
+      const last = run[run.length - 1];
+      if (PAIRS[last] && run.split(PAIRS[last]).length < run.split(last).length) { run = run.slice(0, -1).trimEnd(); continue; }
+      const first = run[0];
+      const close = Object.keys(PAIRS).find((k) => PAIRS[k] === first);
+      if (close && run.split(close).length < run.split(first).length) { run = run.slice(1).trimStart(); continue; }
+      return run;
+    }
+  }
+
+  function keepRunsLtr(node) {
+    if (lang !== 'he') return;
+    const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT, {
+      acceptNode: (n) => (n.parentElement.closest('code, pre, kbd, .katex, .math-block, [dir="ltr"]')
+        ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT),
+    });
+    const texts = [];
+    while (walker.nextNode()) texts.push(walker.currentNode);
+    for (const textNode of texts) {
+      const text = textNode.data;
+      const parts = [];
+      let at = 0;
+      for (const m of text.matchAll(LTR_RUN)) {
+        // A sentence break inside the run belongs to the Hebrew text around it.
+        let from = m.index;
+        for (const piece of m[0].split(/(?<=[.;:!?])\s+/)) {
+          const run = trimUnpaired(piece.replace(/[.;:!?]+$/, ''));
+          const start = text.indexOf(run, from);
+          from += piece.length;
+          // Only numbers and brackets (lists, printed output) come out in the wrong order;
+          // a list of English words reads right to left like the Hebrew around it.
+          if (!run || start < at || !/[\s,]/.test(run) || !/[0-9[\](){}]/.test(run)) continue;
+          parts.push(text.slice(at, start), el('span', { dir: 'ltr', text: run }));
+          at = start + run.length;
+        }
+      }
+      if (!parts.length) continue;
+      parts.push(text.slice(at));
+      textNode.replaceWith(...parts.filter((x) => x !== ''));
+    }
+  }
+
   function renderMarkdown(text) {
     if (window.marked && window.DOMPurify) {
       const html = window.DOMPurify.sanitize(window.marked.parse(text));
@@ -482,6 +532,7 @@
       });
       div.querySelectorAll('pre > code.language-math').forEach(mathBlock);
       div.querySelectorAll('pre').forEach(addCopyButton);
+      keepRunsLtr(div);
       return [...div.childNodes];
     }
     // Libraries failed to load (e.g. offline): show the raw text instead.
@@ -664,6 +715,7 @@
     const span = el('span');
     if (window.marked && window.DOMPurify) span.innerHTML = window.DOMPurify.sanitize(window.marked.parseInline(text));
     else span.textContent = text;
+    keepRunsLtr(span);
     return span;
   }
 
