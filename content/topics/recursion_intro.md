@@ -35,6 +35,8 @@ multiply(4, 3) = 4 + multiply(4, 2)
                = 12
 ```
 
+![multiply(4, 3) at full depth: four calls are open at once, each waiting for the one below. The base case multiply(4, 0) returns 0, and the answers 4, 8 and 12 travel back up](content/images/multiply_full_depth.svg)
+
 Each call waits for the call below it to finish. When the base case returns `0`, the answers travel back up and are added together.
 
 ## Towers of Hanoi
