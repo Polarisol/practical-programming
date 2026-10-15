@@ -12,9 +12,9 @@ When you look for the bathroom in a new building and you see a sign pointing lef
 
 Here is a robot on a grid map. It starts at `S`, must reach `G`, and there is a wall in the middle. Each move goes one square up, down, left or right. The light blue squares are the ones each algorithm had to look at before it found the goal:
 
-![The same grid twice. On the left, BFS explored 83 squares, almost the whole map. On the right, A* explored only 32 squares, mostly between S and G. Both found a path of 12 steps](content/images/astar_vs_bfs.svg)
+![The same grid twice. On the left, BFS explored 83 squares, almost the whole map. On the right, A* explored only 21 squares, mostly between S and G. Both found a path of 12 steps](content/images/astar_vs_bfs.svg)
 
-Both found a shortest path, 12 steps. But BFS looked at **83** squares, almost the whole map, while A\* looked at only **32**, mostly the squares that lead toward the goal. On a real map with millions of squares, this difference is huge. That is why A\* is the favourite of game makers and robot builders.
+Both found a shortest path, 12 steps. But BFS looked at **83** squares, almost the whole map, while A\* looked at only **21**, mostly the squares that lead toward the goal. On a real map with millions of squares, this difference is huge. That is why A\* is the favourite of game makers and robot builders.
 
 ## The three numbers: g, h and f
 
@@ -25,6 +25,8 @@ For every square it knows about, A\* keeps three numbers:
 - **f = g + h** - the guessed length of the whole trip, if we go through this square.
 
 A\* always explores the square with the **smallest f** next: the square on the shortest-looking trip.
+
+When several squares share the smallest f, A\* takes the one with the **largest g** first: the one that has already walked the furthest, so it is probably closer to the goal. This does not change the answer (A\* still finds a shortest path), it just helps A\* reach the goal sooner instead of trying many equally good squares side by side.
 
 A good guess on a grid is the **Manhattan distance**: the number of rows plus the number of columns between the square and the goal, as if there were no walls. (It is named after the streets of Manhattan, where you can only walk along a grid of blocks.)
 
@@ -66,7 +68,7 @@ heapq.heappush(waiting, (12, 'far away'))
 print(heapq.heappop(waiting))   # (8, 'right') - the smallest number comes out first
 ```
 
-We push pairs `(f, square)`, so the square with the smallest f comes out first.
+We push `(f, -g, square)`, so the square with the smallest f comes out first. Python compares tuples one item at a time, so when two squares have the same f, it compares `-g` next: the smaller `-g` belongs to the **larger** g, so the square that has walked further comes out first.
 
 ## The code
 
@@ -108,11 +110,11 @@ def guess(cell, goal):
 def a_star(start, goal):
     steps = {start: 0}              # g: the real number of steps from the start
     came_from = {start: None}
-    to_visit = [(guess(start, goal), start)]    # pairs (f, cell), smallest f comes out first
+    to_visit = [(guess(start, goal), 0, start)]  # (f, -g, cell): smallest f first, on a tie largest g
     explored = set()                # squares we already took out of the priority queue
 
     while to_visit:
-        f, cell = heapq.heappop(to_visit)
+        f, minus_g, cell = heapq.heappop(to_visit)
         if cell in explored:        # an older entry for a square we already explored
             continue
         explored.add(cell)
@@ -123,7 +125,7 @@ def a_star(start, goal):
             if nb not in steps or new_steps < steps[nb]:   # a new square, or a shorter way to it
                 steps[nb] = new_steps
                 came_from[nb] = cell
-                heapq.heappush(to_visit, (new_steps + guess(nb, goal), nb))
+                heapq.heappush(to_visit, (new_steps + guess(nb, goal), -new_steps, nb))
 
     if goal not in came_from:
         return None, len(explored)  # the goal cannot be reached
@@ -138,7 +140,7 @@ def a_star(start, goal):
     return path, len(explored)
 
 path, explored = a_star(find('S'), find('G'))
-print('Squares explored:', explored)   # 32
+print('Squares explored:', explored)   # 21
 print('Steps:', len(path) - 1)         # 12
 print(path)
 ```
@@ -146,7 +148,7 @@ print(path)
 Output:
 
 ```
-Squares explored: 32
+Squares explored: 21
 Steps: 12
 [(3, 2), (3, 3), (3, 4), (3, 5), (2, 5), (1, 5), (1, 6), (1, 7), (1, 8), (1, 9), (1, 10), (2, 10), (3, 10)]
 ```
