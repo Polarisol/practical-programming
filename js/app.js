@@ -896,9 +896,10 @@
 
   // ---------- Simulations: interactive demos built in the browser ----------
   // "simulations" in topics.json: [{ "title": "...", "type": "grid-path", "description": "..." }].
-  // Each type is made by its own script (js/grid-sim.js for "grid-path").
+  // Each type is made by its own script (js/grid-sim.js for "grid-path", js/digit-sim.js for "digit-draw").
   const SIMULATIONS = {
     'grid-path': () => window.GridSim && window.GridSim.create(),
+    'digit-draw': () => window.DigitSim && window.DigitSim.create(),
   };
 
   function simEntries(value) {

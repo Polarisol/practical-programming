@@ -300,6 +300,15 @@
           "description_he": "אני יכול לעזור לכם ללמוד, ללמד אתכם ולבחון אתכם על למידת מכונה.",
           "url": "https://xxxxxxx"
         }
+      ],
+      "simulations": [
+        {
+          "title": "Handwritten digit recognition",
+          "title_he": "זיהוי ספרות בכתב יד",
+          "type": "digit-draw",
+          "description": "Draw a digit on a 28 x 28 grid and watch a small neural network, trained on 60,000 handwritten digits, guess which one it is.",
+          "description_he": "ציירו ספרה על לוח של 28 על 28 וצפו ברשת נוירונים קטנה, שאומנה על 60,000 ספרות בכתב יד, מנחשת איזו ספרה זו."
+        }
       ]
     },
 

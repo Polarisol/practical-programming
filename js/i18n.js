@@ -190,6 +190,23 @@
     '❚❚ Pause': '❚❚ השהיה',
     '↻ Run again': '↻ הרצה חוזרת',
     '▶ Play': '▶ הפעלה',
+
+    // Handwritten digit simulation
+    'Drawing grid, 28 by 28. Draw a digit with the mouse or a finger.': 'לוח ציור, 28 על 28. ציירו ספרה בעכבר או באצבע.',
+    'What the model sees': 'מה שהמודל רואה',
+    'How sure the model is about each digit': 'כמה המודל בטוח בכל ספרה',
+    '✎ Draw': '✎ ציור',
+    '⌫ Erase': '⌫ מחיקה',
+    'Clear': 'ניקוי',
+    'Pen': 'עט',
+    'The model says': 'המודל אומר',
+    '{p}% sure': 'ודאות של {p}%',
+    'What the model sees: your drawing cropped, scaled to fit 20 x 20 and centred, like the 60,000 MNIST digits it learned from. Each of the 784 squares is one input, from 0 (empty) to 1 (full ink).':
+      'מה שהמודל רואה: הציור שלכם, חתוך, מוקטן או מוגדל כך שייכנס ל־20 על 20 וממורכז, בדיוק כמו 60,000 ספרות ה־MNIST שהמודל למד מהן. כל אחת מ־784 המשבצות היא קלט אחד, מ־0 (ריקה) עד 1 (מלאה בדיו).',
+    'Draw a digit from 0 to 9 on the grid.': 'ציירו על הלוח ספרה מ־0 עד 9.',
+    'Loading the model…': 'טוען את המודל…',
+    'Keep drawing or erase, and watch the chances change.': 'המשיכו לצייר או למחוק, וצפו איך הסיכויים משתנים.',
+    'The model could not load. Refresh the page to try again.': 'לא ניתן לטעון את המודל. רעננו את הדף כדי לנסות שוב.',
   };
 
   // Interface text in the current language. {name} in the text is filled from `vars`.
