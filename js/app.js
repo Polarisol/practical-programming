@@ -1622,7 +1622,8 @@
       brand.blur(); // so the Enter key opens the site again
     });
 
-    // Arrow keys: up and down move through the unit list; right steps over to the unit's
+    // Arrow keys (left and right are swapped in Hebrew, where the unit list is on the right):
+    // up and down move through the unit list; right steps over to the unit's
     // items (lines in the list view, panels in the cards view), where up and down move
     // between items instead; left steps back to the unit list. While the focused item is
     // open, up and down only scroll through it, a third of a screen at a time; close it
@@ -1631,6 +1632,7 @@
     // On Search Results, up and down go through the results rather than the units, until
     // left steps back to the unit list.
     let unitKeys = false;
+    const FLIPPED_ARROWS = { ArrowLeft: 'ArrowRight', ArrowRight: 'ArrowLeft' };
     const pageItems = () => [...main.querySelectorAll(root.dataset.view === 'list' ? '.line' : '.panel')];
     // Stepping up into an item shows its end, so an opened item is read back from the bottom.
     const focusItem = (item, step = 1) => {
@@ -1668,17 +1670,19 @@
     });
     document.addEventListener('keydown', (e) => {
       if (!['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) return;
+      // In Hebrew the unit list is on the right, so left and right swap roles.
+      const key = lang === 'he' ? FLIPPED_ARROWS[e.key] || e.key : e.key;
       if (e.defaultPrevented || e.ctrlKey || e.metaKey || e.altKey || e.shiftKey || entryOpen()) return;
       if (e.target.closest && e.target.closest('input, textarea, select, [contenteditable], [role="menu"]')) return;
       root.dataset.keys = '';
       const items = pageItems();
       const active = document.activeElement;
       const at = items.findIndex((i) => (i.closest('.line-item') || i).contains(active));
-      const step = e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : -1;
+      const step = key === 'ArrowDown' || key === 'ArrowRight' ? 1 : -1;
       if (at >= 0) {
         // In the item list.
-        if (e.key === 'ArrowLeft') { e.preventDefault(); unitKeys = true; active.blur(); return; }
-        if (e.key === 'ArrowRight') return;
+        if (key === 'ArrowLeft') { e.preventDefault(); unitKeys = true; active.blur(); return; }
+        if (key === 'ArrowRight') return;
         e.preventDefault();
         if (scrollThrough(items[at], step) || items[at].getAttribute('aria-expanded') === 'true') return;
         const next = items[at + step];
@@ -1688,14 +1692,14 @@
         return;
       }
       // In the unit list.
-      if (e.key === 'ArrowLeft') return;
-      if (currentId() === SEARCH && !unitKeys && items.length && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) {
+      if (key === 'ArrowLeft') return;
+      if (currentId() === SEARCH && !unitKeys && items.length && (key === 'ArrowDown' || key === 'ArrowUp')) {
         e.preventDefault();
         const open = items.find((i) => i.getAttribute('aria-expanded') === 'true');
         focusItem(open || items[0]);
         return;
       }
-      if (e.key === 'ArrowRight') {
+      if (key === 'ArrowRight') {
         if (!items.length) return;
         e.preventDefault();
         const open = items.find((i) => i.getAttribute('aria-expanded') === 'true');
