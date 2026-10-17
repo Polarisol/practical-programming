@@ -36,6 +36,16 @@
       "material": "topics/starting-a-project.md"
     },
     {
+      "id": "using-ai",
+      "title": "Using AI",
+      "title_he": "שימוש בבינה מלאכותית",
+      "icon": "🤖",
+      "blurb": "Using AI correctly is not cheating, using it incorrectly can be extremely harmful. Don't be harmful. Things are not supposed to be too easy.",
+      "blurb_he": "שימוש נכון בבינה מלאכותית הוא לא רמאות, שימוש לא נכון יכול להזיק מאוד. אל תזיקו. דברים לא אמורים להיות קלים מדי.",
+      "material": ["topics/AIRules.md", "topics/github_copilot.md"],
+      "quizzes": ["quizzes/ai-tools-quiz.md"]
+    },
+    {
       "id": "python-basics",
       "title": "Python Basics",
       "title_he": "יסודות Python",
@@ -82,16 +92,6 @@
       "blurb": "Time travel is here! Really! at least for your project files.",
       "blurb_he": "מסע בזמן כבר כאן! באמת! לפחות בשביל קובצי הפרויקט שלכם.",
       "material": ["topics/using-git.md", "topics/wwntr_git.md"]
-    },
-    {
-      "id": "using-ai",
-      "title": "Using AI",
-      "title_he": "שימוש בבינה מלאכותית",
-      "icon": "🤖",
-      "blurb": "Using AI correctly is not cheating, using it incorrectly can be extremely harmful. Don't be harmful. Things are not supposed to be too easy.",
-      "blurb_he": "שימוש נכון בבינה מלאכותית הוא לא רמאות, שימוש לא נכון יכול להזיק מאוד. אל תזיקו. דברים לא אמורים להיות קלים מדי.",
-      "material": ["topics/AIRules.md", "topics/github_copilot.md"],
-      "quizzes": ["quizzes/ai-tools-quiz.md"]
     },
     {
       "id": "matplotlib",
