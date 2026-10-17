@@ -7,3 +7,9 @@
 3. Git shows us the entire history of the project, including who made changes, what changes were made, and when they were made.
 
 4. Git enables **collaboration** by allowing multiple people to work on the same project simultaneously, merging changes from different contributors efficiently.
+
+5. You need to understand the role of the **.gitignore** file, and how it is used.
+
+6. You need to understand how to view changes you made, or the AI made, via git's vscode integration.
+
+7. You need to understand how to commit changes, including writing commit messages.
