@@ -240,7 +240,8 @@
           "description_he": "אני יכול לעזור לכם ללמוד, ללמד אתכם ולבחון אתכם על מונטה קרלו.",
           "url": "https://xxxxxxx"
         }
-      ]
+      ],
+      "material": ["topics/monte_carlo_intro.md"]
     },
 
     {
