@@ -93,25 +93,6 @@
       "blurb_he": "מסע בזמן כבר כאן! באמת! לפחות בשביל קובצי הפרויקט שלכם.",
       "material": ["topics/using-git.md", "topics/wwntr_git.md"]
     },
-    {
-      "id": "matplotlib",
-      "title": "Plotting Graphs",
-      "title_he": "שרטוט גרפים",
-      "icon": "📊",
-      "blurb": "A graph, like a picture, tells a thousand words. They better tell an interesting story and not sell us fake news.",
-      "blurb_he": "גרף, כמו תמונה, שווה אלף מילים. כדאי שהוא יספר סיפור מעניין ולא ימכור לנו פייק ניוז.",
-      "bots": [
-        {
-          "label": "Study Bot",
-          "label_he": "בוט לימוד",
-          "description": "I can help you understand eeeevrything. We can also talk in Hebrew.",
-          "description_he": "אני יכול לעזור לכם להבין הכוווול. אפשר לדבר איתי גם בעברית.",
-          "url": "https://share.gemini.google/G5xVshGKlAZ6"
-        }
-      ],
-      "material": ["topics/matplotlib.md", "topics/wwntr_graphs.md"],
-      "quizzes": ["quizzes/graphs_quiz.md"]
-    },
 
     {
       "id": "numpy",
@@ -143,6 +124,28 @@
       "material": ["topics/numpy_basics.md", "topics/numpy_2d_arrays.md", "topics/numpy_random_numbers.md", "topics/numpy_matrix_linear_algebra.md", "topics/numpy_polynomials.md", "topics/wwntr_numpy.md"],
       "quizzes": ["quizzes/numpy_quiz.md"]
     },
+    
+    {
+      "id": "matplotlib",
+      "title": "Plotting Graphs",
+      "title_he": "שרטוט גרפים",
+      "icon": "📊",
+      "blurb": "A graph, like a picture, tells a thousand words. They better tell an interesting story and not sell us fake news.",
+      "blurb_he": "גרף, כמו תמונה, שווה אלף מילים. כדאי שהוא יספר סיפור מעניין ולא ימכור לנו פייק ניוז.",
+      "bots": [
+        {
+          "label": "Study Bot",
+          "label_he": "בוט לימוד",
+          "description": "I can help you understand eeeevrything. We can also talk in Hebrew.",
+          "description_he": "אני יכול לעזור לכם להבין הכוווול. אפשר לדבר איתי גם בעברית.",
+          "url": "https://share.gemini.google/G5xVshGKlAZ6"
+        }
+      ],
+      "material": ["topics/matplotlib.md", "topics/wwntr_graphs.md"],
+      "quizzes": ["quizzes/graphs_quiz.md"]
+    },
+
+    
 
     {
       "id": "oop",
