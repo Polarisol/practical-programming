@@ -270,7 +270,7 @@
           "url": "https://xxxxxxx"
         }
       ],
-      "material": ["topics/statistics_centers.md", "topics/statistics_dispersion.md"]
+      "material": ["topics/statistics_centers.md", "topics/statistics_dispersion.md", "topics/statistics_bayes.md"]
     },
 
     {

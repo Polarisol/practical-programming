@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" width="640" height="420">
+  <rect x="0" y="0" width="640" height="420" rx="18" fill="#f6f3ec"/>
+  <text x="320.0" y="36.0" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="700" fill="#4a3a2a" text-anchor="middle" direction="rtl" unicode-bidi="embed">מחלה נדירה ובדיקה טובה: דמיינו 1,000 אנשים</text>
+  <line x1="320.0" y1="108.0" x2="170.0" y2="156.0" stroke="#b9ab95" stroke-width="3"/>
+  <text x="235.0" y="134.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#7a6a56" text-anchor="end">1%</text>
+  <line x1="320.0" y1="108.0" x2="470.0" y2="156.0" stroke="#b9ab95" stroke-width="3"/>
+  <text x="405.0" y="134.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#7a6a56" text-anchor="start">99%</text>
+  <line x1="170.0" y1="208.0" x2="95.0" y2="266.0" stroke="#b9ab95" stroke-width="3"/>
+  <text x="122.5" y="239.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#7a6a56" text-anchor="end">90%</text>
+  <line x1="170.0" y1="208.0" x2="245.0" y2="266.0" stroke="#b9ab95" stroke-width="3"/>
+  <text x="217.5" y="239.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#7a6a56" text-anchor="start">10%</text>
+  <line x1="470.0" y1="208.0" x2="395.0" y2="266.0" stroke="#b9ab95" stroke-width="3"/>
+  <text x="422.5" y="239.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#7a6a56" text-anchor="end">10%</text>
+  <line x1="470.0" y1="208.0" x2="545.0" y2="266.0" stroke="#b9ab95" stroke-width="3"/>
+  <text x="517.5" y="239.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#7a6a56" text-anchor="start">90%</text>
+  <rect x="245.0" y="58.0" width="150" height="48" rx="10" fill="#ffffff" stroke="#b9ab95" stroke-width="2.5"/>
+  <text x="320.0" y="88.0" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#4a3a2a" text-anchor="middle" direction="rtl" unicode-bidi="embed">1,000 אנשים</text>
+  <rect x="100.0" y="156.0" width="140" height="52" rx="10" fill="#ffffff" stroke="#b9ab95" stroke-width="2.5"/>
+  <text x="170.0" y="177.5" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#4a3a2a" text-anchor="middle" direction="rtl" unicode-bidi="embed">10 חולים</text>
+  <text x="170.0" y="198.5" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle">1%</text>
+  <rect x="400.0" y="156.0" width="140" height="52" rx="10" fill="#ffffff" stroke="#b9ab95" stroke-width="2.5"/>
+  <text x="470.0" y="177.5" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#4a3a2a" text-anchor="middle" direction="rtl" unicode-bidi="embed">990 בריאים</text>
+  <text x="470.0" y="198.5" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle">99%</text>
+  <rect x="30.0" y="266.0" width="130" height="52" rx="10" fill="#e05a47" stroke="#e05a47" stroke-width="2.5"/>
+  <text x="95.0" y="287.5" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle" direction="rtl" unicode-bidi="embed">9 חיוביים</text>
+  <text x="95.0" y="308.5" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#ffffff" text-anchor="middle" direction="rtl" unicode-bidi="embed">נתפסו</text>
+  <rect x="180.0" y="266.0" width="130" height="52" rx="10" fill="#ffffff" stroke="#b9ab95" stroke-width="2.5"/>
+  <text x="245.0" y="287.5" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#4a3a2a" text-anchor="middle" direction="rtl" unicode-bidi="embed">1 שלילי</text>
+  <text x="245.0" y="308.5" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle" direction="rtl" unicode-bidi="embed">פוספס</text>
+  <rect x="330.0" y="266.0" width="130" height="52" rx="10" fill="#f0a23b" stroke="#f0a23b" stroke-width="2.5"/>
+  <text x="395.0" y="287.5" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle" direction="rtl" unicode-bidi="embed">99 חיוביים</text>
+  <text x="395.0" y="308.5" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#ffffff" text-anchor="middle" direction="rtl" unicode-bidi="embed">אזעקת שווא</text>
+  <rect x="480.0" y="266.0" width="130" height="52" rx="10" fill="#ffffff" stroke="#b9ab95" stroke-width="2.5"/>
+  <text x="545.0" y="287.5" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#4a3a2a" text-anchor="middle" direction="rtl" unicode-bidi="embed">891 שליליים</text>
+  <text x="545.0" y="308.5" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle" direction="rtl" unicode-bidi="embed">נכון</text>
+  <text x="376.0" y="370.0" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="400" fill="#4a3a2a" text-anchor="end">9 + 99 = 108</text>
+  <text x="384.0" y="370.0" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="400" fill="#4a3a2a" text-anchor="end" direction="rtl" unicode-bidi="embed">בדיקות חיוביות:</text>
+  <text x="356.0" y="398.0" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#c0392b" text-anchor="end">9 / 108 ≈ 8.3%</text>
+  <text x="364.0" y="398.0" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#c0392b" text-anchor="end" direction="rtl" unicode-bidi="embed">מתוכם חולים:</text>
+</svg>
