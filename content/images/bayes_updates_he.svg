@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 424" width="640" height="424">
+  <rect x="0" y="0" width="640" height="424" rx="18" fill="#f6f3ec"/>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7a6a56"/></marker></defs>
+  <text x="320.0" y="36.0" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="700" fill="#4a3a2a" text-anchor="middle" direction="rtl" unicode-bidi="embed">הסיכוי להיות חולה אחרי כל בדיקה חיובית</text>
+  <line x1="80.0" y1="320.0" x2="590.0" y2="320.0" stroke="#4a3a2a" stroke-width="2"/>
+  <line x1="74.0" y1="320.0" x2="80.0" y2="320.0" stroke="#4a3a2a" stroke-width="2"/>
+  <line x1="80.0" y1="320.0" x2="590.0" y2="320.0" stroke="#b9ab95" stroke-width="1" stroke-dasharray="3 4"/>
+  <text x="68.0" y="325.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#4a3a2a" text-anchor="end">0%</text>
+  <line x1="74.0" y1="260.0" x2="80.0" y2="260.0" stroke="#4a3a2a" stroke-width="2"/>
+  <line x1="80.0" y1="260.0" x2="590.0" y2="260.0" stroke="#b9ab95" stroke-width="1" stroke-dasharray="3 4"/>
+  <text x="68.0" y="265.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#4a3a2a" text-anchor="end">25%</text>
+  <line x1="74.0" y1="200.0" x2="80.0" y2="200.0" stroke="#4a3a2a" stroke-width="2"/>
+  <line x1="80.0" y1="200.0" x2="590.0" y2="200.0" stroke="#b9ab95" stroke-width="1" stroke-dasharray="3 4"/>
+  <text x="68.0" y="205.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#4a3a2a" text-anchor="end">50%</text>
+  <line x1="74.0" y1="140.0" x2="80.0" y2="140.0" stroke="#4a3a2a" stroke-width="2"/>
+  <line x1="80.0" y1="140.0" x2="590.0" y2="140.0" stroke="#b9ab95" stroke-width="1" stroke-dasharray="3 4"/>
+  <text x="68.0" y="145.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#4a3a2a" text-anchor="end">75%</text>
+  <line x1="74.0" y1="80.0" x2="80.0" y2="80.0" stroke="#4a3a2a" stroke-width="2"/>
+  <line x1="80.0" y1="80.0" x2="590.0" y2="80.0" stroke="#b9ab95" stroke-width="1" stroke-dasharray="3 4"/>
+  <text x="68.0" y="85.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#4a3a2a" text-anchor="end">100%</text>
+  <rect x="105" y="317.6" width="80" height="2.4" rx="5" fill="#b9ab95"/>
+  <text x="145.0" y="309.6" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#4a3a2a" text-anchor="middle">1%</text>
+  <text x="145.0" y="344.0" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle" direction="rtl" unicode-bidi="embed">לפני בדיקה</text>
+  <rect x="230" y="300.1" width="80" height="19.9" rx="5" fill="#e05a47"/>
+  <text x="270.0" y="292.1" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#4a3a2a" text-anchor="middle">8.3%</text>
+  <text x="270.0" y="344.0" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle" direction="rtl" unicode-bidi="embed">חיובית אחת</text>
+  <path d="M 160 283.6 Q 208 230.1 256 270.1" fill="none" stroke="#7a6a56" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arr)"/>
+  <rect x="355" y="212.0" width="80" height="108.0" rx="5" fill="#e05a47"/>
+  <text x="395.0" y="204.0" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#4a3a2a" text-anchor="middle">45%</text>
+  <text x="395.0" y="344.0" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle" direction="rtl" unicode-bidi="embed">2 חיוביות</text>
+  <path d="M 285 266.1 Q 333 142.0 381 182.0" fill="none" stroke="#7a6a56" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arr)"/>
+  <rect x="480" y="108.8" width="80" height="211.2" rx="5" fill="#e05a47"/>
+  <text x="520.0" y="100.8" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#4a3a2a" text-anchor="middle">88%</text>
+  <text x="520.0" y="344.0" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle" direction="rtl" unicode-bidi="embed">3 חיוביות</text>
+  <path d="M 410 178.0 Q 458 38.8 506 78.8" fill="none" stroke="#7a6a56" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arr)"/>
+  <text x="320.0" y="380.0" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="400" fill="#4a3a2a" text-anchor="middle" direction="rtl" unicode-bidi="embed">כל תוצאה חדשה מתחילה מהתשובה הקודמת: האפוסטריורי של היום הוא האפריורי של מחר.</text>
+  <text x="320.0" y="404.0" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="400" fill="#4a3a2a" text-anchor="middle" direction="rtl" unicode-bidi="embed">בדיקה חיובית אחת היא ראיה חלשה למחלה נדירה. שלוש ברצף הן ראיה חזקה.</text>
+</svg>
