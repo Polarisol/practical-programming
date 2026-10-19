@@ -9,6 +9,20 @@
     "footer": "Practical Programming · Dr. Tal Alon",
     "footer_he": "תכנות מעשי · ד״ר טל אלון"
   },
+  "lessons": [
+    {
+      "title": "Lesson 1",
+      "title_he": "שיעור 1",
+      "blurb": "Getting ready: installing everything, starting a project, using AI the right way, and first steps in Python.",
+      "blurb_he": "מתכוננים: מתקינים הכול, מתחילים פרויקט, משתמשים בבינה מלאכותית בצורה נכונה ועושים צעדים ראשונים ב־Python.",
+      "items": [
+        "installation",
+        "starting-a-project",
+        "using-ai",
+        { "unit": "python-basics", "only": ["Study Bot", "10 minutes - Basic Python", "topics/python-basics.md"] }
+      ]
+    }
+  ],
   "topics": [
     {
       "id": "installation",
