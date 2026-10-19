@@ -1811,7 +1811,7 @@
     // Stepping up into an item shows its end, so an opened item is read back from the bottom.
     const focusItem = (item, step = 1) => {
       if (!item.matches('a, button')) item.tabIndex = -1;
-      item.focus({ preventScroll: true });
+      item.focus({ preventScroll: true, focusVisible: true });
       const shown = step < 0 ? item.closest('.line-item') || item : item;
       shown.scrollIntoView({ block: step < 0 ? 'end' : 'nearest', behavior: reducedMotion ? 'auto' : 'smooth' });
     };
@@ -1893,6 +1893,11 @@
       if (!a || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       e.preventDefault();
       go(a.dataset.route);
+      // Opening a lesson marks its first item, so up and down go straight through the lesson.
+      if (a.dataset.route.startsWith('?lesson=')) {
+        const first = pageItems()[0];
+        if (first) { unitKeys = false; root.dataset.keys = ''; focusItem(first); }
+      }
     });
     window.addEventListener('popstate', () => {
       if (urlQuery()) setQuery(urlQuery());
