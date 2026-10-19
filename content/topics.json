@@ -255,6 +255,25 @@
     },
 
     {
+      "id": "statistics",
+      "title": "Statistics",
+      "title_he": "סטטיסטיקה",
+      "icon": "σ",
+      "blurb": "There are three kinds of lies: lies, damned lies, and statistics. Learn the numbers well enough to spot the first two.",
+      "blurb_he": "יש שלושה סוגים של שקרים: שקרים, שקרים ארורים, וסטטיסטיקה. למדו את המספרים מספיק טוב כדי לזהות את שני הראשונים.",
+      "bots": [
+        {
+          "label": "Study Bot",
+          "label_he": "בוט לימוד",
+          "description": "I can help you study, teach you and quiz you on Statistics.",
+          "description_he": "אני יכול לעזור לכם ללמוד, ללמד אתכם ולבחון אתכם על סטטיסטיקה.",
+          "url": "https://xxxxxxx"
+        }
+      ],
+      "material": ["topics/statistics_centers.md", "topics/statistics_dispersion.md"]
+    },
+
+    {
       "id": "sympy",
       "title": "SymPy",
       "icon": "∑",
