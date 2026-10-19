@@ -205,6 +205,13 @@
           "label_he": "הקוד של שני החלונות",
           "file": "files/TwoWindowsCode.zip"
         }
+      ],
+      "videos": [
+        {
+          "label": "Working with several windows",
+          "label_he": "עבודה עם מספר חלונות",
+          "url": "https://youtu.be/rYE-d37xhHw"
+        }
       ]
     },
 
