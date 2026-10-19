@@ -208,8 +208,8 @@
       ],
       "videos": [
         {
-          "label": "Working with several windows",
-          "label_he": "עבודה עם מספר חלונות",
+          "title": "Working with several windows",
+          "title_he": "עבודה עם מספר חלונות",
           "url": "https://youtu.be/rYE-d37xhHw"
         }
       ]
