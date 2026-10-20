@@ -1446,7 +1446,7 @@ a { color: var(--accent); }
 [dir="rtl"] .entry-btn { letter-spacing: 0.05em; }
 
 /* ---------- My stats: a student's XP (js/stats.js) ---------- */
-:root { --xp-purple: #9b3dff; --xp-green: #12b012; }
+:root { --xp-purple: #9b3dff; --xp-green: #12b012; --xp-gold: #e8a400; }
 :root[data-theme="dark"], :root[data-theme="nord"], :root[data-theme="dracula"], :root[data-theme="gruvbox"], :root[data-theme="terminal"] {
   --xp-purple: #b57bff; --xp-green: #3ddc4f;
 }
@@ -1537,6 +1537,18 @@ span.stats-chip {
 .stats-bar { position: relative; height: 22px; border-radius: 6px; background: var(--surface-2); overflow: hidden; }
 .stats-bar-fill { position: absolute; inset-block: 0; inset-inline-start: 0; width: var(--w); background: var(--xp); border-radius: 6px; transform-origin: left; animation: bar-grow 0.9s cubic-bezier(.2,.8,.2,1) both; }
 [dir="rtl"] .stats-bar-fill { transform-origin: right; }
+.stats-bar-extra {
+  position: absolute; inset-block: 0; inset-inline-start: var(--s); width: var(--w);
+  background: linear-gradient(180deg, #ffd75e, var(--xp-gold));
+  box-shadow: 0 0 8px rgba(232, 164, 0, 0.6);
+  border-radius: 0 6px 6px 0;
+  animation: gold-in 0.6s ease 0.7s both;
+}
+[dir="rtl"] .stats-bar-extra { border-radius: 6px 0 0 6px; }
+.stats-bar.has-extra .stats-bar-fill { border-radius: 6px 0 0 6px; }
+[dir="rtl"] .stats-bar.has-extra .stats-bar-fill { border-radius: 0 6px 6px 0; }
+span.stats-none { color: var(--muted); }
+@keyframes gold-in { from { opacity: 0; } }
 .stats-bar-quiz { grid-column: 2 / 4; height: 30px; }
 .stats-bar-quiz .stats-bar-fill { border-radius: 0; }
 .stats-bar-quiz .stats-bar-fill.xp-purple { inset-block: 0 50%; }

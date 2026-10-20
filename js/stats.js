@@ -241,9 +241,29 @@
         el('span', { class: 'stats-bar-fill xp-green', style: w(it.green) }),
         el('span', { class: 'stats-bar-num', dir: 'ltr', text: `${label} / ${QUIZ_MAX}` }));
     };
+    // An exercise is a bar out of its maximum from the ExeMax tab. Points above the
+    // maximum (something extra) continue the bar in gold, and the bar grows to fit them.
+    const exerciseBar = (v, max, colour) => {
+      if (typeof max !== 'number') return value(v, colour, false);
+      if (max <= 0 && v <= 0) return el('span', { class: 'stats-value stats-none', text: '–' });
+      const scale = Math.max(v, max, 1);
+      const extra = Math.max(0, v - max);
+      return el('div', {
+        class: `stats-bar xp-${colour}${extra ? ' has-extra' : ''}`,
+        title: extra ? t('{n} extra points', { n: fmt(extra) }) : null,
+      },
+        el('span', { class: 'stats-bar-fill', style: `--w:${(Math.max(0, Math.min(v, max)) / scale) * 100}%` }),
+        extra ? el('span', { class: 'stats-bar-extra', style: `--s:${(max / scale) * 100}%;--w:${(extra / scale) * 100}%` }) : null,
+        el('span', { class: 'stats-bar-num', dir: 'ltr', text: `${fmt(v)} / ${fmt(max)}` }));
+    };
+    const cells = (it, chip) => {
+      if (it.kind === 'quiz') return [quizBar(it)];
+      if (it.kind === 'exercise' && it.max) return [exerciseBar(it.purple, it.max.purple, 'purple'), exerciseBar(it.green, it.max.green, 'green')];
+      return [value(it.purple, 'purple', chip), value(it.green, 'green', chip)];
+    };
     const line = (it, chip) => el('div', { class: `stats-row ${chip ? 'stats-row-single' : 'stats-row-sub'}` },
       el('span', { class: 'stats-row-label', text: itemLabel(it) }),
-      ...(it.kind === 'quiz' ? [quizBar(it)] : [value(it.purple, 'purple', chip), value(it.green, 'green', chip)]));
+      ...cells(it, chip));
     const groups = GROUPS.map((g) => {
       const own = items.filter((it) => it.kind === g.kind);
       if (!own.length) return null;
@@ -452,11 +472,11 @@
   // ---------- Made-up numbers for ?stats&demo ----------
   const DEMO = (() => {
     const items = [
-      { kind: 'exercise', n: 1, purple: 14, green: 0 },
-      { kind: 'exercise', n: 2, purple: 12, green: 12 },
-      { kind: 'exercise', n: 3, purple: 25, green: 3 },
-      { kind: 'exercise', n: 4, purple: 21, green: 21 },
-      { kind: 'exercise', n: 5, purple: 49, green: 39 },
+      { kind: 'exercise', n: 1, purple: 14, green: 0, max: { purple: 14, green: 0 } },
+      { kind: 'exercise', n: 2, purple: 12, green: 12, max: { purple: 20, green: 2 } },
+      { kind: 'exercise', n: 3, purple: 25, green: 3, max: { purple: 15, green: 15 } },
+      { kind: 'exercise', n: 4, purple: 21, green: 21, max: { purple: 20, green: 20 } },
+      { kind: 'exercise', n: 5, purple: 49, green: 39, max: { purple: 30, green: 30 } },
       { kind: 'quiz', n: 1, purple: 11, green: 11 },
       { kind: 'quiz', n: 2, purple: 22, green: 22 },
       { kind: 'quiz', n: 3, purple: 15, green: 15 },
