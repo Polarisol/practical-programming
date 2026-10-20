@@ -190,7 +190,7 @@
       tile(t('Class place'), lang === 'he' ? t('Place {n}', { n: d.place }) : ordinal(d.place),
         t('of {n} students', { n: d.classSize })),
       tile(t('Exercise grade'), fmt(grade), t('out of 100')),
-      tile(t('Project head start'), fmt(head), t('project grade points so far'))));
+      tile(t('Project head start'), fmt(head), t('out of 100'))));
 
     nodes.push(panel(t('Your XP beakers'), beakers(d.purple, d.green, cap, projectCap),
       el('p', { class: 'stats-caption muted', text: t('Each colour fills its beaker up to {cap} XP, which is a full exercise grade. Anything above that pours into the project beaker as a bonus.', { cap }) })));
