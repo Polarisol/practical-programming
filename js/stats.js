@@ -173,6 +173,9 @@
     const cap = d.exerciseCap || 190;
     const projectCap = d.projectCap || 500;
     const grade = (Math.min(d.purple, cap) / cap) * 50 + (Math.min(d.green, cap) / cap) * 50;
+    // XP above the exercise cap pours into the project beaker; a tenth of it is the project grade's starting point.
+    const poured = (xp) => Math.min(Math.max(xp - cap, 0), projectCap);
+    const head = (poured(d.purple) + poured(d.green)) / 10;
     const nodes = [];
 
     nodes.push(el('div', { class: 'stats-hello' },
@@ -186,7 +189,8 @@
         el('span', { class: 'xp-green', text: t('{n} green', { n: fmt(d.green) }) })]),
       tile(t('Class place'), lang === 'he' ? t('Place {n}', { n: d.place }) : ordinal(d.place),
         t('of {n} students', { n: d.classSize })),
-      tile(t('Exercise grade'), fmt(grade), t('out of 100'))));
+      tile(t('Exercise grade'), fmt(grade), t('out of 100')),
+      tile(t('Project head start'), fmt(head), t('project grade points so far'))));
 
     nodes.push(panel(t('Your XP beakers'), beakers(d.purple, d.green, cap, projectCap),
       el('p', { class: 'stats-caption muted', text: t('Each colour fills its beaker up to {cap} XP, which is a full exercise grade. Anything above that pours into the project beaker as a bonus.', { cap }) })));
