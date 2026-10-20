@@ -243,6 +243,8 @@
     'Exercises': 'תרגילים',
     'Activities': 'פעילויות',
     'Sign out': 'התנתקות',
+    'Hi {name}, here are your stats': 'היי {name}, הנה הנתונים שלך',
+    'Here are your stats': 'הנה הנתונים שלך',
     'Total XP': 'סך הכול XP',
     '{n} purple': '{n} סגול',
     '{n} green': '{n} ירוק',

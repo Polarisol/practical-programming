@@ -167,7 +167,7 @@
     const nodes = [];
 
     nodes.push(el('div', { class: 'stats-hello' },
-      el('p', {}, d.name ? el('bdi', { text: d.name }) : null),
+      el('p', {}, ...greeting(d.name)),
       signOut ? el('button', { class: 'stats-btn stats-signout', type: 'button' }, t('Sign out')) : null));
     if (signOut) nodes[0].querySelector('.stats-signout').addEventListener('click', signOut);
 
@@ -192,6 +192,13 @@
         el('div', { class: 'stats-notes', lang: 'he', dir: 'rtl' }, ...d.notes.map((n) => el('p', { class: 'stats-note', text: n })))));
     }
     return nodes;
+  }
+
+  // "Hi <name>, here are your stats", with the (Hebrew) name kept apart from the sentence's direction.
+  function greeting(name) {
+    if (!name) return [t('Here are your stats')];
+    const [before, after] = t('Hi {name}, here are your stats').split('{name}');
+    return [before, el('bdi', { class: 'stats-name', text: name }), after];
   }
 
   function tile(label, value, sub) {
@@ -451,7 +458,7 @@
     });
     const me = all.find((p) => p.me);
     return {
-      name: lang === 'he' ? 'סטודנטית לדוגמה' : 'Example Student',
+      name: 'נועה כהן',
       purple, green, exerciseCap: 190, projectCap: 500, items,
       place: me.place, classSize: all.length, top: all.slice(0, 10),
       notes: ['עבודה מצוינת בתרגיל 5! שימו לב לשמות משתנים ברורים יותר.', 'כדאי להגיע לשעת הקבלה לפני המבדק הבא.'],
