@@ -425,6 +425,8 @@
       { value: green, liq: liqG, num: numG, stream: streamG, proj: liqJG, projNum: numJG, x0: G.x, x1: G.x + SIDE_W, px0: mid, px1: J.x + J.w, sx: G.x, sw: G.x - J.x - J.w, flow: -1 },
     ];
     const FILL = 1600, POUR = 350, RISE = 1300;
+    // Liquid surfaces keep a gentle wave after they settle (none for reduced motion).
+    const WAVE = 3, IDLE = reducedMotion ? 0 : 1.6;
     const ease = (k) => 1 - (1 - Math.min(1, Math.max(0, k))) ** 3;
     const draw = (ms) => {
       let moving = false;
@@ -433,8 +435,7 @@
         const bonus = Math.max(0, s.value - cap);
         const fillTime = FILL * Math.max(0.35, own / cap);
         const k = ease(ms / fillTime);
-        const wave = k < 1 ? 3 : 0;
-        s.liq.setAttribute('d', liquidPath(s.x0, s.x1, (own / cap) * k, wave, ms / 120));
+        s.liq.setAttribute('d', liquidPath(s.x0, s.x1, (own / cap) * k, k < 1 ? WAVE : IDLE, ms / 120));
         s.num.textContent = k < 1 ? String(Math.round(own * k)) : fmt(own);
         // Overflow: the pipe fills, then the project half rises.
         const pour = bonus > 0 ? Math.min(1, Math.max(0, (ms - fillTime) / POUR)) : 0;
@@ -443,28 +444,40 @@
         if (s.flow < 0) s.stream.setAttribute('x', s.sx - w);
         const r = bonus > 0 ? ease((ms - fillTime - POUR) / RISE) : 0;
         const level = Math.min(1, bonus / projectCap) * r;
-        s.proj.setAttribute('d', liquidPath(s.px0, s.px1, level, r > 0 && r < 1 ? 3 : 0, ms / 120 + 1));
+        s.proj.setAttribute('d', liquidPath(s.px0, s.px1, level, r < 1 ? WAVE : IDLE, ms / 120 + 1));
         s.projNum.textContent = bonus > 0 && r > 0 ? `+${r < 1 ? Math.round(bonus * r) : fmt(bonus)}` : '';
         if (k < 1 || (bonus > 0 && r < 1)) moving = true;
       }
       return moving;
     };
 
+    // The fill plays once the beakers are on screen; after it the surfaces keep waving,
+    // but only while the beakers are in view.
+    let start = null;
+    let visible = false;
+    let frameId = 0;
+    const frame = (now) => {
+      frameId = 0;
+      const moving = draw(now - start);
+      if (root.isConnected && visible && (moving || IDLE)) frameId = requestAnimationFrame(frame);
+    };
+    const run = () => { if (!frameId) frameId = requestAnimationFrame(frame); };
     const play = () => {
       if (reducedMotion) { draw(1e9); return; }
-      const start = performance.now();
-      const frame = (now) => { if (draw(now - start) && root.isConnected) requestAnimationFrame(frame); };
-      requestAnimationFrame(frame);
+      start = performance.now();
+      run();
     };
     draw(0);
 
     const replay = el('button', { class: 'stats-btn stats-replay', type: 'button' }, t('↻ Replay'));
     replay.addEventListener('click', play);
     const box = el('div', { class: 'stats-beakers-box' }, root, replay);
-    // Plays once the beakers are on screen.
     const seen = new IntersectionObserver((entries) => {
-      if (entries.some((e) => e.isIntersecting)) { seen.disconnect(); play(); }
-    }, { threshold: 0.3 });
+      visible = entries.some((e) => e.isIntersecting);
+      if (!root.isConnected) seen.disconnect();
+      else if (visible && start === null) play();
+      else if (visible && !reducedMotion) run();
+    }, { threshold: 0.1 });
     seen.observe(root);
     return box;
   }
