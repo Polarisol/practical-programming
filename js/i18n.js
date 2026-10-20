@@ -36,6 +36,7 @@
     'Main': 'ראשי',
     'Search Results': 'תוצאות חיפוש',
     'Lessons': 'שיעורים',
+    'My stats': 'הנתונים שלי',
 
     // Python practice panel
     'Python practice': 'תרגול Python',
@@ -221,6 +222,54 @@
     'Loading the model…': 'טוען את המודל…',
     'Keep drawing or erase, and watch the chances change.': 'המשיכו לצייר או למחוק, וצפו איך הסיכויים משתנים.',
     'The model could not load. Refresh the page to try again.': 'לא ניתן לטעון את המודל. רעננו את הדף כדי לנסות שוב.',
+
+    // My stats
+    'An example with made-up numbers.': 'דוגמה עם מספרים מומצאים.',
+    'My stats isn’t set up yet.': 'הדף ״הנתונים שלי״ עוד לא הוגדר.',
+    'Loading your XP…': 'טוען את ה־XP שלך…',
+    'Your XP could not load. Check your connection and try again.': 'לא ניתן לטעון את ה־XP שלך. בדקו את החיבור ונסו שוב.',
+    'Try again': 'נסו שוב',
+    'Your sign-in ran out. Please sign in again.': 'פג תוקף ההתחברות. התחברו שוב, בבקשה.',
+    '{email} isn’t on the class list. Sign in with the email you gave for the course, or ask your lecturer to add it.':
+      'הכתובת {email} לא נמצאת ברשימת הכיתה. התחברו עם המייל שמסרתם לקורס, או בקשו מהמרצה להוסיף אותה.',
+    'Sign in': 'התחברות',
+    'Sign in with the Google account whose email you gave for the course. Only you can see your numbers.':
+      'התחברו עם חשבון Google שאת כתובת המייל שלו מסרתם לקורס. רק אתם רואים את הנתונים שלכם.',
+    'See an example with made-up numbers': 'לצפייה בדוגמה עם מספרים מומצאים',
+    'Google sign-in could not load. Check your connection and refresh the page.': 'לא ניתן לטעון את ההתחברות של Google. בדקו את החיבור ורעננו את הדף.',
+    'Exercise {n}': 'תרגיל {n}',
+    'Quiz {n}': 'מבדק {n}',
+    'Attendance': 'נוכחות',
+    'Exercises': 'תרגילים',
+    'Activities': 'פעילויות',
+    'Sign out': 'התנתקות',
+    'Hi {name}, here are your stats': 'היי {name}, הנה הנתונים שלך',
+    'Here are your stats': 'הנה הנתונים שלך',
+    'Total XP': 'סך הכול XP',
+    '{n} purple': '{n} סגול',
+    '{n} green': '{n} ירוק',
+    'Class place': 'מקום בכיתה',
+    'Place {n}': 'מקום {n}',
+    'of {n} students': 'מתוך {n} סטודנטים',
+    'Exercise grade': 'ציון תרגילים',
+    'out of 100': 'מתוך 100',
+    'Your XP beakers': 'כוסות ה־XP שלך',
+    'Each colour fills its beaker up to {cap} XP, which is a full exercise grade. Anything above that pours into the project beaker as a bonus.':
+      'כל צבע ממלא את הכוס שלו עד {cap} XP, שזה ציון תרגילים מלא. כל מה שמעבר לזה נשפך לכוס הפרויקט כבונוס.',
+    'Where your XP came from': 'מאיפה הגיע ה־XP שלך',
+    'No XP yet. It will show here after your first class.': 'עדיין אין XP. הוא יופיע כאן אחרי השיעור הראשון.',
+    'Top 10': '10 המובילים',
+    'Notes from {author}': 'הערות מ{author}',
+    'Notes': 'הערות',
+    'Purple XP': 'XP סגול',
+    'Green XP': 'XP ירוק',
+    'You': 'את/ה',
+    'Purple XP {p} of {cap}, green XP {g} of {cap}. Project bonus: {pb} purple, {gb} green.':
+      'XP סגול {p} מתוך {cap}, XP ירוק {g} מתוך {cap}. בונוס לפרויקט: {pb} סגול, {gb} ירוק.',
+    'Project bonus': 'בונוס לפרויקט',
+    'Purple': 'סגול',
+    'Green': 'ירוק',
+    '↻ Replay': '↻ שוב',
   };
 
   // Interface text in the current language. {name} in the text is filled from `vars`.

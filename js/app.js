@@ -1243,7 +1243,7 @@
   const MAIN = '';
 
   // Sidebar on wide screens; on phones, a bar showing the current topic that opens the list.
-  function topicNav(topics, hasLessons) {
+  function topicNav(topics, hasLessons, hasStats) {
     const indicator = el('span', { class: 'nav-indicator', 'aria-hidden': 'true' });
     const items = new Map();
     const list = el('ul', { class: 'nav-list', id: 'nav-list' }, indicator);
@@ -1251,6 +1251,7 @@
       { id: SEARCH, title: t('Search Results'), icon: '⌕' },
       { id: MAIN, title: t('Main'), icon: '~' },
       ...(hasLessons ? [{ id: LESSONS, title: t('Lessons'), icon: LESSONS_ICON }] : []),
+      ...(hasStats ? [{ id: STATS, title: t('My stats'), icon: STATS_ICON }] : []),
       ...topics,
     ];
     for (const topic of entries) {
@@ -1573,6 +1574,16 @@
   const LESSONS_ICON = '📅';
   const lessonId = (n) => `?lesson=${n}`;
 
+  // ---------- My stats: a student's own XP from the course sheet (js/stats.js) ----------
+  // Listed once "stats" in the site block has the Apps Script address and the Google client ID.
+  const STATS = '?stats';
+  const STATS_ICON = '⚗';
+  function statsConfig(site) {
+    const c = site && site.stats;
+    if (!c || typeof c.script !== 'string' || typeof c.client_id !== 'string') return null;
+    return /^https:\/\/script\.google\.com\//.test(c.script) && c.client_id.trim() ? c : null;
+  }
+
   // Every item of a unit, in the order its page shows them.
   function unitItems(topic) {
     const of = (type, list) => list.map((src) => ({ topic, type, src }));
@@ -1684,12 +1695,15 @@
       if (urlQuery()) return SEARCH;
       if (params.has('lesson')) return lessonId(params.get('lesson'));
       if (params.has('lessons')) return LESSONS;
+      if (params.has('stats')) return STATS;
       return params.get('id') || MAIN;
     };
     // A lesson's page is under "Lessons" in the unit list.
     const navId = (id) => (id.startsWith('?lesson=') ? LESSONS : id);
 
-    const nav = topicNav(topics, lessons.length > 0);
+    const stats = statsConfig(data.site);
+    const hasStats = Boolean(stats) || currentId() === STATS;
+    const nav = topicNav(topics, lessons.length > 0, hasStats);
     document.getElementById('topic-nav-slot').replaceWith(nav.node);
 
     // ----- Search: the box in the top bar runs a temporary "Search Results" unit -----
@@ -1715,7 +1729,10 @@
       } else if (id === MAIN) showHome(main, data.site);
       else if (id === LESSONS) showLessons(main, lessons, topics, fullName);
       else if (id.startsWith('?lesson=')) showLesson(main, lessons, Number(id.slice('?lesson='.length)), topics, fullName);
-      else showTopic(main, topics.find((t) => t.id === id), fullName);
+      else if (id === STATS) {
+        document.title = `${t('My stats')} · ${fullName}`;
+        window.Stats.show(main, { config: stats, site: data.site, demo: new URLSearchParams(location.search).has('demo') });
+      } else showTopic(main, topics.find((t) => t.id === id), fullName);
       document.body.dataset.page = id === SEARCH ? 'search' : id === MAIN ? 'home' : 'topic';
       if (canvas) canvas.dataset.intensity = entryOpen() ? '' : 'dim';
       nav.select(navId(id));
@@ -1880,7 +1897,7 @@
         focusItem(open || items[0]);
         return;
       }
-      const order = [...(query ? [SEARCH] : []), MAIN, ...(lessons.length ? [LESSONS] : []), ...topics.map((t) => t.id)];
+      const order = [...(query ? [SEARCH] : []), MAIN, ...(lessons.length ? [LESSONS] : []), ...(hasStats ? [STATS] : []), ...topics.map((t) => t.id)];
       const next = order[order.indexOf(navId(currentId())) + step];
       if (next === undefined) return;
       e.preventDefault();
