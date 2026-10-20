@@ -1511,16 +1511,34 @@ span.xp-purple, span.xp-green { color: var(--xp); font-weight: 600; }
 .stats-breakdown { display: grid; gap: 6px; }
 .stats-row { display: grid; grid-template-columns: minmax(84px, 9rem) 1fr 1fr; gap: 10px; align-items: center; }
 .stats-row-head { font: 600 0.75rem var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; }
+.stats-row-head > span:not(:first-child), .stats-group-head > span:not(:first-child) { text-align: center; }
 .stats-row-label { font-size: 0.95rem; }
 .stats-group { display: grid; gap: 6px; padding-top: 10px; border-top: 1px dashed var(--border); }
 .stats-group-head { font-weight: 600; }
-.stats-group-head > span:not(:first-child) { font: 700 0.95rem var(--font-mono); padding-inline: 8px; }
-span.stats-value { padding-inline: 8px; font: 600 0.95rem var(--font-mono); color: var(--xp); }
+.stats-group-head > span:not(:first-child) { font: 700 1.05rem var(--font-mono); }
+span.stats-value {
+  justify-self: center;
+  min-width: 3.2em;
+  padding: 3px 14px;
+  border: 1px solid color-mix(in srgb, var(--xp) 45%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--xp) 16%, transparent);
+  color: var(--xp);
+  font: 700 1.2rem/1.2 var(--font-mono);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  animation: rise 0.5s ease both;
+}
 .stats-row-sub .stats-row-label { padding-inline-start: 14px; color: var(--muted); }
 .stats-row-single .stats-row-label { font-weight: 600; }
 .stats-bar { position: relative; height: 22px; border-radius: 6px; background: var(--surface-2); overflow: hidden; }
 .stats-bar-fill { position: absolute; inset-block: 0; inset-inline-start: 0; width: var(--w); background: var(--xp); border-radius: 6px; transform-origin: left; animation: bar-grow 0.9s cubic-bezier(.2,.8,.2,1) both; }
 [dir="rtl"] .stats-bar-fill { transform-origin: right; }
+.stats-bar-quiz { grid-column: 2 / 4; height: 30px; }
+.stats-bar-quiz .stats-bar-fill { border-radius: 0; }
+.stats-bar-quiz .stats-bar-fill.xp-purple { inset-block: 0 50%; }
+.stats-bar-quiz .stats-bar-fill.xp-green { inset-block: 50% 0; }
+.stats-bar-quiz .stats-bar-num { line-height: 30px; font-size: 0.9rem; font-weight: 700; color: #fff; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); }
 .stats-bar-num { position: relative; padding-inline: 8px; font: 600 0.8rem/22px var(--font-mono); color: var(--text); }
 @keyframes bar-grow { from { transform: scaleX(0); } }
 

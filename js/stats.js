@@ -229,13 +229,20 @@
   ];
 
   function breakdown(items) {
-    const value = (v, colour, kind) => (kind === 'quiz'
-      ? el('div', { class: `stats-bar xp-${colour}` },
-        el('span', { class: 'stats-bar-fill', style: `--w:${(Math.min(v, QUIZ_MAX) / QUIZ_MAX) * 100}%` }),
-        el('span', { class: 'stats-bar-num', dir: 'ltr', text: `${fmt(v)} / ${QUIZ_MAX}` }))
-      : el('span', { class: `stats-value xp-${colour}`, text: fmt(v) }));
+    const value = (v, colour) => el('span', { class: `stats-value xp-${colour}`, text: fmt(v) });
+    // A quiz gives the same purple and green XP, so it is one bar across both columns:
+    // purple on top, green below, each out of QUIZ_MAX.
+    const quizBar = (it) => {
+      const w = (v) => `--w:${(Math.min(Math.max(v, 0), QUIZ_MAX) / QUIZ_MAX) * 100}%`;
+      const label = it.purple === it.green ? fmt(it.purple) : `${fmt(it.purple)} · ${fmt(it.green)}`;
+      return el('div', { class: 'stats-bar stats-bar-quiz' },
+        el('span', { class: 'stats-bar-fill xp-purple', style: w(it.purple) }),
+        el('span', { class: 'stats-bar-fill xp-green', style: w(it.green) }),
+        el('span', { class: 'stats-bar-num', dir: 'ltr', text: `${label} / ${QUIZ_MAX}` }));
+    };
     const line = (it) => el('div', { class: 'stats-row stats-row-single' },
-      el('span', { class: 'stats-row-label', text: itemLabel(it) }), value(it.purple, 'purple', it.kind), value(it.green, 'green', it.kind));
+      el('span', { class: 'stats-row-label', text: itemLabel(it) }),
+      ...(it.kind === 'quiz' ? [quizBar(it)] : [value(it.purple, 'purple'), value(it.green, 'green')]));
     const groups = GROUPS.map((g) => {
       const own = items.filter((it) => it.kind === g.kind);
       if (!own.length) return null;
