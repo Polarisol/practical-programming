@@ -1511,6 +1511,11 @@ span.xp-purple, span.xp-green { color: var(--xp); font-weight: 600; }
 .stats-row { display: grid; grid-template-columns: minmax(84px, 9rem) 1fr 1fr; gap: 10px; align-items: center; }
 .stats-row-head { font: 600 0.75rem var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; }
 .stats-row-label { font-size: 0.95rem; }
+.stats-group { display: grid; gap: 6px; padding-top: 10px; border-top: 1px dashed var(--border); }
+.stats-group-head { font-weight: 600; }
+.stats-group-head > span:not(:first-child) { font: 700 0.95rem var(--font-mono); padding-inline: 8px; }
+.stats-row-sub .stats-row-label { padding-inline-start: 14px; color: var(--muted); }
+.stats-row-single .stats-row-label { font-weight: 600; }
 .stats-bar { position: relative; height: 22px; border-radius: 6px; background: var(--surface-2); overflow: hidden; }
 .stats-bar-fill { position: absolute; inset-block: 0; inset-inline-start: 0; width: var(--w); background: var(--xp); border-radius: 6px; transform-origin: left; animation: bar-grow 0.9s cubic-bezier(.2,.8,.2,1) both; }
 [dir="rtl"] .stats-bar-fill { transform-origin: right; }

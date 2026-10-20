@@ -202,16 +202,38 @@
   }
 
   // ---------- Breakdown: purple and green bars for each source of XP ----------
+  // Grouped as attendance, exercises, quizzes, then activities. Exercises and quizzes
+  // get a heading with their subtotal above their own lines.
+  const GROUPS = [
+    { kind: 'attendance' },
+    { kind: 'exercise', title: 'Exercises' },
+    { kind: 'quiz', title: 'Quizzes', he: 'מבדקים' },   // the site's own quizzes are בחנים
+    { kind: 'activities' },
+  ];
+
   function breakdown(items) {
     const max = Math.max(1, ...items.flatMap((it) => [it.purple, it.green]));
     const bar = (v, colour) => el('div', { class: `stats-bar xp-${colour}` },
       el('span', { class: 'stats-bar-fill', style: `--w:${(v / max) * 100}%` }),
       el('span', { class: 'stats-bar-num', text: fmt(v) }));
+    const line = (it) => el('div', { class: `stats-row${it.title ? '' : ' stats-row-single'}` },
+      el('span', { class: 'stats-row-label', text: itemLabel(it) }), bar(it.purple, 'purple'), bar(it.green, 'green'));
+    const groups = GROUPS.map((g) => {
+      const own = items.filter((it) => it.kind === g.kind);
+      if (!own.length) return null;
+      if (!g.title) return el('div', { class: 'stats-group' }, ...own.map(line));
+      const sum = (c) => own.reduce((s, it) => s + it[c], 0);
+      return el('div', { class: 'stats-group' },
+        el('div', { class: 'stats-row stats-group-head' },
+          el('span', { text: lang === 'he' && g.he ? g.he : t(g.title) }),
+          el('span', { class: 'xp-purple', text: fmt(sum('purple')) }),
+          el('span', { class: 'xp-green', text: fmt(sum('green')) })),
+        ...own.map((it) => Object.assign(line(it), { className: 'stats-row stats-row-sub' })));
+    });
     return el('div', { class: 'stats-breakdown' },
       el('div', { class: 'stats-row stats-row-head' }, el('span'),
         el('span', { class: 'xp-purple', text: t('Purple XP') }), el('span', { class: 'xp-green', text: t('Green XP') })),
-      ...items.map((it) => el('div', { class: 'stats-row' },
-        el('span', { class: 'stats-row-label', text: itemLabel(it) }), bar(it.purple, 'purple'), bar(it.green, 'green'))));
+      ...groups);
   }
 
   // ---------- Top 10: anonymous, with the student's own row marked ----------

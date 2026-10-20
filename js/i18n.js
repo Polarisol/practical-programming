@@ -240,6 +240,7 @@
     'Exercise {n}': 'תרגיל {n}',
     'Quiz {n}': 'מבדק {n}',
     'Attendance': 'נוכחות',
+    'Exercises': 'תרגילים',
     'Activities': 'פעילויות',
     'Sign out': 'התנתקות',
     'Total XP': 'סך הכול XP',
