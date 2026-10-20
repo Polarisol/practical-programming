@@ -229,24 +229,32 @@
   ];
 
   function breakdown(items) {
-    const value = (v, colour, kind) => (kind === 'quiz'
-      ? el('div', { class: `stats-bar xp-${colour}` },
-        el('span', { class: 'stats-bar-fill', style: `--w:${(Math.min(v, QUIZ_MAX) / QUIZ_MAX) * 100}%` }),
-        el('span', { class: 'stats-bar-num', dir: 'ltr', text: `${fmt(v)} / ${QUIZ_MAX}` }))
-      : el('span', { class: `stats-value xp-${colour}`, text: fmt(v) }));
-    const line = (it) => el('div', { class: 'stats-row stats-row-single' },
-      el('span', { class: 'stats-row-label', text: itemLabel(it) }), value(it.purple, 'purple', it.kind), value(it.green, 'green', it.kind));
+    // Totals (attendance, activities and each group's subtotal) stand out as coloured chips.
+    const value = (v, colour, chip) => el('span', { class: `stats-value${chip ? ' stats-chip' : ''} xp-${colour}`, text: fmt(v) });
+    // A quiz gives the same purple and green XP, so it is one bar across both columns:
+    // purple on top, green below, each out of QUIZ_MAX.
+    const quizBar = (it) => {
+      const w = (v) => `--w:${(Math.min(Math.max(v, 0), QUIZ_MAX) / QUIZ_MAX) * 100}%`;
+      const label = it.purple === it.green ? fmt(it.purple) : `${fmt(it.purple)} · ${fmt(it.green)}`;
+      return el('div', { class: 'stats-bar stats-bar-quiz' },
+        el('span', { class: 'stats-bar-fill xp-purple', style: w(it.purple) }),
+        el('span', { class: 'stats-bar-fill xp-green', style: w(it.green) }),
+        el('span', { class: 'stats-bar-num', dir: 'ltr', text: `${label} / ${QUIZ_MAX}` }));
+    };
+    const line = (it, chip) => el('div', { class: `stats-row ${chip ? 'stats-row-single' : 'stats-row-sub'}` },
+      el('span', { class: 'stats-row-label', text: itemLabel(it) }),
+      ...(it.kind === 'quiz' ? [quizBar(it)] : [value(it.purple, 'purple', chip), value(it.green, 'green', chip)]));
     const groups = GROUPS.map((g) => {
       const own = items.filter((it) => it.kind === g.kind);
       if (!own.length) return null;
-      if (!g.title) return el('div', { class: 'stats-group' }, ...own.map(line));
+      if (!g.title) return el('div', { class: 'stats-group' }, ...own.map((it) => line(it, true)));
       const sum = (c) => own.reduce((s, it) => s + it[c], 0);
       return el('div', { class: 'stats-group' },
         el('div', { class: 'stats-row stats-group-head' },
           el('span', { text: lang === 'he' && g.he ? g.he : t(g.title) }),
-          el('span', { class: 'xp-purple', text: fmt(sum('purple')) }),
-          el('span', { class: 'xp-green', text: fmt(sum('green')) })),
-        ...own.map((it) => Object.assign(line(it), { className: 'stats-row stats-row-sub' })));
+          value(sum('purple'), 'purple', true),
+          value(sum('green'), 'green', true)),
+        ...own.map((it) => line(it, false)));
     });
     return el('div', { class: 'stats-breakdown' },
       el('div', { class: 'stats-row stats-row-head' }, el('span'),
