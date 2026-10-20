@@ -218,9 +218,9 @@
   }
 
   // ---------- Breakdown: the XP from each source ----------
-  // Grouped as attendance, exercises, quizzes, then activities. Exercises and quizzes
-  // get a heading with their subtotal above their own lines. Quizzes all have the same
-  // maximum, so they are bars out of QUIZ_MAX; everything else is a plain number.
+  // Grouped as attendance, exercises, quizzes, then activities: the totals of all four
+  // come first, then the lines of exercises and quizzes under their own headings.
+  // Quizzes all have the same maximum, so they are bars out of QUIZ_MAX.
   const GROUPS = [
     { kind: 'attendance' },
     { kind: 'exercise', title: 'Exercises' },
@@ -264,22 +264,22 @@
     const line = (it, chip) => el('div', { class: `stats-row ${chip ? 'stats-row-single' : 'stats-row-sub'}` },
       el('span', { class: 'stats-row-label', text: itemLabel(it) }),
       ...cells(it, chip));
-    const groups = GROUPS.map((g) => {
-      const own = items.filter((it) => it.kind === g.kind);
-      if (!own.length) return null;
-      if (!g.title) return el('div', { class: 'stats-group' }, ...own.map((it) => line(it, true)));
-      const sum = (c) => own.reduce((s, it) => s + it[c], 0);
-      return el('div', { class: 'stats-group' },
-        el('div', { class: 'stats-row stats-group-head' },
-          el('span', { text: lang === 'he' && g.he ? g.he : t(g.title) }),
-          value(sum('purple'), 'purple', true),
-          value(sum('green'), 'green', true)),
-        ...own.map((it) => line(it, false)));
-    });
+    // First a summary with every category's total, then the details of exercises and quizzes.
+    const present = GROUPS.map((g) => ({ ...g, own: items.filter((it) => it.kind === g.kind) })).filter((g) => g.own.length);
+    const name = (g) => (g.title ? (lang === 'he' && g.he ? g.he : t(g.title)) : itemLabel(g.own[0]));
+    const sum = (g, c) => g.own.reduce((s, it) => s + it[c], 0);
+    const summary = el('div', { class: 'stats-group stats-summary' },
+      ...present.map((g) => el('div', { class: 'stats-row stats-row-single' },
+        el('span', { class: 'stats-row-label', text: name(g) }),
+        value(sum(g, 'purple'), 'purple', true),
+        value(sum(g, 'green'), 'green', true))));
+    const details = present.filter((g) => g.title).map((g) => el('div', { class: 'stats-group' },
+      el('div', { class: 'stats-row stats-group-head' }, el('span', { text: name(g) })),
+      ...g.own.map((it) => line(it, false))));
     return el('div', { class: 'stats-breakdown' },
       el('div', { class: 'stats-row stats-row-head' }, el('span'),
         el('span', { class: 'xp-purple', text: t('Purple XP') }), el('span', { class: 'xp-green', text: t('Green XP') })),
-      ...groups);
+      summary, ...details);
   }
 
   // ---------- Top 10: anonymous, with the student's own row marked ----------
