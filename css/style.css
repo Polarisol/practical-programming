@@ -1511,22 +1511,25 @@ span.xp-purple, span.xp-green { color: var(--xp); font-weight: 600; }
 .stats-breakdown { display: grid; gap: 6px; }
 .stats-row { display: grid; grid-template-columns: minmax(84px, 9rem) 1fr 1fr; gap: 10px; align-items: center; }
 .stats-row-head { font: 600 0.75rem var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; }
-.stats-row-head > span:not(:first-child), .stats-group-head > span:not(:first-child) { text-align: center; }
+.stats-row-head > span:not(:first-child) { text-align: center; }
 .stats-row-label { font-size: 0.95rem; }
 .stats-group { display: grid; gap: 6px; padding-top: 10px; border-top: 1px dashed var(--border); }
 .stats-group-head { font-weight: 600; }
-.stats-group-head > span:not(:first-child) { font: 700 1.05rem var(--font-mono); }
 span.stats-value {
   justify-self: center;
   min-width: 3.2em;
+  color: var(--xp);
+  font: 600 1rem/1.2 var(--font-mono);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+span.stats-chip {
   padding: 3px 14px;
   border: 1px solid color-mix(in srgb, var(--xp) 45%, transparent);
   border-radius: 999px;
   background: color-mix(in srgb, var(--xp) 16%, transparent);
-  color: var(--xp);
-  font: 700 1.2rem/1.2 var(--font-mono);
-  text-align: center;
-  font-variant-numeric: tabular-nums;
+  font-size: 1.2rem;
+  font-weight: 700;
   animation: rise 0.5s ease both;
 }
 .stats-row-sub .stats-row-label { padding-inline-start: 14px; color: var(--muted); }
