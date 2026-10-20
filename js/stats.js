@@ -78,7 +78,7 @@
     const run = ++current;
     const author = pick(site, 'author') || '';
     const head = el('header', { class: 'topic-head' },
-      el('span', { class: 'card-icon', 'aria-hidden': 'true', text: '⚗' }),
+      el('span', { class: 'card-icon', 'aria-hidden': 'true', text: '🏆' }),
       el('div', { class: 'topic-title' }, el('h1', { text: t('My stats') })));
     const body = el('div', { class: 'topic-body stats' });
     main.replaceChildren(head, body);

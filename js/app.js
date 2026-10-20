@@ -1577,7 +1577,7 @@
   // ---------- My stats: a student's own XP from the course sheet (js/stats.js) ----------
   // Listed once "stats" in the site block has the Apps Script address and the Google client ID.
   const STATS = '?stats';
-  const STATS_ICON = '⚗';
+  const STATS_ICON = '🏆';
   function statsConfig(site) {
     const c = site && site.stats;
     if (!c || typeof c.script !== 'string' || typeof c.client_id !== 'string') return null;
