@@ -13,6 +13,8 @@
   const { lang, t, pick } = window.I18N;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const TOKEN_KEY = 'stats-token';
+  // The most XP of each colour a quiz (מבדק) can give; quizzes are drawn as bars out of this.
+  const QUIZ_MAX = 24;
   const GSI = 'https://accounts.google.com/gsi/client';
 
   function el(tag, attrs = {}, ...children) {
@@ -208,9 +210,10 @@
       el('div', { class: 'stats-tile-sub' }, sub));
   }
 
-  // ---------- Breakdown: purple and green bars for each source of XP ----------
+  // ---------- Breakdown: the XP from each source ----------
   // Grouped as attendance, exercises, quizzes, then activities. Exercises and quizzes
-  // get a heading with their subtotal above their own lines.
+  // get a heading with their subtotal above their own lines. Quizzes all have the same
+  // maximum, so they are bars out of QUIZ_MAX; everything else is a plain number.
   const GROUPS = [
     { kind: 'attendance' },
     { kind: 'exercise', title: 'Exercises' },
@@ -219,12 +222,13 @@
   ];
 
   function breakdown(items) {
-    const max = Math.max(1, ...items.flatMap((it) => [it.purple, it.green]));
-    const bar = (v, colour) => el('div', { class: `stats-bar xp-${colour}` },
-      el('span', { class: 'stats-bar-fill', style: `--w:${(v / max) * 100}%` }),
-      el('span', { class: 'stats-bar-num', text: fmt(v) }));
-    const line = (it) => el('div', { class: `stats-row${it.title ? '' : ' stats-row-single'}` },
-      el('span', { class: 'stats-row-label', text: itemLabel(it) }), bar(it.purple, 'purple'), bar(it.green, 'green'));
+    const value = (v, colour, kind) => (kind === 'quiz'
+      ? el('div', { class: `stats-bar xp-${colour}` },
+        el('span', { class: 'stats-bar-fill', style: `--w:${(Math.min(v, QUIZ_MAX) / QUIZ_MAX) * 100}%` }),
+        el('span', { class: 'stats-bar-num', dir: 'ltr', text: `${fmt(v)} / ${QUIZ_MAX}` }))
+      : el('span', { class: `stats-value xp-${colour}`, text: fmt(v) }));
+    const line = (it) => el('div', { class: 'stats-row stats-row-single' },
+      el('span', { class: 'stats-row-label', text: itemLabel(it) }), value(it.purple, 'purple', it.kind), value(it.green, 'green', it.kind));
     const groups = GROUPS.map((g) => {
       const own = items.filter((it) => it.kind === g.kind);
       if (!own.length) return null;
