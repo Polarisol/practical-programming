@@ -71,6 +71,17 @@
     return res.json();
   }
 
+  // Apps Script turns calls away when many arrive at once (it answers with an error page),
+  // so a failed load quietly tries twice more, a little later and at a random offset.
+  async function fetchStatsRetrying(config, token, live) {
+    for (let attempt = 0; ; attempt++) {
+      try { return await fetchStats(config, token); } catch (err) {
+        if (attempt >= 2 || !live()) throw err;
+        await new Promise((done) => setTimeout(done, 1500 * (attempt + 1) + Math.random() * 1000));
+      }
+    }
+  }
+
   // ---------- The page ----------
   let current = 0;   // a newer show() makes older, still-loading ones do nothing
 
@@ -103,7 +114,7 @@
     const load = async (token) => {
       body.replaceChildren(el('p', { class: 'stats-loading', role: 'status', text: t('Loading your XP…') }));
       let data;
-      try { data = await fetchStats(config, token); } catch {
+      try { data = await fetchStatsRetrying(config, token, live); } catch {
         if (!live()) return;
         body.replaceChildren(notice(t('Your XP could not load. Check your connection and try again.')),
           el('button', { class: 'stats-btn', type: 'button' }, t('Try again')));
