@@ -27,7 +27,7 @@ Until part 3 is filled in, the page is hidden from the side list. You can always
 4. Press **Deploy → New deployment**. Click the gear next to "Select type" and choose **Web app**. Set:
    - **Execute as:** Me
    - **Who has access:** Anyone
-5. Press **Deploy**, then **Authorize access**. Google will warn that the app isn't verified, because it's your own script. Choose **Advanced → Go to ... (unsafe)** and **Allow**. The script asks to read your sheets and to connect to Google, which it needs to check each sign-in.
+5. Press **Deploy**, then **Authorize access**. Google will warn that the app isn't verified, because it's your own script. Choose **Advanced → Go to ... (unsafe)** and **Allow**. The script asks for two things: the spreadsheet it's attached to ("...spreadsheets that this application has been installed in"), and to connect to an external service, which it uses to check each sign-in with Google. It can't open any of your other files. Google's wording says "edit", but the script only reads.
 6. Copy the **Web app URL**. It ends in `/exec`.
 
 "Anyone" means anyone can call the script, but without a valid Google sign-in made for your site it only answers "signed out", and with one it answers only with that person's own row.
@@ -70,13 +70,11 @@ Changes in the sheet show up the next time a student opens or refreshes the page
 
 ## A new semester
 
-The easiest way keeps the same script address, so the site needs no change:
+The script can only open the sheet it's attached to, so each semester's sheet gets its own copy:
 
-1. Open the script (from the old sheet, **Extensions → Apps Script**).
-2. Set `SHEET_ID` at the top to the new sheet's ID. That's the long part of its address between `/d/` and `/edit`.
-3. Press **Deploy → Manage deployments**, click the pencil, choose **Version: New version** and press **Deploy**.
-
-The new sheet needs the same tab names and headings. If you'd rather start from a copy of the old sheet, **File → Make a copy** copies the script too, but then you deploy it as in part 2 and put its new address in `topics.json`.
+1. Make the new sheet with **File → Make a copy** of the old one. The script is copied along with it. Then clear the old students' rows, or paste in the new ones. The new sheet needs the same tab names and headings.
+2. In the new sheet, open **Extensions → Apps Script** and deploy it as in part 2 (steps 4 to 6). The Client ID is already in the copied script.
+3. Put the new **Web app URL** in `"script"` in `content/topics.json`.
 
 ## Changing the script later
 

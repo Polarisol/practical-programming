@@ -7,15 +7,12 @@
  * name or email ever leaves the sheet.
  *
  * Setup is in apps-script/README.md. The settings below are the only part to edit.
+ *
+ * @OnlyCurrentDoc  The script can open only the sheet it is attached to, none of your others.
  */
 
 // The OAuth client ID from Google Cloud (the same one as "client_id" in content/topics.json).
 const CLIENT_ID = 'PASTE-YOUR-CLIENT-ID.apps.googleusercontent.com';
-
-// Leave empty to use the sheet this script is attached to. For a new semester you can put the
-// new sheet's ID here (the long part of its address between /d/ and /edit) and deploy a new
-// version, so the site's address for the script stays the same.
-const SHEET_ID = '';
 
 // How much XP of each colour counts toward the exercise grade (50 points each).
 const EXERCISE_CAP = 190;
@@ -41,7 +38,7 @@ function doGet(e) {
 function handle(token) {
   const email = verify(token);
   if (!email) return { error: 'signed_out' };
-  const book = SHEET_ID ? SpreadsheetApp.openById(SHEET_ID) : SpreadsheetApp.getActiveSpreadsheet();
+  const book = SpreadsheetApp.getActiveSpreadsheet();
   const scores = book.getSheetByName(SCORES_TAB);
   if (!scores) return { error: 'no_sheet' };
   return studentStats(scores.getDataRange().getValues(), notesFor(book, email), email);
