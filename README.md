@@ -123,6 +123,10 @@ Each topic shows a faint `👁 12` next to its title, and each item (bot, video,
 
 The numbers are kept by [Abacus](https://abacus.jasoncameron.dev), a free counter service, under the name in `"views"` in the `site` block of `content/topics.json`. Remove that line to turn the counts off. An item's count follows its file name or link, so renaming a file or changing a link starts that count again from zero.
 
+## My stats (students' XP)
+
+**My stats** shows each student their own XP from your Google Sheet after they sign in with Google: the beakers animation, their exercise grade, XP per exercise, מבדק, attendance and activities, their class place with an anonymous top 10, and your notes. It needs a one-time setup, described in [apps-script/README.md](apps-script/README.md). Until then it's hidden, and `?stats&demo` shows it with made-up numbers.
+
 ## Publish for free with GitHub Pages
 
 1. Create a free account at <https://github.com> and click **New repository**. Name it (e.g. `class-site`) and make it **Public**.
@@ -149,6 +153,8 @@ js/app.js             reads topics.json and builds the pages
 js/i18n.js            the language button and the site's Hebrew interface text
 js/grid-sim.js        the grid path-finding simulation (BFS, DFS, A*)
 js/digit-sim.js       the handwritten digit simulation (draw a digit, a neural network guesses it)
+js/stats.js           the My stats page (sign-in, beakers, XP, top 10, notes)
+apps-script/          the script for the XP sheet, and how to set it up
 content/topics.json   your topics  ← edit this
 content/home.md       Main page text ← and this
 content/topics/*.md   your notes   ← and these

@@ -13,7 +13,7 @@
   <script>document.documentElement.dataset.view = 'list'; try { if (localStorage.getItem('lang') === 'he') { document.documentElement.lang = 'he'; document.documentElement.dir = 'rtl'; } var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; if (localStorage.getItem('icons') === 'off') document.documentElement.dataset.icons = 'off'; } catch (e) {}
     // Opening the main address shows the entry screen first (a refresh after ENTER stays on the page you were on).
     var q = new URLSearchParams(location.search);
-    if (!q.get('id') && !q.has('lesson') && !q.has('lessons') && !(history.state && history.state.main)) document.documentElement.dataset.entry = '';</script>
+    if (!q.get('id') && !q.has('lesson') && !q.has('lessons') && !q.has('stats') && !(history.state && history.state.main)) document.documentElement.dataset.entry = '';</script>
 </head>
 <body data-page="home">
   <canvas id="ascii-bg" aria-hidden="true"></canvas>
@@ -105,6 +105,7 @@
   <script src="js/ascii-bg.js"></script>
   <script src="js/grid-sim.js"></script>
   <script src="js/digit-sim.js"></script>
+  <script src="js/stats.js"></script>
   <script src="js/app.js"></script>
   <script src="js/playground.js"></script>
 </body>
