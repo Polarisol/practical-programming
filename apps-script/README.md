@@ -43,12 +43,13 @@ In `content/topics.json`, add a `stats` block inside the `site` block:
   "footer_he": "תכנות מעשי · ד״ר טל אלון",
   "stats": {
     "script": "https://script.google.com/macros/s/.../exec",
-    "client_id": "1234-abcd.apps.googleusercontent.com"
+    "client_id": "1234-abcd.apps.googleusercontent.com",
+    "form": "https://forms.gle/..."
   }
 },
 ```
 
-**My stats** now appears in the side list, under Lessons.
+**My stats** now appears in the side list, under Lessons. `"form"` is optional: the link to the form where students register the email they sign in with. The sign-in box shows it as "Not registered yet? Register your email", and so does the message a student gets when their email isn't in the sheet. Answers to the form don't reach the Scores tab on their own, so copy each email into the EMail column.
 
 ## How the sheet is read
 

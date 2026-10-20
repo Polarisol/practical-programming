@@ -114,12 +114,17 @@
       if (data.error === 'signed_out') { saveToken(''); signIn(t('Your sign-in ran out. Please sign in again.')); return; }
       if (data.error === 'not_found') {
         saveToken('');
-        signIn(t('{email} isn’t on the class list. Sign in with the email you gave for the course, or ask your lecturer to add it.', { email: data.email || '' }));
+        signIn(form
+          ? t('{email} isn’t on the class list yet. Register it with the form below, then sign in again once your lecturer has added it.', { email: data.email || '' })
+          : t('{email} isn’t on the class list. Sign in with the email you gave for the course, or ask your lecturer to add it.', { email: data.email || '' }));
         return;
       }
       if (data.error) { body.replaceChildren(notice(t('Your XP could not load. Check your connection and try again.'))); return; }
       body.replaceChildren(...render(data, author, signOut));
     };
+
+    // The form where students register the email they sign in with ("form" in the stats block).
+    const form = typeof config.form === 'string' && /^https:\/\//.test(config.form) ? config.form : '';
 
     const signIn = (message) => {
       const slot = el('div', { class: 'stats-gsi' });
@@ -128,6 +133,8 @@
         message ? el('p', { class: 'stats-warn', role: 'status', text: message }) : null,
         el('p', { text: t('Sign in with the Google account whose email you gave for the course. Only you can see your numbers.') }),
         slot,
+        form ? el('p', { class: 'stats-register' }, t('Not registered yet?'), ' ',
+          el('a', { href: form, target: '_blank', rel: 'noopener noreferrer' }, t('Register your email'))) : null,
         el('p', { class: 'muted' }, el('a', { href: '?stats&demo' }, t('See an example with made-up numbers')))));
       loadGsi().then(() => {
         if (!live()) return;
