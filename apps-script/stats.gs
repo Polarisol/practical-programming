@@ -12,7 +12,7 @@
  */
 
 // The OAuth client ID from Google Cloud (the same one as "client_id" in content/topics.json).
-const CLIENT_ID = 'PASTE-YOUR-CLIENT-ID.apps.googleusercontent.com';
+const CLIENT_ID = '327691374361-no4v7b0buvpqb69itsvq67eo0jb4996g.apps.googleusercontent.com';
 
 // How much XP of each colour counts toward the exercise grade (50 points each).
 const EXERCISE_CAP = 190;
@@ -21,6 +21,7 @@ const PROJECT_CAP = 500;
 
 const SCORES_TAB = 'Scores';
 const NOTES_TAB = 'Notes';
+const MAX_TAB = 'ExeMax';   // the most XP of each colour each exercise is meant to give
 const MAX_NOTES = 5;
 const TOP = 10;
 
@@ -41,7 +42,7 @@ function handle(token) {
   const book = SpreadsheetApp.getActiveSpreadsheet();
   const scores = book.getSheetByName(SCORES_TAB);
   if (!scores) return { error: 'no_sheet' };
-  return studentStats(scores.getDataRange().getValues(), notesFor(book, email), email);
+  return studentStats(scores.getDataRange().getValues(), notesFor(book, email), email, exerciseMax(book));
 }
 
 // The signed-in email, or '' when the token is missing, expired, or made for another site.
@@ -62,7 +63,7 @@ const num = (v) => (typeof v === 'number' && isFinite(v) ? v : Number(v) || 0);
 const filled = (v) => v !== '' && v !== null && v !== undefined;
 const sameEmail = (v, email) => String(v || '').trim().toLowerCase() === email;
 
-function studentStats(rows, notes, email) {
+function studentStats(rows, notes, email, maxes) {
   const head = rows[0].map((h) => String(h).trim().toLowerCase());
   const col = (name) => head.indexOf(name.toLowerCase());
   const people = rows.slice(1).filter((r) => filled(r[col('EMail')]) || filled(r[col('ID')]));
@@ -88,6 +89,7 @@ function studentStats(rows, notes, email) {
       n: it.n,
       purple: it.cols.purple === undefined ? 0 : num(me[it.cols.purple]),
       green: it.cols.green === undefined ? 0 : num(me[it.cols.green]),
+      max: it.kind === 'exercise' && maxes && maxes[it.n] ? maxes[it.n] : undefined,
     }));
 
   // Totals come from the sheet's own formulas; without those columns they are added up here.
@@ -115,6 +117,21 @@ function studentStats(rows, notes, email) {
     top: ranked.slice(0, TOP).map((p) => ({ place: p.place, purple: p.purple, green: p.green, me: p.row === me })),
     notes: notes,
   };
+}
+
+// { 1: { purple: 14, green: 0 }, ... } from the ExeMax tab (columns Exe, Max Purple, Max Green).
+function exerciseMax(book) {
+  const sheet = book.getSheetByName(MAX_TAB);
+  if (!sheet) return {};
+  const rows = sheet.getDataRange().getValues();
+  const head = rows[0].map((h) => String(h).trim().toLowerCase());
+  const [n, p, g] = ['exe', 'max purple', 'max green'].map((h) => head.indexOf(h));
+  const maxes = {};
+  if (n < 0) return maxes;
+  rows.slice(1).forEach((r) => {
+    if (filled(r[n])) maxes[num(r[n])] = { purple: p < 0 ? null : num(r[p]), green: g < 0 ? null : num(r[g]) };
+  });
+  return maxes;
 }
 
 function notesFor(book, email) {

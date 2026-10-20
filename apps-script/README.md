@@ -59,12 +59,14 @@ The script finds columns by their headings, so you can move columns around and a
 |-----|------------------|
 | `Scores` | `EMail`, `ID`, `Name`, `Total Purple XP`, `Total Green XP`, `Ex1 purple` / `Ex1 green` (any number), `Quiz 1 purple` / `Quiz 1 green` (any number), `Purple XP from attendance` / `Green XP from attendance`, `Purple XP from activities` / `Green XP from activities` |
 | `Notes` | `EMail`, `Note1` to `Note5` |
+| `ExeMax` | `Exe` (the exercise number), `Max Purple`, `Max Green`: the most XP of each colour the exercise is meant to give |
 
 - A student is matched by the email they sign in with. Capital letters and spaces around it don't matter.
 - An empty cell counts as 0.
 - An exercise, מבדק, attendance or activities line appears on the page once **any** student has a number in it, so things that haven't happened yet stay hidden. To add Ex9, add `Ex9 purple` and `Ex9 green` columns (and include them in your total formulas).
 - The class place uses `Total Purple XP` + `Total Green XP`. Students with the same total share a place. Rows with neither an email nor an ID are skipped.
 - The exercise grade is 50 points for each colour: `min(XP, 190) / 190 × 50`. The 190 and the project beaker's 500 are set at the top of `stats.gs`.
+- Each exercise is a bar out of its maximum from `ExeMax`, labelled like `7 / 14`. Points above the maximum continue the bar in gold, with a ★ after the numbers. An exercise missing from `ExeMax` shows plain numbers, and a maximum of 0 with no points shows a dash. Quizzes are bars out of 24 (set by `QUIZ_MAX` at the top of `js/stats.js`).
 - Notes are shown in Hebrew, right to left, in both languages of the site. Empty note cells are skipped.
 
 Changes in the sheet show up the next time a student opens or refreshes the page.
