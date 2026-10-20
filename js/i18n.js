@@ -258,6 +258,8 @@
     'of {n} students': 'מתוך {n} סטודנטים',
     'Exercise grade': 'ציון תרגילים',
     'out of 100': 'מתוך 100',
+    'Project head start': 'ציון פתיחה לפרויקט',
+    'project grade points so far': 'נקודות בציון הפרויקט עד כה',
     'Your XP beakers': 'כוסות ה־XP שלך',
     'Each colour fills its beaker up to {cap} XP, which is a full exercise grade. Anything above that pours into the project beaker as a bonus.':
       'כל צבע ממלא את הכוס שלו עד {cap} XP, שזה ציון תרגילים מלא. כל מה שמעבר לזה נשפך לכוס הפרויקט כבונוס.',
