@@ -254,7 +254,7 @@
       },
         el('span', { class: 'stats-bar-fill', style: `--w:${(Math.max(0, Math.min(v, max)) / scale) * 100}%` }),
         extra ? el('span', { class: 'stats-bar-extra', style: `--s:${(max / scale) * 100}%;--w:${(extra / scale) * 100}%` }) : null,
-        el('span', { class: 'stats-bar-num', dir: 'ltr', text: `${fmt(v)} / ${fmt(max)}${extra ? ' ★' : ''}` }));
+        el('span', { class: 'stats-bar-num', dir: 'ltr', text: `${fmt(v)} / ${fmt(max)}` }));
     };
     const cells = (it, chip) => {
       if (it.kind === 'quiz') return [quizBar(it)];
