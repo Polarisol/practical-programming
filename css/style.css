@@ -1459,6 +1459,7 @@ span.xp-purple, span.xp-green { color: var(--xp); font-weight: 600; }
 .stats-loading { margin-top: 24px; font-family: var(--font-mono); color: var(--muted); }
 .stats-warn { padding: 10px 12px; border-inline-start: 4px solid rgb(var(--bad)); background: rgba(var(--bad), 0.08); border-radius: 6px; }
 .stats-gsi { min-height: 44px; margin: 16px 0; }
+.stats-register a { color: var(--accent); font-weight: 600; }
 .stats-btn {
   padding: 6px 14px;
   border: 1px solid var(--border);

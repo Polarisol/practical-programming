@@ -243,6 +243,10 @@
     'Exercises': 'תרגילים',
     'Activities': 'פעילויות',
     'Sign out': 'התנתקות',
+    '{email} isn’t on the class list yet. Register it with the form below, then sign in again once your lecturer has added it.':
+      'הכתובת {email} עדיין לא נמצאת ברשימת הכיתה. רשמו אותה בטופס שלמטה, והתחברו שוב אחרי שהמרצה יוסיף אותה.',
+    'Not registered yet?': 'עוד לא נרשמתם?',
+    'Register your email': 'רישום כתובת המייל',
     'Hi {name}, here are your stats': 'היי {name}, הנה הנתונים שלך',
     'Here are your stats': 'הנה הנתונים שלך',
     'Total XP': 'סך הכול XP',
