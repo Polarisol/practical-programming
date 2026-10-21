@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400">
+  <rect x="0" y="0" width="640" height="400" rx="18" fill="#f6f3ec"/>
+  <text x="320.0" y="38" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="700" fill="#4a3a2a" text-anchor="middle" direction="rtl" unicode-bidi="embed">מטריצת בלבול: ארבעה סוגי תוצאות</text>
+  <text x="370.0" y="106" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#4a3a2a" text-anchor="middle" direction="rtl" unicode-bidi="embed">המודל אמר: חיובי</text>
+  <text x="170.0" y="106" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#4a3a2a" text-anchor="middle" direction="rtl" unicode-bidi="embed">המודל אמר: שלילי</text>
+  <text x="488" y="180.0" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#4a3a2a" text-anchor="end" direction="rtl" unicode-bidi="embed">באמת חיובי</text>
+  <rect x="274" y="124" width="192" height="102" rx="12" fill="#dff0d8" stroke="#2e7d32" stroke-width="2"/>
+  <text x="370.0" y="172" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700" fill="#2e7d32" text-anchor="middle">TP</text>
+  <text x="370.0" y="200" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#2e7d32" text-anchor="middle" direction="rtl" unicode-bidi="embed">חיובי אמיתי: פגיעה</text>
+  <rect x="74" y="124" width="192" height="102" rx="12" fill="#fbe1dc" stroke="#c0392b" stroke-width="2"/>
+  <text x="170.0" y="172" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700" fill="#c0392b" text-anchor="middle">FN</text>
+  <text x="170.0" y="200" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#c0392b" text-anchor="middle" direction="rtl" unicode-bidi="embed">שלילי שגוי: החמצה</text>
+  <text x="488" y="290.0" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#4a3a2a" text-anchor="end" direction="rtl" unicode-bidi="embed">באמת שלילי</text>
+  <rect x="274" y="234" width="192" height="102" rx="12" fill="#fbe1dc" stroke="#c0392b" stroke-width="2"/>
+  <text x="370.0" y="282" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700" fill="#c0392b" text-anchor="middle">FP</text>
+  <text x="370.0" y="310" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#c0392b" text-anchor="middle" direction="rtl" unicode-bidi="embed">חיובי שגוי: אזעקת שווא</text>
+  <rect x="74" y="234" width="192" height="102" rx="12" fill="#dff0d8" stroke="#2e7d32" stroke-width="2"/>
+  <text x="170.0" y="282" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700" fill="#2e7d32" text-anchor="middle">TN</text>
+  <text x="170.0" y="310" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#2e7d32" text-anchor="middle" direction="rtl" unicode-bidi="embed">שלילי אמיתי: לא נכון</text>
+  <text x="320.0" y="386" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#4a3a2a" text-anchor="middle" direction="rtl" unicode-bidi="embed">ירוק: המודל צדק.   אדום: המודל טעה</text>
+</svg>

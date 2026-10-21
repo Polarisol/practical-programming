@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400">
+  <rect x="0" y="0" width="640" height="400" rx="18" fill="#f6f3ec"/>
+  <text x="320.0" y="38" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="700" fill="#4a3a2a" text-anchor="middle">The cat / dog classifier: its confusion matrix</text>
+  <text x="320.0" y="106" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#4a3a2a" text-anchor="middle">Predicted: cat (positive)</text>
+  <text x="520.0" y="106" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#4a3a2a" text-anchor="middle">Predicted: dog (negative)</text>
+  <text x="202" y="180.0" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#4a3a2a" text-anchor="end">Actually a cat</text>
+  <rect x="224" y="124" width="192" height="102" rx="12" fill="#dff0d8" stroke="#2e7d32" stroke-width="2"/>
+  <text x="320.0" y="172" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700" fill="#2e7d32" text-anchor="middle">TP = 3</text>
+  <text x="320.0" y="200" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#2e7d32" text-anchor="middle">cats found</text>
+  <rect x="424" y="124" width="192" height="102" rx="12" fill="#fbe1dc" stroke="#c0392b" stroke-width="2"/>
+  <text x="520.0" y="172" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700" fill="#c0392b" text-anchor="middle">FN = 1</text>
+  <text x="520.0" y="200" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#c0392b" text-anchor="middle">cat missed</text>
+  <text x="202" y="290.0" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#4a3a2a" text-anchor="end">Actually a dog</text>
+  <rect x="224" y="234" width="192" height="102" rx="12" fill="#fbe1dc" stroke="#c0392b" stroke-width="2"/>
+  <text x="320.0" y="282" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700" fill="#c0392b" text-anchor="middle">FP = 2</text>
+  <text x="320.0" y="310" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#c0392b" text-anchor="middle">dogs called cats</text>
+  <rect x="424" y="234" width="192" height="102" rx="12" fill="#dff0d8" stroke="#2e7d32" stroke-width="2"/>
+  <text x="520.0" y="282" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700" fill="#2e7d32" text-anchor="middle">TN = 4</text>
+  <text x="520.0" y="310" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#2e7d32" text-anchor="middle">dogs found</text>
+  <text x="320.0" y="386" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#4a3a2a" text-anchor="middle">Correct: 3 + 4 = 7 of 10.   Mistakes: 2 + 1 = 3</text>
+</svg>
