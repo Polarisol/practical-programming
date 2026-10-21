@@ -73,7 +73,7 @@ Almost every machine learning project with scikit-learn goes through the same st
 3. **Prepare it.** Fill in or remove missing values, turn text categories into numbers, and put the columns on a similar scale. Some models care a lot about scale: if "size" is in the hundreds and "rooms" is between 1 and 6, a model that measures distances will think size is far more important.
 4. **Pick a model** that fits the problem. A category or a number? Labels or no labels? How much data do you have? Start simple.
 5. **Train it**: call fit on the train set.
-6. **Evaluate it**: predict the test set and compare to the real answers. For classification, use the measures from the next item, "How Good Is My Model?". If the result is not good enough, go back: prepare the data differently, try other settings, or try another model.
+6. **Evaluate it**: predict the test set and compare to the real answers. For classification, use the measures from the item "How Good Is My Model?". If the result is not good enough, go back: prepare the data differently, try other settings, or try another model.
 7. **Use it**: predict answers for new data the model has never seen. That is the whole point.
 
 ### Why split the data?
@@ -119,4 +119,4 @@ Start with something **simple** and get a baseline score. Only then try somethin
 - The workflow: get the data, **split** it, prepare it, pick a model, fit, **evaluate on the test set**, improve, and use.
 - For deep learning on images, sound and long texts, other libraries take over. For almost everything else, scikit-learn is the place to start.
 
-Later on we will write scikit-learn code ourselves, step by step.
+In the next item, "k-Nearest Neighbors", we write scikit-learn code ourselves, step by step.
