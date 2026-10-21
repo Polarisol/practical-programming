@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+  <rect x="0" y="0" width="640" height="360" rx="18" fill="#f6f3ec"/>
+  <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4a3a2a"/></marker></defs>
+  <text x="320.0" y="38" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="700" fill="#4a3a2a" text-anchor="middle">Unsupervised learning: find structure with no answers</text>
+  <rect x="20" y="60" width="290" height="240" rx="12" fill="#ffffff" stroke="#d8cfbf" stroke-width="2"/>
+  <text x="165.0" y="86" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#4a3a2a" text-anchor="middle">The data: no labels at all</text>
+  <circle cx="101" cy="163" r="6" fill="#8a7f72"/>
+  <circle cx="88" cy="160" r="6" fill="#8a7f72"/>
+  <circle cx="97" cy="147" r="6" fill="#8a7f72"/>
+  <circle cx="125" cy="152" r="6" fill="#8a7f72"/>
+  <circle cx="99" cy="158" r="6" fill="#8a7f72"/>
+  <circle cx="115" cy="150" r="6" fill="#8a7f72"/>
+  <circle cx="108" cy="140" r="6" fill="#8a7f72"/>
+  <circle cx="95" cy="145" r="6" fill="#8a7f72"/>
+  <circle cx="208" cy="139" r="6" fill="#8a7f72"/>
+  <circle cx="204" cy="153" r="6" fill="#8a7f72"/>
+  <circle cx="223" cy="152" r="6" fill="#8a7f72"/>
+  <circle cx="226" cy="141" r="6" fill="#8a7f72"/>
+  <circle cx="224" cy="157" r="6" fill="#8a7f72"/>
+  <circle cx="235" cy="146" r="6" fill="#8a7f72"/>
+  <circle cx="220" cy="134" r="6" fill="#8a7f72"/>
+  <circle cx="218" cy="132" r="6" fill="#8a7f72"/>
+  <circle cx="142" cy="256" r="6" fill="#8a7f72"/>
+  <circle cx="131" cy="253" r="6" fill="#8a7f72"/>
+  <circle cx="164" cy="242" r="6" fill="#8a7f72"/>
+  <circle cx="166" cy="250" r="6" fill="#8a7f72"/>
+  <circle cx="174" cy="243" r="6" fill="#8a7f72"/>
+  <circle cx="152" cy="239" r="6" fill="#8a7f72"/>
+  <circle cx="147" cy="245" r="6" fill="#8a7f72"/>
+  <circle cx="150" cy="256" r="6" fill="#8a7f72"/>
+  <rect x="330" y="60" width="290" height="240" rx="12" fill="#ffffff" stroke="#d8cfbf" stroke-width="2"/>
+  <text x="475.0" y="86" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#4a3a2a" text-anchor="middle">The model found 3 groups</text>
+  <ellipse cx="410" cy="150" rx="46" ry="38" fill="#fdebd3" stroke="#d9822b" stroke-width="2" stroke-dasharray="6 4"/>
+  <circle cx="411" cy="163" r="6" fill="#d9822b"/>
+  <circle cx="398" cy="160" r="6" fill="#d9822b"/>
+  <circle cx="407" cy="147" r="6" fill="#d9822b"/>
+  <circle cx="435" cy="152" r="6" fill="#d9822b"/>
+  <circle cx="409" cy="158" r="6" fill="#d9822b"/>
+  <circle cx="425" cy="150" r="6" fill="#d9822b"/>
+  <circle cx="418" cy="140" r="6" fill="#d9822b"/>
+  <circle cx="405" cy="145" r="6" fill="#d9822b"/>
+  <text x="410" y="106" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#d9822b" text-anchor="middle">group 1</text>
+  <ellipse cx="535" cy="155" rx="46" ry="38" fill="#dceaf7" stroke="#2c6fb0" stroke-width="2" stroke-dasharray="6 4"/>
+  <circle cx="518" cy="139" r="6" fill="#2c6fb0"/>
+  <circle cx="514" cy="153" r="6" fill="#2c6fb0"/>
+  <circle cx="533" cy="152" r="6" fill="#2c6fb0"/>
+  <circle cx="536" cy="141" r="6" fill="#2c6fb0"/>
+  <circle cx="534" cy="157" r="6" fill="#2c6fb0"/>
+  <circle cx="545" cy="146" r="6" fill="#2c6fb0"/>
+  <circle cx="530" cy="134" r="6" fill="#2c6fb0"/>
+  <circle cx="528" cy="132" r="6" fill="#2c6fb0"/>
+  <text x="535" y="111" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#2c6fb0" text-anchor="middle">group 2</text>
+  <ellipse cx="470" cy="245" rx="46" ry="38" fill="#dff0d8" stroke="#2e7d32" stroke-width="2" stroke-dasharray="6 4"/>
+  <circle cx="452" cy="256" r="6" fill="#2e7d32"/>
+  <circle cx="441" cy="253" r="6" fill="#2e7d32"/>
+  <circle cx="474" cy="242" r="6" fill="#2e7d32"/>
+  <circle cx="476" cy="250" r="6" fill="#2e7d32"/>
+  <circle cx="484" cy="243" r="6" fill="#2e7d32"/>
+  <circle cx="462" cy="239" r="6" fill="#2e7d32"/>
+  <circle cx="457" cy="245" r="6" fill="#2e7d32"/>
+  <circle cx="460" cy="256" r="6" fill="#2e7d32"/>
+  <text x="470" y="301" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#2e7d32" text-anchor="middle">group 3</text>
+  <line x1="312" y1="180.0" x2="328" y2="180.0" stroke="#4a3a2a" stroke-width="3" marker-end="url(#ah)"/>
+  <text x="320.0" y="336" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#4a3a2a" text-anchor="middle">Nobody told the model what the groups are. It found them by itself</text>
+</svg>
