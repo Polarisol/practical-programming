@@ -368,6 +368,7 @@
       "icon": "💬",
       "blurb": "Wow! we can now call large language models from our own Python programs? The future is here!",
       "blurb_he": "וואו! אפשר עכשיו לקרוא למודלי שפה גדולים מתוך תוכניות Python שלנו? העתיד כבר כאן!",
+      "material": ["topics/llm_gemini.md"],
       "bots": [
         {
           "label": "Study Bot",
