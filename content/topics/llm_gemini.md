@@ -78,6 +78,10 @@ print(response.text)
 
 ## Working with an image
 
+Modern LLMs are **multimodal**: they understand pictures, not only text. We can send the model an image together with a question, and it answers about what it sees. This is helpful for describing a photo, reading text or numbers from a screenshot, explaining a graph we plotted, or checking what is in an image before our program does something with it.
+
+To send an image, we open it with the `PIL` library and pass a **list** to `send_message`: the question and the image together. This continues the `chat` we created above.
+
 ```python
 import PIL.Image
 my_image = PIL.Image.open('test_image.png')
@@ -85,6 +89,16 @@ response = chat.send_message(["What is in this loaded image?", my_image])
 ```
 
 ## Working with tools
+
+On its own, an LLM can only write text. It can't check the time, read our files or change anything in our program. **Tools** solve this. A tool is a regular Python function that we hand to the model. When the model decides the function would help answer the user, it asks to call it, the function runs in *our* program, and its return value goes back to the model, which then writes its answer.
+
+This is how a chatbot becomes an assistant that actually *does* things: turns on a light, looks something up in a database, saves a file, or (in the example below) warms the room.
+
+A few things matter here:
+
+- The **docstring** of the function is how the model knows what the tool does and when to use it, so write it clearly.
+- The **type hints** (like `-> str`) tell the model what the function returns.
+- We pass the functions in `tools=[...]`, and the library runs them for us automatically.
 
 ```python
 temperature = 20
