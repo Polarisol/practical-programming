@@ -23,7 +23,7 @@ Supervised problems come in two kinds:
 
 **What it is used for:** spam filters, face recognition in your phone's gallery, reading handwritten digits (try the simulation on this page, it is a supervised model), medical diagnosis from scans, credit card fraud detection, price prediction, translation and speech-to-text.
 
-**What it can do, and what it needs:** supervised learning is the most common and usually the most accurate kind of machine learning, because the model knows exactly what it is aiming for. And since we have the right answers, we can measure how good the model is (see the next item, "How Good Is My Model?"). The catch is that it needs **a lot of labeled data**, and labels are expensive: someone has to sit and mark thousands of photos, or a doctor has to diagnose thousands of scans. The model is also only as good as its labels. If the labels are wrong or biased, the model learns the mistakes too.
+**What it can do, and what it needs:** supervised learning is the most common and usually the most accurate kind of machine learning, because the model knows exactly what it is aiming for. And since we have the right answers, we can measure how good the model is (see the item "How Good Is My Model?"). The catch is that it needs **a lot of labeled data**, and labels are expensive: someone has to sit and mark thousands of photos, or a doctor has to diagnose thousands of scans. The model is also only as good as its labels. If the labels are wrong or biased, the model learns the mistakes too.
 
 ### A taste in Python
 
