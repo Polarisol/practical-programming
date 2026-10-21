@@ -350,6 +350,7 @@
           "url": "https://xxxxxxx"
         }
       ],
+      "material": ["topics/ml_confusion_matrix.md"],
       "simulations": [
         {
           "title": "Handwritten digit recognition",
