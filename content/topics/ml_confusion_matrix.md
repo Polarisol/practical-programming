@@ -1,4 +1,4 @@
-# Confusion Matrix: How Good Is My Model?
+# How Good Is My Model?
 
 You trained a model that looks at a photo and says "cat" or "dog". How do you know if it is any good? The obvious answer is "count how often it is right". That is a start, but it hides a lot: **which** mistakes does the model make? Does it miss cats, or does it call dogs cats? In many real problems these two mistakes cost very different things.
 
