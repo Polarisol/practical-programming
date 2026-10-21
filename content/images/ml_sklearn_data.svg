@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 380" width="640" height="380">
+  <rect x="0" y="0" width="640" height="380" rx="18" fill="#f6f3ec"/>
+  <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4a3a2a"/></marker><marker id="ahg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2e7d32"/></marker><marker id="ahb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2c6fb0"/></marker><marker id="aho" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d9822b"/></marker></defs>
+  <text x="320" y="38" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="700" fill="#4a3a2a" text-anchor="middle">The data: a table of samples and features</text>
+  <rect x="150" y="66" width="96" height="34" rx="6" fill="#dceaf7" stroke="#2c6fb0" stroke-width="1.5"/>
+  <text x="198.0" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#2c6fb0" text-anchor="middle">rooms</text>
+  <rect x="250" y="66" width="96" height="34" rx="6" fill="#dceaf7" stroke="#2c6fb0" stroke-width="1.5"/>
+  <text x="298.0" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#2c6fb0" text-anchor="middle">size (m²)</text>
+  <rect x="350" y="66" width="96" height="34" rx="6" fill="#dceaf7" stroke="#2c6fb0" stroke-width="1.5"/>
+  <text x="398.0" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#2c6fb0" text-anchor="middle">floor</text>
+  <rect x="462" y="66" width="96" height="34" rx="6" fill="#fdebd3" stroke="#d9822b" stroke-width="1.5"/>
+  <text x="510.0" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#d9822b" text-anchor="middle">price (₪k)</text>
+  <rect x="150" y="104" width="96" height="34" rx="6" fill="#ffffff" stroke="#d8cfbf" stroke-width="1.5"/>
+  <text x="198.0" y="126" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle">3</text>
+  <rect x="250" y="104" width="96" height="34" rx="6" fill="#ffffff" stroke="#d8cfbf" stroke-width="1.5"/>
+  <text x="298.0" y="126" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle">75</text>
+  <rect x="350" y="104" width="96" height="34" rx="6" fill="#ffffff" stroke="#d8cfbf" stroke-width="1.5"/>
+  <text x="398.0" y="126" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle">2</text>
+  <rect x="462" y="104" width="96" height="34" rx="6" fill="#ffffff" stroke="#d8cfbf" stroke-width="1.5"/>
+  <text x="510.0" y="126" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle">1,650</text>
+  <rect x="150" y="142" width="96" height="34" rx="6" fill="#ffffff" stroke="#d8cfbf" stroke-width="1.5"/>
+  <text x="198.0" y="164" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle">4</text>
+  <rect x="250" y="142" width="96" height="34" rx="6" fill="#ffffff" stroke="#d8cfbf" stroke-width="1.5"/>
+  <text x="298.0" y="164" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle">100</text>
+  <rect x="350" y="142" width="96" height="34" rx="6" fill="#ffffff" stroke="#d8cfbf" stroke-width="1.5"/>
+  <text x="398.0" y="164" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle">5</text>
+  <rect x="462" y="142" width="96" height="34" rx="6" fill="#ffffff" stroke="#d8cfbf" stroke-width="1.5"/>
+  <text x="510.0" y="164" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle">2,300</text>
+  <rect x="150" y="180" width="96" height="34" rx="6" fill="#ffffff" stroke="#d8cfbf" stroke-width="1.5"/>
+  <text x="198.0" y="202" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle">2</text>
+  <rect x="250" y="180" width="96" height="34" rx="6" fill="#ffffff" stroke="#d8cfbf" stroke-width="1.5"/>
+  <text x="298.0" y="202" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle">52</text>
+  <rect x="350" y="180" width="96" height="34" rx="6" fill="#ffffff" stroke="#d8cfbf" stroke-width="1.5"/>
+  <text x="398.0" y="202" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle">1</text>
+  <rect x="462" y="180" width="96" height="34" rx="6" fill="#ffffff" stroke="#d8cfbf" stroke-width="1.5"/>
+  <text x="510.0" y="202" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle">1,200</text>
+  <rect x="150" y="218" width="96" height="34" rx="6" fill="#ffffff" stroke="#d8cfbf" stroke-width="1.5"/>
+  <text x="198.0" y="240" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle">5</text>
+  <rect x="250" y="218" width="96" height="34" rx="6" fill="#ffffff" stroke="#d8cfbf" stroke-width="1.5"/>
+  <text x="298.0" y="240" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle">130</text>
+  <rect x="350" y="218" width="96" height="34" rx="6" fill="#ffffff" stroke="#d8cfbf" stroke-width="1.5"/>
+  <text x="398.0" y="240" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle">3</text>
+  <rect x="462" y="218" width="96" height="34" rx="6" fill="#ffffff" stroke="#d8cfbf" stroke-width="1.5"/>
+  <text x="510.0" y="240" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle">2,900</text>
+  <rect x="150" y="256" width="96" height="34" rx="6" fill="#ffffff" stroke="#d8cfbf" stroke-width="1.5"/>
+  <text x="198.0" y="278" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle">…</text>
+  <rect x="250" y="256" width="96" height="34" rx="6" fill="#ffffff" stroke="#d8cfbf" stroke-width="1.5"/>
+  <text x="298.0" y="278" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle">…</text>
+  <rect x="350" y="256" width="96" height="34" rx="6" fill="#ffffff" stroke="#d8cfbf" stroke-width="1.5"/>
+  <text x="398.0" y="278" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle">…</text>
+  <rect x="462" y="256" width="96" height="34" rx="6" fill="#ffffff" stroke="#d8cfbf" stroke-width="1.5"/>
+  <text x="510.0" y="278" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a3a2a" text-anchor="middle">…</text>
+  <rect x="140" y="101" width="418" height="40" rx="8" fill="none" stroke="#2e7d32" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="128" y="120" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#2e7d32" text-anchor="end">one row =</text>
+  <text x="128" y="136" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#2e7d32" text-anchor="end">one sample</text>
+  <line x1="150" y1="304" x2="446" y2="304" stroke="#2c6fb0" stroke-width="3"/>
+  <line x1="150" y1="298" x2="150" y2="304" stroke="#2c6fb0" stroke-width="3"/>
+  <line x1="446" y1="298" x2="446" y2="304" stroke="#2c6fb0" stroke-width="3"/>
+  <text x="300.0" y="326" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#2c6fb0" text-anchor="middle">X: the features (the questions)</text>
+  <line x1="462" y1="304" x2="558" y2="304" stroke="#d9822b" stroke-width="3"/>
+  <line x1="462" y1="298" x2="462" y2="304" stroke="#d9822b" stroke-width="3"/>
+  <line x1="558" y1="298" x2="558" y2="304" stroke="#d9822b" stroke-width="3"/>
+  <text x="510.0" y="326" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#d9822b" text-anchor="middle">y: the target</text>
+  <text x="510.0" y="344" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#d9822b" text-anchor="middle">(the answer)</text>
+</svg>
