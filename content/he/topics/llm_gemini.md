@@ -20,10 +20,10 @@ GEMINI_API_KEY=your-key-here
 
 > המפתח הוא כמו סיסמה. אל תשתפו אותו ואל תכתבו אותו בתוך הקוד. אם אתם משתמשים ב-Git, הוסיפו את `.env` לקובץ `.gitignore`.
 
-**שלב שלישי:** התקנת הספריות הנחוצות בפייתון:
+**שלב שלישי:** הוספת הספריות הנחוצות לפרויקט:
 
 ```bash
-pip install google-genai python-dotenv
+uv add google-genai python-dotenv
 ```
 
 ## הדוגמה הבסיסית ביותר

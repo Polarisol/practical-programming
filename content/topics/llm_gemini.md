@@ -20,10 +20,10 @@ GEMINI_API_KEY=your-key-here
 
 > The key is like a password. Never share it and never put it inside your code. If you use Git, add `.env` to your `.gitignore`.
 
-**Step 3:** Install the libraries we need with pip:
+**Step 3:** Add the libraries we need to the project:
 
 ```bash
-pip install google-genai python-dotenv
+uv add google-genai python-dotenv
 ```
 
 ## The most basic example
