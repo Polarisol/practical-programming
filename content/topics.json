@@ -23,7 +23,7 @@
       "items": [
         "installation",
         "starting-a-project",
-        "using-ai",
+        { "unit": "using-ai", "only": ["topics/AIRules.md"] },
         { "unit": "python-basics", "only": ["Study Bot", "10 minutes - Basic Python", "topics/python-basics.md"] }
       ]
     },
