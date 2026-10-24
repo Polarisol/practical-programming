@@ -1,4 +1,4 @@
-# Quiz yourself!
+# Python basics quiz
 
 Answer all the questions, then press **Submit answers** to see your score and the corrections.
 
@@ -165,16 +165,3 @@ print(len(scores), scores["Dana"])
 - [ ] 1 90
   > `scores["Avi"] = 75` uses a new key, so it adds a new pair to the dictionary.
 > Assigning to an existing key **updates** its value. Assigning to a new key **adds** a new key-value pair.
-
-## Which of these statements about text files in Python are true?
-- [x] The `with` statement makes sure the file is closed when we're done with it.
-  > Right! That's the main reason we open files with `with`.
-- [ ] Python can read text files, but it can't write to them.
-  > Python can both read and write text files, and the code for each is short.
-- [x] We can read a whole text file into one string, or use a loop to read it line by line.
-  > Right! Both ways work, so you can pick the one that fits your task.
-- [ ] A `.txt` file can store formatting such as bold text and font sizes.
-  > A `.txt` file holds plain, unformatted text only.
-- [x] A `.csv` file stores table data, with commas separating the values.
-  > Right! CSV stands for comma-separated values. Opened in Excel, each value goes into its own cell.
-> Use `with` to open files safely. `.txt` files hold plain text, and `.csv` files hold table data separated by commas.
