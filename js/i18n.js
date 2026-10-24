@@ -102,8 +102,8 @@
     '→': '←',
     '{n} item': 'פריט אחד',
     '{n} items': '{n} פריטים',
-    'The material of each lesson, gathered from the units. The newest lesson is on top.':
-      'החומר של כל שיעור, אסוף מהיחידות השונות. השיעור האחרון למעלה.',
+    'The material of each lesson, gathered from the units.':
+      'החומר של כל שיעור, אסוף מהיחידות השונות.',
     '← All lessons': '→ כל השיעורים',
     'Lesson not found · {site}': 'השיעור לא נמצא · {site}',
     'That lesson doesn’t exist (yet). Pick one from the list.': 'השיעור הזה לא קיים (עדיין). בחרו שיעור מהרשימה.',

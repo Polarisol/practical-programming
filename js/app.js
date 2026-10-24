@@ -1642,7 +1642,7 @@
       ...extra);
   }
 
-  // The Lessons page: one line per lesson, the newest on top.
+  // The Lessons page: one line per lesson, in order, the latest at the bottom.
   function showLessons(main, lessons, topics, siteTitle) {
     document.title = `${t('Lessons')} · ${siteTitle}`;
     const rows = lessons.map((lesson, i) => {
@@ -1654,9 +1654,9 @@
         ...lineParts('lesson', lessonTitle(lesson, n), sub, t('→')));
       if (n === lessons.length) row.querySelector('.line-label').after(el('span', { class: 'lesson-latest', text: t('Latest') }));
       return row;
-    }).reverse();
+    });
     main.replaceChildren(
-      pageHead(LESSONS_ICON, t('Lessons'), t('The material of each lesson, gathered from the units. The newest lesson is on top.')),
+      pageHead(LESSONS_ICON, t('Lessons'), t('The material of each lesson, gathered from the units.')),
       el('div', { class: 'topic-body' }, el('div', { class: 'line-list topic-lines' }, ...rows)),
     );
   }
