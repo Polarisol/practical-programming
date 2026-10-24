@@ -33,7 +33,7 @@
       "blurb": "First steps with PySide6: building a window, getting to know the widgets, and checking what you learned.",
       "blurb_he": "צעדים ראשונים עם PySide6: בונים חלון, מכירים את הווידג'טים ובודקים מה למדנו.",
       "items": [
-        { "unit": "python-basics", "only": ["topics/global-variables.md", "quizzes/python-basics-quiz.md"] },
+        { "unit": "python-basics", "only": ["Study Bot", "topics/global-variables.md", "quizzes/python-basics-quiz.md"] },
         {
           "unit": "pyside6",
           "only": [
