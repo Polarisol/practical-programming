@@ -26,6 +26,24 @@
         "using-ai",
         { "unit": "python-basics", "only": ["Study Bot", "10 minutes - Basic Python", "topics/python-basics.md"] }
       ]
+    },
+    {
+      "title": "Lesson 2",
+      "title_he": "שיעור 2",
+      "blurb": "First steps with PySide6: building a window, getting to know the widgets, and checking what you learned.",
+      "blurb_he": "צעדים ראשונים עם PySide6: בונים חלון, מכירים את הווידג'טים ובודקים מה למדנו.",
+      "items": [
+        {
+          "unit": "pyside6",
+          "only": [
+            "Study Bot - Basic PySide6 (Not OOP)",
+            "topics/pyside6_basics.md",
+            "topics/pyside6_widgets.md",
+            "topics/wwntr_pyside6_basic.md",
+            "quizzes/pyside6_basics_quiz.md"
+          ]
+        }
+      ]
     }
   ],
   "topics": [
