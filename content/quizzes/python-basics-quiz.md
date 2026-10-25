@@ -3,14 +3,14 @@
 Answer all the questions, then press **Submit answers** to see your score and the corrections.
 
 ## Which of these statements about Python are true?
-- [ ] Python code usually runs faster than C or C++ code.
+- [ ] Python code usually runs faster than C or C++ code, because Python is a newer language.
   > It's the other way around. Python is interpreted, so it usually runs slower than C or C++. What's fast is *writing* code in Python.
-- [ ] Python is mainly used for data science and isn't suited for other kinds of projects.
+- [ ] Python is mainly used for data science and isn't really suited for other kinds of projects.
   > Python is a general-purpose language. Data science is just one of many areas where it's used.
-- [x] Python is used for web development, data analysis, artificial intelligence and scientific computing.
+- [x] Python is used for web development, data analysis, AI and science.
   > Right! Python is very versatile and shows up in all of these areas.
-- [x] Slow parts of a Python program can be sped up with optimized libraries or by writing them in another language.
-  > Right! This is the usual way to work around Python's slower execution speed.
+- [x] Slow parts of a program can be sped up with optimized libraries.
+  > Right! Libraries like NumPy run their heavy work in fast compiled code. This is the usual way to work around Python's slower execution speed.
 > Python is quick to **write** but can be slower to **run** than languages like C or C++, because it's interpreted. Optimized libraries help close that gap.
 
 ## You want to explore a data set step by step, running small pieces of code and seeing charts right away. Which file type fits best?
@@ -119,6 +119,70 @@ for i in range(8):
 
 ## What does this code print?
 ```python
+values = [3, 7, 9]
+if 2 in values:
+    print("Found")
+else:
+    print("Not found")
+```
+- [ ] Found
+  > The list has an item at index 2, but `in` doesn't look at indexes. It checks whether the **value** 2 is in the list.
+- [x] Not found
+  > Right! The values in the list are 3, 7 and 9. None of them is 2, so `2 in values` is `False`.
+- [ ] 9
+  > 9 is the item at index 2, but `in` doesn't return an item. It gives `True` or `False`.
+- [ ] An error, because 2 isn't in the list
+  > `in` never causes an error when the value is missing. It simply gives `False`.
+> `value in my_list` gives `True` if the value appears somewhere in the list, and `False` if it doesn't. It checks values, not indexes.
+
+## What does this code print? (Each value is printed on its own line; the options show them in one row.)
+```python
+fruits = ["apple", "banana", "cherry"]
+for fruit in fruits:
+    print(fruit[0])
+```
+- [x] a b c
+  > Right! In each round `fruit` is one of the words, and `fruit[0]` is its first letter.
+- [ ] 0 1 2
+  > `fruit` is not an index. When you loop directly over a list, the loop variable gets the **items** themselves.
+- [ ] apple banana cherry
+  > That's what `print(fruit)` would print. `fruit[0]` takes only the first letter of each word.
+- [ ] An error, because `fruit` is a string and not a list
+  > Strings have indexes too, so `fruit[0]` is the first letter of the string.
+> `for fruit in fruits:` goes over the items of the list one by one. In each round, `fruit` holds the next item.
+
+## What does this code print?
+```python
+vowels = ["a", "e", "i", "o", "u"]
+count = 0
+for ch in "banana":
+    if ch in vowels:
+        count = count + 1
+print(count)
+```
+- [ ] 6
+  > That's the number of letters in `"banana"`. The `if` adds 1 only when the letter is a vowel.
+- [ ] 1
+  > The loop checks every letter, so each of the three `"a"` letters adds 1, even though they're the same letter.
+- [ ] An error, because you can't loop over a string
+  > You can loop over a string. Each round gives you one character.
+- [x] 3
+  > Right! The loop goes over b, a, n, a, n, a. Only the three `"a"` letters are in `vowels`.
+> Looping over a string gives its characters one by one. Together with `in`, it's an easy way to count or find letters.
+
+## Which of these loops print the letters a, b and c, each on its own line?
+- [ ] `for i in range(3): print(i)`
+  > `range(3)` gives the numbers 0, 1 and 2, so this prints numbers, not letters.
+- [x] `for ch in "abc": print(ch)`
+  > Right! Looping over a string gives its characters one by one.
+- [ ] `for ch in ["a", "b", "c"]: print("ch")`
+  > `"ch"` in quotes is the text ch, not the variable, so this prints ch three times.
+- [x] `for ch in ["a", "b", "c"]: print(ch)`
+  > Right! Looping over a list gives its items one by one.
+> A `for` loop can go directly over a string (its characters) or a list (its items). You don't need `range` or indexes for that.
+
+## What does this code print?
+```python
 numbers = [3, 1, 3, 2, 1]
 numbers.append(4)
 unique = set(numbers)
@@ -133,6 +197,22 @@ print(len(numbers), len(unique))
 - [ ] 5 3
   > Both counts include the 4 that `append` added: the list has 6 items and the set has 4.
 > Converting a list to a set is an easy way to remove duplicates. The original list doesn't change.
+
+## What does this code print?
+```python
+numbers = [5, 3, 8, 3]
+numbers.remove(3)
+print(numbers)
+```
+- [ ] [5, 3, 8]
+  > That's what `del numbers[3]` would do. `remove(3)` looks for the **value** 3, not index 3.
+- [ ] [5, 8]
+  > `remove` deletes only the **first** 3 it finds. The second 3 stays in the list.
+- [x] [5, 8, 3]
+  > Right! `remove(3)` deletes the first item whose value is 3, and the rest of the list stays as it was.
+- [ ] An error, because 3 appears twice
+  > A repeated value is fine. `remove` simply deletes the first one it finds.
+> `remove(value)` deletes the first occurrence of a value. `del my_list[i]` and `pop(i)` delete by index.
 
 ## What does this code print?
 ```python
