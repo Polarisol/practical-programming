@@ -109,6 +109,7 @@ print(numbers[2:])   # slicing to the end [3, 4, 5]
 numbers.append(6)    # Adds an item to the end of the list
 numbers.insert(0, 0) # Inserts an item at the beginning of the list
 del numbers[2]       # Deletes the item at index 2
+numbers.remove(3)       # Removes the first occurrence of the value 3
 removed = numbers.pop()  # Removes and returns the last item
 index = numbers.index(4) # Finds the index of the value 4
 ```
