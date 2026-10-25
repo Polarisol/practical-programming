@@ -62,6 +62,15 @@ else:
     print("Keep going")
 ```
 
+`in` בודק אם ערך נמצא ברשימה.
+
+```python
+values = [3, 7, 9]
+val = 7
+if val in values:
+    print("Found")  # This runs
+```
+
 #### לולאות
 
 לולאת `for` משמשת למעבר על הפריטים באוסף. `break` יוצא מהלולאה, ו-`continue` מדלג לאיטרציה הבאה.
@@ -73,6 +82,17 @@ for i in range(10):
     if i % 2 == 0:
         continue  # Skips even numbers
     print(i)
+```
+
+אפשר גם לעבור ישירות על רשימה או על מחרוזת.
+
+```python
+fruits = ["apple", "banana", "cherry"]
+for fruit in fruits:
+    print(fruit)  # apple, banana, cherry
+
+for ch in "abc":
+    print(ch)  # a, b, c
 ```
 
 #### רשימות

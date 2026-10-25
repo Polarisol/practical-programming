@@ -62,6 +62,15 @@ else:
     print("Keep going")
 ```
 
+`in` checks whether a value is in a list.
+
+```python
+values = [3, 7, 9]
+val = 7
+if val in values:
+    print("Found")  # This runs
+```
+
 #### Loops
 
 A `for` loop is used to iterate over items in a collection. `break` exits the loop, and `continue` skips to the next iteration.
@@ -73,6 +82,17 @@ for i in range(10):
     if i % 2 == 0:
         continue  # Skips even numbers
     print(i)
+```
+
+You can also loop directly over a list or a string.
+
+```python
+fruits = ["apple", "banana", "cherry"]
+for fruit in fruits:
+    print(fruit)  # apple, banana, cherry
+
+for ch in "abc":
+    print(ch)  # a, b, c
 ```
 
 #### Lists
