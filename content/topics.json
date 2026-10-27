@@ -61,6 +61,11 @@
           "title": "Full Installation Process",
           "title_he": "תהליך התקנה מלא",
           "youtube": "https://www.youtube.com/watch?v=vGYvn_GgbMA"
+        },
+        {
+          "title": "Registering for a student account in GitHub",
+          "title_he": "הרשמה לחשבון סטודנט בגיטהאב",
+          "youtube": "https://www.youtube.com/watch?v=N2ojY-S3nGU"
         }
       ]
     },
@@ -88,7 +93,14 @@
       "blurb": "Using AI correctly is not cheating, using it incorrectly can be extremely harmful. Don't be harmful. Things are not supposed to be too easy.",
       "blurb_he": "שימוש נכון בבינה מלאכותית הוא לא רמאות, שימוש לא נכון יכול להזיק מאוד. אל תזיקו. דברים לא אמורים להיות קלים מדי.",
       "material": ["topics/AIRules.md", "topics/github_copilot.md"],
-      "quizzes": ["quizzes/ai-tools-quiz.md"]
+      "quizzes": ["quizzes/ai-tools-quiz.md"],
+      "videos": [
+        {
+          "title": "Registering for a student account in GitHub",
+          "title_he": "הרשמה לחשבון סטודנט בגיטהאב",
+          "youtube": "https://www.youtube.com/watch?v=N2ojY-S3nGU"
+        }
+      ]
     },
     {
       "id": "python-basics",
