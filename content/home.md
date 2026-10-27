@@ -8,6 +8,6 @@ In this site you'll find a lot of material to help you understand the things we 
 
 > Programming is learned by doing. Write code often and experiment with new ideas.
 
-Don't worry... you'll be fine, as long as you never ever **g̷̈́ͅ█i̶̛͜v̴̧͝■**!
+Don't worry... you'll be fine, as long as you never ever g̷̈́ͅ█i̶̛͜v̴̧͝■!
 
 Tal
