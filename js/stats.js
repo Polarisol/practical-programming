@@ -212,8 +212,14 @@
     if (d.top && d.top.length) nodes.push(panel(t('Top 10'), leaderboard(d)));
 
     if (d.notes && d.notes.length) {
-      nodes.push(panel(author ? t('Notes from {author}', { author }) : t('Notes'),
-        el('div', { class: 'stats-notes', lang: 'he', dir: 'rtl' }, ...d.notes.map((n) => el('p', { class: 'stats-note', text: n })))));
+      // Note N is about exercise N. Notes are written in Hebrew, so the lead-in is Hebrew in both
+      // languages. An older script sends bare strings; those are numbered by their position.
+      nodes.push(panel(t('Notes from exercise checkers'),
+        el('div', { class: 'stats-notes', lang: 'he', dir: 'rtl' }, ...d.notes.map((note, i) => {
+          const n = typeof note === 'string' ? i + 1 : note.n;
+          const text = typeof note === 'string' ? note : note.text;
+          return el('p', { class: 'stats-note', text: `הערות לתרגיל ${n}: ${text}` });
+        }))));
     }
     return nodes;
   }
@@ -528,7 +534,7 @@
       name: 'נועה כהן',
       purple, green, exerciseCap: 190, projectCap: 500, items,
       place: me.place, classSize: all.length, top: all.slice(0, 10),
-      notes: ['עבודה מצוינת בתרגיל 5! שימו לב לשמות משתנים ברורים יותר.', 'כדאי להגיע לשעת הקבלה לפני המבדק הבא.'],
+      notes: [{ n: 1, text: 'עבודה מצוינת! שימו לב לשמות משתנים ברורים יותר.' }, { n: 3, text: 'כדאי להוסיף בדיקה לקלט ריק.' }],
     };
   })();
 
