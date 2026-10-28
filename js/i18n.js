@@ -264,7 +264,7 @@
     'Where your XP came from': 'מאיפה הגיע ה־XP שלך',
     'No XP yet. It will show here after your first class.': 'עדיין אין XP. הוא יופיע כאן אחרי השיעור הראשון.',
     'Top 10': '10 המובילים',
-    'Notes from {author}': 'הערות מ{author}',
+    'Notes from exercise checkers': 'הערות מבודקי התרגילים',
     'Notes': 'הערות',
     'Purple XP': 'XP סגול',
     'Green XP': 'XP ירוק',
