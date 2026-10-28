@@ -22,7 +22,7 @@ const PROJECT_CAP = 500;
 const SCORES_TAB = 'Scores';
 const NOTES_TAB = 'Notes';
 const MAX_TAB = 'ExeMax';   // the most XP of each colour each exercise is meant to give
-const MAX_NOTES = 5;
+const MAX_NOTES = 20;  // reads Note1 to Note20; missing or empty ones are skipped
 const TOP = 10;
 
 function doPost(e) {
