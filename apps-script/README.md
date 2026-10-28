@@ -68,7 +68,7 @@ The script finds columns by their headings, so you can move columns around and a
 - The exercise grade is 50 points for each colour: `min(XP, 190) / 190 × 50`. The 190 and the project beaker's 500 are set at the top of `stats.gs`.
 - The project head start is the XP that poured into the project beaker (each colour above 190, up to 500) added together and divided by 10, so it can reach 100.
 - Each exercise is a bar out of its maximum from `ExeMax`, labelled like `7 / 14`. Points above the maximum continue the bar in gold. An exercise missing from `ExeMax` shows plain numbers, and a maximum of 0 with no points shows a dash. Quizzes are bars out of 24 (set by `QUIZ_MAX` at the top of `js/stats.js`).
-- Notes are shown in Hebrew, right to left, in both languages of the site, under "Notes from exercise checkers". Empty note cells are skipped, and the notes shown are numbered in order: the first starts with "הערות לתרגיל 1:", the second with "הערות לתרגיל 2:", and so on.
+- Notes are shown in Hebrew, right to left, in both languages of the site, under "Notes from exercise checkers". Note N is about exercise N, so it starts with "הערות לתרגיל N:". Empty note cells are skipped without changing the other notes' numbers.
 
 Changes in the sheet show up the next time a student opens or refreshes the page.
 
