@@ -58,7 +58,7 @@ The script finds columns by their headings, so you can move columns around and a
 | Tab | Headings it uses |
 |-----|------------------|
 | `Scores` | `EMail`, `ID`, `Name`, `Total Purple XP`, `Total Green XP`, `Ex1 purple` / `Ex1 green` (any number), `Quiz 1 purple` / `Quiz 1 green` (any number), `Purple XP from attendance` / `Green XP from attendance`, `Purple XP from activities` / `Green XP from activities` |
-| `Notes` | `EMail`, `Note1` to `Note20` (as many as you like, up to 20) |
+| `Notes` | `EMail`, `Note1` to `Note8` (one per exercise; change `MAX_NOTES` in `stats.gs` for more) |
 | `ExeMax` | `Exe` (the exercise number), `Max Purple`, `Max Green`: the most XP of each colour the exercise is meant to give |
 
 - A student is matched by the email they sign in with. Capital letters and spaces around it don't matter.
