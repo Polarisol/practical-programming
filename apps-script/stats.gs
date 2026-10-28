@@ -145,7 +145,7 @@ function notesFor(book, email) {
   const notes = [];
   for (let n = 1; n <= MAX_NOTES; n++) {
     const c = head.indexOf('note' + n);
-    if (c >= 0 && String(row[c]).trim()) notes.push({ n: n, text: String(row[c]).trim() });
+    if (c >= 0 && String(row[c]).trim()) notes.push(String(row[c]).trim());
   }
   return notes;
 }
