@@ -218,7 +218,8 @@
         el('div', { class: 'stats-notes', lang: 'he', dir: 'rtl' }, ...d.notes.map((note, i) => {
           const n = typeof note === 'string' ? i + 1 : note.n;
           const text = typeof note === 'string' ? note : note.text;
-          return el('p', { class: 'stats-note', text: `הערות לתרגיל ${n}: ${text}` });
+          return el('p', { class: 'stats-note' },
+            el('span', { class: 'stats-note-title', text: `הערות לתרגיל ${n}:` }), el('br'), text);
         }))));
     }
     return nodes;
