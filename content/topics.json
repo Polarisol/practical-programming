@@ -217,7 +217,7 @@
           "label_he": "בוט לימוד",
           "description": "OOP is easy... when I teach it. We can also talk in Hebrew.",
           "description_he": "תכנות מונחה עצמים זה קל... כשאני מלמד אותו. אפשר לדבר איתי גם בעברית.",
-          "url": "https://share.gemini.google/N7mR0vyDI4IG"
+          "url": "https://share.gemini.google/8dJGC7YyI6rw"
         }
       ],
       "videos": [
@@ -252,7 +252,7 @@
           "label_he": "בוט לימוד - PySide6 מונחה עצמים",
           "description": "Let's focus on the OOP aspects of PySide6. We can talk in Hebrew.",
           "description_he": "בואו נתמקד בצד מונחה העצמים של PySide6. אפשר לדבר איתי בעברית.",
-          "url": "https://share.gemini.google/IsY5fCUdE1KY"
+          "url": "https://share.gemini.google/fPg5plhwqLiV"
         }
       ],
       "quizzes": ["quizzes/pyside6_basics_quiz.md", "quizzes/pyside6_oop_quiz.md"],
