@@ -45,6 +45,29 @@
           ]
         }
       ]
+    },
+    {
+      "title": "Lesson 3",
+      "title_he": "שיעור 3",
+      "blurb": "Classes and objects, then PySide6 the OOP way: several windows, timers and more, and checking what you learned.",
+      "blurb_he": "מחלקות ואובייקטים, ואחר כך PySide6 בדרך מונחית העצמים: מספר חלונות, טיימרים ועוד, ובודקים מה למדנו.",
+      "items": [
+        "oop",
+        {
+          "unit": "pyside6",
+          "only": [
+            "Study Bot - OOP PySide6",
+            "Working with several windows",
+            "topics/pyside6_oop.md",
+            "topics/pyside6_oop_windows.md",
+            "topics/pyside6_timers.md",
+            "topics/pyside6_extras.md",
+            "topics/wwntr_pyside6_oop.md",
+            "quizzes/pyside6_oop_quiz.md",
+            "files/TwoWindowsCode.zip"
+          ]
+        }
+      ]
     }
   ],
   "topics": [
