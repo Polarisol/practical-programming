@@ -128,3 +128,84 @@ button.clicked.connect(button_clicked)
 window.show()
 app.exec()
 ```
+
+## 5. Changing How Widgets Look
+
+Every widget has a `setStyleSheet(...)` method that changes how it looks: its colors, font size, border, and more. You give it a string of `property: value;` pairs, written in the same style as CSS on web pages. The examples below all start from the window of section 3, with the label and the button.
+
+### Text color and size
+
+```python
+label.setStyleSheet("color: blue; font-size: 24px;")
+```
+
+**Result:**
+
+![The label text is big and blue](content/images/pyside_basics_6_style_text.png)
+
+### Background, border, and padding
+
+```python
+label.setStyleSheet("background-color: yellow; border: 2px solid red; padding: 2px;")
+```
+
+* `border: 2px solid red` draws a red line, 2 pixels wide, around the widget.
+* `padding: 2px` leaves a little space between the border and the text.
+
+**Result:**
+
+![The label has a yellow background and a red border](content/images/pyside_basics_7_style_label_box.png)
+
+### A colorful button
+
+```python
+button.setStyleSheet("background-color: green; color: white; font-weight: bold; border-radius: 10px;")
+```
+
+* `font-weight: bold` makes the text bold.
+* `border-radius: 10px` rounds the corners.
+
+**Result:**
+
+![A green button with white bold text and rounded corners](content/images/pyside_basics_8_style_button.png)
+
+### The whole window
+
+You can call `setStyleSheet` on the window too. The style is passed on to **all the widgets inside it**, so here the button also turns blue.
+
+```python
+window.setStyleSheet("background-color: lightblue;")
+```
+
+**Result:**
+
+![The whole window has a light blue background](content/images/pyside_basics_9_style_window.png)
+
+### Changing the style when something happens
+
+`setStyleSheet` can be called at any time, not only when the widget is created. For example, inside the function that reacts to the button:
+
+```python
+def button_clicked():
+    label.setText("The button was clicked!")
+    label.setStyleSheet("color: white; background-color: purple; font-size: 16px;")
+```
+
+**Result after clicking the button:**
+
+![After the click, the label has white text on a purple background](content/images/pyside_basics_10_style_clicked.png)
+
+### Useful properties
+
+| Property | What it changes | Example |
+| --- | --- | --- |
+| `color` | Text color | `color: red;` |
+| `background-color` | Background color | `background-color: #3399FF;` |
+| `font-size` | Text size | `font-size: 20px;` |
+| `font-weight` | Bold text | `font-weight: bold;` |
+| `border` | A line around the widget | `border: 1px solid black;` |
+| `border-radius` | Rounded corners | `border-radius: 8px;` |
+| `padding` | Space between the border and the text | `padding: 5px;` |
+
+* Colors can be names (`red`, `lightblue`), hex codes (`#3399FF`), or `rgb(255, 165, 0)`.
+* Each call to `setStyleSheet` **replaces** the previous style of that widget. To keep a color and add a border, write both in the same string.

@@ -128,3 +128,84 @@ button.clicked.connect(button_clicked)
 window.show()
 app.exec()
 ```
+
+## 5. שינוי המראה של רכיבים
+
+לכל רכיב יש מתודה `setStyleSheet(...)` שמשנה את המראה שלו: הצבעים, גודל הגופן, המסגרת ועוד. נותנים לה מחרוזת של זוגות `property: value;`, באותו סגנון של CSS בדפי אינטרנט. כל הדוגמאות כאן מתחילות מהחלון של סעיף 3, עם התווית והכפתור.
+
+### צבע וגודל של הטקסט
+
+```python
+label.setStyleSheet("color: blue; font-size: 24px;")
+```
+
+**התוצאה:**
+
+![הטקסט של התווית גדול וכחול](content/images/pyside_basics_6_style_text.png)
+
+### רקע, מסגרת וריווח
+
+```python
+label.setStyleSheet("background-color: yellow; border: 2px solid red; padding: 2px;")
+```
+
+* `border: 2px solid red` מצייר קו אדום, ברוחב 2 פיקסלים, מסביב לרכיב.
+* `padding: 2px` משאיר קצת רווח בין המסגרת לטקסט.
+
+**התוצאה:**
+
+![לתווית יש רקע צהוב ומסגרת אדומה](content/images/pyside_basics_7_style_label_box.png)
+
+### כפתור צבעוני
+
+```python
+button.setStyleSheet("background-color: green; color: white; font-weight: bold; border-radius: 10px;")
+```
+
+* `font-weight: bold` הופך את הטקסט למודגש.
+* `border-radius: 10px` מעגל את הפינות.
+
+**התוצאה:**
+
+![כפתור ירוק עם טקסט לבן מודגש ופינות מעוגלות](content/images/pyside_basics_8_style_button.png)
+
+### החלון כולו
+
+אפשר לקרוא ל-`setStyleSheet` גם על החלון. העיצוב עובר **לכל הרכיבים שבתוכו**, ולכן כאן גם הכפתור נצבע בכחול.
+
+```python
+window.setStyleSheet("background-color: lightblue;")
+```
+
+**התוצאה:**
+
+![לכל החלון יש רקע תכלת](content/images/pyside_basics_9_style_window.png)
+
+### שינוי העיצוב כשמשהו קורה
+
+אפשר לקרוא ל-`setStyleSheet` בכל רגע, לא רק כשיוצרים את הרכיב. למשל, בתוך הפונקציה שמגיבה לכפתור:
+
+```python
+def button_clicked():
+    label.setText("The button was clicked!")
+    label.setStyleSheet("color: white; background-color: purple; font-size: 16px;")
+```
+
+**התוצאה אחרי לחיצה על הכפתור:**
+
+![אחרי הלחיצה, לתווית יש טקסט לבן על רקע סגול](content/images/pyside_basics_10_style_clicked.png)
+
+### מאפיינים שימושיים
+
+| מאפיין | מה הוא משנה | דוגמה |
+| --- | --- | --- |
+| `color` | צבע הטקסט | `color: red;` |
+| `background-color` | צבע הרקע | `background-color: #3399FF;` |
+| `font-size` | גודל הטקסט | `font-size: 20px;` |
+| `font-weight` | טקסט מודגש | `font-weight: bold;` |
+| `border` | קו מסביב לרכיב | `border: 1px solid black;` |
+| `border-radius` | פינות מעוגלות | `border-radius: 8px;` |
+| `padding` | רווח בין המסגרת לטקסט | `padding: 5px;` |
+
+* צבעים יכולים להיות שמות (`red`, `lightblue`), קודי hex (`#3399FF`), או `rgb(255, 165, 0)`.
+* כל קריאה ל-`setStyleSheet` **מחליפה** את העיצוב הקודם של אותו רכיב. כדי לשמור על צבע וגם להוסיף מסגרת, כתבו את שניהם באותה מחרוזת.
