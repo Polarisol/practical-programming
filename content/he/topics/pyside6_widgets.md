@@ -10,6 +10,24 @@
 * **מתודות חשובות נוספות**
 * **אותות (signals) שימושיים** ומה הם אומרים
 
+## סיכום מהיר
+
+| רכיב | מייבאים מ- | קביעה | קריאה | אותות שימושיים |
+|---|---|---|---|---|
+| `QLabel` (טקסט) | `QtWidgets` | `setText(str)` | `text()` | - |
+| `QLabel` (צבע) | `QtWidgets` | `setStyleSheet("background-color: ...")` | שומרים במשתנה | - |
+| `QLabel` (תמונה) | `QtWidgets`, `QPixmap` מ-`QtGui` | `setPixmap(QPixmap(path))` | `pixmap()` | - |
+| `QLineEdit` | `QtWidgets` | `setText(str)` | `text()` | `textChanged(str)`, `textEdited(str)`, `returnPressed()`, `editingFinished()` |
+| `QTextEdit` | `QtWidgets` | `setPlainText(str)` | `toPlainText()` | `textChanged()` |
+| `QSpinBox` | `QtWidgets` | `setValue(int)` | `value()` | `valueChanged(int)`, `editingFinished()` |
+| `QDoubleSpinBox` | `QtWidgets` | `setValue(float)` | `value()` | `valueChanged(float)`, `editingFinished()` |
+| `QPushButton` | `QtWidgets` | `setText(str)` | `text()` | `clicked()`, `pressed()`, `released()` |
+| `QPushButton` (מתג) | `QtWidgets` | `setChecked(bool)` | `isChecked()` | `toggled(bool)`, `clicked(bool)` |
+| `QSlider` | `QtWidgets`, `Qt` מ-`QtCore` | `setValue(int)` | `value()` | `valueChanged(int)`, `sliderMoved(int)`, `sliderReleased()` |
+| `QTableWidget` | `QtWidgets` | `setItem(r, c, QTableWidgetItem(str))` | `item(r, c).text()` | `cellClicked(int, int)`, `cellDoubleClicked(int, int)`, `cellChanged(int, int)`, `currentCellChanged(int, int, int, int)` |
+| `QComboBox` | `QtWidgets` | `setCurrentIndex(int)` / `setCurrentText(str)` | `currentIndex()` / `currentText()` | `currentIndexChanged(int)`, `currentTextChanged(str)`, `activated(int)` |
+| `QCheckBox` | `QtWidgets` | `setChecked(bool)` | `isChecked()` | `toggled(bool)`, `clicked(bool)`, `stateChanged(int)` |
+
 כל הדוגמאות מניחות שכבר יש לכם `window` (ראו את דף היסודות של PySide6):
 
 ```python
@@ -803,21 +821,3 @@ spin.valueChanged.connect(on_value_changed)
 
   check.toggled.connect(on_grid_toggled)
   ```
-
-## סיכום מהיר
-
-| רכיב | מייבאים מ- | קביעה | קריאה | אות עיקרי |
-|---|---|---|---|---|
-| `QLabel` (טקסט) | `QtWidgets` | `setText(str)` | `text()` | - |
-| `QLabel` (צבע) | `QtWidgets` | `setStyleSheet("background-color: ...")` | שומרים במשתנה | - |
-| `QLabel` (תמונה) | `QtWidgets`, `QPixmap` מ-`QtGui` | `setPixmap(QPixmap(path))` | `pixmap()` | - |
-| `QLineEdit` | `QtWidgets` | `setText(str)` | `text()` | `textChanged(str)`, `editingFinished()` |
-| `QTextEdit` | `QtWidgets` | `setPlainText(str)` | `toPlainText()` | `textChanged()` |
-| `QSpinBox` | `QtWidgets` | `setValue(int)` | `value()` | `valueChanged(int)` |
-| `QDoubleSpinBox` | `QtWidgets` | `setValue(float)` | `value()` | `valueChanged(float)` |
-| `QPushButton` | `QtWidgets` | `setText(str)` | `text()` | `clicked()` |
-| `QPushButton` (מתג) | `QtWidgets` | `setChecked(bool)` | `isChecked()` | `toggled(bool)` |
-| `QSlider` | `QtWidgets`, `Qt` מ-`QtCore` | `setValue(int)` | `value()` | `valueChanged(int)` |
-| `QTableWidget` | `QtWidgets` | `setItem(r, c, QTableWidgetItem(str))` | `item(r, c).text()` | `cellClicked(int, int)`, `cellChanged(int, int)` |
-| `QComboBox` | `QtWidgets` | `setCurrentIndex(int)` / `setCurrentText(str)` | `currentIndex()` / `currentText()` | `currentIndexChanged(int)`, `currentTextChanged(str)` |
-| `QCheckBox` | `QtWidgets` | `setChecked(bool)` | `isChecked()` | `toggled(bool)` |

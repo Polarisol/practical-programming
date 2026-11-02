@@ -10,6 +10,24 @@ This page is a reference for the most common PySide6 widgets. For each widget yo
 * **Other important methods**
 * **Useful signals** and what they mean
 
+## Quick Reference
+
+| Widget | Import from | Set | Get | Useful signals |
+|---|---|---|---|---|
+| `QLabel` (text) | `QtWidgets` | `setText(str)` | `text()` | - |
+| `QLabel` (color) | `QtWidgets` | `setStyleSheet("background-color: ...")` | keep in a variable | - |
+| `QLabel` (image) | `QtWidgets`, `QPixmap` from `QtGui` | `setPixmap(QPixmap(path))` | `pixmap()` | - |
+| `QLineEdit` | `QtWidgets` | `setText(str)` | `text()` | `textChanged(str)`, `textEdited(str)`, `returnPressed()`, `editingFinished()` |
+| `QTextEdit` | `QtWidgets` | `setPlainText(str)` | `toPlainText()` | `textChanged()` |
+| `QSpinBox` | `QtWidgets` | `setValue(int)` | `value()` | `valueChanged(int)`, `editingFinished()` |
+| `QDoubleSpinBox` | `QtWidgets` | `setValue(float)` | `value()` | `valueChanged(float)`, `editingFinished()` |
+| `QPushButton` | `QtWidgets` | `setText(str)` | `text()` | `clicked()`, `pressed()`, `released()` |
+| `QPushButton` (toggle) | `QtWidgets` | `setChecked(bool)` | `isChecked()` | `toggled(bool)`, `clicked(bool)` |
+| `QSlider` | `QtWidgets`, `Qt` from `QtCore` | `setValue(int)` | `value()` | `valueChanged(int)`, `sliderMoved(int)`, `sliderReleased()` |
+| `QTableWidget` | `QtWidgets` | `setItem(r, c, QTableWidgetItem(str))` | `item(r, c).text()` | `cellClicked(int, int)`, `cellDoubleClicked(int, int)`, `cellChanged(int, int)`, `currentCellChanged(int, int, int, int)` |
+| `QComboBox` | `QtWidgets` | `setCurrentIndex(int)` / `setCurrentText(str)` | `currentIndex()` / `currentText()` | `currentIndexChanged(int)`, `currentTextChanged(str)`, `activated(int)` |
+| `QCheckBox` | `QtWidgets` | `setChecked(bool)` | `isChecked()` | `toggled(bool)`, `clicked(bool)`, `stateChanged(int)` |
+
 All the examples assume you already have a `window` (see the PySide6 basics page):
 
 ```python
@@ -803,21 +821,3 @@ A small box with a label that the user can **check or uncheck**. Used for yes/no
 
   check.toggled.connect(on_grid_toggled)
   ```
-
-## Quick Reference
-
-| Widget | Import from | Set | Get | Main signal |
-|---|---|---|---|---|
-| `QLabel` (text) | `QtWidgets` | `setText(str)` | `text()` | - |
-| `QLabel` (color) | `QtWidgets` | `setStyleSheet("background-color: ...")` | keep in a variable | - |
-| `QLabel` (image) | `QtWidgets`, `QPixmap` from `QtGui` | `setPixmap(QPixmap(path))` | `pixmap()` | - |
-| `QLineEdit` | `QtWidgets` | `setText(str)` | `text()` | `textChanged(str)`, `editingFinished()` |
-| `QTextEdit` | `QtWidgets` | `setPlainText(str)` | `toPlainText()` | `textChanged()` |
-| `QSpinBox` | `QtWidgets` | `setValue(int)` | `value()` | `valueChanged(int)` |
-| `QDoubleSpinBox` | `QtWidgets` | `setValue(float)` | `value()` | `valueChanged(float)` |
-| `QPushButton` | `QtWidgets` | `setText(str)` | `text()` | `clicked()` |
-| `QPushButton` (toggle) | `QtWidgets` | `setChecked(bool)` | `isChecked()` | `toggled(bool)` |
-| `QSlider` | `QtWidgets`, `Qt` from `QtCore` | `setValue(int)` | `value()` | `valueChanged(int)` |
-| `QTableWidget` | `QtWidgets` | `setItem(r, c, QTableWidgetItem(str))` | `item(r, c).text()` | `cellClicked(int, int)`, `cellChanged(int, int)` |
-| `QComboBox` | `QtWidgets` | `setCurrentIndex(int)` / `setCurrentText(str)` | `currentIndex()` / `currentText()` | `currentIndexChanged(int)`, `currentTextChanged(str)` |
-| `QCheckBox` | `QtWidgets` | `setChecked(bool)` | `isChecked()` | `toggled(bool)` |
