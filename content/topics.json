@@ -165,6 +165,46 @@
       ]
     },
     {
+      "id": "pyside6",
+      "title": "PySide6 - GUI",
+      "title_he": "PySide6 - ממשק גרפי",
+      "icon": "🖥",
+      "blurb": "Apps without a good graphical interface are no fun. I don't want to use them, and my friends don't either. Your apps need to look and feel great.",
+      "blurb_he": "אפליקציות בלי ממשק גרפי טוב הן לא כיף. אני לא רוצה להשתמש בהן, וגם החברים שלי לא. האפליקציות שלכם צריכות להיראות ולהרגיש מעולה.",
+      "material": ["topics/pyside6_basics.md", "topics/pyside6_widgets.md", "topics/pyside6_oop.md", "topics/pyside6_oop_windows.md", "topics/pyside6_timers.md", "topics/pyside6_extras.md", "topics/wwntr_pyside6_basic.md", "topics/wwntr_pyside6_oop.md"],
+      "bots": [
+        {
+          "label": "Study Bot - Basic PySide6 (Not OOP)",
+          "label_he": "בוט לימוד - PySide6 בסיסי (בלי OOP)",
+          "description": "Let's make sure you understand the basics. We can talk in Hebrew.",
+          "description_he": "בואו נוודא שהבנתם את היסודות. אפשר לדבר איתי בעברית.",
+          "url": "https://share.gemini.google/Qhf2rYCEDJL4"
+        },
+        {
+          "label": "Study Bot - OOP PySide6",
+          "label_he": "בוט לימוד - PySide6 מונחה עצמים",
+          "description": "Let's focus on the OOP aspects of PySide6. We can talk in Hebrew.",
+          "description_he": "בואו נתמקד בצד מונחה העצמים של PySide6. אפשר לדבר איתי בעברית.",
+          "url": "https://share.gemini.google/fPg5plhwqLiV"
+        }
+      ],
+      "quizzes": ["quizzes/pyside6_basics_quiz.md", "quizzes/pyside6_oop_quiz.md"],
+      "files": [
+        {
+          "label": "Two Windows Code",
+          "label_he": "הקוד של שני החלונות",
+          "file": "files/TwoWindowsCode.zip"
+        }
+      ],
+      "videos": [
+        {
+          "title": "Working with several windows",
+          "title_he": "עבודה עם מספר חלונות",
+          "url": "https://youtu.be/rYE-d37xhHw"
+        }
+      ]
+    },
+    {
       "id": "using-git",
       "title": "Using Git",
       "title_he": "עבודה עם Git",
@@ -226,7 +266,7 @@
     },
 
     
-
+    
     {
       "id": "oop",
       "title": "OOP",
@@ -254,46 +294,6 @@
       "quizzes": ["quizzes/oop_quiz.md"]
     },
 
-    {
-      "id": "pyside6",
-      "title": "PySide6 - GUI",
-      "title_he": "PySide6 - ממשק גרפי",
-      "icon": "🖥",
-      "blurb": "Apps without a good graphical interface are no fun. I don't want to use them, and my friends don't either. Your apps need to look and feel great.",
-      "blurb_he": "אפליקציות בלי ממשק גרפי טוב הן לא כיף. אני לא רוצה להשתמש בהן, וגם החברים שלי לא. האפליקציות שלכם צריכות להיראות ולהרגיש מעולה.",
-      "material": ["topics/pyside6_basics.md", "topics/pyside6_widgets.md", "topics/pyside6_oop.md", "topics/pyside6_oop_windows.md", "topics/pyside6_timers.md", "topics/pyside6_extras.md", "topics/wwntr_pyside6_basic.md", "topics/wwntr_pyside6_oop.md"],
-      "bots": [
-        {
-          "label": "Study Bot - Basic PySide6 (Not OOP)",
-          "label_he": "בוט לימוד - PySide6 בסיסי (בלי OOP)",
-          "description": "Let's make sure you understand the basics. We can talk in Hebrew.",
-          "description_he": "בואו נוודא שהבנתם את היסודות. אפשר לדבר איתי בעברית.",
-          "url": "https://share.gemini.google/GOhK1aYzzHD5"
-        },
-        {
-          "label": "Study Bot - OOP PySide6",
-          "label_he": "בוט לימוד - PySide6 מונחה עצמים",
-          "description": "Let's focus on the OOP aspects of PySide6. We can talk in Hebrew.",
-          "description_he": "בואו נתמקד בצד מונחה העצמים של PySide6. אפשר לדבר איתי בעברית.",
-          "url": "https://share.gemini.google/fPg5plhwqLiV"
-        }
-      ],
-      "quizzes": ["quizzes/pyside6_basics_quiz.md", "quizzes/pyside6_oop_quiz.md"],
-      "files": [
-        {
-          "label": "Two Windows Code",
-          "label_he": "הקוד של שני החלונות",
-          "file": "files/TwoWindowsCode.zip"
-        }
-      ],
-      "videos": [
-        {
-          "title": "Working with several windows",
-          "title_he": "עבודה עם מספר חלונות",
-          "url": "https://youtu.be/rYE-d37xhHw"
-        }
-      ]
-    },
 
     {
       "id": "recursion",
