@@ -10,6 +10,10 @@ This page is a reference for the most common PySide6 widgets. For each widget yo
 * **Other important methods**
 * **Useful signals** and what they mean
 
+Here are all the widgets on this page, as they look in a real PySide6 window:
+
+![All the widgets on this page, each labelled with its name](content/images/widgets_overview.png)
+
 ## Quick Reference
 
 | Widget | Import from | Set | Get | Useful signals |
