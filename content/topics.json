@@ -68,6 +68,13 @@
           ]
         }
       ]
+    },
+    {
+      "title": "Lesson 4",
+      "title_he": "שיעור 4",
+      "blurb": "Tools of the trade: keeping your project safe with Git, fast numbers with NumPy, and telling a story with graphs.",
+      "blurb_he": "כלי העבודה: שומרים על הפרויקט בעזרת Git, מחשבים מהר עם NumPy ומספרים סיפור בעזרת גרפים.",
+      "items": ["using-git", "numpy", "matplotlib"]
     }
   ],
   "topics": [
@@ -204,6 +211,33 @@
         }
       ]
     },
+
+    {
+      "id": "oop",
+      "title": "OOP",
+      "title_he": "תכנות מונחה עצמים",
+      "icon": "🐱",
+      "blurb": "Classes and objects: This topic can be a little tricky at first, but you don't have to master it for now, just understand the basics well. No joke here... it is no laughing matter.",
+      "blurb_he": "מחלקות ואובייקטים: הנושא הזה יכול להיות קצת מבלבל בהתחלה, אבל לא צריך לשלוט בו לגמרי כרגע, רק להבין היטב את היסודות. בלי בדיחה הפעם... זה לא עניין לצחוק בו.",
+      "bots": [
+        {
+          "label": "Study Bot",
+          "label_he": "בוט לימוד",
+          "description": "OOP is easy... when I teach it. We can also talk in Hebrew.",
+          "description_he": "תכנות מונחה עצמים זה קל... כשאני מלמד אותו. אפשר לדבר איתי גם בעברית.",
+          "url": "https://share.gemini.google/8dJGC7YyI6rw"
+        }
+      ],
+      "videos": [
+        {
+          "title": "OOP in Python",
+          "title_he": "תכנות מונחה עצמים ב־Python",
+          "youtube": "https://www.youtube.com/watch?v=JeznW_7DlB0"
+        }
+      ],
+      "material": ["topics/OOP_basics.md", "topics/OOP_inheritance.md", "topics/wwntr_oop.md"],
+      "quizzes": ["quizzes/oop_quiz.md"]
+    },
     {
       "id": "using-git",
       "title": "Using Git",
@@ -267,32 +301,6 @@
 
     
     
-    {
-      "id": "oop",
-      "title": "OOP",
-      "title_he": "תכנות מונחה עצמים",
-      "icon": "🐱",
-      "blurb": "Classes and objects: This topic can be a little tricky at first, but you don't have to master it for now, just understand the basics well. No joke here... it is no laughing matter.",
-      "blurb_he": "מחלקות ואובייקטים: הנושא הזה יכול להיות קצת מבלבל בהתחלה, אבל לא צריך לשלוט בו לגמרי כרגע, רק להבין היטב את היסודות. בלי בדיחה הפעם... זה לא עניין לצחוק בו.",
-      "bots": [
-        {
-          "label": "Study Bot",
-          "label_he": "בוט לימוד",
-          "description": "OOP is easy... when I teach it. We can also talk in Hebrew.",
-          "description_he": "תכנות מונחה עצמים זה קל... כשאני מלמד אותו. אפשר לדבר איתי גם בעברית.",
-          "url": "https://share.gemini.google/8dJGC7YyI6rw"
-        }
-      ],
-      "videos": [
-        {
-          "title": "OOP in Python",
-          "title_he": "תכנות מונחה עצמים ב־Python",
-          "youtube": "https://www.youtube.com/watch?v=JeznW_7DlB0"
-        }
-      ],
-      "material": ["topics/OOP_basics.md", "topics/OOP_inheritance.md", "topics/wwntr_oop.md"],
-      "quizzes": ["quizzes/oop_quiz.md"]
-    },
 
 
     {
