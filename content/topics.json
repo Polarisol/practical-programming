@@ -74,7 +74,7 @@
       "title_he": "שיעור 4",
       "blurb": "Tools of the trade: keeping your project safe with Git, fast numbers with NumPy, and telling a story with graphs.",
       "blurb_he": "כלי העבודה: שומרים על הפרויקט בעזרת Git, מחשבים מהר עם NumPy ומספרים סיפור בעזרת גרפים.",
-      "items": ["using-git", "numpy", "matplotlib"]
+      "items": ["using-git", { "unit": "numpy", "only": ["topics/numpy_basics.md"] }, "matplotlib"]
     }
   ],
   "topics": [
