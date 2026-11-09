@@ -189,7 +189,6 @@ A label can show a **picture** instead of text. The picture is loaded into a `QP
   ```python
   from PySide6.QtWidgets import QLabel
   from PySide6.QtGui import QPixmap
-  from PySide6.QtCore import Qt          # only needed for scaling options
   ```
 
 * **Create:**
@@ -199,6 +198,7 @@ A label can show a **picture** instead of text. The picture is loaded into a `QP
   image_label.setGeometry(20, 20, 160, 110)
 
   pixmap = QPixmap("images/house.png")   # path to an image file (png, jpg, ...)
+  pixmap = pixmap.scaled(160, 110)       # resize the image to 160 x 110 pixels
   image_label.setPixmap(pixmap)
   ```
 
@@ -221,9 +221,8 @@ A label can show a **picture** instead of text. The picture is loaded into a `QP
   # Stretch the image to fill the whole label (may distort it)
   image_label.setScaledContents(True)
 
-  # Resize the image to fit the label while keeping its proportions
-  scaled = pixmap.scaled(160, 110, Qt.AspectRatioMode.KeepAspectRatio,
-                         Qt.TransformationMode.SmoothTransformation)
+  # Resize the image to a given width and height (returns a new QPixmap)
+  scaled = pixmap.scaled(300, 400)
   image_label.setPixmap(scaled)
 
   # Size of the image
