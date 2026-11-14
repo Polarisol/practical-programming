@@ -70,9 +70,21 @@
     {
       "title": "Lesson 4",
       "title_he": "שיעור 4",
-      "blurb": "Tools of the trade: keeping your project safe with Git, fast numbers with NumPy, and telling a story with graphs.",
-      "blurb_he": "כלי העבודה: שומרים על הפרויקט בעזרת Git, מחשבים מהר עם NumPy ומספרים סיפור בעזרת גרפים.",
-      "items": ["using-git", { "unit": "numpy", "only": ["topics/numpy_basics.md"] }, "matplotlib"]
+      "blurb": "Tools of the trade: keeping your project safe with Git, reading and writing text files, and telling a story with graphs.",
+      "blurb_he": "כלי העבודה: שומרים על הפרויקט בעזרת Git, קוראים וכותבים קובצי טקסט ומספרים סיפור בעזרת גרפים.",
+      "items": [
+        "using-git",
+        {
+          "unit": "python-basics",
+          "only": [
+            "Study Bot",
+            "topics/files.md",
+            "quizzes/files_quiz.md",
+            "topics/wwntr_python_basics.md"
+          ]
+        },
+        "matplotlib"
+      ]
     }
   ],
   "topics": [
@@ -243,6 +255,13 @@
       "icon": "⎇",
       "blurb": "Time travel is here! Really! at least for your project files.",
       "blurb_he": "מסע בזמן כבר כאן! באמת! לפחות בשביל קובצי הפרויקט שלכם.",
+      "videos": [
+        {
+          "title": "Working with Git",
+          "title_he": "עבודה עם Git",
+          "youtube": "https://www.youtube.com/watch?v=FJu2YyUpVUM"
+        }
+      ],
       "material": ["topics/using-git.md", "topics/wwntr_git.md"]
     },
 
