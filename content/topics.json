@@ -265,6 +265,28 @@
       "material": ["topics/using-git.md", "topics/wwntr_git.md"]
     },
 
+    
+    {
+      "id": "matplotlib",
+      "title": "Plotting Graphs",
+      "title_he": "שרטוט גרפים",
+      "icon": "📊",
+      "blurb": "A graph, like a picture, tells a thousand words. They better tell an interesting story and not sell us fake news.",
+      "blurb_he": "גרף, כמו תמונה, שווה אלף מילים. כדאי שהוא יספר סיפור מעניין ולא ימכור לנו פייק ניוז.",
+      "bots": [
+        {
+          "label": "Study Bot",
+          "label_he": "בוט לימוד",
+          "description": "I can help you understand eeeevrything. We can also talk in Hebrew.",
+          "description_he": "אני יכול לעזור לכם להבין הכוווול. אפשר לדבר איתי גם בעברית.",
+          "url": "https://share.gemini.google/2BRUsNC4ybiR"
+        }
+      ],
+      "material": ["topics/matplotlib.md", "topics/wwntr_graphs.md"],
+      "quizzes": ["quizzes/graphs_quiz.md"]
+    },
+    
+    
     {
       "id": "numpy",
       "title": "NumPy",
@@ -296,30 +318,65 @@
       "quizzes": ["quizzes/numpy_quiz.md"]
     },
     
+
+
+    
     {
-      "id": "matplotlib",
-      "title": "Plotting Graphs",
-      "title_he": "שרטוט גרפים",
-      "icon": "📊",
-      "blurb": "A graph, like a picture, tells a thousand words. They better tell an interesting story and not sell us fake news.",
-      "blurb_he": "גרף, כמו תמונה, שווה אלף מילים. כדאי שהוא יספר סיפור מעניין ולא ימכור לנו פייק ניוז.",
+      "id": "monte-carlo",
+      "title": "Monte Carlo",
+      "title_he": "מונטה קרלו",
+      "icon": "🎲",
+      "blurb": "Stop being such a control freak! Let go and embrace uncertainty! It can be very useful. Sometimes you just have to roll the dice and see what happens.",
+      "blurb_he": "מספיק להיות פריקים של שליטה! שחררו ואמצו את אי־הוודאות! היא יכולה להיות מאוד שימושית. לפעמים פשוט צריך להטיל קובייה ולראות מה יקרה.",
       "bots": [
         {
           "label": "Study Bot",
           "label_he": "בוט לימוד",
-          "description": "I can help you understand eeeevrything. We can also talk in Hebrew.",
-          "description_he": "אני יכול לעזור לכם להבין הכוווול. אפשר לדבר איתי גם בעברית.",
-          "url": "https://share.gemini.google/G5xVshGKlAZ6"
+          "description": "I can help you study, teach you and quiz you on Monte Carlo.",
+          "description_he": "אני יכול לעזור לכם ללמוד, ללמד אתכם ולבחון אתכם על מונטה קרלו.",
+          "url": "https://xxxxxxx"
         }
       ],
-      "material": ["topics/matplotlib.md", "topics/wwntr_graphs.md"],
-      "quizzes": ["quizzes/graphs_quiz.md"]
+      "material": ["topics/monte_carlo_intro.md"]
     },
-
     
+    {
+      "id": "statistics",
+      "title": "Statistics",
+      "title_he": "סטטיסטיקה",
+      "icon": "σ",
+      "blurb": "There are three kinds of lies: lies, damned lies, and statistics. Learn the numbers well enough to spot the first two.",
+      "blurb_he": "יש שלושה סוגים של שקרים: שקרים, שקרים ארורים, וסטטיסטיקה. למדו את המספרים מספיק טוב כדי לזהות את שני הראשונים.",
+      "bots": [
+        {
+          "label": "Study Bot",
+          "label_he": "בוט לימוד",
+          "description": "I can help you study, teach you and quiz you on Statistics.",
+          "description_he": "אני יכול לעזור לכם ללמוד, ללמד אתכם ולבחון אתכם על סטטיסטיקה.",
+          "url": "https://xxxxxxx"
+        }
+      ],
+      "material": ["topics/statistics_centers.md", "topics/statistics_dispersion.md", "topics/statistics_bayes.md"]
+    },
     
-
-
+    {
+      "id": "sympy",
+      "title": "SymPy",
+      "icon": "∑",
+      "blurb": "'X' - it's a symbol. You know... from all the equations you have to solve... The computer can solve these equations faster than you. You are not that special.",
+      "blurb_he": "'X' - זה סמל. אתם יודעים... מכל המשוואות שאתם צריכים לפתור... המחשב יכול לפתור את המשוואות האלה מהר יותר מכם. אתם לא כאלה מיוחדים.",
+      "bots": [
+        {
+          "label": "Study Bot",
+          "label_he": "בוט לימוד",
+          "description": "I can help you study, teach you and quiz you on SymPy.",
+          "description_he": "אני יכול לעזור לכם ללמוד, ללמד אתכם ולבחון אתכם על SymPy.",
+          "url": "https://xxxxxxx"
+        }
+      ],
+      "material": ["topics/sympy_intro.md", "topics/sympy_basics.md"]
+    },
+    
     {
       "id": "recursion",
       "title": "Recursion",
@@ -339,63 +396,6 @@
       "material": ["topics/recursion_intro.md", "topics/recursion_be_careful.md", "topics/recursion_memoization.md", "topics/wwntr_recursion.md"],
       "quizzes": ["quizzes/recursion_quiz.md"]
     },
-
-    {
-      "id": "monte-carlo",
-      "title": "Monte Carlo",
-      "title_he": "מונטה קרלו",
-      "icon": "🎲",
-      "blurb": "Stop being such a control freak! Let go and embrace uncertainty! It can be very useful. Sometimes you just have to roll the dice and see what happens.",
-      "blurb_he": "מספיק להיות פריקים של שליטה! שחררו ואמצו את אי־הוודאות! היא יכולה להיות מאוד שימושית. לפעמים פשוט צריך להטיל קובייה ולראות מה יקרה.",
-      "bots": [
-        {
-          "label": "Study Bot",
-          "label_he": "בוט לימוד",
-          "description": "I can help you study, teach you and quiz you on Monte Carlo.",
-          "description_he": "אני יכול לעזור לכם ללמוד, ללמד אתכם ולבחון אתכם על מונטה קרלו.",
-          "url": "https://xxxxxxx"
-        }
-      ],
-      "material": ["topics/monte_carlo_intro.md"]
-    },
-
-    {
-      "id": "statistics",
-      "title": "Statistics",
-      "title_he": "סטטיסטיקה",
-      "icon": "σ",
-      "blurb": "There are three kinds of lies: lies, damned lies, and statistics. Learn the numbers well enough to spot the first two.",
-      "blurb_he": "יש שלושה סוגים של שקרים: שקרים, שקרים ארורים, וסטטיסטיקה. למדו את המספרים מספיק טוב כדי לזהות את שני הראשונים.",
-      "bots": [
-        {
-          "label": "Study Bot",
-          "label_he": "בוט לימוד",
-          "description": "I can help you study, teach you and quiz you on Statistics.",
-          "description_he": "אני יכול לעזור לכם ללמוד, ללמד אתכם ולבחון אתכם על סטטיסטיקה.",
-          "url": "https://xxxxxxx"
-        }
-      ],
-      "material": ["topics/statistics_centers.md", "topics/statistics_dispersion.md", "topics/statistics_bayes.md"]
-    },
-
-    {
-      "id": "sympy",
-      "title": "SymPy",
-      "icon": "∑",
-      "blurb": "'X' - it's a symbol. You know... from all the equations you have to solve... The computer can solve these equations faster than you. You are not that special.",
-      "blurb_he": "'X' - זה סמל. אתם יודעים... מכל המשוואות שאתם צריכים לפתור... המחשב יכול לפתור את המשוואות האלה מהר יותר מכם. אתם לא כאלה מיוחדים.",
-      "bots": [
-        {
-          "label": "Study Bot",
-          "label_he": "בוט לימוד",
-          "description": "I can help you study, teach you and quiz you on SymPy.",
-          "description_he": "אני יכול לעזור לכם ללמוד, ללמד אתכם ולבחון אתכם על SymPy.",
-          "url": "https://xxxxxxx"
-        }
-      ],
-      "material": ["topics/sympy_intro.md", "topics/sympy_basics.md"]
-    },
-
     {
       "id": "pandas",
       "title": "Pandas",
