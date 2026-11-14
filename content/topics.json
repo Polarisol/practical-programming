@@ -85,6 +85,25 @@
         },
         "matplotlib"
       ]
+    },
+    {
+      "title": "Lesson 5",
+      "title_he": "שיעור 5",
+      "blurb": "More PySide6 the OOP way: several windows, timers that make your app act by itself, and checking what you learned.",
+      "blurb_he": "עוד PySide6 בדרך מונחית העצמים: מספר חלונות, טיימרים שגורמים לאפליקציה לפעול בעצמה, ובודקים מה למדנו.",
+      "items": [
+        {
+          "unit": "pyside6",
+          "only": [
+            "Study Bot - OOP PySide6",
+            "Working with several windows",
+            "topics/pyside6_oop_windows.md",
+            "topics/pyside6_timers.md",
+            "topics/wwntr_pyside6_oop.md",
+            "quizzes/pyside6_oop_quiz.md"
+          ]
+        }
+      ]
     }
   ],
   "topics": [
