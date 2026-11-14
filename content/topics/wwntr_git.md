@@ -13,3 +13,5 @@
 6. You need to understand how to view changes you made, or the AI made, via git's vscode integration.
 
 7. You need to understand how to commit changes, including writing commit messages.
+
+8. You must know what **GitHub** is, how to open a repository of your code, sync your data (pulling and pushing) and how to share it with others.
