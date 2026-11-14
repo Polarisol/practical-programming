@@ -21,9 +21,12 @@
 4. git:
    install from here: <https://git-scm.com/install/>
 
-5. DBBrowser:
+5. GitHub CLI:
+   install from here: <https://cli.github.com/>
+
+6. DBBrowser:
    download and install from here (standard 64bit): <https://sqlitebrowser.org/dl/>
 
-6. Optional:
+7. Optional:
    1. notepad++ from here (the top one): <https://notepad-plus-plus.org/downloads/>
    2. paint.net from here (side blue link): <https://www.dotpdn.com/downloads/pdn.html>
