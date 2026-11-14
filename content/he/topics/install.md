@@ -21,12 +21,9 @@
 4. Git:
    התקינו מכאן: <https://git-scm.com/install/>
 
-5. GitHub CLI:
-   התקינו מכאן: <https://cli.github.com/>
-
-6. DBBrowser:
+5. DBBrowser:
    הורידו והתקינו מכאן (הגרסה הרגילה, 64bit): <https://sqlitebrowser.org/dl/>
 
-7. אופציונלי:
+6. אופציונלי:
    1. notepad++ מכאן (הקישור העליון): <https://notepad-plus-plus.org/downloads/>
    2. paint.net מכאן (הקישור הכחול בצד): <https://www.dotpdn.com/downloads/pdn.html>
