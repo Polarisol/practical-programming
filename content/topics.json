@@ -70,8 +70,8 @@
     {
       "title": "Lesson 4",
       "title_he": "שיעור 4",
-      "blurb": "Tools of the trade: keeping your project safe with Git, reading and writing text files, and telling a story with graphs.",
-      "blurb_he": "כלי העבודה: שומרים על הפרויקט בעזרת Git, קוראים וכותבים קובצי טקסט ומספרים סיפור בעזרת גרפים.",
+      "blurb": "Tools of the trade: keeping your project safe with Git, reading and writing text files, telling a story with graphs, and building windows that resize nicely with layouts.",
+      "blurb_he": "כלי העבודה: שומרים על הפרויקט בעזרת Git, קוראים וכותבים קובצי טקסט, מספרים סיפור בעזרת גרפים ובונים חלונות שמשנים גודל יפה בעזרת פריסות.",
       "items": [
         "using-git",
         {
@@ -83,7 +83,13 @@
             "topics/wwntr_python_basics.md"
           ]
         },
-        "matplotlib"
+        "matplotlib",
+        {
+          "unit": "pyside6",
+          "only": [
+            "topics/pyside6_layouts.md"
+          ]
+        }
       ]
     },
     {
@@ -207,7 +213,7 @@
       "icon": "🖥",
       "blurb": "Apps without a good graphical interface are no fun. I don't want to use them, and my friends don't either. Your apps need to look and feel great.",
       "blurb_he": "אפליקציות בלי ממשק גרפי טוב הן לא כיף. אני לא רוצה להשתמש בהן, וגם החברים שלי לא. האפליקציות שלכם צריכות להיראות ולהרגיש מעולה.",
-      "material": ["topics/pyside6_basics.md", "topics/pyside6_widgets.md", "topics/pyside6_oop.md", "topics/pyside6_oop_windows.md", "topics/pyside6_timers.md", "topics/pyside6_extras.md", "topics/wwntr_pyside6_basic.md", "topics/wwntr_pyside6_oop.md"],
+      "material": ["topics/pyside6_basics.md", "topics/pyside6_widgets.md", "topics/pyside6_oop.md", "topics/pyside6_oop_windows.md", "topics/pyside6_timers.md", "topics/pyside6_layouts.md", "topics/pyside6_extras.md", "topics/wwntr_pyside6_basic.md", "topics/wwntr_pyside6_oop.md"],
       "bots": [
         {
           "label": "Study Bot - Basic PySide6 (Not OOP)",
