@@ -50,9 +50,17 @@ A repository can change on GitHub while you're away: you pushed from another com
 
 Working on old files and then pulling is how you get **merge conflicts**: the same lines changed in two places. Pulling first avoids most of them.
 
-When you finish working, do the opposite: **commit and then push** (the arrow pointing **up**, ↥), so GitHub and your other computers get your work. The **Sync Changes** button (and the circling arrows in the bottom-left corner of the window) does both: pull, then push.
-
 > Pull refuses if you have uncommitted changes in files it needs to update. Commit them (or discard them) and pull again.
+
+## 5. While you work: Commit, then Sync Changes
+
+Your commits are saved only on your computer until you send them to GitHub. While you work, use the **same blue button** in the Source Control view twice:
+
+1. **First click: Commit.** Write a message and click **Commit**. This saves a snapshot on your computer.
+2. **Second click: Sync Changes.** After the commit, the same button turns into **Sync Changes ↑1** (the number is how many commits are waiting). Click it to update the cloud: it pulls any new commits from GitHub and then pushes yours.
+
+Do this every time you finish a piece of work, and always before you leave the computer, so GitHub and your other computers have your latest code. (The circling arrows in the bottom-left corner of the window, and the Push button with the arrow pointing **up**, ↥, do the same.)
+
 
 ## The same in the terminal
 
