@@ -287,7 +287,7 @@
           "youtube": "https://www.youtube.com/watch?v=FJu2YyUpVUM"
         }
       ],
-      "material": ["topics/using-git.md", "topics/wwntr_git.md"]
+      "material": ["topics/using-git.md", "topics/git-cloning.md", "topics/wwntr_git.md"]
     },
 
     
