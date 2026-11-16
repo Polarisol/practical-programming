@@ -307,7 +307,7 @@
           "url": "https://share.gemini.google/2BRUsNC4ybiR"
         }
       ],
-      "material": ["topics/matplotlib.md", "topics/wwntr_graphs.md"],
+      "material": ["topics/matplotlib.md", "topics/graph_types.md", "topics/wwntr_graphs.md"],
       "quizzes": ["quizzes/graphs_quiz.md"]
     },
     
