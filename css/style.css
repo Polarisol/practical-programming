@@ -1554,6 +1554,16 @@ span.stats-none { color: var(--muted); }
 @keyframes bar-grow { from { transform: scaleX(0); } }
 
 .stats-ranks { display: grid; gap: 4px; }
+.stats-top > summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+.stats-top > summary::-webkit-details-marker { display: none; }
+.stats-top > summary h2 { margin: 0; font: 600 0.85rem var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.stats-top > summary h2::before { content: "## "; opacity: 0.6; }
+.stats-top > summary::after { content: "▸"; color: var(--muted); transition: transform 0.2s ease; }
+[dir="rtl"] .stats-top > summary::after { content: "◂"; }
+.stats-top[open] > summary::after { transform: rotate(90deg); }
+[dir="rtl"] .stats-top[open] > summary::after { transform: rotate(-90deg); }
+.stats-top[open] > summary { margin-bottom: 16px; }
+.stats-top > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
 .stats-rank { display: grid; grid-template-columns: 3rem 1fr 3.5rem 3rem; gap: 10px; align-items: center; padding: 4px 8px; border-radius: 8px; }
 .stats-rank.is-me { background: rgba(var(--glyph), 0.14); outline: 1px solid rgba(var(--glyph), 0.5); }
 .stats-rank-place { font: 600 0.9rem var(--font-mono); color: var(--muted); }

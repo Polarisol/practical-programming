@@ -211,7 +211,12 @@
     if (d.items && d.items.length) nodes.push(panel(t('Where your XP came from'), breakdown(d.items)));
     else nodes.push(notice(t('No XP yet. It will show here after your first class.')));
 
-    if (d.top && d.top.length) nodes.push(panel(t('Top 10'), leaderboard(d)));
+    // The top 10 folds away; it starts folded for a student whose place is hidden.
+    if (d.top && d.top.length) {
+      nodes.push(el('details', { class: 'panel stats-top', open: d.place > PLACE_SHOWN ? null : '' },
+        el('summary', {}, el('h2', { text: t('Top 10') })),
+        leaderboard(d)));
+    }
 
     // A hidden place is revealed in the tile and, below the top 10, in the student's own row.
     const placeButton = nodes[1].querySelector('.stats-place-show');
