@@ -244,7 +244,7 @@
     return [before, el('bdi', { class: 'stats-name', text: name }), after];
   }
 
-  // The class place. Below PLACE_SHOWN it waits behind a button, with a word of encouragement.
+  // The class place. Below PLACE_SHOWN it waits behind a button.
   function placeTile(d, revealed = false) {
     if (revealed || !(d.place > PLACE_SHOWN)) {
       const node = tile(t('Class place'), lang === 'he' ? t('Place {n}', { n: d.place }) : ordinal(d.place),
@@ -254,7 +254,6 @@
     }
     return el('div', { class: 'stats-tile stats-place-hidden' },
       el('div', { class: 'stats-tile-label', text: t('Class place') }),
-      el('div', { class: 'stats-tile-sub', text: t('Your place is hidden. What counts is the XP you add from here.') }),
       el('button', { class: 'stats-btn stats-place-show', type: 'button' }, t('Show my place')));
   }
 

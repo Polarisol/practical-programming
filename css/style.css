@@ -1486,7 +1486,6 @@ span.xp-purple, span.xp-green { color: var(--xp); font-weight: 600; }
 .stats-tile-label { font: 600 0.75rem var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
 .stats-tile-value { margin-top: 4px; font: 700 2.2rem/1.1 var(--font-mono); color: var(--accent); font-variant-numeric: tabular-nums; }
 .stats-tile-sub { margin-top: 4px; color: var(--muted); font-size: 0.9rem; }
-.stats-place-hidden .stats-tile-sub { margin-top: 8px; }
 .stats-place-show { margin-top: 10px; }
 .stats-tile-value:focus { outline: none; }
 
