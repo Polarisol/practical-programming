@@ -255,6 +255,8 @@
     'Class place': 'מקום בכיתה',
     'Place {n}': 'מקום {n}',
     'of {n} students': 'מתוך {n} סטודנטים',
+    'Your place is hidden. What counts is the XP you add from here.': 'המקום שלך מוסתר. מה שחשוב הוא ה־XP שתוסיפו מכאן והלאה.',
+    'Show my place': 'הצגת המקום שלי',
     'Exercise grade': 'ציון תרגילים',
     'out of 100': 'מתוך 100',
     'Project head start': 'ציון פתיחה לפרויקט',

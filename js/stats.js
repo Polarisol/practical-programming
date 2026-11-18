@@ -15,6 +15,9 @@
   const TOKEN_KEY = 'stats-token';
   // The most XP of each colour a quiz (מבדק) can give; quizzes are drawn as bars out of this.
   const QUIZ_MAX = 24;
+  // Places up to this one show straight away; a student further down sees their place only after
+  // pressing a button, so a number that can discourage isn't the first thing they see.
+  const PLACE_SHOWN = 20;
   const GSI = 'https://accounts.google.com/gsi/client';
 
   function el(tag, attrs = {}, ...children) {
@@ -198,8 +201,7 @@
       tile(t('Total XP'), fmt(d.purple + d.green), [
         el('span', { class: 'xp-purple', text: t('{n} purple', { n: fmt(d.purple) }) }), ' · ',
         el('span', { class: 'xp-green', text: t('{n} green', { n: fmt(d.green) }) })]),
-      tile(t('Class place'), lang === 'he' ? t('Place {n}', { n: d.place }) : ordinal(d.place),
-        t('of {n} students', { n: d.classSize })),
+      placeTile(d),
       tile(t('Exercise grade'), fmt(grade), t('out of 100')),
       tile(t('Project head start'), fmt(head), t('out of 100'))));
 
@@ -210,6 +212,16 @@
     else nodes.push(notice(t('No XP yet. It will show here after your first class.')));
 
     if (d.top && d.top.length) nodes.push(panel(t('Top 10'), leaderboard(d)));
+
+    // A hidden place is revealed in the tile and, below the top 10, in the student's own row.
+    const placeButton = nodes[1].querySelector('.stats-place-show');
+    if (placeButton) placeButton.addEventListener('click', () => {
+      const shown = placeTile(d, true);
+      placeButton.closest('.stats-tile').replaceWith(shown);
+      shown.querySelector('.stats-tile-value').focus();
+      const ranks = nodes.map((n) => n.querySelector('.stats-ranks')).find(Boolean);
+      if (ranks) ranks.append(...ownRank(d));
+    });
 
     if (d.notes && d.notes.length) {
       // Note N is about exercise N. Notes are written in Hebrew, so the lead-in is Hebrew in both
@@ -230,6 +242,20 @@
     if (!name) return [t('Here are your stats')];
     const [before, after] = t('Hi {name}, here are your stats').split('{name}');
     return [before, el('bdi', { class: 'stats-name', text: name }), after];
+  }
+
+  // The class place. Below PLACE_SHOWN it waits behind a button, with a word of encouragement.
+  function placeTile(d, revealed = false) {
+    if (revealed || !(d.place > PLACE_SHOWN)) {
+      const node = tile(t('Class place'), lang === 'he' ? t('Place {n}', { n: d.place }) : ordinal(d.place),
+        t('of {n} students', { n: d.classSize }));
+      if (revealed) node.querySelector('.stats-tile-value').setAttribute('tabindex', '-1');
+      return node;
+    }
+    return el('div', { class: 'stats-tile stats-place-hidden' },
+      el('div', { class: 'stats-tile-label', text: t('Class place') }),
+      el('div', { class: 'stats-tile-sub', text: t('Your place is hidden. What counts is the XP you add from here.') }),
+      el('button', { class: 'stats-btn stats-place-show', type: 'button' }, t('Show my place')));
   }
 
   function tile(label, value, sub) {
@@ -307,19 +333,28 @@
   // ---------- Top 10: anonymous, with the student's own row marked ----------
   function leaderboard(d) {
     const max = Math.max(1, ...d.top.map((p) => p.purple + p.green));
-    const row = (p) => el('div', { class: `stats-rank${p.me ? ' is-me' : ''}` },
+    const rows = d.top.map((p) => rankRow(p, max));
+    // A hidden place (see placeTile) adds the student's own row only once it is revealed.
+    if (!(d.place > PLACE_SHOWN)) rows.push(...ownRank(d));
+    return el('div', { class: 'stats-ranks' }, ...rows);
+  }
+
+  function rankRow(p, max) {
+    return el('div', { class: `stats-rank${p.me ? ' is-me' : ''}` },
       el('span', { class: 'stats-rank-place', text: lang === 'he' ? String(p.place) : ordinal(p.place) }),
       el('span', { class: 'stats-rank-bar' },
         el('span', { class: 'xp-purple', style: `--w:${(Math.max(0, p.purple) / max) * 100}%` }),
         el('span', { class: 'xp-green', style: `--w:${(Math.max(0, p.green) / max) * 100}%` })),
       el('span', { class: 'stats-rank-num', text: fmt(p.purple + p.green) }),
       el('span', { class: 'stats-rank-you', text: p.me ? t('You') : '' }));
-    const rows = d.top.map(row);
-    if (!d.top.some((p) => p.me)) {
-      rows.push(el('div', { class: 'stats-rank-gap', 'aria-hidden': 'true', text: '⋮' }),
-        row({ place: d.place, purple: d.purple, green: d.green, me: true }));
-    }
-    return el('div', { class: 'stats-ranks' }, ...rows);
+  }
+
+  // The student's own row under the top 10, when they aren't in it.
+  function ownRank(d) {
+    if (d.top.some((p) => p.me)) return [];
+    const max = Math.max(1, ...d.top.map((p) => p.purple + p.green));
+    return [el('div', { class: 'stats-rank-gap', 'aria-hidden': 'true', text: '⋮' }),
+      rankRow({ place: d.place, purple: d.purple, green: d.green, me: true }, max)];
   }
 
   // ---------- The beakers: like the course cartoon, side beakers overflow into the project ----------
