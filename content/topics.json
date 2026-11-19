@@ -96,8 +96,8 @@
     {
       "title": "Lesson 5",
       "title_he": "שיעור 5",
-      "blurb": "More PySide6 the OOP way: several windows, timers that make your app act by itself, and checking what you learned.",
-      "blurb_he": "עוד PySide6 בדרך מונחית העצמים: מספר חלונות, טיימרים שגורמים לאפליקציה לפעול בעצמה, ובודקים מה למדנו.",
+      "blurb": "More PySide6 the OOP way: several windows, timers that make your app act by itself, building colors from red, green and blue, and checking what you learned.",
+      "blurb_he": "עוד PySide6 בדרך מונחית העצמים: מספר חלונות, טיימרים שגורמים לאפליקציה לפעול בעצמה, בונים צבעים מאדום, ירוק וכחול, ובודקים מה למדנו.",
       "items": [
         {
           "unit": "pyside6",
@@ -106,6 +106,7 @@
             "Working with several windows",
             "topics/pyside6_oop_windows.md",
             "topics/pyside6_timers.md",
+            "topics/pyside6_colors.md",
             "topics/wwntr_pyside6_oop.md",
             "quizzes/pyside6_oop_quiz.md"
           ]
@@ -214,7 +215,7 @@
       "icon": "🖥",
       "blurb": "Apps without a good graphical interface are no fun. I don't want to use them, and my friends don't either. Your apps need to look and feel great.",
       "blurb_he": "אפליקציות בלי ממשק גרפי טוב הן לא כיף. אני לא רוצה להשתמש בהן, וגם החברים שלי לא. האפליקציות שלכם צריכות להיראות ולהרגיש מעולה.",
-      "material": ["topics/pyside6_basics.md", "topics/pyside6_widgets.md", "topics/pyside6_oop.md", "topics/pyside6_oop_windows.md", "topics/pyside6_timers.md", "topics/pyside6_layouts.md", "topics/pyside6_qss.md", "topics/pyside6_extras.md", "topics/wwntr_pyside6_basic.md", "topics/wwntr_pyside6_oop.md"],
+      "material": ["topics/pyside6_basics.md", "topics/pyside6_widgets.md", "topics/pyside6_oop.md", "topics/pyside6_oop_windows.md", "topics/pyside6_timers.md", "topics/pyside6_layouts.md", "topics/pyside6_colors.md", "topics/pyside6_qss.md", "topics/pyside6_extras.md", "topics/wwntr_pyside6_basic.md", "topics/wwntr_pyside6_oop.md"],
       "bots": [
         {
           "label": "Study Bot - Basic PySide6 (Not OOP)",
