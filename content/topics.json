@@ -112,6 +112,18 @@
           ]
         }
       ]
+    },
+    {
+      "title": "Lesson 6",
+      "title_he": "שיעור 6",
+      "blurb": "Number crunching: fast arrays with NumPy, letting randomness do the work with Monte Carlo, making sense of data with statistics, and solving equations with SymPy.",
+      "blurb_he": "מעבדים מספרים: מערכים מהירים עם NumPy, נותנים לאקראיות לעשות את העבודה עם מונטה קרלו, מבינים נתונים בעזרת סטטיסטיקה ופותרים משוואות עם SymPy.",
+      "items": [
+        "numpy",
+        "monte-carlo",
+        "statistics",
+        "sympy"
+      ]
     }
   ],
   "topics": [
