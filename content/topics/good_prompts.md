@@ -115,32 +115,40 @@ Nothing here is a surprise. You could have written it yourself, it just would ha
 
 Notice that you can only write a prompt like this if you already know the tools. That is why we learn PySide6, matplotlib and classes first, and use the AI to save typing, not thinking.
 
+## The AI builds the interface, you write the logic
+
+Use these prompts for the **user interface only**: the window, the widgets, the layout and the connections between them. That part is mostly typing, and the AI is fast at it.
+
+The **logic** is yours: calculations, reading and writing files, processing data, the physics of a simulation. In a good starter prompt, every piece of logic becomes an **empty method with a name you chose**, waiting for your code. That is exactly what "I will change it later" does in the prompt above.
+
 ## What to put in a starter prompt
 
-1. **The technologies:** the language, the GUI library, the plotting or data library (PySide6, matplotlib, NumPy, pandas...).
-2. **The file:** which file to create or change.
+1. **The technologies:** the GUI library and the plotting library (PySide6, matplotlib).
+2. **The file:** which file to create.
 3. **The structure:** a window as a class, which layout, what goes where.
 4. **The names:** of widgets, methods and important variables.
 5. **The connections:** which button or signal calls which method.
-6. **The size of the job:** what to leave as a simple placeholder, and that you will fill it in later.
+6. **The empty methods:** say which methods to leave empty (or with a `print`), because you will write the logic yourself.
 
 ## More example prompts
 
+Each of these prompts builds only the interface. The methods are left for you.
+
 ### A small calculator form
 
-> Create a PySide6 app in a new file called `calculator.py`, with a main window written as a class. Add two `QLineEdit` fields named `first_number_input` and `second_number_input`, a button with the text "Add" named `add_button`, and a `QLabel` named `result_label`. Use a `QVBoxLayout`. Connect `add_button` to a method called `add_numbers` that reads both fields, converts them to `float`, and shows the sum in `result_label`. Don't add error handling yet, I will add it myself.
+> Create a PySide6 app in a new file called `calculator.py`, with a main window written as a class. Add two `QLineEdit` fields named `first_number_input` and `second_number_input`, a button with the text "Add" named `add_button`, and a `QLabel` named `result_label`. Use a `QVBoxLayout`. Connect `add_button` to a method called `add_numbers`. Leave `add_numbers` empty, I will write the calculation myself.
 
-### A table of data from a CSV file
+### A table and a file button
 
-> Create a PySide6 app in a new file called `table_viewer.py`, with a main window written as a class. Add a button with the text "Open CSV" named `open_csv_button`, connected to a method called `open_csv`. In `open_csv`, open a file selection dialog that shows only `.csv` files, read the chosen file with pandas into `self.data`, and then call a method called `fill_table`. Below the button, add a `QTableWidget` named `data_table`. `fill_table` should copy `self.data` into `data_table`, with the column names as headers.
+> Create a PySide6 app in a new file called `table_viewer.py`, with a main window written as a class. Add a button with the text "Open file" named `open_file_button`, connected to a method called `open_file`. In `open_file`, open a file selection dialog and save the user's choice in `self.filename`. Below the button, add a `QTableWidget` named `data_table` with 3 columns. Also create an empty method called `fill_table`. I will write the code that reads the file and fills the table myself.
 
-### A slider that changes a graph
+### A slider and a graph
 
-> Create a PySide6 app in a new file called `sine_explorer.py`, with a main window written as a class. Add a matplotlib graph of at least 400 by 300 pixels, and under it a horizontal `QSlider` named `frequency_slider` with values from 1 to 10. Connect the slider's `valueChanged` signal to a method called `update_graph`. In `update_graph`, use NumPy to draw `sin(frequency * x)` for x from 0 to 2π, where `frequency` is the slider's value. Draw the graph once when the window opens.
+> Create a PySide6 app in a new file called `sine_explorer.py`, with a main window written as a class. Add a matplotlib graph of at least 400 by 300 pixels, and under it a horizontal `QSlider` named `frequency_slider` with values from 1 to 10. Connect the slider's `valueChanged` signal to a method called `update_graph`. For now, `update_graph` should only print the slider's value. I will write the drawing myself.
 
-### A simple animation with a timer
+### A timer with Start and Stop buttons
 
-> Create a PySide6 app in a new file called `animation.py`, with a main window written as a class. Add a matplotlib graph of at least 400 by 400 pixels, and two buttons in a row under it: "Start" named `start_button` and "Stop" named `stop_button`. Create a `QTimer` named `timer` that calls a method called `step` every 50 milliseconds. `start_button` starts the timer and `stop_button` stops it. Keep the ball's position in `self.x` and `self.y`. In `step`, move the ball a little and redraw it as a single dot. Keep the movement simple, I will add the physics later.
+> Create a PySide6 app in a new file called `animation.py`, with a main window written as a class. Add a matplotlib graph of at least 400 by 400 pixels, and two buttons in a row under it: "Start" named `start_button` and "Stop" named `stop_button`. Create a `QTimer` named `timer` that calls a method called `step` every 50 milliseconds. `start_button` starts the timer and `stop_button` stops it. Leave `step` empty, I will write the movement myself.
 
 ## After the AI answers
 

@@ -125,42 +125,48 @@ if __name__ == "__main__":
 
 שימו לב שאפשר לכתוב פרומפט כזה רק אם כבר מכירים את הכלים. בגלל זה אנחנו לומדים קודם PySide6, matplotlib ומחלקות, ומשתמשים ב-AI כדי לחסוך הקלדה, לא מחשבה.
 
+## ה-AI בונה את הממשק, אתם כותבים את הלוגיקה
+
+השתמשו בפרומפטים כאלה **לממשק המשתמש בלבד**: החלון, הווידג'טים, הסידור שלהם והחיבורים ביניהם. החלק הזה הוא בעיקר הקלדה, וה-AI מהיר בה.
+
+**הלוגיקה** שלכם: חישובים, קריאה וכתיבה של קבצים, עיבוד נתונים, הפיזיקה של סימולציה. בפרומפט התחלתי טוב, כל חלק של לוגיקה הופך ל**מתודה ריקה עם שם שאתם בחרתם**, שמחכה לקוד שלכם. זה בדיוק מה ש״אני אשנה אותה אחר כך״ עושה בפרומפט שלמעלה.
+
 ## מה לכתוב בפרומפט התחלתי
 
-1. **הטכנולוגיות:** השפה, ספריית הממשק הגרפי, ספריית הגרפים או הנתונים (PySide6, matplotlib, NumPy, pandas...).
-2. **הקובץ:** איזה קובץ ליצור או לשנות.
+1. **הטכנולוגיות:** ספריית הממשק הגרפי וספריית הגרפים (PySide6, matplotlib).
+2. **הקובץ:** איזה קובץ ליצור.
 3. **המבנה:** חלון כמחלקה, איזה layout, מה נמצא איפה.
 4. **השמות:** של הווידג'טים, המתודות והמשתנים החשובים.
 5. **החיבורים:** איזה כפתור או signal קורא לאיזו מתודה.
-6. **גודל המשימה:** מה להשאיר כמקום פשוט וזמני, ושאתם תמלאו אותו אחר כך.
+6. **המתודות הריקות:** כתבו אילו מתודות להשאיר ריקות (או עם `print`), כי את הלוגיקה תכתבו בעצמכם.
 
 ## עוד דוגמאות לפרומפטים
 
-כדאי לכתוב פרומפטים באנגלית, כי שמות הקבצים, הווידג'טים והמתודות ממילא באנגלית.
+כדאי לכתוב פרומפטים באנגלית, כי שמות הקבצים, הווידג'טים והמתודות ממילא באנגלית. כל אחד מהפרומפטים האלה בונה רק את הממשק, והמתודות נשארות לכם.
 
 ### טופס מחשבון קטן
 
-> Create a PySide6 app in a new file called `calculator.py`, with a main window written as a class. Add two `QLineEdit` fields named `first_number_input` and `second_number_input`, a button with the text "Add" named `add_button`, and a `QLabel` named `result_label`. Use a `QVBoxLayout`. Connect `add_button` to a method called `add_numbers` that reads both fields, converts them to `float`, and shows the sum in `result_label`. Don't add error handling yet, I will add it myself.
+> Create a PySide6 app in a new file called `calculator.py`, with a main window written as a class. Add two `QLineEdit` fields named `first_number_input` and `second_number_input`, a button with the text "Add" named `add_button`, and a `QLabel` named `result_label`. Use a `QVBoxLayout`. Connect `add_button` to a method called `add_numbers`. Leave `add_numbers` empty, I will write the calculation myself.
 
-שני שדות קלט, כפתור ״Add״ ותווית לתוצאה, כל אחד עם שם. המתודה `add_numbers` מחברת את המספרים. את הטיפול בשגיאות אתם תוסיפו בעצמכם.
+שני שדות קלט, כפתור ״Add״ ותווית לתוצאה, כל אחד עם שם. המתודה `add_numbers` נשארת ריקה, ואת החישוב אתם כותבים.
 
-### טבלת נתונים מקובץ CSV
+### טבלה וכפתור לבחירת קובץ
 
-> Create a PySide6 app in a new file called `table_viewer.py`, with a main window written as a class. Add a button with the text "Open CSV" named `open_csv_button`, connected to a method called `open_csv`. In `open_csv`, open a file selection dialog that shows only `.csv` files, read the chosen file with pandas into `self.data`, and then call a method called `fill_table`. Below the button, add a `QTableWidget` named `data_table`. `fill_table` should copy `self.data` into `data_table`, with the column names as headers.
+> Create a PySide6 app in a new file called `table_viewer.py`, with a main window written as a class. Add a button with the text "Open file" named `open_file_button`, connected to a method called `open_file`. In `open_file`, open a file selection dialog and save the user's choice in `self.filename`. Below the button, add a `QTableWidget` named `data_table` with 3 columns. Also create an empty method called `fill_table`. I will write the code that reads the file and fills the table myself.
 
-כפתור שפותח קובץ CSV, קורא אותו עם pandas לתוך `self.data`, ומתודה נפרדת `fill_table` שממלאת את הטבלה.
+כפתור שפותח חלון לבחירת קובץ ושומר את הבחירה ב-`self.filename`, וטבלה עם 3 עמודות. את הקריאה של הקובץ ואת מילוי הטבלה ב-`fill_table` אתם כותבים.
 
-### מחוון (slider) שמשנה גרף
+### מחוון (slider) וגרף
 
-> Create a PySide6 app in a new file called `sine_explorer.py`, with a main window written as a class. Add a matplotlib graph of at least 400 by 300 pixels, and under it a horizontal `QSlider` named `frequency_slider` with values from 1 to 10. Connect the slider's `valueChanged` signal to a method called `update_graph`. In `update_graph`, use NumPy to draw `sin(frequency * x)` for x from 0 to 2π, where `frequency` is the slider's value. Draw the graph once when the window opens.
+> Create a PySide6 app in a new file called `sine_explorer.py`, with a main window written as a class. Add a matplotlib graph of at least 400 by 300 pixels, and under it a horizontal `QSlider` named `frequency_slider` with values from 1 to 10. Connect the slider's `valueChanged` signal to a method called `update_graph`. For now, `update_graph` should only print the slider's value. I will write the drawing myself.
 
-גרף ומתחתיו מחוון. כל הזזה של המחוון קוראת ל-`update_graph`, שמציירת סינוס בתדירות שנבחרה בעזרת NumPy.
+גרף ומתחתיו מחוון. כל הזזה של המחוון קוראת ל-`update_graph`, שבינתיים רק מדפיסה את הערך. את הציור אתם כותבים.
 
-### אנימציה פשוטה עם טיימר
+### טיימר עם כפתורי Start ו-Stop
 
-> Create a PySide6 app in a new file called `animation.py`, with a main window written as a class. Add a matplotlib graph of at least 400 by 400 pixels, and two buttons in a row under it: "Start" named `start_button` and "Stop" named `stop_button`. Create a `QTimer` named `timer` that calls a method called `step` every 50 milliseconds. `start_button` starts the timer and `stop_button` stops it. Keep the ball's position in `self.x` and `self.y`. In `step`, move the ball a little and redraw it as a single dot. Keep the movement simple, I will add the physics later.
+> Create a PySide6 app in a new file called `animation.py`, with a main window written as a class. Add a matplotlib graph of at least 400 by 400 pixels, and two buttons in a row under it: "Start" named `start_button` and "Stop" named `stop_button`. Create a `QTimer` named `timer` that calls a method called `step` every 50 milliseconds. `start_button` starts the timer and `stop_button` stops it. Leave `step` empty, I will write the movement myself.
 
-גרף, כפתורי ״Start״ ו-״Stop״, וטיימר שקורא ל-`step` כל 50 מילישניות. המיקום של הכדור נשמר ב-`self.x` וב-`self.y`, ואת הפיזיקה אתם תוסיפו אחר כך.
+גרף, כפתורי ״Start״ ו-״Stop״, וטיימר שקורא ל-`step` כל 50 מילישניות. `step` נשארת ריקה, ואת התנועה אתם כותבים.
 
 ## אחרי שה-AI עונה
 

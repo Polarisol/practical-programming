@@ -533,6 +533,12 @@
       });
       div.querySelectorAll('pre > code.language-math').forEach(mathBlock);
       div.querySelectorAll('pre').forEach(addCopyButton);
+      // On the Hebrew site, a quote with no Hebrew in it (e.g. an English prompt) reads left to right.
+      if (lang === 'he') {
+        div.querySelectorAll('blockquote').forEach((q) => {
+          if (!/[֐-׿]/.test(q.textContent)) q.dir = 'ltr';
+        });
+      }
       keepRunsLtr(div);
       return [...div.childNodes];
     }
