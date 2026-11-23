@@ -1,4 +1,4 @@
-# Writing good prompts
+# Starter GUI prompts
 
 When you ask an AI to build the first version of an app (a starter user interface), the prompt you write decides what kind of code you get back. A vague prompt gets you code that *works*, but that you don't recognize. A good prompt gets you code that you can read, change and grow yourself.
 
