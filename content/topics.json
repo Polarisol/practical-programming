@@ -171,7 +171,7 @@
       "icon": "🤖",
       "blurb": "Using AI correctly is not cheating, using it incorrectly can be extremely harmful. Don't be harmful. Things are not supposed to be too easy.",
       "blurb_he": "שימוש נכון בבינה מלאכותית הוא לא רמאות, שימוש לא נכון יכול להזיק מאוד. אל תזיקו. דברים לא אמורים להיות קלים מדי.",
-      "material": ["topics/AIRules.md", "topics/github_copilot.md"],
+      "material": ["topics/AIRules.md", "topics/github_copilot.md", "topics/good_prompts.md"],
       "quizzes": ["quizzes/ai-tools-quiz.md"],
       "videos": [
         {

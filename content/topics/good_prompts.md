@@ -1,0 +1,150 @@
+# Writing good prompts
+
+When you ask an AI to build the first version of an app (a starter user interface), the prompt you write decides what kind of code you get back. A vague prompt gets you code that *works*, but that you don't recognize. A good prompt gets you code that you can read, change and grow yourself.
+
+## A vague prompt
+
+> Make me an app that loads a data file and shows a graph.
+
+This prompt leaves every important decision to the AI:
+
+- **Which libraries?** It may pick Tkinter, Streamlit, Plotly, PyQt or something you have never heard of.
+- **What structure?** One long script, several functions, a class, three files? You don't know until you look.
+- **What names?** The button might be called `btn1`, the method `on_click`, the file name `fn`. You will have to hunt for them.
+- **How much?** It might add menus, settings, error dialogs and a dark theme you didn't ask for. More code means more to read and more places for bugs to hide.
+
+The result may run, but you are now a guest in someone else's code. You don't know where to add your own logic, and every change becomes another prompt.
+
+## A good prompt
+
+> Create a PySide6 app in a new file called `app.py`. The app should have a main window, written as a class.
+>
+> Add a button with the text "Load data". Name the button `file_load_button` and connect it to a method called `file_load_method`. In this method, open a file selection dialog and save the user's choice in `self.filename`.
+>
+> Also add an area of at least 300 by 300 pixels with a matplotlib graph in it. Create a method called `draw_graph` that draws something simple on the graph. I will change it later.
+
+This prompt doesn't describe a finished app. It describes a **skeleton**, built the way *you* would build it, using tools *you* already know.
+
+## Walking through the prompt
+
+Each sentence in the prompt makes one decision, so the AI doesn't have to guess.
+
+| What the prompt says | What it gives you |
+|---|---|
+| "a PySide6 app" | A library you learned in class. You can read every line. |
+| "in a new file called `app.py`" | You know exactly where the code is, and it doesn't touch your other files. |
+| "a main window, written as a class" | The structure we use in the course: widgets are attributes (`self.something`), actions are methods. |
+| "Name the button `file_load_button`" | When you want to change the button, you search for that name. |
+| "connect it to a method called `file_load_method`" | You know where the code that runs on a click lives. |
+| "save the user's choice in `self.filename`" | Any other method in the class can use the file name later. |
+| "at least 300 by 300 pixels with a matplotlib graph" | A library you know, and a size you chose. |
+| "a method called `draw_graph` ... I will change it later" | A clear, empty spot for your own plotting code. "I will change it later" tells the AI to keep it simple. |
+
+## What you get back
+
+The AI should return something close to this:
+
+```python
+import sys
+
+from PySide6.QtWidgets import (
+    QApplication, QMainWindow, QWidget, QVBoxLayout, QPushButton, QFileDialog
+)
+from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg
+from matplotlib.figure import Figure
+
+
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("My App")
+        self.filename = None
+
+        # The button
+        self.file_load_button = QPushButton("Load data")
+        self.file_load_button.clicked.connect(self.file_load_method)
+
+        # The graph area
+        self.figure = Figure()
+        self.canvas = FigureCanvasQTAgg(self.figure)
+        self.canvas.setMinimumSize(300, 300)
+        self.ax = self.figure.add_subplot()
+
+        # Put everything in the window
+        layout = QVBoxLayout()
+        layout.addWidget(self.file_load_button)
+        layout.addWidget(self.canvas)
+        central = QWidget()
+        central.setLayout(layout)
+        self.setCentralWidget(central)
+
+        self.draw_graph()
+
+    def file_load_method(self):
+        self.filename, _ = QFileDialog.getOpenFileName(self, "Choose a file")
+        print("Selected:", self.filename)
+
+    def draw_graph(self):
+        self.ax.clear()
+        self.ax.plot([0, 1, 2, 3, 4], [0, 1, 4, 9, 16])
+        self.canvas.draw()
+
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec())
+```
+
+Look at how easy it is to find your way around:
+
+- **Want to read the file after it is chosen?** Add your code at the end of `file_load_method`, where `self.filename` already holds the path.
+- **Want to plot your real data?** Replace the two lines inside `draw_graph`, and call `self.draw_graph()` after loading the data.
+- **Want another button?** Copy the two lines that create `file_load_button`, give the new one its own name and its own method, and add it to the layout.
+
+Nothing here is a surprise. You could have written it yourself, it just would have taken longer.
+
+## Why this matters
+
+- **You understand the code.** It uses the libraries and the structure you learned, so you can read it line by line. You know what it does, you don't just *believe* it works.
+- **You know where to put your code.** Every piece has a name you chose. Your logic goes into methods you named, not into a maze.
+- **You can extend it yourself.** Adding a widget or a feature is a small, familiar change. You don't need to send another prompt for every tweak, and often it is faster to just do it.
+- **Fewer surprises.** A short, focused prompt gets short, focused code. Less code means fewer hidden bugs and less to review.
+- **You stay in control.** This is the whole idea of the [rules for using AI](?id=using-ai): the AI types faster than you, but **you** are the one who designs the app.
+
+Notice that you can only write a prompt like this if you already know the tools. That is why we learn PySide6, matplotlib and classes first, and use the AI to save typing, not thinking.
+
+## What to put in a starter prompt
+
+1. **The technologies:** the language, the GUI library, the plotting or data library (PySide6, matplotlib, NumPy, pandas...).
+2. **The file:** which file to create or change.
+3. **The structure:** a window as a class, which layout, what goes where.
+4. **The names:** of widgets, methods and important variables.
+5. **The connections:** which button or signal calls which method.
+6. **The size of the job:** what to leave as a simple placeholder, and that you will fill it in later.
+
+## More example prompts
+
+### A small calculator form
+
+> Create a PySide6 app in a new file called `calculator.py`, with a main window written as a class. Add two `QLineEdit` fields named `first_number_input` and `second_number_input`, a button with the text "Add" named `add_button`, and a `QLabel` named `result_label`. Use a `QVBoxLayout`. Connect `add_button` to a method called `add_numbers` that reads both fields, converts them to `float`, and shows the sum in `result_label`. Don't add error handling yet, I will add it myself.
+
+### A table of data from a CSV file
+
+> Create a PySide6 app in a new file called `table_viewer.py`, with a main window written as a class. Add a button with the text "Open CSV" named `open_csv_button`, connected to a method called `open_csv`. In `open_csv`, open a file selection dialog that shows only `.csv` files, read the chosen file with pandas into `self.data`, and then call a method called `fill_table`. Below the button, add a `QTableWidget` named `data_table`. `fill_table` should copy `self.data` into `data_table`, with the column names as headers.
+
+### A slider that changes a graph
+
+> Create a PySide6 app in a new file called `sine_explorer.py`, with a main window written as a class. Add a matplotlib graph of at least 400 by 300 pixels, and under it a horizontal `QSlider` named `frequency_slider` with values from 1 to 10. Connect the slider's `valueChanged` signal to a method called `update_graph`. In `update_graph`, use NumPy to draw `sin(frequency * x)` for x from 0 to 2π, where `frequency` is the slider's value. Draw the graph once when the window opens.
+
+### A simple animation with a timer
+
+> Create a PySide6 app in a new file called `animation.py`, with a main window written as a class. Add a matplotlib graph of at least 400 by 400 pixels, and two buttons in a row under it: "Start" named `start_button` and "Stop" named `stop_button`. Create a `QTimer` named `timer` that calls a method called `step` every 50 milliseconds. `start_button` starts the timer and `stop_button` stops it. Keep the ball's position in `self.x` and `self.y`. In `step`, move the ball a little and redraw it as a single dot. Keep the movement simple, I will add the physics later.
+
+## After the AI answers
+
+1. **Read all the code** before you run it. If a line is unclear, ask the AI to explain it.
+2. **Check that it followed your prompt:** the file name, the names, the structure. If it added things you didn't ask for, ask it to remove them.
+3. **Run it** and make sure the skeleton works.
+4. **Commit** it to git. Now you have a clean starting point to go back to, and you can start adding your own code.
