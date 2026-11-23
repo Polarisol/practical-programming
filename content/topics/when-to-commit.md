@@ -20,6 +20,18 @@ A commit is a save point you can always come back to. The rule of thumb: **commi
 
 For most of the course: **every 15 to 30 minutes of work**, or every time you finish a small step. Small commits are free, and many small save points are much more useful than a few big ones.
 
+## Forgot to commit for a while?
+
+It happens. Nothing is lost: your changes are still in the files, Git just hasn't saved them yet. Don't panic, and don't make it worse by changing more code first.
+
+1. **Commit now, before anything else.** The longer you wait, the bigger and more tangled the change gets.
+2. **Look at the Changes list.** Click each file to see what changed. This also reminds you what you did.
+3. **If the work splits into separate ideas, make a few commits.** Hover a file and click **+** (Stage Changes) to stage only that file, write a message for just that part, and commit. Repeat for the next group of files. In the diff view you can even select some lines, right-click, and choose **Stage Selected Ranges**.
+4. **If it's all one tangled change, one commit is fine.** Write a message that describes the whole thing, e.g. `Add the results window and export to CSV`. One honest big commit is far better than no commit.
+5. **Sync Changes**, so the work is also on GitHub.
+
+Then set yourself a reminder: commit every time you finish a small step.
+
 ## Write a useful message
 
 The message should say **what the commit does**, short and specific:
