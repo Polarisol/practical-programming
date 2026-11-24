@@ -393,11 +393,11 @@
           "description_he": "מונטה קרלו פותר בעיות שאין להן נוסחה. בחרו צורה או ציירו אחת בעצמכם, וזרקו חצים אקראיים כדי למדוד את השטח שלה."
         },
         {
-          "title": "Risk: will my savings last?",
-          "title_he": "סיכון: האם החסכונות יספיקו?",
-          "type": "savings-risk",
-          "description": "You retire with savings and take money out every year, while the market goes up and down at random. Run hundreds of possible futures and see how often the money runs out, even when the average return says you are fine.",
-          "description_he": "יוצאים לפנסיה עם חסכונות ומושכים כסף כל שנה, בזמן שהשוק עולה ויורד באקראי. הריצו מאות עתידים אפשריים וראו באיזו תדירות הכסף נגמר, גם כשהתשואה הממוצעת אומרת שהכול בסדר."
+          "title": "Risk: will we make the deadline?",
+          "title_he": "סיכון: האם נעמוד בדדליין?",
+          "type": "deadline-risk",
+          "description": "A project has four tasks, and nobody knows exactly how long each one will take. Run the project thousands of times, see on which day it usually finishes, and find the real chance of making the deadline. Drag a task's uncertainty and watch the risk change.",
+          "description_he": "בפרויקט יש ארבע משימות, ואף אחד לא יודע בדיוק כמה זמן תיקח כל אחת. הריצו את הפרויקט אלפי פעמים, ראו באיזה יום הוא בדרך כלל מסתיים, וגלו מה הסיכוי האמיתי לעמוד בדדליין. גררו את אי־הוודאות של משימה וצפו איך הסיכון משתנה."
         }
       ]
     },
