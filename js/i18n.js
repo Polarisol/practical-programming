@@ -229,7 +229,6 @@
     'Outside': 'בחוץ',
     'Total': 'סך הכול',
     'Inside the circle': 'בתוך העיגול',
-    'Inside the shape': 'בתוך הצורה',
     'Graph of the estimate as more darts are thrown': 'גרף של ההערכה ככל שנזרקים יותר חצים',
     'The estimate after each dart. Each step to the right is 10 times more darts; the dashed line is the real value.':
       'ההערכה אחרי כל חץ. כל צעד ימינה הוא פי 10 יותר חצים; הקו המקווקו הוא הערך האמיתי.',
@@ -245,21 +244,6 @@
     'The square goes from −1 to 1, so its area is 2 × 2 = 4. The circle has radius 1, so its area is π × 1² = π. A random dart lands in the circle with a chance of π / 4, so π ≈ 4 × (darts inside) / (all darts).':
       'הריבוע נמתח מ־⁦−1⁩ עד 1, ולכן השטח שלו הוא ⁦2 × 2 = 4⁩. לעיגול יש רדיוס 1, ולכן השטח שלו הוא ⁦π × 1² = π⁩. חץ אקראי נוחת בעיגול בסיכוי של ⁦π / 4⁩, ולכן: ⁦π ≈ 4⁩ × (החצים בפנים) / (כל החצים).',
     'The real π is {pi} · off by {d}': 'π האמיתי הוא {pi} · סטייה של {d}',
-    '♥ Heart': '♥ לב',
-    '★ Star': '★ כוכב',
-    '◍ Random lake': '◍ אגם אקראי',
-    '✎ Draw your own': '✎ ציירו בעצמכם',
-    'Shape': 'צורה',
-    'A 10 by 10 board with the shape and the box around it': 'לוח של 10 על 10 עם הצורה והמלבן שמסביבה',
-    'There is no formula for the area of a heart, or of a shape you draw by hand. But the box around it is easy: width × height. Throw random darts into the box. The part of them that lands inside the shape is about the part of the box the shape covers, so: area ≈ box area × (darts inside) / (all darts).':
-      'אין נוסחה לשטח של לב, או של צורה שציירתם ביד. אבל השטח של המלבן שמסביבה קל: רוחב × גובה. זרקו חצים אקראיים לתוך המלבן. החלק מהם שנוחת בתוך הצורה הוא בערך החלק מהמלבן שהצורה מכסה, ולכן: שטח ≈ שטח המלבן × (החצים בפנים) / (כל החצים).',
-    'Draw a closed shape on the board with the mouse or a finger. Let go to finish it.': 'ציירו צורה סגורה על הלוח בעכבר או באצבע. שחררו כדי לסיים.',
-    'That shape is too small. Try drawing a bigger one.': 'הצורה קטנה מדי. נסו לצייר צורה גדולה יותר.',
-    'Box around the shape:': 'המלבן שמסביב לצורה:',
-    'Area ≈': 'שטח ≈',
-    'Exact area (shoelace formula): {a} · off by {d}': 'השטח המדויק (נוסחת השרוך): {a} · סטייה של {d}',
-    'Exact area (shoelace formula): {a}': 'השטח המדויק (נוסחת השרוך): {a}',
-    'Your outline crosses itself, so there is no simple formula for its area. Monte Carlo doesn’t mind!': 'קו המתאר שלכם חוצה את עצמו, ולכן אין נוסחה פשוטה לשטח שלו. למונטה קרלו זה לא משנה!',
     // Deadline risk simulation
     'Plan': 'תכנון',
     'Write the code': 'כתיבת הקוד',

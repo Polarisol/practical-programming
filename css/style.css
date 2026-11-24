@@ -1318,7 +1318,6 @@ a { color: var(--accent); }
 /* Monte Carlo simulations */
 .mc-board-wrap { flex: 0 1 392px; width: 100%; max-width: 392px; min-width: 0; }
 .mc-board { position: relative; width: 100%; aspect-ratio: 1; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg); }
-.mc-board.is-drawing { cursor: crosshair; touch-action: none; }
 .mc-layer { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
 .mc-counts { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 0; font: 0.85rem var(--font-mono); color: var(--muted); }
 .mc-counts b { color: var(--text); }
@@ -1331,7 +1330,6 @@ a { color: var(--accent); }
 .mc-math.mc-big { font-size: 1.15rem; font-weight: 700; color: rgb(var(--t)); white-space: normal; }
 .mc-line .is-hit { color: rgb(var(--ok)); font-weight: 600; }
 .mc-line .is-miss { color: rgb(var(--bad)); font-weight: 600; }
-.mc-hint { color: rgb(var(--t)); font-weight: 600; }
 .mc-graph { margin: 0; }
 .mc-chart { display: block; width: 100%; height: 170px; }
 .mc-graph figcaption { margin-top: 4px; font-size: 0.8rem; }
