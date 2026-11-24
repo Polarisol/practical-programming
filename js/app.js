@@ -1331,7 +1331,15 @@
       if (e.key === 'Escape' && node.classList.contains('open')) { e.preventDefault(); setOpen(false); toggle.focus(); }
     });
 
-    window.addEventListener('resize', () => place(false));
+    // Wide screens: the sidebar shows every unit, with no scroll of its own. When it is
+    // taller than the window, its sticky offset goes negative by the overflow, so it
+    // scrolls along with the page until its last unit is in view, then stays there.
+    const fitSidebar = () => {
+      const overflow = node.offsetHeight + 32 - window.innerHeight;
+      node.style.setProperty('--nav-top', `${overflow > 0 ? 16 - overflow : 16}px`);
+    };
+    if ('ResizeObserver' in window) new ResizeObserver(fitSidebar).observe(node);
+    window.addEventListener('resize', () => { place(false); fitSidebar(); });
     return {
       node,
       select(id) {

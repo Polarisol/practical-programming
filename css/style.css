@@ -708,13 +708,14 @@ a { color: var(--accent); }
     gap: 36px;
     max-width: 1320px;
   }
+  /* The whole list is always shown: no scroll of its own. A list taller than the
+     window scrolls with the page, then stays put with its last unit in view
+     (app.js sets --nav-top to a negative offset for that). */
   .topic-nav {
     align-self: start;
-    top: 16px;
-    max-height: calc(100vh - 32px);
+    top: var(--nav-top, 16px);
     margin: 0;
     padding: 16px 0;
-    overflow-y: auto;
     border: 0;
     background: none;
     -webkit-backdrop-filter: none;
