@@ -16,8 +16,8 @@
   },
   "lessons": [
     {
-      "title": "Lesson 1",
-      "title_he": "שיעור 1",
+      "title": "Lesson 1 - Introduction and Python Basics",
+      "title_he": "שיעור 1 - מבוא ויסודות Python",
       "blurb": "Getting ready: installing everything, starting a project, using AI the right way, and first steps in Python.",
       "blurb_he": "מתכוננים: מתקינים הכול, מתחילים פרויקט, משתמשים בבינה מלאכותית בצורה נכונה ועושים צעדים ראשונים ב־Python.",
       "items": [
@@ -28,8 +28,8 @@
       ]
     },
     {
-      "title": "Lesson 2",
-      "title_he": "שיעור 2",
+      "title": "Lesson 2 - Graphical User Interfaces",
+      "title_he": "שיעור 2 - ממשקי משתמש גרפיים",
       "blurb": "First steps with PySide6: building a window, getting to know the widgets, and checking what you learned.",
       "blurb_he": "צעדים ראשונים עם PySide6: בונים חלון, מכירים את הווידג'טים ובודקים מה למדנו.",
       "items": [
@@ -47,8 +47,8 @@
       ]
     },
     {
-      "title": "Lesson 3",
-      "title_he": "שיעור 3",
+      "title": "Lesson 3 - Object Oriented Programming",
+      "title_he": "שיעור 3 - תכנות מונחה עצמים",
       "blurb": "Classes and objects, then PySide6 the OOP way: several windows and more, and checking what you learned.",
       "blurb_he": "מחלקות ואובייקטים, ואחר כך PySide6 בדרך מונחית העצמים: מספר חלונות ועוד, ובודקים מה למדנו.",
       "items": [
@@ -68,8 +68,8 @@
       ]
     },
     {
-      "title": "Lesson 4",
-      "title_he": "שיעור 4",
+      "title": "Lesson 4 - Git, GitHub, AI Agents, Files and Graphs",
+      "title_he": "שיעור 4 - Git, GitHub, סוכני AI, קבצים וגרפים",
       "blurb": "Tools of the trade: keeping your project safe with Git, reading and writing text files, telling a story with graphs, building windows that resize nicely with layouts, and styling them with QSS files.",
       "blurb_he": "כלי העבודה: שומרים על הפרויקט בעזרת Git, קוראים וכותבים קובצי טקסט, מספרים סיפור בעזרת גרפים, בונים חלונות שמשנים גודל יפה בעזרת פריסות ומעצבים אותם בעזרת קובצי QSS.",
       "items": [
@@ -94,8 +94,8 @@
       ]
     },
     {
-      "title": "Lesson 5",
-      "title_he": "שיעור 5",
+      "title": "Lesson 5 - Timers, Intro to Numeric Simulations, Heat Transfer",
+      "title_he": "שיעור 5 - טיימרים, מבוא לסימולציות נומריות, מעבר חום",
       "blurb": "More PySide6 the OOP way: several windows, timers that make your app act by itself, building colors from red, green and blue, and checking what you learned.",
       "blurb_he": "עוד PySide6 בדרך מונחית העצמים: מספר חלונות, טיימרים שגורמים לאפליקציה לפעול בעצמה, בונים צבעים מאדום, ירוק וכחול, ובודקים מה למדנו.",
       "items": [
@@ -114,8 +114,8 @@
       ]
     },
     {
-      "title": "Lesson 6",
-      "title_he": "שיעור 6",
+      "title": "Lesson 6 - NumPy, Statistics, Monte Carlo Simulations, SymPy",
+      "title_he": "שיעור 6 - NumPy, סטטיסטיקה, סימולציות מונטה קרלו, SymPy",
       "blurb": "Number crunching: fast arrays with NumPy, letting randomness do the work with Monte Carlo, making sense of data with statistics, and solving equations with SymPy.",
       "blurb_he": "מעבדים מספרים: מערכים מהירים עם NumPy, נותנים לאקראיות לעשות את העבודה עם מונטה קרלו, מבינים נתונים בעזרת סטטיסטיקה ופותרים משוואות עם SymPy.",
       "items": [
