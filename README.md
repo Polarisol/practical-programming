@@ -30,7 +30,7 @@ All content lives in `content/`. You never need to edit the HTML or JavaScript.
 | `material` | Path to a Markdown file inside `content/`, e.g. `"topics/my-topic.md"`. It can also be a list of files |
 | `bots`     | List of `{ "label": "...", "description": "...", "url": "https://..." }`. Each bot appears **at the top** of the topic as an animated robot. `description` is what the robot "says" in its speech bubble. |
 | `quizzes`  | Path to a quiz file inside `content/`, e.g. `"quizzes/my-quiz.md"`, or a list of them. See **Write a quiz** below |
-| `simulations` | List of `{ "title": "...", "type": "grid-path", "description": "..." }`. An interactive demo inside the page. `grid-path` is a 10 x 10 grid where students place a start, a goal and walls, and watch BFS, DFS or A* search. `digit-draw` is a 28 x 28 grid where students draw a digit with the mouse and a small neural network guesses it |
+| `simulations` | List of `{ "title": "...", "type": "grid-path", "description": "..." }`. An interactive demo inside the page. `grid-path` is a 10 x 10 grid where students place a start, a goal and walls, and watch BFS, DFS or A* search. `digit-draw` is a 28 x 28 grid where students draw a digit with the mouse and a small neural network guesses it. `savings-risk` runs many random futures of a retirement fund and shows how often the money runs out |
 | `files`    | List of `{ "label": "...", "file": "files/my-code.zip" }` for files students download. Put the file in `content/files/`. A bare path or a list of paths works too, and then the file name is the label |
 | `links`    | List of `{ "label": "...", "url": "https://..." }`. A file in `assets/` works too, e.g. `"assets/worksheet.pdf"` |
 
@@ -153,6 +153,7 @@ js/app.js             reads topics.json and builds the pages
 js/i18n.js            the language button and the site's Hebrew interface text
 js/grid-sim.js        the grid path-finding simulation (BFS, DFS, A*)
 js/digit-sim.js       the handwritten digit simulation (draw a digit, a neural network guesses it)
+js/savings-sim.js     the "will my savings last?" Monte Carlo risk simulation
 js/stats.js           the My stats page (sign-in, beakers, XP, top 10, notes)
 apps-script/          the script for the XP sheet, and how to set it up
 content/topics.json   your topics  ← edit this
