@@ -904,12 +904,13 @@
   // ---------- Simulations: interactive demos built in the browser ----------
   // "simulations" in topics.json: [{ "title": "...", "type": "grid-path", "description": "..." }].
   // Each type is made by its own script (js/grid-sim.js for "grid-path", js/digit-sim.js for "digit-draw",
-  // js/monte-carlo-sim.js for "mc-pi" and "mc-area").
+  // js/monte-carlo-sim.js for "mc-pi" and "mc-area", js/savings-sim.js for "savings-risk").
   const SIMULATIONS = {
     'grid-path': () => window.GridSim && window.GridSim.create(),
     'digit-draw': () => window.DigitSim && window.DigitSim.create(),
     'mc-pi': () => window.MonteCarloSim && window.MonteCarloSim.createPi(),
     'mc-area': () => window.MonteCarloSim && window.MonteCarloSim.createArea(),
+    'savings-risk': () => window.SavingsSim && window.SavingsSim.create(),
   };
 
   function simEntries(value) {

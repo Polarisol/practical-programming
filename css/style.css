@@ -1340,6 +1340,32 @@ a { color: var(--accent); }
 .mc-code summary { cursor: pointer; font: 600 0.85rem var(--font-mono); color: rgb(var(--t)); }
 .mc-code pre { margin: 8px 0 0; padding: 14px; overflow-x: auto; border-radius: 8px; background: var(--surface-2); font-size: 0.8rem; text-align: left; }
 .mc-sim .sim-actions .btn { min-width: 0; }
+/* Savings risk simulation */
+.savings-sliders { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px 20px; }
+.savings-slider { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.savings-slider-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; font-size: 0.9rem; }
+.savings-slider-label { color: var(--muted); }
+.savings-value { font: 600 0.9rem var(--font-mono); color: rgb(var(--t)); direction: ltr; unicode-bidi: isolate; }
+.savings-note { font: 0.8rem var(--font-mono); color: var(--muted); }
+.savings-slider input { width: 100%; accent-color: rgb(var(--t)); }
+.savings-chart-wrap { flex: 1 1 420px; min-width: 0; direction: ltr; }
+.savings-chart { display: block; width: 100%; height: clamp(240px, 42vw, 360px); border: 1px solid var(--border); border-radius: 10px; background: var(--bg); color: var(--text); }
+.savings-axis { margin: 4px 0 0; font: 0.8rem var(--font-mono); color: var(--muted); text-align: center; }
+[dir="rtl"] .savings-axis { direction: rtl; }
+.savings-risk { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+.savings-risk .sim-label { flex-basis: 100%; }
+.savings-risk-value { font: 700 2.6rem/1 var(--font-mono); color: rgb(var(--bad)); }
+.savings-risk-note { font: 600 0.9rem var(--font-mono); color: var(--muted); }
+.savings-sim .sim-status { min-height: 2.8em; font-weight: 400; color: var(--text); }
+.savings-facts { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 4px 12px; margin: 0; font-size: 0.85rem; }
+.savings-facts dt { color: var(--muted); }
+.savings-facts dd { margin: 0; font: 600 0.85rem var(--font-mono); text-align: end; overflow-wrap: anywhere; }
+.savings-key { flex: none; width: 22px; height: 0; border-top: 2px solid; }
+.savings-key.is-ok { border-color: var(--muted); opacity: 0.6; }
+.savings-key.is-out { border-color: rgba(var(--bad), 0.6); }
+.savings-key.is-last { border-top-width: 3px; border-color: var(--text); }
+.savings-key.is-band { height: 10px; border: 0; border-top: 2px solid rgb(var(--t)); background: rgba(var(--t), 0.15); }
+.savings-key.is-avg { border-top: 3px dashed var(--accent); }
 
 /* The line-view icon: a tiny grid lit up square by square, like a search spreading out */
 .sim-icon { display: grid; grid-template-columns: repeat(3, 7px); gap: 2px; padding: 6px 2px; }
