@@ -1315,6 +1315,32 @@ a { color: var(--accent); }
 .digit-bar.is-best { color: var(--text); font-weight: 600; }
 .digit-bar.is-best .digit-bar-fill { background: rgb(var(--t)); }
 
+/* Monte Carlo simulations */
+.mc-board-wrap { flex: 0 1 392px; width: 100%; max-width: 392px; min-width: 0; }
+.mc-board { position: relative; width: 100%; aspect-ratio: 1; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg); }
+.mc-board.is-drawing { cursor: crosshair; touch-action: none; }
+.mc-layer { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+.mc-counts { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 0; font: 0.85rem var(--font-mono); color: var(--muted); }
+.mc-counts b { color: var(--text); }
+.mc-swatch { display: inline-block; width: 9px; height: 9px; margin-inline-end: 6px; border-radius: 50%; vertical-align: 0.05em; }
+.mc-swatch.is-hit { background: rgb(var(--ok)); }
+.mc-swatch.is-miss { background: rgb(var(--bad)); }
+.mc-explain { display: grid; gap: 6px; min-height: 6.2em; }
+.mc-line { margin: 0; font-size: 0.9rem; }
+.mc-math { font-family: var(--font-mono); font-size: 0.85rem; white-space: nowrap; }
+.mc-math.mc-big { font-size: 1.15rem; font-weight: 700; color: rgb(var(--t)); white-space: normal; }
+.mc-line .is-hit { color: rgb(var(--ok)); font-weight: 600; }
+.mc-line .is-miss { color: rgb(var(--bad)); font-weight: 600; }
+.mc-hint { color: rgb(var(--t)); font-weight: 600; }
+.mc-graph { margin: 0; }
+.mc-chart { display: block; width: 100%; height: 170px; }
+.mc-graph figcaption { margin-top: 4px; font-size: 0.8rem; }
+.mc-note { margin: 14px 0 0; font-size: 0.85rem; }
+.mc-code { margin-top: 10px; }
+.mc-code summary { cursor: pointer; font: 600 0.85rem var(--font-mono); color: rgb(var(--t)); }
+.mc-code pre { margin: 8px 0 0; padding: 14px; overflow-x: auto; border-radius: 8px; background: var(--surface-2); font-size: 0.8rem; text-align: left; }
+.mc-sim .sim-actions .btn { min-width: 0; }
+
 /* The line-view icon: a tiny grid lit up square by square, like a search spreading out */
 .sim-icon { display: grid; grid-template-columns: repeat(3, 7px); gap: 2px; padding: 6px 2px; }
 .sim-icon span { width: 7px; height: 7px; border-radius: 2px; background: rgba(var(--type-sim), 0.25); animation: sim-wave 2.4s calc(var(--n) * 0.2s) ease-in-out infinite; }

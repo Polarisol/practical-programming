@@ -10,7 +10,7 @@ The Monte Carlo method answers questions like these in a surprising way: **don't
 
 Draw a square on a wall, and draw a circle inside it that just touches its sides. Now throw darts at the square without aiming, so every dart lands at a random spot.
 
-Some darts land inside the circle and some land outside it, in the corners. The circle takes up π/4 of the square, about 78.5%, so about 78.5% of the darts should land inside it. Count them, multiply the fraction by 4, and you get π!
+Some darts land inside the circle and some land outside it, in the corners. The circle takes up π/4 of the square, about 78.5%, so about 78.5% of the darts should land inside it. Count them, multiply the fraction by 4, and you get π! Try it yourself in the **Estimating π with darts** simulation on this page.
 
 With 10 darts the answer is rough. With 1,000 it is close. With a million it is very good. A computer can "throw" a million darts in less than a second, and that is the whole trick: **many random tries + counting = an answer**.
 

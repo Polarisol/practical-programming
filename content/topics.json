@@ -376,7 +376,23 @@
           "url": "https://xxxxxxx"
         }
       ],
-      "material": ["topics/monte_carlo_intro.md"]
+      "material": ["topics/monte_carlo_intro.md"],
+      "simulations": [
+        {
+          "title": "Estimating π with darts",
+          "title_he": "הערכת π בעזרת חצים",
+          "type": "mc-pi",
+          "description": "Throw random darts at a square with a circle inside it. Count how many land in the circle, and π appears. Throw one dart at a time to see exactly how each one moves the answer, or 100,000 at once.",
+          "description_he": "זרקו חצים אקראיים על ריבוע שבתוכו עיגול. ספרו כמה מהם נחתו בעיגול, ו־π מופיע. זרקו חץ אחד בכל פעם כדי לראות בדיוק איך כל חץ מזיז את התשובה, או 100,000 בבת אחת."
+        },
+        {
+          "title": "The area of any shape",
+          "title_he": "השטח של כל צורה",
+          "type": "mc-area",
+          "description": "Monte Carlo solves problems that have no formula. Pick a shape or draw your own, then throw random darts to measure its area.",
+          "description_he": "מונטה קרלו פותר בעיות שאין להן נוסחה. בחרו צורה או ציירו אחת בעצמכם, וזרקו חצים אקראיים כדי למדוד את השטח שלה."
+        }
+      ]
     },
     
     {
