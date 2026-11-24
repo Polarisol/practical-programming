@@ -232,8 +232,8 @@
     'Graph of the estimate as more darts are thrown': 'גרף של ההערכה ככל שנזרקים יותר חצים',
     'The estimate after each dart. Each step to the right is 10 times more darts; the dashed line is the real value.':
       'ההערכה אחרי כל חץ. כל צעד ימינה הוא פי 10 יותר חצים; הקו המקווקו הוא הערך האמיתי.',
-    'Notice: 10 times more darts makes the error only about 3 times smaller (√10 ≈ 3.16). That is why Monte Carlo needs so many tries, and why it needs a computer.':
-      'שימו לב: פי 10 יותר חצים מקטינים את הטעות רק בערך פי 3 (⁦√10 ≈ 3.16⁩). לכן מונטה קרלו צריך כל כך הרבה ניסיונות, ולכן הוא צריך מחשב.',
+    'Notice: 10 times more darts makes the error only about 3 times smaller (√10 ≈ 3.16). That is why the estimate seems to get stuck after 100,000 darts, usually about 0.005 away from π. It is not a flaw in the random numbers: the error keeps shrinking, just very slowly, and each extra correct digit costs about 100 times more darts. That is why Monte Carlo needs so many tries, and why it needs a computer.':
+      'שימו לב: פי 10 יותר חצים מקטינים את הטעות רק בערך פי 3 (⁦√10 ≈ 3.16⁩). לכן נראה שההערכה ״נתקעת״ אחרי 100,000 חצים, בדרך כלל במרחק של בערך 0.005 מ־π. זו לא בעיה במספרים האקראיים: הטעות ממשיכה לקטון, רק מאוד לאט, וכל ספרה נכונה נוספת עולה בערך פי 100 יותר חצים. לכן מונטה קרלו צריך כל כך הרבה ניסיונות, ולכן הוא צריך מחשב.',
     'The same idea in Python': 'אותו רעיון ב־Python',
     'No darts yet': 'עדיין אין חצים',
     'Throw a dart to start.': 'זרקו חץ כדי להתחיל.',

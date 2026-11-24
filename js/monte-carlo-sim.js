@@ -117,7 +117,7 @@
             el('figcaption', { class: 'muted', text: t('The estimate after each dart. Each step to the right is 10 times more darts; the dashed line is the real value.') })),
         ),
       ),
-      el('p', { class: 'muted mc-note', text: t('Notice: 10 times more darts makes the error only about 3 times smaller (√10 ≈ 3.16). That is why Monte Carlo needs so many tries, and why it needs a computer.') }),
+      el('p', { class: 'muted mc-note', text: t('Notice: 10 times more darts makes the error only about 3 times smaller (√10 ≈ 3.16). That is why the estimate seems to get stuck after 100,000 darts, usually about 0.005 away from π. It is not a flaw in the random numbers: the error keeps shrinking, just very slowly, and each extra correct digit costs about 100 times more darts. That is why Monte Carlo needs so many tries, and why it needs a computer.') }),
       spec.code ? el('details', { class: 'mc-code' },
         el('summary', { text: t('The same idea in Python') }),
         el('pre', { dir: 'ltr' }, el('code', { text: spec.code }))) : null,
