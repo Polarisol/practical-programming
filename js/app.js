@@ -1656,11 +1656,8 @@
     document.title = `${t('Lessons')} · ${siteTitle}`;
     const rows = lessons.map((lesson, i) => {
       const n = i + 1;
-      const items = lessonItems(lesson, topics);
-      const units = [...new Set(items.map((item) => pick(item.topic, 'title') || item.topic.id))];
-      const sub = [plural(items.length, '{n} item', '{n} items'), units.join(', ')].join(' · ');
       return el('a', { class: 'line', 'data-type': 'lesson', href: topicHref(lessonId(n)), 'data-route': lessonId(n) },
-        ...lineParts('lesson', lessonTitle(lesson, n), sub, t('→')));
+        ...lineParts('lesson', lessonTitle(lesson, n), null, t('→')));
     });
     main.replaceChildren(
       pageHead(LESSONS_ICON, t('Lessons'), t('The material of each lesson, gathered from the units.')),
