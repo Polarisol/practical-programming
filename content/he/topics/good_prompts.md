@@ -231,21 +231,23 @@ def draw_graph(self):
 
 אזור הגרף עדיין לא נראה כל כך טוב, כי הגרף לא מנצל נכון את המקום שמסביבו. בנוסף, אנחנו רוצים להוסיף אפשרות לזום ולשמירת הגרף כתמונה. נכתוב לזה פרומפט המשך.
 
-> Make the graph occupy the entire width of the window while keeping it centered, and go up until it is almost at the "Load Data" button. Let the user zoom in and out of the graph at any time with the mouse wheel, around the mouse position. Under the graph, add two buttons in a row: "Reset Zoom" named `reset_zoom_button`, connected to a method called `reset_zoom` that shows the whole graph again, and "Save Graph" named `save_graph_button`, connected to a method called `save_graph` that opens a save dialog and saves the graph as an image. Style them to match the rest of the app using `style.qss`.
+> Make the graph occupy the entire width of the window while keeping it centered, and go up until it is almost at the "Load Data" button. Let the user zoom in at any time by dragging a rectangle over the graph: use the zoom of matplotlib's toolbar, but don't show the toolbar. Under the graph, add two buttons in a row: "Reset Zoom" named `reset_zoom_button`, which shows the whole graph again, and "Save Graph" named `save_graph_button`, which saves the graph as an image. Use the toolbar's functions for both. Style them to match the rest of the app using `style.qss`.
 
-(״תגרום לגרף לתפוס את כל רוחב החלון ועדיין להישאר במרכז, ותעלה אותו עד שהוא כמעט מגיע לכפתור ״Load Data״. תאפשר למשתמש לעשות זום פנימה והחוצה בכל רגע בעזרת גלגלת העכבר, סביב המקום של העכבר. מתחת לגרף, תוסיף שני כפתורים בשורה: ״Reset Zoom״ בשם `reset_zoom_button`, שמחובר למתודה בשם `reset_zoom` שמציגה שוב את כל הגרף, ו-״Save Graph״ בשם `save_graph_button`, שמחובר למתודה בשם `save_graph` שפותחת חלון שמירה ושומרת את הגרף כתמונה. תעצב אותם כך שיתאימו לשאר האפליקציה בעזרת `style.qss`.״)
+(״תגרום לגרף לתפוס את כל רוחב החלון ועדיין להישאר במרכז, ותעלה אותו עד שהוא כמעט מגיע לכפתור ״Load Data״. תאפשר למשתמש לעשות זום בכל רגע על ידי סימון מלבן על הגרף: תשתמש בזום של סרגל הכלים (toolbar) של matplotlib, אבל אל תציג את סרגל הכלים. מתחת לגרף, תוסיף שני כפתורים בשורה: ״Reset Zoom״ בשם `reset_zoom_button`, שמציג שוב את כל הגרף, ו-״Save Graph״ בשם `save_graph_button`, ששומר את הגרף כתמונה. תשתמש בפונקציות של סרגל הכלים בשביל שניהם. תעצב אותם כך שיתאימו לשאר האפליקציה בעזרת `style.qss`.״)
 
 ![האפליקציה לפני פרומפט הזום והשמירה, ואחריו](content/images/prompt_zoom_save_before_after.png)
 
-ב-`__init__`, ה-AI מחבר את גלגלת העכבר למתודה חדשה, ומוסיף את שני הכפתורים בשורה מתחת לגרף (הוא גם מוסיף את `QHBoxLayout` ל-imports):
+ב-`__init__`, ה-AI יוצר את סרגל הכלים של matplotlib אבל מסתיר אותו, מפעיל את הזום שלו, ומחבר את שני הכפתורים החדשים ישירות לפונקציות של סרגל הכלים. הוא גם מוסיף את `NavigationToolbar2QT` ואת `QHBoxLayout` ל-imports:
 
 ```python
-        self.canvas.mpl_connect("scroll_event", self.zoom_graph)
+        self.toolbar = NavigationToolbar2QT(self.canvas, self)
+        self.toolbar.hide()    # we only use its functions, not its buttons
+        self.toolbar.zoom()    # zoom mode is always on
 
         self.reset_zoom_button = QPushButton("Reset Zoom")
-        self.reset_zoom_button.clicked.connect(self.reset_zoom)
+        self.reset_zoom_button.clicked.connect(self.toolbar.home)
         self.save_graph_button = QPushButton("Save Graph")
-        self.save_graph_button.clicked.connect(self.save_graph)
+        self.save_graph_button.clicked.connect(self.toolbar.save_figure)
         buttons = QHBoxLayout()
         buttons.addWidget(self.reset_zoom_button)
         buttons.addWidget(self.save_graph_button)
@@ -261,32 +263,13 @@ def draw_graph(self):
     self.figure.subplots_adjust(right=1 - left)    # the same space on the right as on the left
 ```
 
-ועוד שלוש מתודות חדשות:
+אין מתודות חדשות. סרגל הכלים כבר יודע לעשות זום, לחזור לתצוגה המלאה (`home`) ולשמור את הגרף (`save_figure`), אז אנחנו משתמשים בפונקציות שלו בלי להציג אותו.
 
-```python
-    def zoom_graph(self, event):
-        if event.inaxes is None:    # the mouse is not over the graph
-            return
-        factor = 0.8 if event.button == "up" else 1.25
-        x_min, x_max = self.ax.get_xlim()
-        y_min, y_max = self.ax.get_ylim()
-        self.ax.set_xlim(event.xdata - (event.xdata - x_min) * factor,
-                         event.xdata + (x_max - event.xdata) * factor)
-        self.ax.set_ylim(event.ydata - (event.ydata - y_min) * factor,
-                         event.ydata + (y_max - event.ydata) * factor)
-        self.canvas.draw()
+איך משתמשים:
 
-    def reset_zoom(self):
-        self.ax.autoscale()
-        self.canvas.draw()
-
-    def save_graph(self):
-        filename, _ = QFileDialog.getSaveFileName(self, "Save graph", "graph.png",
-                                                  "Images (*.png *.jpg *.pdf *.svg)")
-        if filename:
-            self.figure.savefig(filename)
-```
-
-קראו את `zoom_graph` בעיון, זה החלק היחיד שיש בו קצת מתמטיקה. גלגול למעלה מקטין את הטווח שרואים ל-80%, וגלגול למטה מגדיל אותו ב-25%. הנקודה שמתחת לעכבר נשארת במקום, כי הגבולות החדשים נמדדים ממנה. רוצים זום מהיר יותר? שנו את `0.8` ואת `1.25`.
+- **זום פנימה:** מסמנים מלבן על החלק של הגרף שרוצים לראות בגדול.
+- **זום החוצה:** מסמנים מלבן עם הכפתור הימני של העכבר.
+- **Reset Zoom:** חזרה לגרף כולו.
+- **Save Graph:** פותח חלון שמירה, ושומר את הגרף כקובץ PNG, JPG, PDF או SVG.
 
 הכפתורים החדשים כבר נראים כמו ״Load data״, כי הכללים של `QPushButton` ב-`style.qss` חלים על כל כפתור. לא היה צריך לשנות שם כלום.

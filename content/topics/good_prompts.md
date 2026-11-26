@@ -208,19 +208,21 @@ Now read the code. Some things are very easy to do once you know how. You can no
 
 The graph area still doesn't look that good as it does not occupy the space around it properly. Also we want to add an option for zooming and saving the graph as an image. We'll write a follow-up prompt for that.
 
-> Make the graph occupy the entire width of the window while keeping it centered, and go up until it is almost at the "Load Data" button. Let the user zoom in and out of the graph at any time with the mouse wheel, around the mouse position. Under the graph, add two buttons in a row: "Reset Zoom" named `reset_zoom_button`, connected to a method called `reset_zoom` that shows the whole graph again, and "Save Graph" named `save_graph_button`, connected to a method called `save_graph` that opens a save dialog and saves the graph as an image. Style them to match the rest of the app using `style.qss`.
+> Make the graph occupy the entire width of the window while keeping it centered, and go up until it is almost at the "Load Data" button. Let the user zoom in at any time by dragging a rectangle over the graph: use the zoom of matplotlib's toolbar, but don't show the toolbar. Under the graph, add two buttons in a row: "Reset Zoom" named `reset_zoom_button`, which shows the whole graph again, and "Save Graph" named `save_graph_button`, which saves the graph as an image. Use the toolbar's functions for both. Style them to match the rest of the app using `style.qss`.
 
 ![The app before the zoom and save prompt, and after it](content/images/prompt_zoom_save_before_after.png)
 
-In `__init__`, the AI connects the mouse wheel to a new method, and adds the two buttons in a row under the graph (it also adds `QHBoxLayout` to the imports):
+In `__init__`, the AI creates matplotlib's toolbar but hides it, turns its zoom on, and connects the two new buttons straight to the toolbar's functions. It also adds `NavigationToolbar2QT` and `QHBoxLayout` to the imports:
 
 ```python
-        self.canvas.mpl_connect("scroll_event", self.zoom_graph)
+        self.toolbar = NavigationToolbar2QT(self.canvas, self)
+        self.toolbar.hide()    # we only use its functions, not its buttons
+        self.toolbar.zoom()    # zoom mode is always on
 
         self.reset_zoom_button = QPushButton("Reset Zoom")
-        self.reset_zoom_button.clicked.connect(self.reset_zoom)
+        self.reset_zoom_button.clicked.connect(self.toolbar.home)
         self.save_graph_button = QPushButton("Save Graph")
-        self.save_graph_button.clicked.connect(self.save_graph)
+        self.save_graph_button.clicked.connect(self.toolbar.save_figure)
         buttons = QHBoxLayout()
         buttons.addWidget(self.reset_zoom_button)
         buttons.addWidget(self.save_graph_button)
@@ -236,32 +238,13 @@ In `draw_graph`, the line with the fixed margins is replaced by three lines that
     self.figure.subplots_adjust(right=1 - left)    # the same space on the right as on the left
 ```
 
-And three new methods:
+There are no new methods. The toolbar already knows how to zoom, how to go back to the full view (`home`) and how to save the graph (`save_figure`), so we use its functions without showing it.
 
-```python
-    def zoom_graph(self, event):
-        if event.inaxes is None:    # the mouse is not over the graph
-            return
-        factor = 0.8 if event.button == "up" else 1.25
-        x_min, x_max = self.ax.get_xlim()
-        y_min, y_max = self.ax.get_ylim()
-        self.ax.set_xlim(event.xdata - (event.xdata - x_min) * factor,
-                         event.xdata + (x_max - event.xdata) * factor)
-        self.ax.set_ylim(event.ydata - (event.ydata - y_min) * factor,
-                         event.ydata + (y_max - event.ydata) * factor)
-        self.canvas.draw()
+How to use it:
 
-    def reset_zoom(self):
-        self.ax.autoscale()
-        self.canvas.draw()
-
-    def save_graph(self):
-        filename, _ = QFileDialog.getSaveFileName(self, "Save graph", "graph.png",
-                                                  "Images (*.png *.jpg *.pdf *.svg)")
-        if filename:
-            self.figure.savefig(filename)
-```
-
-Read `zoom_graph` carefully, it is the only part with some math. Rolling the wheel up shrinks the visible range to 80%, and rolling it down grows it by 25%. The point under the mouse stays in place, because the new limits are measured from it. Want a faster zoom? Change `0.8` and `1.25`.
+- **Zoom in:** drag a rectangle over the part of the graph you want to see bigger.
+- **Zoom out:** drag a rectangle with the right mouse button.
+- **Reset Zoom:** back to the whole graph.
+- **Save Graph:** opens a save window, and saves the graph as a PNG, JPG, PDF or SVG file.
 
 The new buttons already look like "Load data", because the `QPushButton` rules in `style.qss` apply to every button. Nothing needed to change there.
