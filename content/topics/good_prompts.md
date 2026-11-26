@@ -175,7 +175,28 @@ If you already know what you want, say it. Every detail you give is a decision t
 
 ![The starter window before the design prompt, and after it with style.qss](content/images/prompt_design_before_after.png)
 
-The Python code is the same in both windows. Only `style.qss` was added and loaded.
+The Python code is the same in both windows. Only `style.qss` was added and loaded. This is the file:
+
+```css
+QMainWindow {
+    background-color: #eef1f5;
+}
+QWidget {
+    font-size: 12pt;
+}
+QPushButton {
+    background-color: #1e3a8a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    margin: 6px 4px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #3b82f6;
+}
+```
 
 Other things you can ask for: a dark theme, a specific font, an accent color for one important button (give it a name with `setObjectName` and style it with `#name`), or a border around the graph area.
 

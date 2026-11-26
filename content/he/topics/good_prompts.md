@@ -197,7 +197,28 @@ if __name__ == "__main__":
 
 ![חלון השלד לפני פרומפט העיצוב, ואחריו עם style.qss](content/images/prompt_design_before_after_he.png)
 
-קוד ה-Python זהה בשני החלונות. רק הקובץ `style.qss` נוסף ונטען.
+קוד ה-Python זהה בשני החלונות. רק הקובץ `style.qss` נוסף ונטען. זה הקובץ:
+
+```css
+QMainWindow {
+    background-color: #eef1f5;
+}
+QWidget {
+    font-size: 12pt;
+}
+QPushButton {
+    background-color: #1e3a8a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    margin: 6px 4px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #3b82f6;
+}
+```
 
 עוד דברים שאפשר לבקש: ערכת נושא כהה, גופן מסוים, צבע בולט לכפתור חשוב אחד (תנו לו שם עם `setObjectName` ועצבו אותו עם `#name`), או מסגרת סביב אזור הגרף.
 
