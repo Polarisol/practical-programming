@@ -205,15 +205,17 @@ Now read the code. Some things are very easy to do once you know how. You can no
 
 ### Zoom and save the graph
 
-The graph area still doesn't look that good as it does not occupy the space around it properly. Also we want to add an option for zooming and saving the graph as an image. we'll write a follow-up prompt for that.
+The graph area still doesn't look that good as it does not occupy the space around it properly. Also we want to add an option for zooming and saving the graph as an image. We'll write a follow-up prompt for that.
 
-> Make the graph occupy the entire width of the window but ensure that the y axis title is fully visible, and go up until it almost at the "Load Data" button. Add an option for zooming and for saving the graph as an image, with only two buttons and place them so they line up with the main title, on the right side of the graph. Style it to match the rest of the app using `style.qss`. Don't change `draw_graph`.
+> Make the graph occupy the entire width of the window but ensure that the y axis title is fully visible, and go up until it is almost at the "Load Data" button. Add an option for zooming and for saving the graph as an image, with only two buttons and place them so they line up with the main title, on the right side of the graph. Style it to match the rest of the app using `style.qss`. Don't change `draw_graph`.
 
 ![The app before the toolbar prompt, and after it](content/images/prompt_toolbar_before_after.png)
 
-The Python change is small: a tiny class above `MainWindow` that keeps only two of the toolbar's buttons, and two lines in `__init__` that create the toolbar and put it in the layout.
+The Python change is small. A tiny class above `MainWindow` keeps only two of the toolbar's buttons:
 
 ```python
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QGridLayout
 from matplotlib.backends.backend_qtagg import NavigationToolbar2QT
 
 
@@ -222,10 +224,22 @@ class GraphToolbar(NavigationToolbar2QT):
     toolitems = [t for t in NavigationToolbar2QT.toolitems if t[0] in ("Zoom", "Save")]
 ```
 
+And a few lines in `__init__` change. The figure now arranges itself to fill its area, and the toolbar sits on top of the graph, in its top right corner:
+
+```python
+        self.figure = Figure(layout="constrained")    # was: Figure()
+```
+
 ```python
         self.toolbar = GraphToolbar(self.canvas, self, coordinates=False)
-        layout.addWidget(self.toolbar)    # just before layout.addWidget(self.canvas)
+        graph_area = QGridLayout()
+        graph_area.addWidget(self.canvas, 0, 0)
+        graph_area.addWidget(self.toolbar, 0, 0, Qt.AlignTop | Qt.AlignRight)
+        layout.addLayout(graph_area)    # was: layout.addWidget(self.canvas)
+        layout.setSpacing(0)            # less space between the button and the graph
 ```
+
+`layout="constrained"` tells matplotlib to make the graph as big as it can, while keeping room for the title and the axis names. Putting the canvas and the toolbar in the same cell of a `QGridLayout` places one on top of the other.
 
 What the two buttons do:
 

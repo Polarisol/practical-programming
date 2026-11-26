@@ -33,22 +33,7 @@
 >
 > הוסף גם אזור בגודל 300 על 300 פיקסלים לפחות עם גרף matplotlib. צור מתודה בשם `draw_graph` שמציירת משהו פשוט על הגרף. אני אשנה אותה אחר כך.
 
-הפרומפט הזה לא מתאר אפליקציה גמורה. הוא מתאר **שלד**, שבנוי כמו ש*אתם* הייתם בונים אותו, עם כלים ש*אתם* כבר מכירים.
-
-## עוברים על הפרומפט
-
-כל משפט בפרומפט מקבל החלטה אחת, כדי שה-AI לא יצטרך לנחש.
-
-| מה הפרומפט אומר | מה זה נותן לכם |
-|---|---|
-| ״אפליקציית PySide6״ | ספרייה שלמדתם בכיתה. אתם יכולים לקרוא כל שורה. |
-| ״בקובץ חדש בשם `app.py`״ | אתם יודעים בדיוק איפה הקוד נמצא, והוא לא נוגע בקבצים האחרים שלכם. |
-| ״חלון ראשי, כתוב כמחלקה״ | המבנה שאנחנו משתמשים בו בקורס: ווידג'טים הם תכונות (`self.something`), ופעולות הן מתודות. |
-| ״קרא לכפתור `file_load_button`״ | כשתרצו לשנות את הכפתור, תחפשו את השם הזה. |
-| ״חבר אותו למתודה בשם `file_load_method`״ | אתם יודעים איפה נמצא הקוד שרץ בלחיצה. |
-| ״שמור את הבחירה ב-`self.filename`״ | כל מתודה אחרת במחלקה יכולה להשתמש בשם הקובץ אחר כך. |
-| ״300 על 300 פיקסלים לפחות עם גרף matplotlib״ | ספרייה שאתם מכירים, וגודל שאתם בחרתם. |
-| ״מתודה בשם `draw_graph`... אני אשנה אותה אחר כך״ | מקום ברור וריק לקוד הגרפים שלכם. ״אני אשנה אחר כך״ אומר ל-AI לשמור על פשטות. |
+הפרומפט הזה לא מתאר אפליקציה גמורה. הוא מתאר **שלד**, שבנוי כמו ש*אתם* הייתם בונים אותו, עם כלים ש*אתם* כבר מכירים. כל משפט בפרומפט מקבל החלטה, כדי שה-AI לא יצטרך לנחש.
 
 ## מה מקבלים בחזרה
 
@@ -125,20 +110,12 @@ if __name__ == "__main__":
 
 שימו לב שאפשר לכתוב פרומפט כזה רק אם כבר מכירים את הכלים. בגלל זה אנחנו לומדים קודם PySide6, matplotlib ומחלקות, ומשתמשים ב-AI כדי לחסוך הקלדה, לא מחשבה.
 
-## ה-AI בונה את הממשק, אתם כותבים את הלוגיקה
+## אחרי שה-AI עונה
 
-השתמשו בפרומפטים כאלה **לממשק המשתמש בלבד**: החלון, הווידג'טים, הסידור שלהם והחיבורים ביניהם. החלק הזה הוא בעיקר הקלדה, וה-AI מהיר בה.
-
-**הלוגיקה** שלכם: חישובים, קריאה וכתיבה של קבצים, עיבוד נתונים, הפיזיקה של סימולציה. בפרומפט התחלתי טוב, כל חלק של לוגיקה הופך ל**מתודה ריקה עם שם שאתם בחרתם**, שמחכה לקוד שלכם. זה בדיוק מה ש״אני אשנה אותה אחר כך״ עושה בפרומפט שלמעלה.
-
-## מה לכתוב בפרומפט התחלתי
-
-1. **הטכנולוגיות:** ספריית הממשק הגרפי וספריית הגרפים (PySide6, matplotlib).
-2. **הקובץ:** איזה קובץ ליצור.
-3. **המבנה:** חלון כמחלקה, איזה layout, מה נמצא איפה.
-4. **השמות:** של הווידג'טים, המתודות והמשתנים החשובים.
-5. **החיבורים:** איזה כפתור או signal קורא לאיזו מתודה.
-6. **המתודות הריקות:** כתבו אילו מתודות להשאיר ריקות (או עם `print`), כי את הלוגיקה תכתבו בעצמכם.
+1. **קראו את כל הקוד** לפני שאתם מריצים אותו. אם שורה לא ברורה, בקשו מה-AI להסביר אותה.
+2. **בדקו שהוא עשה מה שביקשתם:** שם הקובץ, השמות, המבנה. אם הוא הוסיף דברים שלא ביקשתם, בקשו ממנו להוריד אותם.
+3. **הריצו** וודאו שהשלד עובד.
+4. **בצעו commit** ב-git. עכשיו יש לכם נקודת התחלה נקייה לחזור אליה, ואפשר להתחיל להוסיף את הקוד שלכם.
 
 ## עוד דוגמאות לפרומפטים
 
@@ -167,13 +144,6 @@ if __name__ == "__main__":
 > Create a PySide6 app in a new file called `animation.py`, with a main window written as a class. Add a matplotlib graph of at least 400 by 400 pixels, and two buttons in a row under it: "Start" named `start_button` and "Stop" named `stop_button`. Create a `QTimer` named `timer` that calls a method called `step` every 50 milliseconds. `start_button` starts the timer and `stop_button` stops it. Leave `step` empty, I will write the movement myself.
 
 גרף, כפתורי ״Start״ ו-״Stop״, וטיימר שקורא ל-`step` כל 50 מילישניות. `step` נשארת ריקה, ואת התנועה אתם כותבים.
-
-## אחרי שה-AI עונה
-
-1. **קראו את כל הקוד** לפני שאתם מריצים אותו. אם שורה לא ברורה, בקשו מה-AI להסביר אותה.
-2. **בדקו שהוא עשה מה שביקשתם:** שם הקובץ, השמות, המבנה. אם הוא הוסיף דברים שלא ביקשתם, בקשו ממנו להוריד אותם.
-3. **הריצו** וודאו שהשלד עובד.
-4. **בצעו commit** ב-git. עכשיו יש לכם נקודת התחלה נקייה לחזור אליה, ואפשר להתחיל להוסיף את הקוד שלכם.
 
 ## השלב הבא: פרומפט לעיצוב
 
@@ -220,19 +190,19 @@ QPushButton:hover {
 }
 ```
 
-עכשיו תורכם: **פתחו את `style.qss` ושחקו איתו.** שנו צבע, עגלו יותר את הפינות, הגדילו את הגופן, הריצו שוב את האפליקציה וראו מה השתנה. הקובץ קצר וקל לקריאה, אז לא צריך עוד פרומפט על כל שינוי קטן. ה-AI נתן לכם נקודת התחלה, והמראה הסופי צריך להיות שלכם. טיפ: חפשו ״hex color picker״ כדי למצוא את הקוד של כל צבע שאתם אוהבים.
+עכשיו תורכם: **פתחו את `style.qss` ושחקו איתו.** שנו צבע, עגלו יותר את הפינות, הגדילו את הגופן, הריצו שוב את האפליקציה וראו מה השתנה. הקובץ קצר וקל לקריאה, אז לא צריך עוד פרומפט על כל שינוי קטן. ה-AI נתן לכם נקודת התחלה, והמראה הסופי צריך להיות שלכם.
 
-עוד דברים שאפשר לבקש: ערכת נושא כהה, גופן מסוים, צבע בולט לכפתור חשוב אחד (תנו לו שם עם `setObjectName` ועצבו אותו עם `#name`), או מסגרת סביב אזור הגרף.
+עוד דברים שאפשר לבקש: ערכת נושא כהה, גופן מסוים, צבע בולט לכפתור חשוב אחד, או מסגרת סביב אזור הגרף.
 
 ״אל תשנה שום דבר אחר בקוד ה-Python״ זה משפט חשוב. בדקו ב-git שה-AI עמד בזה: השינויים צריכים להיות הקובץ החדש `style.qss`, השורה או שתיים שטוענות אותו, ואולי כמה קריאות ל-`setObjectName`. אם התוצאה לא מוצאת חן בעיניכם, בטלו את השינויים ונסו פרומפט אחר. אם היא מוצאת חן, בצעו commit.
 
 ### לגרום לגרף להיראות טוב
 
-קובץ ה-QSS מעצב את החלון, אבל לא את הגרף: את הגרף matplotlib מצייר בעצמו. לכן הגרף מקבל פרומפט משלו. כאן לא צריך את המילים הטכניות. תארו במילים פשוטות מה אתם רוצים לראות:
+קובץ ה-QSS מעצב את החלון, אבל לא את הגרף: את הגרף matplotlib מצייר בעצמו. לכן הגרף מקבל פרומפט משלו. כאן לא צריך את המילים הטכניות. תארו במילים פשוטות מה אתם רוצים לראות. למשל:
 
-> Make the graph in `draw_graph` look nicer. Remove the lines on the top and right sides of the graph, add a title and a name for each axis, add a light grid in the background, make the line thicker and dark blue with a dot on every point, and make the background of the graph the same light gray as the window. Only change `draw_graph`.
+> Make the graph in `draw_graph` look nicer. Remove the lines on the top and right sides of the graph, add a title and a name for each axis, make the line thicker and dark blue with a dot on every point, and make the background of the graph the same light gray as the window. Keep the grid off. Only change `draw_graph`.
 
-(״תגרום לגרף ב-`draw_graph` להיראות יותר טוב. תוריד את הקווים בצד העליון והימני של הגרף, תוסיף כותרת ושם לכל ציר, תוסיף רשת בהירה ברקע, תעשה את הקו עבה יותר וכחול כהה עם נקודה על כל נקודת נתונים, ותעשה את הרקע של הגרף באותו אפור בהיר כמו החלון. תשנה רק את `draw_graph`.״)
+(״תגרום לגרף ב-`draw_graph` להיראות יותר טוב. תוריד את הקווים בצד העליון והימני של הגרף, תוסיף כותרת ושם לכל ציר, תעשה את הקו עבה יותר וכחול כהה עם נקודה על כל נקודת נתונים, ותעשה את הרקע של הגרף באותו אפור בהיר כמו החלון. תשאיר את הרשת כבויה. תשנה רק את `draw_graph`.״)
 
 ![החלון המעוצב לפני פרומפט הגרף, ואחריו](content/images/prompt_graph_before_after_he.png)
 
@@ -245,7 +215,6 @@ def draw_graph(self):
     self.ax.set_facecolor("#eef1f5")
     self.ax.spines["top"].set_visible(False)
     self.ax.spines["right"].set_visible(False)
-    self.ax.grid(True, color="#d0d5dd")
     self.ax.set_axisbelow(True)
     self.ax.plot([0, 1, 2, 3, 4], [0, 1, 4, 9, 16],
                  color="#1e3a8a", linewidth=2.5, marker="o")
@@ -255,21 +224,23 @@ def draw_graph(self):
     self.canvas.draw()
 ```
 
-עכשיו קראו את הקוד. ״הקווים בצד העליון והימני״ נקראים ב-matplotlib **spines**, ועכשיו למדתם איך להסתיר אותם. בפעם הבאה תוכלו לעשות את זה לבד, בלי פרומפט. כשתחליפו את נתוני הדוגמה בנתונים שלכם, השאירו את שורות העיצוב ושנו רק את שורת ה-`plot` ואת הכותרות.
+עכשיו קראו את הקוד. יש דברים שקל מאוד לעשות ברגע שיודעים איך. עכשיו אתם יכולים לשנות את הערכים בעצמכם כדי לקבל את המראה שאתם רוצים.
 
 ### זום ושמירה של הגרף
 
-עכשיו נאפשר למשתמש לעשות זום ולשמור את הגרף כתמונה. ל-matplotlib כבר יש סרגל כלים (toolbar) שעושה את זה, אז בקשו אותו בשמו, ובקשו שיעוצב כמו שאר האפליקציה:
+אזור הגרף עדיין לא נראה כל כך טוב, כי הגרף לא מנצל נכון את המקום שמסביבו. בנוסף, אנחנו רוצים להוסיף אפשרות לזום ולשמירת הגרף כתמונה. נכתוב לזה פרומפט המשך.
 
-> Add a small toolbar above the graph with only two buttons: one to zoom in and one to save the graph as an image. Use matplotlib's ready-made toolbar, but keep only those two buttons and hide the mouse coordinates. Style it to match the rest of the app by adding rules to `style.qss`: the same background as the window, white rounded buttons, and a light blue background when the mouse is over a button or when a button is on. Don't change `draw_graph`.
+> Make the graph occupy the entire width of the window but ensure that the y axis title is fully visible, and go up until it is almost at the "Load Data" button. Add an option for zooming and for saving the graph as an image, with only two buttons and place them so they line up with the main title, on the right side of the graph. Style it to match the rest of the app using `style.qss`. Don't change `draw_graph`.
 
-(״הוסף סרגל כלים קטן מעל הגרף עם שני כפתורים בלבד: אחד לזום ואחד לשמירת הגרף כתמונה. השתמש בסרגל הכלים המוכן של matplotlib, אבל השאר רק את שני הכפתורים האלה והסתר את הקואורדינטות של העכבר. עצב אותו כך שיתאים לשאר האפליקציה בעזרת כללים חדשים ב-`style.qss`: אותו רקע כמו החלון, כפתורים לבנים ומעוגלים, ורקע תכלת כשהעכבר מעל כפתור או כשכפתור פעיל. אל תשנה את `draw_graph`.״)
+(״תגרום לגרף לתפוס את כל רוחב החלון, אבל תוודא שהשם של ציר ה-y נראה במלואו, ותעלה אותו עד שהוא כמעט מגיע לכפתור ״Load Data״. תוסיף אפשרות לזום ולשמירת הגרף כתמונה, עם שני כפתורים בלבד, ותמקם אותם כך שיהיו בשורה אחת עם הכותרת הראשית, בצד הימני של הגרף. תעצב אותם כך שיתאימו לשאר האפליקציה בעזרת `style.qss`. אל תשנה את `draw_graph`.״)
 
-![האפליקציה לפני פרומפט סרגל הכלים, ואחריו](content/images/prompt_toolbar_before_after_he.png)
+![האפליקציה לפני הפרומפט, ואחריו](content/images/prompt_toolbar_before_after_he.png)
 
-השינוי ב-Python קטן: מחלקה קטנה מעל `MainWindow` שמשאירה רק שניים מהכפתורים של סרגל הכלים, ושתי שורות ב-`__init__` שיוצרות את סרגל הכלים ומכניסות אותו ל-layout:
+השינוי ב-Python קטן. מחלקה קטנה מעל `MainWindow` משאירה רק שניים מהכפתורים של סרגל הכלים (toolbar):
 
 ```python
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QGridLayout
 from matplotlib.backends.backend_qtagg import NavigationToolbar2QT
 
 
@@ -278,10 +249,22 @@ class GraphToolbar(NavigationToolbar2QT):
     toolitems = [t for t in NavigationToolbar2QT.toolitems if t[0] in ("Zoom", "Save")]
 ```
 
+ובנוסף משתנות כמה שורות ב-`__init__`. הגרף מסדר את עצמו כך שימלא את השטח שלו, וסרגל הכלים יושב מעל הגרף, בפינה הימנית העליונה שלו:
+
+```python
+        self.figure = Figure(layout="constrained")    # was: Figure()
+```
+
 ```python
         self.toolbar = GraphToolbar(self.canvas, self, coordinates=False)
-        layout.addWidget(self.toolbar)    # just before layout.addWidget(self.canvas)
+        graph_area = QGridLayout()
+        graph_area.addWidget(self.canvas, 0, 0)
+        graph_area.addWidget(self.toolbar, 0, 0, Qt.AlignTop | Qt.AlignRight)
+        layout.addLayout(graph_area)    # was: layout.addWidget(self.canvas)
+        layout.setSpacing(0)            # less space between the button and the graph
 ```
+
+`layout="constrained"` אומר ל-matplotlib להגדיל את הגרף כמה שאפשר, ועדיין להשאיר מקום לכותרת ולשמות הצירים. כשמכניסים את ה-canvas ואת סרגל הכלים לאותו תא ב-`QGridLayout`, אחד מהם יושב מעל השני.
 
 מה עושים שני הכפתורים:
 
@@ -289,29 +272,3 @@ class GraphToolbar(NavigationToolbar2QT):
 - **Save** (הדיסקט): שומר את הגרף כקובץ PNG, JPG, PDF או SVG.
 
 לסרגל הכלים של matplotlib יש עוד כפתורים: Home (חזרה לתצוגה המלאה), Back, Forward, Pan (הזזת הגרף) ועוד כמה הגדרות. רוצים גם אחד מהם? הוסיפו את השם שלו לרשימה ב-`GraphToolbar`, למשל `("Home", "Zoom", "Save")`. רוצים לשנות את המראה? שנו את הצבעים ב-`style.qss`, בדיוק כמו קודם.
-
-### פרומפט המשך: לתקן את מה שלא מוצא חן
-
-הסתכלו על התוצאה בעין ביקורתית. אחרי שהוספנו את סרגל הכלים, יש לגרף יותר מדי מקום ריק משמאל ומעליו, והכפתורים ייראו טוב יותר בצד ימין. לא צריך להתחיל מההתחלה, ולא צריך לדעת את המילים הנכונות. פשוט תגידו מה מפריע לכם:
-
-> There is too much empty space between the graph and the left side of the window, and a bit too much above the title. Make the graph fill more of its area. Also, move the zoom and save buttons to the right side, aligned to the right.
-
-(״יש יותר מדי מקום ריק בין הגרף לצד השמאלי של החלון, וקצת יותר מדי מעל הכותרת. תגרום לגרף למלא יותר מהשטח שלו. בנוסף, תעביר את כפתורי הזום והשמירה לצד הימני, מיושרים לימין.״)
-
-![האפליקציה לפני פרומפט ההמשך, ואחריו](content/images/prompt_fix_before_after_he.png)
-
-ה-AI הוסיף שורה אחת ל-`draw_graph`, ושינה את השורה ב-`__init__` שמכניסה את סרגל הכלים ל-layout:
-
-```python
-        self.figure.tight_layout(pad=0.3)    # in draw_graph, just before self.canvas.draw()
-```
-
-```python
-from PySide6.QtCore import Qt
-```
-
-```python
-        layout.addWidget(self.toolbar, alignment=Qt.AlignRight)    # in __init__, instead of layout.addWidget(self.toolbar)
-```
-
-`pad` הוא המרווח מסביב לגרף. נסו בעצמכם ערכים אחרים וראו מה נראה לכם הכי טוב.
