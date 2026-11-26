@@ -223,3 +223,34 @@ QPushButton:hover {
 עוד דברים שאפשר לבקש: ערכת נושא כהה, גופן מסוים, צבע בולט לכפתור חשוב אחד (תנו לו שם עם `setObjectName` ועצבו אותו עם `#name`), או מסגרת סביב אזור הגרף.
 
 ״אל תשנה שום דבר אחר בקוד ה-Python״ זה משפט חשוב. בדקו ב-git שה-AI עמד בזה: השינויים צריכים להיות הקובץ החדש `style.qss`, השורה או שתיים שטוענות אותו, ואולי כמה קריאות ל-`setObjectName`. אם התוצאה לא מוצאת חן בעיניכם, בטלו את השינויים ונסו פרומפט אחר. אם היא מוצאת חן, בצעו commit.
+
+### לגרום לגרף להיראות טוב
+
+קובץ ה-QSS מעצב את החלון, אבל לא את הגרף: את הגרף matplotlib מצייר בעצמו. לכן הגרף מקבל פרומפט משלו. כאן לא צריך את המילים הטכניות. תארו במילים פשוטות מה אתם רוצים לראות:
+
+> Make the graph in `draw_graph` look nicer. Remove the lines on the top and right sides of the graph, add a title and a name for each axis, add a light grid in the background, make the line thicker and dark blue with a dot on every point, and make the background of the graph the same light gray as the window. Only change `draw_graph`.
+
+(״תגרום לגרף ב-`draw_graph` להיראות יותר טוב. תוריד את הקווים בצד העליון והימני של הגרף, תוסיף כותרת ושם לכל ציר, תוסיף רשת בהירה ברקע, תעשה את הקו עבה יותר וכחול כהה עם נקודה על כל נקודת נתונים, ותעשה את הרקע של הגרף באותו אפור בהיר כמו החלון. תשנה רק את `draw_graph`.״)
+
+![החלון המעוצב לפני פרומפט הגרף, ואחריו](content/images/prompt_graph_before_after_he.png)
+
+ה-AI משנה רק את `draw_graph`:
+
+```python
+def draw_graph(self):
+    self.ax.clear()
+    self.figure.set_facecolor("#eef1f5")
+    self.ax.set_facecolor("#eef1f5")
+    self.ax.spines["top"].set_visible(False)
+    self.ax.spines["right"].set_visible(False)
+    self.ax.grid(True, color="#d0d5dd")
+    self.ax.set_axisbelow(True)
+    self.ax.plot([0, 1, 2, 3, 4], [0, 1, 4, 9, 16],
+                 color="#1e3a8a", linewidth=2.5, marker="o")
+    self.ax.set_title("My data", fontweight="bold")
+    self.ax.set_xlabel("x")
+    self.ax.set_ylabel("y")
+    self.canvas.draw()
+```
+
+עכשיו קראו את הקוד. ״הקווים בצד העליון והימני״ נקראים ב-matplotlib **spines**, ועכשיו למדתם איך להסתיר אותם. בפעם הבאה תוכלו לעשות את זה לבד, בלי פרומפט. כשתחליפו את נתוני הדוגמה בנתונים שלכם, השאירו את שורות העיצוב ושנו רק את שורת ה-`plot` ואת הכותרות.

@@ -201,3 +201,32 @@ QPushButton:hover {
 Other things you can ask for: a dark theme, a specific font, an accent color for one important button (give it a name with `setObjectName` and style it with `#name`), or a border around the graph area.
 
 "Don't change anything else in the Python code" is important. Check with git that the AI kept its word: the changes should be the new `style.qss`, the line or two that load it, and perhaps a few `setObjectName` calls. If you don't like the result, discard the changes and try a different prompt. If you like it, commit it.
+
+### Making the graph look good
+
+The QSS file styles the window, but not the graph: matplotlib draws the graph itself. So the graph gets a prompt of its own. Here you don't need the technical words. Describe what you want to see, in plain language:
+
+> Make the graph in `draw_graph` look nicer. Remove the lines on the top and right sides of the graph, add a title and a name for each axis, add a light grid in the background, make the line thicker and dark blue with a dot on every point, and make the background of the graph the same light gray as the window. Only change `draw_graph`.
+
+![The styled window before the graph prompt, and after it](content/images/prompt_graph_before_after.png)
+
+The AI changes only `draw_graph`:
+
+```python
+def draw_graph(self):
+    self.ax.clear()
+    self.figure.set_facecolor("#eef1f5")
+    self.ax.set_facecolor("#eef1f5")
+    self.ax.spines["top"].set_visible(False)
+    self.ax.spines["right"].set_visible(False)
+    self.ax.grid(True, color="#d0d5dd")
+    self.ax.set_axisbelow(True)
+    self.ax.plot([0, 1, 2, 3, 4], [0, 1, 4, 9, 16],
+                 color="#1e3a8a", linewidth=2.5, marker="o")
+    self.ax.set_title("My data", fontweight="bold")
+    self.ax.set_xlabel("x")
+    self.ax.set_ylabel("y")
+    self.canvas.draw()
+```
+
+Now read the code. "The lines on the top and right" are called **spines** in matplotlib, and you just learned how to hide them. Next time you can do it yourself, without a prompt. When you replace the example data with your own, keep the styling lines and change only the `plot` line and the titles.
