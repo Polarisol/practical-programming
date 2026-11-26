@@ -173,6 +173,10 @@ If you already know what you want, say it. Every detail you give is a decision t
 
 > Design the window in `app.py` in a modern way, using a QSS file called `style.qss`. Load the file once, when the app starts. Use a light gray background, dark blue buttons with white text and rounded corners, a lighter blue when the mouse is over a button, and a 12 pt font. Add some spacing between the widgets. Don't change anything else in the Python code.
 
+![The starter window before the design prompt, and after it with style.qss](content/images/prompt_design_before_after.png)
+
+The Python code is the same in both windows. Only `style.qss` was added and loaded.
+
 Other things you can ask for: a dark theme, a specific font, an accent color for one important button (give it a name with `setObjectName` and style it with `#name`), or a border around the graph area.
 
 "Don't change anything else in the Python code" is important. Check with git that the AI kept its word: the changes should be the new `style.qss`, the line or two that load it, and perhaps a few `setObjectName` calls. If you don't like the result, discard the changes and try a different prompt. If you like it, commit it.
