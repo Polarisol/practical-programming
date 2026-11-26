@@ -232,3 +232,54 @@ def draw_graph(self):
 ```
 
 Now read the code. "The lines on the top and right" are called **spines** in matplotlib, and you just learned how to hide them. Next time you can do it yourself, without a prompt. When you replace the example data with your own, keep the styling lines and change only the `plot` line and the titles.
+
+### Zoom and save the graph
+
+Now let's let the user zoom in and save the graph as a picture. matplotlib already has a toolbar that does this, so ask for it by name, and ask for it to be styled like the rest of the app:
+
+> Add a toolbar above the graph so I can zoom in, move around the graph and save it as an image. Use matplotlib's ready-made toolbar. Style it to match the rest of the app by adding rules to `style.qss`: the same background as the window, white rounded buttons, and a light blue background when the mouse is over a button or when a button is on. Don't change `draw_graph`.
+
+![The app before the toolbar prompt, and after it](content/images/prompt_toolbar_before_after.png)
+
+The Python change is small: one import, and two lines in `__init__` that create the toolbar and put it in the layout:
+
+```python
+from matplotlib.backends.backend_qtagg import NavigationToolbar2QT
+```
+
+```python
+        self.toolbar = NavigationToolbar2QT(self.canvas, self)
+        layout.addWidget(self.toolbar)    # just before layout.addWidget(self.canvas)
+```
+
+The look comes from new rules at the end of `style.qss`:
+
+```css
+QToolBar {
+    background-color: #eef1f5;
+    border: none;
+    spacing: 4px;
+}
+QToolButton {
+    background-color: white;
+    border: 1px solid #d0d5dd;
+    border-radius: 6px;
+    padding: 4px;
+}
+QToolButton:hover {
+    background-color: #dbeafe;
+}
+QToolButton:checked {
+    background-color: #bfdbfe;
+    border-color: #1e3a8a;
+}
+```
+
+What the buttons do, from left to right:
+
+- **Home** goes back to the original view. **Back** and **Forward** move between the views you zoomed to.
+- **Move** (the arrows): drag the graph around. **Zoom** (the magnifying glass): drag a rectangle over the part you want to see bigger.
+- **Settings** and **Edit**: change the margins, the axis limits, the titles and the line style.
+- **Save** (the disk): saves the graph as a PNG, JPG, PDF or SVG file.
+
+The toolbar is ready-made, so you get all of this almost for free. Its look is yours: change the colors in `style.qss` just as you did before.

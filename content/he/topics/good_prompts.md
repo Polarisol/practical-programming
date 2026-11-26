@@ -256,3 +256,56 @@ def draw_graph(self):
 ```
 
 עכשיו קראו את הקוד. ״הקווים בצד העליון והימני״ נקראים ב-matplotlib **spines**, ועכשיו למדתם איך להסתיר אותם. בפעם הבאה תוכלו לעשות את זה לבד, בלי פרומפט. כשתחליפו את נתוני הדוגמה בנתונים שלכם, השאירו את שורות העיצוב ושנו רק את שורת ה-`plot` ואת הכותרות.
+
+### זום ושמירה של הגרף
+
+עכשיו נאפשר למשתמש לעשות זום ולשמור את הגרף כתמונה. ל-matplotlib כבר יש סרגל כלים (toolbar) שעושה את זה, אז בקשו אותו בשמו, ובקשו שיעוצב כמו שאר האפליקציה:
+
+> Add a toolbar above the graph so I can zoom in, move around the graph and save it as an image. Use matplotlib's ready-made toolbar. Style it to match the rest of the app by adding rules to `style.qss`: the same background as the window, white rounded buttons, and a light blue background when the mouse is over a button or when a button is on. Don't change `draw_graph`.
+
+(״הוסף סרגל כלים מעל הגרף כדי שאוכל לעשות זום, להזיז את הגרף ולשמור אותו כתמונה. השתמש בסרגל הכלים המוכן של matplotlib. עצב אותו כך שיתאים לשאר האפליקציה בעזרת כללים חדשים ב-`style.qss`: אותו רקע כמו החלון, כפתורים לבנים ומעוגלים, ורקע תכלת כשהעכבר מעל כפתור או כשכפתור פעיל. אל תשנה את `draw_graph`.״)
+
+![האפליקציה לפני פרומפט סרגל הכלים, ואחריו](content/images/prompt_toolbar_before_after_he.png)
+
+השינוי ב-Python קטן: import אחד, ושתי שורות ב-`__init__` שיוצרות את סרגל הכלים ומכניסות אותו ל-layout:
+
+```python
+from matplotlib.backends.backend_qtagg import NavigationToolbar2QT
+```
+
+```python
+        self.toolbar = NavigationToolbar2QT(self.canvas, self)
+        layout.addWidget(self.toolbar)    # just before layout.addWidget(self.canvas)
+```
+
+המראה מגיע מכללים חדשים בסוף `style.qss`:
+
+```css
+QToolBar {
+    background-color: #eef1f5;
+    border: none;
+    spacing: 4px;
+}
+QToolButton {
+    background-color: white;
+    border: 1px solid #d0d5dd;
+    border-radius: 6px;
+    padding: 4px;
+}
+QToolButton:hover {
+    background-color: #dbeafe;
+}
+QToolButton:checked {
+    background-color: #bfdbfe;
+    border-color: #1e3a8a;
+}
+```
+
+מה עושים הכפתורים, משמאל לימין:
+
+- **Home** (הבית) חוזר לתצוגה המקורית. **Back** ו-**Forward** (החצים) עוברים בין התצוגות שעשיתם אליהן זום.
+- **Move** (החצים לארבעה כיוונים): גוררים את הגרף. **Zoom** (זכוכית המגדלת): מסמנים מלבן על החלק שרוצים לראות בגדול.
+- **Settings** ו-**Edit**: משנים את השוליים, את גבולות הצירים, את הכותרות ואת סגנון הקו.
+- **Save** (הדיסקט): שומר את הגרף כקובץ PNG, JPG, PDF או SVG.
+
+סרגל הכלים מוכן מראש, אז כל זה מגיע כמעט בחינם. המראה שלו בידיים שלכם: שנו את הצבעים ב-`style.qss`, בדיוק כמו קודם.
