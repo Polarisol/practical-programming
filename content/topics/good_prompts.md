@@ -208,7 +208,7 @@ Now read the code. Some things are very easy to do once you know how. You can no
 
 The graph area still doesn't look that good as it does not occupy the space around it properly. Also we want to add an option for zooming and saving the graph as an image. We'll write a follow-up prompt for that.
 
-> Make the graph occupy the entire width of the window while keeping it centered, and go up until it is almost at the "Load Data" button. Let the user zoom in at any time by dragging a rectangle over the graph: use the zoom of matplotlib's toolbar, but don't show the toolbar. Under the graph, add two buttons in a row: "Reset Zoom" named `reset_zoom_button`, which shows the whole graph again, and "Save Graph" named `save_graph_button`, which saves the graph as an image. Use the toolbar's functions for both. Style them to match the rest of the app using `style.qss`.
+> Make the graph occupy the entire width of the window while keeping it centered, and go up until it is almost at the "Load Data" button. Let the user zoom in at any time by dragging a rectangle over the graph: use the zoom of matplotlib's toolbar, but don't show the toolbar. Under the graph, add two buttons in a row: "Reset Zoom" named `reset_zoom_button`, which shows the whole graph again, and "Save Graph" named `save_graph_button`, which saves the graph as an image. Use the toolbar's functions for both. Make these two buttons small and simple: white with dark blue text and a thin border, centered under the graph. Style them using `style.qss`.
 
 ![The app before the zoom and save prompt, and after it](content/images/prompt_zoom_save_before_after.png)
 
@@ -223,9 +223,13 @@ In `__init__`, the AI creates matplotlib's toolbar but hides it, turns its zoom 
         self.reset_zoom_button.clicked.connect(self.toolbar.home)
         self.save_graph_button = QPushButton("Save Graph")
         self.save_graph_button.clicked.connect(self.toolbar.save_figure)
+        self.reset_zoom_button.setObjectName("reset_zoom_button")    # a name for style.qss
+        self.save_graph_button.setObjectName("save_graph_button")
         buttons = QHBoxLayout()
+        buttons.addStretch()    # empty space on both sides keeps the buttons small and centered
         buttons.addWidget(self.reset_zoom_button)
         buttons.addWidget(self.save_graph_button)
+        buttons.addStretch()
         layout.addLayout(buttons)    # after layout.addWidget(self.canvas)
         layout.setSpacing(0)         # less space between the widgets
 ```
@@ -247,4 +251,20 @@ How to use it:
 - **Reset Zoom:** back to the whole graph.
 - **Save Graph:** opens a save window, and saves the graph as a PNG, JPG, PDF or SVG file.
 
-The new buttons already look like "Load data", because the `QPushButton` rules in `style.qss` apply to every button. Nothing needed to change there.
+And in `style.qss` it adds a rule for the two small buttons. `#name` picks a widget by the name given to it with `setObjectName`, so these lines change only these two buttons and leave "Load data" as it was:
+
+```css
+#reset_zoom_button, #save_graph_button {
+    background-color: white;
+    color: #1e3a8a;
+    border: 1px solid #1e3a8a;
+    border-radius: 6px;
+    padding: 4px 12px;
+    margin: 4px 2px;
+    font-size: 10pt;
+    font-weight: normal;
+}
+#reset_zoom_button:hover, #save_graph_button:hover {
+    background-color: #dbeafe;
+}
+```
