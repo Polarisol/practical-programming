@@ -237,18 +237,23 @@ Now read the code. "The lines on the top and right" are called **spines** in mat
 
 Now let's let the user zoom in and save the graph as a picture. matplotlib already has a toolbar that does this, so ask for it by name, and ask for it to be styled like the rest of the app:
 
-> Add a toolbar above the graph so I can zoom in, move around the graph and save it as an image. Use matplotlib's ready-made toolbar. Style it to match the rest of the app by adding rules to `style.qss`: the same background as the window, white rounded buttons, and a light blue background when the mouse is over a button or when a button is on. Don't change `draw_graph`.
+> Add a small toolbar above the graph with only two buttons: one to zoom in and one to save the graph as an image. Use matplotlib's ready-made toolbar, but keep only those two buttons and hide the mouse coordinates. Style it to match the rest of the app by adding rules to `style.qss`: the same background as the window, white rounded buttons, and a light blue background when the mouse is over a button or when a button is on. Don't change `draw_graph`.
 
 ![The app before the toolbar prompt, and after it](content/images/prompt_toolbar_before_after.png)
 
-The Python change is small: one import, and two lines in `__init__` that create the toolbar and put it in the layout:
+The Python change is small: a tiny class above `MainWindow` that keeps only two of the toolbar's buttons, and two lines in `__init__` that create the toolbar and put it in the layout:
 
 ```python
 from matplotlib.backends.backend_qtagg import NavigationToolbar2QT
+
+
+class GraphToolbar(NavigationToolbar2QT):
+    # Keep only the Zoom and Save buttons of matplotlib's toolbar
+    toolitems = [t for t in NavigationToolbar2QT.toolitems if t[0] in ("Zoom", "Save")]
 ```
 
 ```python
-        self.toolbar = NavigationToolbar2QT(self.canvas, self)
+        self.toolbar = GraphToolbar(self.canvas, self, coordinates=False)
         layout.addWidget(self.toolbar)    # just before layout.addWidget(self.canvas)
 ```
 
@@ -275,11 +280,9 @@ QToolButton:checked {
 }
 ```
 
-What the buttons do, from left to right:
+What the two buttons do:
 
-- **Home** goes back to the original view. **Back** and **Forward** move between the views you zoomed to.
-- **Move** (the arrows): drag the graph around. **Zoom** (the magnifying glass): drag a rectangle over the part you want to see bigger.
-- **Settings** and **Edit**: change the margins, the axis limits, the titles and the line style.
+- **Zoom** (the magnifying glass): click it, then drag a rectangle over the part of the graph you want to see bigger. Drag with the right mouse button to zoom out. Click the button again to turn zoom off.
 - **Save** (the disk): saves the graph as a PNG, JPG, PDF or SVG file.
 
-The toolbar is ready-made, so you get all of this almost for free. Its look is yours: change the colors in `style.qss` just as you did before.
+matplotlib's toolbar has more buttons: Home (back to the full view), Back, Forward, Pan (move the graph around) and a few settings. Want one of them too? Add its name to the list in `GraphToolbar`, for example `("Home", "Zoom", "Save")`. Want to change the look? Change the colors in `style.qss`, just as you did before.

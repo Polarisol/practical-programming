@@ -261,20 +261,25 @@ def draw_graph(self):
 
 עכשיו נאפשר למשתמש לעשות זום ולשמור את הגרף כתמונה. ל-matplotlib כבר יש סרגל כלים (toolbar) שעושה את זה, אז בקשו אותו בשמו, ובקשו שיעוצב כמו שאר האפליקציה:
 
-> Add a toolbar above the graph so I can zoom in, move around the graph and save it as an image. Use matplotlib's ready-made toolbar. Style it to match the rest of the app by adding rules to `style.qss`: the same background as the window, white rounded buttons, and a light blue background when the mouse is over a button or when a button is on. Don't change `draw_graph`.
+> Add a small toolbar above the graph with only two buttons: one to zoom in and one to save the graph as an image. Use matplotlib's ready-made toolbar, but keep only those two buttons and hide the mouse coordinates. Style it to match the rest of the app by adding rules to `style.qss`: the same background as the window, white rounded buttons, and a light blue background when the mouse is over a button or when a button is on. Don't change `draw_graph`.
 
-(״הוסף סרגל כלים מעל הגרף כדי שאוכל לעשות זום, להזיז את הגרף ולשמור אותו כתמונה. השתמש בסרגל הכלים המוכן של matplotlib. עצב אותו כך שיתאים לשאר האפליקציה בעזרת כללים חדשים ב-`style.qss`: אותו רקע כמו החלון, כפתורים לבנים ומעוגלים, ורקע תכלת כשהעכבר מעל כפתור או כשכפתור פעיל. אל תשנה את `draw_graph`.״)
+(״הוסף סרגל כלים קטן מעל הגרף עם שני כפתורים בלבד: אחד לזום ואחד לשמירת הגרף כתמונה. השתמש בסרגל הכלים המוכן של matplotlib, אבל השאר רק את שני הכפתורים האלה והסתר את הקואורדינטות של העכבר. עצב אותו כך שיתאים לשאר האפליקציה בעזרת כללים חדשים ב-`style.qss`: אותו רקע כמו החלון, כפתורים לבנים ומעוגלים, ורקע תכלת כשהעכבר מעל כפתור או כשכפתור פעיל. אל תשנה את `draw_graph`.״)
 
 ![האפליקציה לפני פרומפט סרגל הכלים, ואחריו](content/images/prompt_toolbar_before_after_he.png)
 
-השינוי ב-Python קטן: import אחד, ושתי שורות ב-`__init__` שיוצרות את סרגל הכלים ומכניסות אותו ל-layout:
+השינוי ב-Python קטן: מחלקה קטנה מעל `MainWindow` שמשאירה רק שניים מהכפתורים של סרגל הכלים, ושתי שורות ב-`__init__` שיוצרות את סרגל הכלים ומכניסות אותו ל-layout:
 
 ```python
 from matplotlib.backends.backend_qtagg import NavigationToolbar2QT
+
+
+class GraphToolbar(NavigationToolbar2QT):
+    # Keep only the Zoom and Save buttons of matplotlib's toolbar
+    toolitems = [t for t in NavigationToolbar2QT.toolitems if t[0] in ("Zoom", "Save")]
 ```
 
 ```python
-        self.toolbar = NavigationToolbar2QT(self.canvas, self)
+        self.toolbar = GraphToolbar(self.canvas, self, coordinates=False)
         layout.addWidget(self.toolbar)    # just before layout.addWidget(self.canvas)
 ```
 
@@ -301,11 +306,9 @@ QToolButton:checked {
 }
 ```
 
-מה עושים הכפתורים, משמאל לימין:
+מה עושים שני הכפתורים:
 
-- **Home** (הבית) חוזר לתצוגה המקורית. **Back** ו-**Forward** (החצים) עוברים בין התצוגות שעשיתם אליהן זום.
-- **Move** (החצים לארבעה כיוונים): גוררים את הגרף. **Zoom** (זכוכית המגדלת): מסמנים מלבן על החלק שרוצים לראות בגדול.
-- **Settings** ו-**Edit**: משנים את השוליים, את גבולות הצירים, את הכותרות ואת סגנון הקו.
+- **Zoom** (זכוכית המגדלת): לוחצים עליו, ואז מסמנים מלבן על החלק של הגרף שרוצים לראות בגדול. גרירה עם הכפתור הימני של העכבר מקטינה. לחיצה נוספת על הכפתור מכבה את הזום.
 - **Save** (הדיסקט): שומר את הגרף כקובץ PNG, JPG, PDF או SVG.
 
-סרגל הכלים מוכן מראש, אז כל זה מגיע כמעט בחינם. המראה שלו בידיים שלכם: שנו את הצבעים ב-`style.qss`, בדיוק כמו קודם.
+לסרגל הכלים של matplotlib יש עוד כפתורים: Home (חזרה לתצוגה המלאה), Back, Forward, Pan (הזזת הגרף) ועוד כמה הגדרות. רוצים גם אחד מהם? הוסיפו את השם שלו לרשימה ב-`GraphToolbar`, למשל `("Home", "Zoom", "Save")`. רוצים לשנות את המראה? שנו את הצבעים ב-`style.qss`, בדיוק כמו קודם.
