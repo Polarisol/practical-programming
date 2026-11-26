@@ -174,3 +174,27 @@ if __name__ == "__main__":
 2. **בדקו שהוא עשה מה שביקשתם:** שם הקובץ, השמות, המבנה. אם הוא הוסיף דברים שלא ביקשתם, בקשו ממנו להוריד אותם.
 3. **הריצו** וודאו שהשלד עובד.
 4. **בצעו commit** ב-git. עכשיו יש לכם נקודת התחלה נקייה לחזור אליה, ואפשר להתחיל להוסיף את הקוד שלכם.
+
+## השלב הבא: פרומפט לעיצוב
+
+אחרי שהשלד עובד ונשמר ב-commit, אפשר לגרום לו להיראות טוב בעזרת **פרומפט שני ונפרד**. אל תכניסו את העיצוב לפרומפט הראשון: קודם בונים את המבנה נכון, ורק אחר כך עובדים על המראה.
+
+בקשו מה-AI לשים את העיצוב ב**קובץ QSS** (ראו את הפריט על קובצי QSS ב[יחידת PySide6](?id=pyside6)). כך כל הצבעים, הגופנים והמרווחים נמצאים בקובץ אחד, וקוד ה-Python שלכם נשאר קצר וקל לקריאה.
+
+### פרומפט עיצוב פשוט
+
+> Design the window in `app.py` in a modern way, using a QSS file called `style.qss`. Load the file once, when the app starts. Don't change anything else in the Python code.
+
+(״עצב את החלון ב-`app.py` בצורה מודרנית, בעזרת קובץ QSS בשם `style.qss`. טען את הקובץ פעם אחת, כשהאפליקציה עולה. אל תשנה שום דבר אחר בקוד ה-Python.״)
+
+### פרומפט עיצוב עם הבחירות שלכם
+
+אם אתם כבר יודעים מה אתם רוצים, תגידו את זה. כל פרט שאתם נותנים הוא החלטה שה-AI לא מקבל במקומכם:
+
+> Design the window in `app.py` in a modern way, using a QSS file called `style.qss`. Load the file once, when the app starts. Use a light gray background, dark blue buttons with white text and rounded corners, a lighter blue when the mouse is over a button, and a 12 pt font. Add some spacing between the widgets. Don't change anything else in the Python code.
+
+רקע אפור בהיר, כפתורים בכחול כהה עם טקסט לבן ופינות מעוגלות, כחול בהיר יותר כשהעכבר מעל כפתור, גופן בגודל 12, ומרווחים בין הווידג'טים.
+
+עוד דברים שאפשר לבקש: ערכת נושא כהה, גופן מסוים, צבע בולט לכפתור חשוב אחד (תנו לו שם עם `setObjectName` ועצבו אותו עם `#name`), או מסגרת סביב אזור הגרף.
+
+״אל תשנה שום דבר אחר בקוד ה-Python״ זה משפט חשוב. בדקו ב-git שה-AI עמד בזה: השינויים צריכים להיות הקובץ החדש `style.qss`, השורה או שתיים שטוענות אותו, ואולי כמה קריאות ל-`setObjectName`. אם התוצאה לא מוצאת חן בעיניכם, בטלו את השינויים ונסו פרומפט אחר. אם היא מוצאת חן, בצעו commit.

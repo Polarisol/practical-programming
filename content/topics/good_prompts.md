@@ -156,3 +156,23 @@ Each of these prompts builds only the interface. The methods are left for you.
 2. **Check that it followed your prompt:** the file name, the names, the structure. If it added things you didn't ask for, ask it to remove them.
 3. **Run it** and make sure the skeleton works.
 4. **Commit** it to git. Now you have a clean starting point to go back to, and you can start adding your own code.
+
+## Next step: a design prompt
+
+Once the skeleton works and is committed, you can make it look good with a **second, separate prompt**. Keep the design out of the first prompt: first get the structure right, then work on the looks.
+
+Ask the AI to put the design in a **QSS file** (see QSS Style Files in the [PySide6 unit](?id=pyside6)). All the colors, fonts and spacing then live in one file, and your Python code stays short and easy to read.
+
+### A simple design prompt
+
+> Design the window in `app.py` in a modern way, using a QSS file called `style.qss`. Load the file once, when the app starts. Don't change anything else in the Python code.
+
+### A design prompt with your own choices
+
+If you already know what you want, say it. Every detail you give is a decision the AI doesn't make for you:
+
+> Design the window in `app.py` in a modern way, using a QSS file called `style.qss`. Load the file once, when the app starts. Use a light gray background, dark blue buttons with white text and rounded corners, a lighter blue when the mouse is over a button, and a 12 pt font. Add some spacing between the widgets. Don't change anything else in the Python code.
+
+Other things you can ask for: a dark theme, a specific font, an accent color for one important button (give it a name with `setObjectName` and style it with `#name`), or a border around the graph area.
+
+"Don't change anything else in the Python code" is important. Check with git that the AI kept its word: the changes should be the new `style.qss`, the line or two that load it, and perhaps a few `setObjectName` calls. If you don't like the result, discard the changes and try a different prompt. If you like it, commit it.
