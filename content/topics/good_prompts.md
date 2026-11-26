@@ -257,32 +257,25 @@ class GraphToolbar(NavigationToolbar2QT):
         layout.addWidget(self.toolbar)    # just before layout.addWidget(self.canvas)
 ```
 
-The look comes from new rules at the end of `style.qss`:
-
-```css
-QToolBar {
-    background-color: #eef1f5;
-    border: none;
-    spacing: 4px;
-}
-QToolButton {
-    background-color: white;
-    border: 1px solid #d0d5dd;
-    border-radius: 6px;
-    padding: 4px;
-}
-QToolButton:hover {
-    background-color: #dbeafe;
-}
-QToolButton:checked {
-    background-color: #bfdbfe;
-    border-color: #1e3a8a;
-}
-```
-
 What the two buttons do:
 
 - **Zoom** (the magnifying glass): click it, then drag a rectangle over the part of the graph you want to see bigger. Drag with the right mouse button to zoom out. Click the button again to turn zoom off.
 - **Save** (the disk): saves the graph as a PNG, JPG, PDF or SVG file.
 
 matplotlib's toolbar has more buttons: Home (back to the full view), Back, Forward, Pan (move the graph around) and a few settings. Want one of them too? Add its name to the list in `GraphToolbar`, for example `("Home", "Zoom", "Save")`. Want to change the look? Change the colors in `style.qss`, just as you did before.
+
+### A follow-up prompt: fix what you don't like
+
+Look at the result with a critical eye. After the toolbar was added, the graph has too much empty space on its left and above it. You don't have to start over, and you don't need the right words. Just say what bothers you:
+
+> There is too much empty space between the graph and the left side of the window, and a bit too much above the title. Make the graph fill more of its area. Only change `draw_graph`.
+
+![The app before the follow-up prompt, and after it](content/images/prompt_fix_before_after.png)
+
+The AI added one line:
+
+```python
+        self.figure.tight_layout(pad=0.3)    # in draw_graph, just before self.canvas.draw()
+```
+
+`pad` is the space around the graph. Try other values yourself and see what looks best to you.

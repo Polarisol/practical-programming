@@ -283,32 +283,27 @@ class GraphToolbar(NavigationToolbar2QT):
         layout.addWidget(self.toolbar)    # just before layout.addWidget(self.canvas)
 ```
 
-המראה מגיע מכללים חדשים בסוף `style.qss`:
-
-```css
-QToolBar {
-    background-color: #eef1f5;
-    border: none;
-    spacing: 4px;
-}
-QToolButton {
-    background-color: white;
-    border: 1px solid #d0d5dd;
-    border-radius: 6px;
-    padding: 4px;
-}
-QToolButton:hover {
-    background-color: #dbeafe;
-}
-QToolButton:checked {
-    background-color: #bfdbfe;
-    border-color: #1e3a8a;
-}
-```
-
 מה עושים שני הכפתורים:
 
 - **Zoom** (זכוכית המגדלת): לוחצים עליו, ואז מסמנים מלבן על החלק של הגרף שרוצים לראות בגדול. גרירה עם הכפתור הימני של העכבר מקטינה. לחיצה נוספת על הכפתור מכבה את הזום.
 - **Save** (הדיסקט): שומר את הגרף כקובץ PNG, JPG, PDF או SVG.
 
 לסרגל הכלים של matplotlib יש עוד כפתורים: Home (חזרה לתצוגה המלאה), Back, Forward, Pan (הזזת הגרף) ועוד כמה הגדרות. רוצים גם אחד מהם? הוסיפו את השם שלו לרשימה ב-`GraphToolbar`, למשל `("Home", "Zoom", "Save")`. רוצים לשנות את המראה? שנו את הצבעים ב-`style.qss`, בדיוק כמו קודם.
+
+### פרומפט המשך: לתקן את מה שלא מוצא חן
+
+הסתכלו על התוצאה בעין ביקורתית. אחרי שהוספנו את סרגל הכלים, יש לגרף יותר מדי מקום ריק משמאל ומעליו. לא צריך להתחיל מההתחלה, ולא צריך לדעת את המילים הנכונות. פשוט תגידו מה מפריע לכם:
+
+> There is too much empty space between the graph and the left side of the window, and a bit too much above the title. Make the graph fill more of its area. Only change `draw_graph`.
+
+(״יש יותר מדי מקום ריק בין הגרף לצד השמאלי של החלון, וקצת יותר מדי מעל הכותרת. תגרום לגרף למלא יותר מהשטח שלו. תשנה רק את `draw_graph`.״)
+
+![האפליקציה לפני פרומפט ההמשך, ואחריו](content/images/prompt_fix_before_after_he.png)
+
+ה-AI הוסיף שורה אחת:
+
+```python
+        self.figure.tight_layout(pad=0.3)    # in draw_graph, just before self.canvas.draw()
+```
+
+`pad` הוא המרווח מסביב לגרף. נסו בעצמכם ערכים אחרים וראו מה נראה לכם הכי טוב.
