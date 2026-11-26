@@ -198,6 +198,8 @@ QPushButton:hover {
 }
 ```
 
+Now it's your turn: **open `style.qss` and play with it.** Change a color, make the corners rounder, make the font bigger, then run the app again and see what happened. The file is short and easy to read, so you don't need another prompt for every small change. The AI gave you a starting point, and the final look should be yours. Tip: search for "hex color picker" to find the code of any color you like.
+
 Other things you can ask for: a dark theme, a specific font, an accent color for one important button (give it a name with `setObjectName` and style it with `#name`), or a border around the graph area.
 
 "Don't change anything else in the Python code" is important. Check with git that the AI kept its word: the changes should be the new `style.qss`, the line or two that load it, and perhaps a few `setObjectName` calls. If you don't like the result, discard the changes and try a different prompt. If you like it, commit it.
