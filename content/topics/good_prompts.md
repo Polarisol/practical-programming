@@ -266,16 +266,24 @@ matplotlib's toolbar has more buttons: Home (back to the full view), Back, Forwa
 
 ### A follow-up prompt: fix what you don't like
 
-Look at the result with a critical eye. After the toolbar was added, the graph has too much empty space on its left and above it. You don't have to start over, and you don't need the right words. Just say what bothers you:
+Look at the result with a critical eye. After the toolbar was added, the graph has too much empty space on its left and above it, and the buttons would look better on the right. You don't have to start over, and you don't need the right words. Just say what bothers you:
 
-> There is too much empty space between the graph and the left side of the window, and a bit too much above the title. Make the graph fill more of its area. Only change `draw_graph`.
+> There is too much empty space between the graph and the left side of the window, and a bit too much above the title. Make the graph fill more of its area. Also, move the zoom and save buttons to the right side, aligned to the right.
 
 ![The app before the follow-up prompt, and after it](content/images/prompt_fix_before_after.png)
 
-The AI added one line:
+The AI added one line to `draw_graph`, and changed the line in `__init__` that puts the toolbar in the layout:
 
 ```python
         self.figure.tight_layout(pad=0.3)    # in draw_graph, just before self.canvas.draw()
+```
+
+```python
+from PySide6.QtCore import Qt
+```
+
+```python
+        layout.addWidget(self.toolbar, alignment=Qt.AlignRight)    # in __init__, instead of layout.addWidget(self.toolbar)
 ```
 
 `pad` is the space around the graph. Try other values yourself and see what looks best to you.

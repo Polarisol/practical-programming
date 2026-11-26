@@ -292,18 +292,26 @@ class GraphToolbar(NavigationToolbar2QT):
 
 ### פרומפט המשך: לתקן את מה שלא מוצא חן
 
-הסתכלו על התוצאה בעין ביקורתית. אחרי שהוספנו את סרגל הכלים, יש לגרף יותר מדי מקום ריק משמאל ומעליו. לא צריך להתחיל מההתחלה, ולא צריך לדעת את המילים הנכונות. פשוט תגידו מה מפריע לכם:
+הסתכלו על התוצאה בעין ביקורתית. אחרי שהוספנו את סרגל הכלים, יש לגרף יותר מדי מקום ריק משמאל ומעליו, והכפתורים ייראו טוב יותר בצד ימין. לא צריך להתחיל מההתחלה, ולא צריך לדעת את המילים הנכונות. פשוט תגידו מה מפריע לכם:
 
-> There is too much empty space between the graph and the left side of the window, and a bit too much above the title. Make the graph fill more of its area. Only change `draw_graph`.
+> There is too much empty space between the graph and the left side of the window, and a bit too much above the title. Make the graph fill more of its area. Also, move the zoom and save buttons to the right side, aligned to the right.
 
-(״יש יותר מדי מקום ריק בין הגרף לצד השמאלי של החלון, וקצת יותר מדי מעל הכותרת. תגרום לגרף למלא יותר מהשטח שלו. תשנה רק את `draw_graph`.״)
+(״יש יותר מדי מקום ריק בין הגרף לצד השמאלי של החלון, וקצת יותר מדי מעל הכותרת. תגרום לגרף למלא יותר מהשטח שלו. בנוסף, תעביר את כפתורי הזום והשמירה לצד הימני, מיושרים לימין.״)
 
 ![האפליקציה לפני פרומפט ההמשך, ואחריו](content/images/prompt_fix_before_after_he.png)
 
-ה-AI הוסיף שורה אחת:
+ה-AI הוסיף שורה אחת ל-`draw_graph`, ושינה את השורה ב-`__init__` שמכניסה את סרגל הכלים ל-layout:
 
 ```python
         self.figure.tight_layout(pad=0.3)    # in draw_graph, just before self.canvas.draw()
+```
+
+```python
+from PySide6.QtCore import Qt
+```
+
+```python
+        layout.addWidget(self.toolbar, alignment=Qt.AlignRight)    # in __init__, instead of layout.addWidget(self.toolbar)
 ```
 
 `pad` הוא המרווח מסביב לגרף. נסו בעצמכם ערכים אחרים וראו מה נראה לכם הכי טוב.
