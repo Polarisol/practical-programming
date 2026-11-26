@@ -23,22 +23,7 @@ The result may run, but you are now a guest in someone else's code. You don't kn
 >
 > Also add an area of at least 300 by 300 pixels with a matplotlib graph in it. Create a method called `draw_graph` that draws something simple on the graph. I will change it later.
 
-This prompt doesn't describe a finished app. It describes a **skeleton**, built the way *you* would build it, using tools *you* already know.
-
-## Walking through the prompt
-
-Each sentence in the prompt makes one decision, so the AI doesn't have to guess.
-
-| What the prompt says | What it gives you |
-|---|---|
-| "a PySide6 app" | A library you learned in class. You can read every line. |
-| "in a new file called `app.py`" | You know exactly where the code is, and it doesn't touch your other files. |
-| "a main window, written as a class" | The structure we use in the course: widgets are attributes (`self.something`), actions are methods. |
-| "Name the button `file_load_button`" | When you want to change the button, you search for that name. |
-| "connect it to a method called `file_load_method`" | You know where the code that runs on a click lives. |
-| "save the user's choice in `self.filename`" | Any other method in the class can use the file name later. |
-| "at least 300 by 300 pixels with a matplotlib graph" | A library you know, and a size you chose. |
-| "a method called `draw_graph` ... I will change it later" | A clear, empty spot for your own plotting code. "I will change it later" tells the AI to keep it simple. |
+This prompt doesn't describe a finished app. It describes a **skeleton**, built the way *you* would build it, using tools *you* already know. Each sentence in the prompt makes a decision, so the AI doesn't have to guess.
 
 ## What you get back
 
@@ -115,20 +100,12 @@ Nothing here is a surprise. You could have written it yourself, it just would ha
 
 Notice that you can only write a prompt like this if you already know the tools. That is why we learn PySide6, matplotlib and classes first, and use the AI to save typing, not thinking.
 
-## The AI builds the interface, you write the logic
+## After the AI answers
 
-Use these prompts for the **user interface only**: the window, the widgets, the layout and the connections between them. That part is mostly typing, and the AI is fast at it.
-
-The **logic** is yours: calculations, reading and writing files, processing data, the physics of a simulation. In a good starter prompt, every piece of logic becomes an **empty method with a name you chose**, waiting for your code. That is exactly what "I will change it later" does in the prompt above.
-
-## What to put in a starter prompt
-
-1. **The technologies:** the GUI library and the plotting library (PySide6, matplotlib).
-2. **The file:** which file to create.
-3. **The structure:** a window as a class, which layout, what goes where.
-4. **The names:** of widgets, methods and important variables.
-5. **The connections:** which button or signal calls which method.
-6. **The empty methods:** say which methods to leave empty (or with a `print`), because you will write the logic yourself.
+1. **Read all the code** before you run it. If a line is unclear, ask the AI to explain it.
+2. **Check that it followed your prompt:** the file name, the names, the structure. If it added things you didn't ask for, ask it to remove them.
+3. **Run it** and make sure the skeleton works.
+4. **Commit** it to git. Now you have a clean starting point to go back to, and you can start adding your own code.
 
 ## More example prompts
 
@@ -150,12 +127,6 @@ Each of these prompts builds only the interface. The methods are left for you.
 
 > Create a PySide6 app in a new file called `animation.py`, with a main window written as a class. Add a matplotlib graph of at least 400 by 400 pixels, and two buttons in a row under it: "Start" named `start_button` and "Stop" named `stop_button`. Create a `QTimer` named `timer` that calls a method called `step` every 50 milliseconds. `start_button` starts the timer and `stop_button` stops it. Leave `step` empty, I will write the movement myself.
 
-## After the AI answers
-
-1. **Read all the code** before you run it. If a line is unclear, ask the AI to explain it.
-2. **Check that it followed your prompt:** the file name, the names, the structure. If it added things you didn't ask for, ask it to remove them.
-3. **Run it** and make sure the skeleton works.
-4. **Commit** it to git. Now you have a clean starting point to go back to, and you can start adding your own code.
 
 ## Next step: a design prompt
 
@@ -198,17 +169,17 @@ QPushButton:hover {
 }
 ```
 
-Now it's your turn: **open `style.qss` and play with it.** Change a color, make the corners rounder, make the font bigger, then run the app again and see what happened. The file is short and easy to read, so you don't need another prompt for every small change. The AI gave you a starting point, and the final look should be yours. Tip: search for "hex color picker" to find the code of any color you like.
+Now it's your turn: **open `style.qss` and play with it.** Change a color, make the corners rounder, make the font bigger, then run the app again and see what happened. The file is short and easy to read, so you don't need another prompt for every small change. The AI gave you a starting point, and the final look should be yours.
 
-Other things you can ask for: a dark theme, a specific font, an accent color for one important button (give it a name with `setObjectName` and style it with `#name`), or a border around the graph area.
+Other things you can ask for: a dark theme, a specific font, an accent color for one important button, or a border around the graph area.
 
 "Don't change anything else in the Python code" is important. Check with git that the AI kept its word: the changes should be the new `style.qss`, the line or two that load it, and perhaps a few `setObjectName` calls. If you don't like the result, discard the changes and try a different prompt. If you like it, commit it.
 
 ### Making the graph look good
 
-The QSS file styles the window, but not the graph: matplotlib draws the graph itself. So the graph gets a prompt of its own. Here you don't need the technical words. Describe what you want to see, in plain language:
+The QSS file styles the window, but not the graph: matplotlib draws the graph itself. So the graph gets a prompt of its own. Here you don't need the technical words. Describe what you want to see, in plain language. For example:
 
-> Make the graph in `draw_graph` look nicer. Remove the lines on the top and right sides of the graph, add a title and a name for each axis, add a light grid in the background, make the line thicker and dark blue with a dot on every point, and make the background of the graph the same light gray as the window. Only change `draw_graph`.
+> Make the graph in `draw_graph` look nicer. Remove the lines on the top and right sides of the graph, add a title and a name for each axis, make the line thicker and dark blue with a dot on every point, and make the background of the graph the same light gray as the window. Keep the grid off. Only change `draw_graph`.
 
 ![The styled window before the graph prompt, and after it](content/images/prompt_graph_before_after.png)
 
@@ -221,7 +192,6 @@ def draw_graph(self):
     self.ax.set_facecolor("#eef1f5")
     self.ax.spines["top"].set_visible(False)
     self.ax.spines["right"].set_visible(False)
-    self.ax.grid(True, color="#d0d5dd")
     self.ax.set_axisbelow(True)
     self.ax.plot([0, 1, 2, 3, 4], [0, 1, 4, 9, 16],
                  color="#1e3a8a", linewidth=2.5, marker="o")
@@ -231,17 +201,17 @@ def draw_graph(self):
     self.canvas.draw()
 ```
 
-Now read the code. "The lines on the top and right" are called **spines** in matplotlib, and you just learned how to hide them. Next time you can do it yourself, without a prompt. When you replace the example data with your own, keep the styling lines and change only the `plot` line and the titles.
+Now read the code. Some things are very easy to do once you know how. You can now change the values manually to get the visual result you want.
 
 ### Zoom and save the graph
 
-Now let's let the user zoom in and save the graph as a picture. matplotlib already has a toolbar that does this, so ask for it by name, and ask for it to be styled like the rest of the app:
+The graph area still doesn't look that good as it does not occupy the space around it properly. Also we want to add an option for zooming and saving the graph as an image. we'll write a follow-up prompt for that.
 
-> Add a small toolbar above the graph with only two buttons: one to zoom in and one to save the graph as an image. Use matplotlib's ready-made toolbar, but keep only those two buttons and hide the mouse coordinates. Style it to match the rest of the app by adding rules to `style.qss`: the same background as the window, white rounded buttons, and a light blue background when the mouse is over a button or when a button is on. Don't change `draw_graph`.
+> Make the graph occupy the entire width of the window but ensure that the y axis title is fully visible, and go up until it almost at the "Load Data" button. Add an option for zooming and for saving the graph as an image, with only two buttons and place them so they line up with the main title, on the right side of the graph. Style it to match the rest of the app using `style.qss`. Don't change `draw_graph`.
 
 ![The app before the toolbar prompt, and after it](content/images/prompt_toolbar_before_after.png)
 
-The Python change is small: a tiny class above `MainWindow` that keeps only two of the toolbar's buttons, and two lines in `__init__` that create the toolbar and put it in the layout:
+The Python change is small: a tiny class above `MainWindow` that keeps only two of the toolbar's buttons, and two lines in `__init__` that create the toolbar and put it in the layout.
 
 ```python
 from matplotlib.backends.backend_qtagg import NavigationToolbar2QT
@@ -263,27 +233,3 @@ What the two buttons do:
 - **Save** (the disk): saves the graph as a PNG, JPG, PDF or SVG file.
 
 matplotlib's toolbar has more buttons: Home (back to the full view), Back, Forward, Pan (move the graph around) and a few settings. Want one of them too? Add its name to the list in `GraphToolbar`, for example `("Home", "Zoom", "Save")`. Want to change the look? Change the colors in `style.qss`, just as you did before.
-
-### A follow-up prompt: fix what you don't like
-
-Look at the result with a critical eye. After the toolbar was added, the graph has too much empty space on its left and above it, and the buttons would look better on the right. You don't have to start over, and you don't need the right words. Just say what bothers you:
-
-> There is too much empty space between the graph and the left side of the window, and a bit too much above the title. Make the graph fill more of its area. Also, move the zoom and save buttons to the right side, aligned to the right.
-
-![The app before the follow-up prompt, and after it](content/images/prompt_fix_before_after.png)
-
-The AI added one line to `draw_graph`, and changed the line in `__init__` that puts the toolbar in the layout:
-
-```python
-        self.figure.tight_layout(pad=0.3)    # in draw_graph, just before self.canvas.draw()
-```
-
-```python
-from PySide6.QtCore import Qt
-```
-
-```python
-        layout.addWidget(self.toolbar, alignment=Qt.AlignRight)    # in __init__, instead of layout.addWidget(self.toolbar)
-```
-
-`pad` is the space around the graph. Try other values yourself and see what looks best to you.
